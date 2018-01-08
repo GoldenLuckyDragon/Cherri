@@ -10,11 +10,11 @@ const CURRENCY = 'AUD'
 const fromDollarsToCents = amount => amount * 100
 
 const successPayment = data => {
-  alert('Payment success')
+  alert('Payment Succesful')
 }
 
 const errorPayment = data => {
-  alert('Payment error')
+  alert('Payment Error')
 }
 
 const onToken = (amount, description) => token =>
@@ -36,6 +36,5 @@ const Checkout = ({ name, description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
-  />
 
 export default Checkout
