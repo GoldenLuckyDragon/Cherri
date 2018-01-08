@@ -1,3 +1,6 @@
+// allow for env files
+require('dotenv').config()
+
 const express = require('express')
 
 const SERVER_CONFIG = require('./constants/server')
