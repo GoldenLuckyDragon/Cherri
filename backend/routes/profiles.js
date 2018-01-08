@@ -1,9 +1,10 @@
 const Profile = require('../models/profile.js')
+const Invoice = require('../models/invoice.js')
 
 const profileApi = app => {
   app.get('/profile', (req, res) => {
     Profile.find({})
-    .populate('Invoices')
+    .populate('invoices')
     // line above isn't populating properly issue to be fixed
     .then(profiles => {
       console.log(`profiles: `, profiles)
