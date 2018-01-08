@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Checkout from './Checkout';
 import './App.css';
 
 class App extends Component {
@@ -11,7 +12,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <Checkout
+            name={'James Made This'}
+            description={'Really!'}
+            amount={1}
+          />
         </p>
       </div>
     );
