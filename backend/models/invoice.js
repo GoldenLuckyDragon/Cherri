@@ -1,10 +1,8 @@
 const mongoose = require('./base')
 const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
 
 const invoiceSchema = Schema({
-  factory: { type: ObjectId, ref: 'Profile' },
-  invoice_number: Number,
+  invoice_number: String,
   amount: Number,
   offer_amount: Number,
   due_date: Date,

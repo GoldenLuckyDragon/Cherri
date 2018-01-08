@@ -25,8 +25,8 @@ const onToken = (amount, description) => token =>
       currency: CURRENCY,
       amount: fromDollarsToCents(amount)
     })
-		.then(successPayment)
-		.catch(errorPayment)
+    .then(successPayment)
+    .catch(errorPayment)
 
 const Checkout = ({ name, description, amount }) =>
   <StripeCheckout
@@ -36,6 +36,5 @@ const Checkout = ({ name, description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
-	/>
 
 export default Checkout

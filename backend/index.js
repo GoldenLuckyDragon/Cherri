@@ -1,6 +1,9 @@
+// allow for env files
+require('dotenv').config()
+
 const express = require('express')
 
-const SERVER_CONFIG = require('./constants/server')
+const SERVER_CONFIGS = require('./constants/server')
 
 const configureServer = require('./server')
 const configureRoutes = require('./routes')
@@ -10,7 +13,7 @@ const app = express()
 configureServer(app)
 configureRoutes(app)
 
-app.listen(SERVER_CONFIG.PORT, error => {
+app.listen(SERVER_CONFIGS.PORT, error => {
   if (error) throw error
-  console.log('Server running on port: ' + SERVER_CONFIG.PORT)
+  console.log('Server running on port: ' + SERVER_CONFIGS.PORT)
 })

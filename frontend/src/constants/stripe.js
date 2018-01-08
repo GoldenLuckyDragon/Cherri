@@ -1,5 +1,5 @@
 const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-? 'pk_live_MY_PULISHABLE_KEY'
-: 'pk_test_NFY6Z1CUbyh0azAZ0eHCfBpb'
+? process.env.REACT_APP_STRIPE_PROD_PUBLISH
+: process.env.REACT_APP_STRIPE_DEV_PUBLISH
 
 export default STRIPE_PUBLISHABLE
