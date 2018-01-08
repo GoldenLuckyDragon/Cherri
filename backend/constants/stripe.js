@@ -1,12 +1,9 @@
-// secret keys from stripe...
-
-const configureStripe = require('stripe');
+const configureStripe = require('stripe')
 
 const STRIPE_SECRET_KEY = process.env.NODE_ENV === 'production'
-? 'sk_live_MY_SECRET_KEY'
-: 'sk_test_8A1ynd13xkx6dcRWzHj07wfB';
+? process.env.STRIPE_PROD_SECRET
+: process.env.STRIPE_DEV_SECRET
 
+const stripe = configureStripe(STRIPE_SECRET_KEY)
 
-const stripe = configureStripe(STRIPE_SECRET_KEY);
-
-module.exports = stripe;
+module.exports = stripe

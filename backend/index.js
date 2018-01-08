@@ -1,16 +1,19 @@
-const express = require('express');
+// allow for env files
+require('dotenv').config()
 
-const SERVER_CONFIG = require('./constants/server');
+const express = require('express')
 
-const configureServer = require('./server');
-const configureRoutes = require('./routes');
+const SERVER_CONFIG = require('./constants/server')
 
-const app = express();
+const configureServer = require('./server')
+const configureRoutes = require('./routes')
 
-configureServer(app);
-configureRoutes(app);
+const app = express()
+
+configureServer(app)
+configureRoutes(app)
 
 app.listen(SERVER_CONFIG.PORT, error => {
-	if (error) throw error;
-	console.log('Server running on port: ' + SERVER_CONFIG.PORT);
-});
+  if (error) throw error
+  console.log('Server running on port: ' + SERVER_CONFIG.PORT)
+})
