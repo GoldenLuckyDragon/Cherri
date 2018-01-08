@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.17.1",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.0",
+    "react-burger-menu": "^2.2.3",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "react-stripe-checkout": "^2.6.3"
