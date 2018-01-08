@@ -15,11 +15,14 @@ class App extends Component {
           <h1 className='App-title'>Welcome to React</h1>
         </header>
         <p className='App-intro'>
+
+          {/*  our React STRIPE checkout component */}
           <Checkout
             name={'James Made This'}
             description={'Really!'}
             amount={1}
           />
+
         </p>
       </div>
     )

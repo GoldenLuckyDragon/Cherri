@@ -10,11 +10,11 @@ const CURRENCY = 'AUD'
 const fromDollarsToCents = amount => amount * 100
 
 const successPayment = data => {
-  alert('Payment Succesful')
+  alert('Payment success')
 }
 
 const errorPayment = data => {
-  alert('Payment Error')
+  alert('Payment error')
 }
 
 const onToken = (amount, description) => token =>
