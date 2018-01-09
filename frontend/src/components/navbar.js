@@ -9,9 +9,10 @@ export default class Navigation extends React.Component {
   render () {
     return (
       <Menu right>
-        <a id='home' className='menu-item' href='/'>Home</a>
-        <a id='dashboard' className='menu-item' href='/dashboard'>Dashboard</a>
-        <a id='account' className='menu-item' href='/account'>Account</a>
+        {/* Remember to pass profile_id when going to these links - to be added once profile table has been finalised */}
+        <a id='dashboard' className='menu-item' href='../pages/DashboardPage'>Dashboard</a>
+        <a id='account' className='menu-item' href='../pages/AccountPage'>Account</a>
+        <a id='account' className='menu-item' href='/logout'>Logout</a>
       </Menu>
     )
   }

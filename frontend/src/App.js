@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import Checkout from './Checkout'
 import './App.css'
 import Navigation from './components/navbar'
+import Homelanding from './pages/HomePage'
 
 // allow for env files
 require('dotenv').config()
@@ -12,6 +13,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Navigation />
+        <Homelanding />
         <header className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
           <h1 className='App-title'>Welcome to React</h1>
@@ -23,7 +25,6 @@ class App extends Component {
             description={'Really!'}
             amount={1}
           />
-
         </p>
       </div>
     )
