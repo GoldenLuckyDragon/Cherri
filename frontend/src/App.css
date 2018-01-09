@@ -1,5 +1,11 @@
+/* General styling */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+a:hover {
+    color: #808080;
+}
+
+/* Navbar styling */
 .App {
   text-align: center;
 }
@@ -32,7 +38,7 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 5%;
+  width: 30px;
   height: 30px;
   right: 10%;
   top: 10%;
@@ -40,7 +46,7 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #2e3c48;
 }
 
 /* Position and sizing of clickable cross button */
@@ -51,7 +57,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: #2e3c48;
 }
 
 /* General sidebar styles */
@@ -62,16 +68,6 @@
   color: #000000;
 }
 
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: #373a47;
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: #b8b7ad;
-}
-
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
@@ -79,7 +75,7 @@
 
 /* Styling of navbar font */
 .menu-item {
-  color: #808080;
+  color: #2e3c48;
   text-decoration: none;
   padding: 5px;
   font-family: 'Raleway', sans-serif;
