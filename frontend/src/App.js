@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import Checkout from './Checkout'
 import './App.css'
+import ProfileList from './components/ProfileList'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
 
