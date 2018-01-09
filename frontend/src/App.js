@@ -52,6 +52,13 @@ class App extends Component {
     const {profiles} = this.state
     return (
       <div className='App'>
+        <div>
+          {
+            profiles ? (
+              <ProfileList profiles={profiles} />
+            ) : ('Loading...')
+          }
+        </div>
         <Navigation />
         <Homelanding />
         <header className='App-header'>
