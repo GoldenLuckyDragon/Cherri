@@ -5,6 +5,7 @@ import './App.css'
 import ProfileList from './components/ProfileList'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 // allow for env files
 require('dotenv').config()
@@ -52,6 +53,7 @@ class App extends Component {
   render () {
     const {profiles} = this.state
     return (
+      <Router>
       <div className='App'>
         <div>
           {
@@ -75,6 +77,7 @@ class App extends Component {
           />
         </p>
       </div>
+      </Router>
     )
   }
 }
