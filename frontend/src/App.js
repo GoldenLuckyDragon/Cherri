@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import Checkout from './Checkout'
 import './App.css'
+import Navigation from './components/navbar'
+import Homelanding from './pages/HomePage'
 
 // allow for env files
 require('dotenv').config()
@@ -50,18 +52,14 @@ class App extends Component {
     const {profiles} = this.state
     return (
       <div className='App'>
-        <div>
-          {
-            profiles ? (
-              <ProfileList profiles={profiles} />
-            ) : ('Loading...')
-          }
-        </div>
+        <Navigation />
+        <Homelanding />
         <header className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
           <h1 className='App-title'>Welcome to React</h1>
         </header>
         <p className='App-intro'>
+          {/*  our React STRIPE checkout component */}
           <Checkout
             name={'James Made This'}
             description={'Really!'}

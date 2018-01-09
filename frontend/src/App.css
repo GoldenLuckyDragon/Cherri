@@ -1,5 +1,15 @@
+/* General styling */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+a:hover {
+    color: #808080;
+}
+
+/* Navbar styling */
 .App {
   text-align: center;
+  color: #FFFFFF;
+  font-family: 'Raleway', sans-serif;
 }
 
 .App-logo {
@@ -8,14 +18,14 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #FFFFFF;
   height: 150px;
-  padding: 20px;
-  color: white;
+  padding: 10px;
 }
 
 .App-title {
   font-size: 1.5em;
+  font-family: 'Raleway', sans-serif;
 }
 
 .App-intro {
@@ -25,4 +35,58 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  right: 10%;
+  top: 10%;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #FFFFFF;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #2e3c48;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #FFFFFF;
+  padding: 2.5em;
+  font-size: 1.15em;
+  color: #000000;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Styling of navbar font */
+.menu-item {
+  color: #2e3c48;
+  text-decoration: none;
+  padding: 5px;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Blue gradient jumbotron */
+.jumbotron {
+  height: 100vw;
+  background: #00d2ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
