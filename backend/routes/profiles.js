@@ -12,7 +12,19 @@ const profileApi = app => {
     })
     .catch(error => res.json({ error }))
   })
+
+  app.post('/profile', (req, res) => {
+    Profile.create(req.body).then((profile) => {
+      res.status(201).json(profile).end()
+    })
+  })
   return app
 }
+
+// router.post('/', (req, res) => {
+//   Movie.create({title: "Stranger Than Fiction", yearReleased: 2006, star: "Will Ferrel"}).then(movies => {
+//     res.json({ movies });
+//   });
+// });
 
 module.exports = profileApi
