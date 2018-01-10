@@ -4,10 +4,9 @@ const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 // TODO separate into globals
 // // this is from stripe website
 const CLIENT_ID = 'ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5'
-//
 const TOKEN_URI = 'https://connect.stripe.com/oauth/token'
-const AUTHORIZE_URI = 'https://connect.stripe.com/oauth/authorize'
 
+// include request to make our post request to stripe
 const request = require('request')
 
 // after the stripe goes through it alerts (this is where we make recipts)
@@ -18,6 +17,21 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
     res.status(200).send({ success: stripeRes })
   }
 }
+
+/* STRIPE Customer Process (OUR paymentApi)
+  Customer clicks on special url with our client_id (to be updated)
+  client then fills in stripe form to make an account or signs in with existing.
+  redirect to our redirect_URI (inside connect/settings/dashboard ) on A GET
+
+  IMPORTANT this cannot be localhost, use NGROK to get a https public url.
+
+  Stripe sends back a authorisation code, return that code to stripe on a POST.
+  (using request) include your secret_key.
+
+  Now stripe will send you back an access_token, which will contain your
+  account details and you can start to create an account.
+
+*/
 
 // payment routes
 const paymentApi = app => {
