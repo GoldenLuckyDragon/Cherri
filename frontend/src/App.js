@@ -14,10 +14,12 @@ class App extends Component {
   state = { profiles: null }
 
   componentDidMount(){
+    // calling the fetch functions from profileAPI file
     profileAPI.all()
     .then(profiles => {
       this.setState({ profiles })
     })
+    // HARD CODED profile for initial testing
     // this.setState({
     //   profiles: [
     //     {
