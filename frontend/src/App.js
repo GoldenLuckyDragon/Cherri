@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import Checkout from './Checkout'
 import './App.css'
 import ProfileList from './components/ProfileList'
@@ -7,6 +6,8 @@ import ProfileForm from './components/ProfileForm'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 
 // allow for env files
 require('dotenv').config()
@@ -63,8 +64,14 @@ class App extends Component {
   render () {
     const {profiles} = this.state
     return (
+      <Router>
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
+        <Navigation />
+        <Homelanding />
+        <header className='App-header'>
+          <h1 className='App-title'>Welcome to React</h1>
+        </header>
         <div>
           {
             profiles ? (
@@ -88,6 +95,7 @@ class App extends Component {
           />
         </p>
       </div>
+      </Router>
     )
   }
 }
