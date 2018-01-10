@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Checkout from './Checkout'
 import './App.css'
 import ProfileList from './components/ProfileList'
+import ProfileForm from './components/ProfileForm'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
@@ -53,6 +54,13 @@ class App extends Component {
     // });
   }
 
+  handleProfileSubmission = (profile) => {
+    this.setState(({profiles}) => {
+      return { profiles: [profile].concat(profiles)}
+    });
+    profileAPI.save(profile);
+  }
+
   render () {
     const {profiles} = this.state
     return (
@@ -71,6 +79,13 @@ class App extends Component {
             ) : ('Loading...')
           }
         </div>
+        <ProfileForm onSubmit={this.handleProfileSubmission}/>
+        <Navigation />
+        <Homelanding />
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
+          <h1 className='App-title'>Welcome to React</h1>
+        </header>
         <p className='App-intro'>
           {/*  our React STRIPE checkout component */}
           <Checkout
