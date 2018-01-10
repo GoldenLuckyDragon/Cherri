@@ -4,49 +4,53 @@ import './App.css'
 import ProfileList from './components/ProfileList'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
+import * as profileAPI from './api/profiles'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 
 // allow for env files
 require('dotenv').config()
 
 class App extends Component {
-  state = {profiles: null}
+  state = { profiles: null }
 
   componentDidMount(){
-    // movieAPI.all()
-    // .then(movies => {
-    //   this.setState({ movies })
-    // })
-    this.setState({
-      profiles: [
-        {
-          _id: "5a5316b00dbd7e37f7f32723",
-          email: "jo@hotmail.com",
-          password: "12345",
-          factory_name: "Jo Ablo",
-          address: "123 Fake St",
-          hkid: "N-1191938",
-          incorporation_certificate: "bbbb",
-          payment_method: "ccccc",
-          invoices: [
-            {
-            _id: "5a53199665da64386f09f6ba",
-            invoice_number: "MKT-001-28t",
-            amount: 2553.5,
-            offer_amount: 2298.15,
-            due_date: "2018-05-01T00:00:00.000Z",
-            expiry_date: "2018-02-01T00:00:00.000Z",
-            status: "Pending",
-            customer_company_name: "Walmart",
-            customer_firstname: "Mary",
-            customer_surname: "Jones",
-            sale_purchase_agreement: "",
-            invoice_upload: ""
-            }
-          ]
-        }
-      ]
-    });
+    // calling the fetch functions from profileAPI file
+    profileAPI.all()
+    .then(profiles => {
+      this.setState({ profiles })
+    })
+    // HARD CODED profile for initial testing
+    // this.setState({
+    //   profiles: [
+    //     {
+    //       _id: "5a5316b00dbd7e37f7f32723",
+    //       email: "jo@hotmail.com",
+    //       password: "12345",
+    //       factoryName: "Joe Abloe",
+    //       address: "123 Fakeee St",
+    //       hkid: "N-1191938",
+    //       incorporationCertificate: "bbbb",
+    //       paymentMethod: "cceeeccc",
+    //       invoices: [
+    //         {
+    //         _id: "5a53199665da64386f09f6ba",
+    //         invoiceNumber: "MKT-001-28t",
+    //         amount: 2553.5,
+    //         offerAmount: 2298.15,
+    //         dueDate: "2018-05-01T00:00:00.000Z",
+    //         expiryDate: "2018-02-01T00:00:00.000Z",
+    //         status: "Pending",
+    //         customerCompanyName: "Walmart",
+    //         customerFirstname: "Mary",
+    //         customerSurname: "Jones",
+    //         salePurchaseAgreement: "",
+    //         invoiceUpload: ""
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // });
   }
 
   render () {
@@ -54,6 +58,7 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
+        {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
         <Homelanding />
         <header className='App-header'>
