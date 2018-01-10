@@ -1,5 +1,5 @@
 import React from 'react'
-// import Invoice from './Invoice'
+import Invoice from './Invoice'
 
 export default function Profile ({
   email,
@@ -27,6 +27,17 @@ export default function Profile ({
       &nbsp;
       <span>Payment Method: {paymentMethod}</span>
       &nbsp;
+      Invoices: {
+        invoices ? (
+          invoices.map(invoice => (
+            <Invoice key={invoice._id}>
+              <span>Invoice Number:{invoice.invoiceNumber}</span>
+              &nbsp;
+              <span>Invoice Amount:{invoice.amount}</span>
+            </Invoice>
+          ))
+        ) : ('N/A')
+      }
     </div>
   )
 }

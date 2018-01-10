@@ -2,17 +2,17 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 
 const invoiceSchema = Schema({
-  invoice_number: String,
+  invoiceNumber: String,
   amount: Number,
-  offer_amount: Number,
-  due_date: Date,
-  expiry_date: Date,
+  offerAmount: Number,
+  dueDate: Date,
+  expiryDate: Date,
   status: String,
-  customer_company_name: String,
-  customer_firstname: String,
-  customer_surname: String,
-  sale_purchase_agreement: String,
-  invoice_upload: String
+  customerCompanyName: String,
+  customerFirstname: String,
+  customerSurname: String,
+  salePurchaseAgreement: String,
+  invoiceUpload: String
 })
 
 const Invoice =

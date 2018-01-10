@@ -10,13 +10,9 @@ import Homelanding from './pages/HomePage'
 require('dotenv').config()
 
 class App extends Component {
-  state = {profiles: null}
+  state = { profiles: null}
 
   componentDidMount(){
-    // movieAPI.all()
-    // .then(movies => {
-    //   this.setState({ movies })
-    // })
     this.setState({
       profiles: [
         {
@@ -26,22 +22,22 @@ class App extends Component {
           factory_name: "Jo Ablo",
           address: "123 Fake St",
           hkid: "N-1191938",
-          incorporation_certificate: "bbbb",
-          payment_method: "ccccc",
+          incorporationCertificate: "bbbb",
+          paymentMethod: "ccccc",
           invoices: [
             {
             _id: "5a53199665da64386f09f6ba",
-            invoice_number: "MKT-001-28t",
+            invoiceNumber: "MKT-001-28t",
             amount: 2553.5,
-            offer_amount: 2298.15,
-            due_date: "2018-05-01T00:00:00.000Z",
-            expiry_date: "2018-02-01T00:00:00.000Z",
+            offerAmount: 2298.15,
+            dueDate: "2018-05-01T00:00:00.000Z",
+            expiryDate: "2018-02-01T00:00:00.000Z",
             status: "Pending",
-            customer_company_name: "Walmart",
-            customer_firstname: "Mary",
-            customer_surname: "Jones",
-            sale_purchase_agreement: "",
-            invoice_upload: ""
+            customerCompanyName: "Walmart",
+            customerFirstname: "Mary",
+            customerSurname: "Jones",
+            salePurchaseAgreement: "",
+            invoiceUpload: ""
             }
           ]
         }
@@ -53,6 +49,7 @@ class App extends Component {
     const {profiles} = this.state
     return (
       <div className='App'>
+        {/* testing whether profiles is coming through from line17-line40 */}
         <div>
           {
             profiles ? (
