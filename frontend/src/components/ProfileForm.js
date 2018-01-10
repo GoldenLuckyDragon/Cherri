@@ -58,7 +58,7 @@ export default function ProfileForm ({onSubmit}) {
       <label>
         Payment Method:
         &nbsp;
-        <input type='text' name='Payment Method' />
+        <input type='text' name='paymentMethod' />
       </label>
 
       <button type='submit'>Create Profile</button>
