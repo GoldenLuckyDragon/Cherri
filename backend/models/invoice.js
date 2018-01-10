@@ -1,3 +1,4 @@
+// set up our model for the invoices
 const mongoose = require('./base')
 const Schema = mongoose.Schema
 
