@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import Checkout from './Checkout'
 import './App.css'
 import ProfileList from './components/ProfileList'
@@ -55,6 +54,11 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
+        <Navigation />
+        <Homelanding />
+        <header className='App-header'>
+          <h1 className='App-title'>Welcome to React</h1>
+        </header>
         <div>
           {
             profiles ? (
@@ -62,12 +66,6 @@ class App extends Component {
             ) : ('Loading...')
           }
         </div>
-        <Navigation />
-        <Homelanding />
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to React</h1>
-        </header>
         <p className='App-intro'>
           {/*  our React STRIPE checkout component */}
           <Checkout
