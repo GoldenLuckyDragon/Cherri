@@ -1,14 +1,14 @@
 // include our stripe
-const stripe = require('../constants/stripe')
+const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 
 // TODO separate into globals
 // // this is from stripe website
-var CLIENT_ID = 'ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5'
+const CLIENT_ID = 'ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5'
 //
-var TOKEN_URI = 'https://connect.stripe.com/oauth/token'
-var AUTHORIZE_URI = 'https://connect.stripe.com/oauth/authorize'
+const TOKEN_URI = 'https://connect.stripe.com/oauth/token'
+const AUTHORIZE_URI = 'https://connect.stripe.com/oauth/authorize'
 
-var request = require('request')
+const request = require('request')
 
 // after the stripe goes through it alerts (this is where we make recipts)
 const postStripeCharge = res => (stripeErr, stripeRes) => {
@@ -35,21 +35,23 @@ const paymentApi = app => {
     console.log('made it')
     console.log(req.query.code)
 
-    var code = req.query.code
-
-// Make /oauth/token endpoint POST request
+    const code = req.query.code
+    console.log('key: ', STRIPE_SECRET_KEY)
+    // Make /oauth/token endpoint POST request
     request.post({
       url: TOKEN_URI,
       form: {
         grant_type: 'authorization_code',
         client_id: CLIENT_ID,
         code: code,
-        client_secret: stripe.STRIPE_SECRET_KEY
+        client_secret: STRIPE_SECRET_KEY
       }
     }, function (err, r, body) {
       var accessToken = JSON.parse(body).access_token
       // Do something with your accessToken
-      console.log(accessToken)
+      console.log('r ', r.body)
+      // console.log('error', err)
+      console.log('your access token ', accessToken)
       // For demo's sake, output in response:
       res.send({ 'Your Token': accessToken })
     })
