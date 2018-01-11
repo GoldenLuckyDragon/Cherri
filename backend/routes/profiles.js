@@ -17,7 +17,32 @@ const profileApi = app => {
     })
     .catch(error => res.json({ error }))
   })
+
+  app.post('/profile', (req, res) => {
+    Profile.create(req.body).then((profile) => {
+      res.status(201).json(profile).end()
+    })
+  })
+
+  // app.patch('/profile', (req, res) => {
+  //   Profile.edit(req.body).then((profile) => {
+  //     res.status(201).json(profile).end()
+  //   })
+  // })
+
+  // app.patch('/user/:id', function (req, res) {
+  //   var updateObject = req.body // {last_name : "smith", age: 44}
+  //   var id = req.params.id
+  //   db.users.update({_id: ObjectId(id)}, {$set: updateObject})
+  // })
+
   return app
 }
+
+// router.post('/', (req, res) => {
+//   Movie.create({title: "Stranger Than Fiction", yearReleased: 2006, star: "Will Ferrel"}).then(movies => {
+//     res.json({ movies });
+//   });
+// });
 
 module.exports = profileApi

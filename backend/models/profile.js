@@ -6,11 +6,11 @@ const ObjectId = Schema.Types.ObjectId
 const FinalProfileSchema = Schema({
   email: String,
   password: String,
-  factory_name: String,
+  factoryName: String,
   address: String,
   hkid: String,
-  incorporation_certificate: String,
-  payment_method: String,
+  incorporationCertificate: String,
+  paymentMethod: String,
   invoices: [{ type: ObjectId, ref: 'Invoice' }]
 })
 
