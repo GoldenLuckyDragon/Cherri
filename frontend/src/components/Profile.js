@@ -1,7 +1,9 @@
 import React from 'react'
 import Invoice from './Invoice'
+import {Link} from 'react-router-dom'
 
 export default function Profile ({
+  _id,
   email,
   password,
   factoryName,
@@ -13,7 +15,12 @@ export default function Profile ({
 }) {
   return (
     <div>
-      <span>Email: {email}</span>
+      <span>
+      Email:
+        <Link to={`/profile/${_id}`}>
+          {email}
+        </Link>
+      </span>
       &nbsp;
       <span>Password: {password}</span>
       &nbsp;
@@ -38,15 +45,7 @@ export default function Profile ({
           ))
         ) : ('N/A')
       }
+      &nbsp;
     </div>
   )
 }
-
-// Invoices: {
-//   invoices ? (
-//     <Invoice>
-//       {invoices.status}
-//     </Invoice>
-//   ) : ('N/A')
-// }
-// &nbsp;
