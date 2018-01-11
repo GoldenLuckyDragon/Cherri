@@ -20,6 +20,7 @@ class App extends Component {
     profileAPI.all()
     .then(profiles => {
       this.setState({ profiles })
+      console.log(profiles)
     })
     // HARD CODED profile for initial testing
     // this.setState({
