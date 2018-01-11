@@ -31,6 +31,8 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
   Now stripe will send you back an access_token, which will contain your
   account details and you can start to create an account.
 
+  make sure NODE_ENV is set to DEV in package json
+
 */
 
 // payment routes
@@ -62,12 +64,22 @@ const paymentApi = app => {
       }
     }, function (err, r, body) {
       var accessToken = JSON.parse(body).access_token
+      var stripe_user_id = JSON.parse(body).stripe_user_id
+
       // Do something with your accessToken
-      console.log('r ', r.body)
-      // console.log('error', err)
-      console.log('your access token ', accessToken)
+
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
+      console.log('error', err)
+
+      console.log('stripe_user_id: ', stripe_user_id)
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
       // For demo's sake, output in response:
-      res.send({ 'Your Token': accessToken })
+      // res.send({ 'Your Token': accessToken })
+      res.send({ 'r': r.body })
     })
   })
 
