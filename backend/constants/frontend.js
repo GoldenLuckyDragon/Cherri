@@ -1,4 +1,5 @@
-const FRONTEND_DEV_URLS = [ 'http://localhost:3000']
+// set up urls that can dynamically change with production
+const FRONTEND_DEV_URLS = ['http://localhost:3000']
 
 const FRONTEND_PROD_URLS = [
   'https://www.GLD.com.hk'

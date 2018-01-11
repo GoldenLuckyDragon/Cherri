@@ -1,18 +1,23 @@
+// import our constants
 import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 
-import STRIPE_PUBLISHABLE from './constants/stripe'
-import PAYMENT_SERVER_URL from './constants/server'
+import STRIPE_PUBLISHABLE from '../constants/stripe'
+import PAYMENT_SERVER_URL from '../constants/server'
 
+// set currency AUD for testing possible HKD
 const CURRENCY = 'AUD'
 
+// change our cents to currencyßß
 const fromDollarsToCents = amount => amount * 100
 
+// sucess
 const successPayment = data => {
   alert('Payment success')
 }
 
+// failure
 const errorPayment = data => {
   alert('Payment error')
 }

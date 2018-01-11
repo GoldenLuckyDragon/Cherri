@@ -1,3 +1,4 @@
+// Include mongoose and set up our connection
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
 const db = mongoose.connection
