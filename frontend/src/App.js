@@ -6,7 +6,8 @@ import ProfileForm from './components/ProfileForm'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import AccountPage from './pages/AccountPage.js'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 
 // allow for env files
@@ -70,13 +71,12 @@ class App extends Component {
         {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
         <Homelanding />
-        <div>
-          {
-            profiles ? (
-              <ProfileList profiles={profiles} />
-            ) : ('Loading...')
-          }
-        </div>
+        <Switch>
+          <Route path='/profiles' render={
+              () => (
+                <AccountPage profiles={profiles}/>
+              )}/>
+        </Switch>
         <ProfileForm onSubmit={this.handleProfileSubmission}/>
         <p className='App-intro'>
           {/*  our React STRIPE checkout component */}
