@@ -7,10 +7,11 @@ export default ({profiles}) => {
   return (
     profiles ? (
       <Switch>
-        <Route path='/profile/:id' render={
+        <Route path='/profiles/:id' render={
           ({ match }) => {
             const id = match.params.id
-            const profile = profiles.find((m) => m._id === id)
+            const profile = profiles.find((p) => p._id === id)
+            console.log(match.params)
             return (<Profile {...profile} />)
           }
         } />
