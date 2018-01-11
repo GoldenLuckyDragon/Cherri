@@ -18,6 +18,7 @@ Invoice.create([
   {
     invoiceNumber: 'MKT-001-28t',
     amount: 2553.50,
+    currency: 'USD',
     offerAmount: 2298.15,
     dueDate: '2018-05-01',
     expiryDate: '2018-02-01',

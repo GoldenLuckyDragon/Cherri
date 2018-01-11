@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const invoiceSchema = Schema({
   invoiceNumber: String,
   amount: Number,
+  currency: String,
   offerAmount: Number,
   dueDate: Date,
   expiryDate: Date,
