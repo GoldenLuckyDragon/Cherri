@@ -15,6 +15,14 @@ export default ({profiles}) => {
             return (<Profile {...profile} />)
           }
         } />
+        <Route path='/profiles/:id' render={
+          ({ match }) => {
+            const id = match.params.id
+            const profile = profiles.find((p) => p._id === id)
+            console.log(match.params)
+            return (<Profile {...profile} />)
+          }
+        } />
         <Route path='/profiles' render={
           () => (
             <div>
