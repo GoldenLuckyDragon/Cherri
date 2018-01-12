@@ -58,6 +58,11 @@ export class Homelanding2 extends React.Component {
             3. 90% of your invoice value paid upon approval.
           </Col>
         </Row>
+        <br />
+        <p />
+        <Row className='show-grid'>
+          <Button>Learn More</Button>
+        </Row>
       </Grid>
     )
   }
