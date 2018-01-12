@@ -17,7 +17,7 @@ export default function Profile ({
     <div>
       <span>
       Email:
-        <Link to={`/profile/${_id}`}>
+        <Link to={`/profiles/${_id}`}>
           {email}
         </Link>
       </span>
