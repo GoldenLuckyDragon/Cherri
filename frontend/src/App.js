@@ -74,20 +74,19 @@ class App extends Component {
       <Router>
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
-        <Jumbotron>
         <Navigation />
-        </Jumbotron>
         <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
         <Switch>
-          <Route path='/profiles' render={
-              () => (
-                <AccountPage profiles={profiles}/>
-              )}/>
           <Route exact path='/' render={
             () => (
               <Homelanding />
             )
           }/>
+          <Route path='/profiles' render={
+              () => (
+                <AccountPage profiles={profiles}/>
+              )}/>
+
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm onSubmit={this.handleProfileSubmission}/>

@@ -1,6 +1,9 @@
 // include our stripe
 const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 
+// require our Profiles
+const Profile = require('../models/profile.js')
+
 // TODO separate into globals
 // // this is from stripe website
 const CLIENT_ID = 'ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5'
@@ -67,36 +70,31 @@ const paymentApi = app => {
       var accessToken = JSON.parse(body).access_token
 
       // their stripeID
-      var stripe_user_id = JSON.parse(body).stripe_user_id
+      var stripeUserId = JSON.parse(body).stripe_user_id
 
       // Do something with your accessToken
       console.log(' ')
       console.log(' ')
       console.log(' ')
       console.log('error', err)
-
-      //
-
-      console.log('stripe_user_id: ', stripe_user_id)
+      // save the stripe user id
+      console.log('stripe_user_id: ', stripeUserId)
       console.log(' ')
       console.log(' ')
       console.log(' ')
-      // For demo's sake, output in response:
-      // res.send({ 'Your Token': accessToken })
-      // res.send({ 'r': r.body })
 
-      // Go fetch the Account from the Token
-      function getAccount () {
-        stripe.account.retrieve(stripe_user_id, onAccount)
-        console.log('getAccount')
-      }
+    //   collection.findOneAndUpdate({_id: "12"}, {$set: {protocol: "http"}}, {upsert: true}, function(err,doc) {
+    //   if (err) { throw err; }
+    //   else { console.log("Updated"); }
+    // });
 
-      // Render the Account information
-      function onAccount (error) {
-        console.log('OnAccount')
-      }
-      res.send(getAccount())
+    // 5a58221b88603d1b0d76bd27
+
+      Profile.findOneAndUpdate({'_id': '5a58221b88603d1b0d76bd27'}, {$set: {'incorporationCertificate': stripeUserId}}, function (err, profile) {
+        if (err) { throw err } else { console.log('updated') }
+      })
     })
+    res.redirect('/profile')
   })
 
   return app
