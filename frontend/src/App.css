@@ -53,6 +53,7 @@ h1 {
   padding: 2.5em;
   font-size: 1.15em;
   color: #000000;
+  width: 100%;
 }
 
 /* Styling of overlay */
@@ -72,6 +73,8 @@ h1 {
 .jumbotron-blue {
   height: 100vh;
   width: 100vw;
+  padding: 0;
+  margin: auto;
   background: #00d2ff;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -80,7 +83,7 @@ h1 {
 .jumbotron-white {
   height: 100vh;
   width: 100vw;
-  background: #FFFFFF; 
+  background: #FFFFFF;
 }
 
 /* LOGO */

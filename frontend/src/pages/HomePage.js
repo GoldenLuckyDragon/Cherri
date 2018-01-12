@@ -18,7 +18,6 @@ const Homelanding = () => (
       </Col>
     </Row>
   </Grid>
-
 )
 
 var currencyApi = require('fixer-io-node')
