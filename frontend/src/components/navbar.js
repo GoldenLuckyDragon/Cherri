@@ -16,8 +16,6 @@ export default class Navigation extends React.Component {
           <Link to={`/profile/id`}>Dashboard</Link>
           <Link to={`/profile/id/edit`}>Account</Link>
           <Link to={`/profile/id`}>Logout</Link>
-          <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
-
         </Menu>
       </div>
     )

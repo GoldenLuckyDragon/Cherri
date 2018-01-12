@@ -92,13 +92,10 @@ const paymentApi = app => {
       }
 
       // Render the Account information
-      function onAccount (error, account) {
+      function onAccount (error) {
         console.log('OnAccount')
-        res.render('account', {
-          error: error,
-          account: account
-        })
       }
+      res.send(getAccount())
     })
   })
 
