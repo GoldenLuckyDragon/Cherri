@@ -25,7 +25,7 @@ class App extends Component {
     profileAPI.all()
     .then(profiles => {
       this.setState({ profiles })
-      console.log(profiles)
+      // console.log(profiles)
     })
     // HARD CODED profile for initial testing
     // this.setState({
@@ -74,6 +74,9 @@ class App extends Component {
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
+        <Homelanding />
+        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
+
 
         <Switch>
           <Route exact path='/' render={
@@ -100,7 +103,6 @@ class App extends Component {
           />
         </p>
 
-        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
       </div>
       </Router>
     )
