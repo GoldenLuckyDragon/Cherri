@@ -74,10 +74,11 @@ class App extends Component {
       <Router>
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
-        <Jumbotron>
+        <Jumbotron className="jumbotron-blue">
         <Navigation />
         </Jumbotron>
-        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
+        <Jumbotron className="jumbotron-white">
+        <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a>
         <Switch>
           <Route path='/profiles' render={
               () => (
@@ -93,15 +94,7 @@ class App extends Component {
                 <ProfileForm onSubmit={this.handleProfileSubmission}/>
               )}/>
         </Switch>
-        <p className='App-intro'>
-          {/*  our React STRIPE checkout component */}
-          <Checkout
-            name={'James Made This'}
-            description={'Pay via stripe'}
-            amount={1}
-          />
-        </p>
-
+          </Jumbotron>
       </div>
       </Router>
     )

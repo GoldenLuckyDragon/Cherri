@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Grid, Row, Col } from 'react-bootstrap'
-import iphone from '../images/iphone.jpg'
+import iphone from '../images/iphone.png'
 
 const Homelanding = () => (
   <Grid>
@@ -14,7 +14,7 @@ const Homelanding = () => (
         <Button>Sign Up</Button>
       </Col>
       <Col xs={4} md={4}>
-        <img src={iphone} width='100' height='50' />
+        <img src={iphone} width='300' height='280' />
       </Col>
     </Row>
   </Grid>
