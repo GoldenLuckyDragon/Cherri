@@ -77,14 +77,9 @@ class App extends Component {
         <Jumbotron>
         <Navigation />
         <Homelanding />
-      </Jumbotron>
+        </Jumbotron>
         <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
         <Switch>
-          <Route exact path='/' render={
-            () => (
-              <Homelanding />
-            )
-          }/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>
@@ -95,7 +90,6 @@ class App extends Component {
               )}/>
         </Switch>
         <p className='App-intro'>
-
           {/*  our React STRIPE checkout component */}
           <Checkout
             name={'James Made This'}
