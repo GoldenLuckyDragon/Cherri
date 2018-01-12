@@ -70,15 +70,15 @@ class App extends Component {
         <Navigation />
 
         <Switch>
+          <Route path='/profiles' render={
+              () => (
+                <AccountPage profiles={profiles}/>
+              )}/>
           <Route exact path='/' render={
             () => (
               <Homelanding />
             )
           }/>
-          <Route path='/profiles' render={
-              () => (
-                <AccountPage profiles={profiles}/>
-              )}/>
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm onSubmit={this.handleProfileSubmission}/>
