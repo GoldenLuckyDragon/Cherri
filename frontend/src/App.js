@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
-import Navigation from './components/navbar'
+import Navigation from './components/Navbar'
 import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
+import Logo from './components/Logo'
 
 
 // Our Stripe connect url
@@ -74,8 +75,10 @@ class App extends Component {
       <Router>
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
-        <Jumbotron className="jumbotron-blue">
         <Navigation />
+        <Jumbotron className="jumbotron-blue">
+        <Logo />
+        <br/>
         <Homelanding />
         </Jumbotron>
         <Jumbotron className="jumbotron-white">
