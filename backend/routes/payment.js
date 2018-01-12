@@ -63,15 +63,19 @@ const paymentApi = app => {
         client_secret: STRIPE_SECRET_KEY
       }
     }, function (err, r, body) {
+      // the access token
       var accessToken = JSON.parse(body).access_token
+
+      // their stripeID
       var stripe_user_id = JSON.parse(body).stripe_user_id
 
       // Do something with your accessToken
-
       console.log(' ')
       console.log(' ')
       console.log(' ')
       console.log('error', err)
+
+      //
 
       console.log('stripe_user_id: ', stripe_user_id)
       console.log(' ')
@@ -79,7 +83,19 @@ const paymentApi = app => {
       console.log(' ')
       // For demo's sake, output in response:
       // res.send({ 'Your Token': accessToken })
-      res.send({ 'r': r.body })
+      // res.send({ 'r': r.body })
+
+      // Go fetch the Account from the Token
+      function getAccount () {
+        stripe.account.retrieve(stripe_user_id, onAccount)
+        console.log('getAccount')
+      }
+
+      // Render the Account information
+      function onAccount (error) {
+        console.log('OnAccount')
+      }
+      res.send(getAccount())
     })
   })
 

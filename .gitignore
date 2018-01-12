@@ -3,3 +3,6 @@ node_modules/
 //protect secret keys
 backend/.env
 frontend/.env
+*.env
+
+/notes

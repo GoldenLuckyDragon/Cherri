@@ -2,12 +2,11 @@
 import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
-import ProfileList from './components/ProfileList'
 import ProfileForm from './components/ProfileForm'
 import Navigation from './components/navbar'
 import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
-import AccountPage from './pages/AccountPage.js'
+import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 
@@ -27,7 +26,7 @@ class App extends Component {
     profileAPI.all()
     .then(profiles => {
       this.setState({ profiles })
-      console.log(profiles)
+      // console.log(profiles)
     })
     // HARD CODED profile for initial testing
     // this.setState({
@@ -79,13 +78,22 @@ class App extends Component {
         <Navigation />
         <Homelanding />
       </Jumbotron>
+        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
         <Switch>
+          <Route exact path='/' render={
+            () => (
+              <Homelanding />
+            )
+          }/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>
               )}/>
+          <Route path='/profile/create' render={
+              () => (
+                <ProfileForm onSubmit={this.handleProfileSubmission}/>
+              )}/>
         </Switch>
-        <ProfileForm onSubmit={this.handleProfileSubmission}/>
         <p className='App-intro'>
 
           {/*  our React STRIPE checkout component */}
@@ -96,7 +104,6 @@ class App extends Component {
           />
         </p>
 
-        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
       </div>
       </Router>
     )
