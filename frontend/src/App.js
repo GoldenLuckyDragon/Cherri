@@ -8,6 +8,7 @@ import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
 
 
 // Our Stripe connect url
@@ -73,11 +74,11 @@ class App extends Component {
       <Router>
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
+        <Jumbotron>
         <Navigation />
         <Homelanding />
+      </Jumbotron>
         <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
-
-
         <Switch>
           <Route exact path='/' render={
             () => (

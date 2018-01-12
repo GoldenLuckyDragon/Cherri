@@ -1,40 +1,25 @@
 /* GENERAL STYLING */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+/* Font styling */
 a:hover {
     color: #808080;
+}
+
+h1 {
+  color: #FFFFFF;
+  font-family: 'Raleway', sans-serif;
 }
 
 /* NAVBAR STYLING */
 .App {
   text-align: center;
-  color: #FFFFFF;
   font-family: 'Raleway', sans-serif;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #FFFFFF;
-  height: 150px;
-  padding: 10px;
 }
 
 .App-title {
   font-size: 1.5em;
   font-family: 'Raleway', sans-serif;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 /* Position and sizing of burger button */
