@@ -21,8 +21,33 @@ const Homelanding = () => (
         </Col>
       </Row>
     </Grid>
-
   </Jumbotron>
 )
+
+var currencyApi = require('fixer-io-node')
+
+// The function returns the latest currency exchange rates with EURO as its base currency
+
+// currencyApi.latest('latest').then(function (result) {
+//   console.log(result)
+// }).catch(function (error) {
+//   console.log(error)
+// })
+
+// The function returns the latest currency rates passing HKD as its base currency. Other currencies like GBP, AUD, EUR, BGN etc can be used
+
+currencyApi.base('HKD').then(function (result) {
+  console.log(result)
+}).catch(function (error) {
+  console.log(error)
+})
+
+// Returns specific exchange rates
+
+currencyApi.specificRate('GDP', 'HKD').then(function (result) {
+  console.log(result)
+}).catch(function (error) {
+  console.log(error)
+})
 
 export default Homelanding
