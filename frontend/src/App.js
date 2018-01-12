@@ -77,7 +77,7 @@ class App extends Component {
         {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
         <Jumbotron className="jumbotron-blue">
-        <Logo />
+        <Logo />  
         <br/>
         <Homelanding />
         </Jumbotron>
