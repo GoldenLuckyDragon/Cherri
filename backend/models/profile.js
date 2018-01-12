@@ -1,3 +1,4 @@
+// our profiles model using mongoose
 const mongoose = require('./base')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId

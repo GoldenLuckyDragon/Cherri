@@ -1,5 +1,6 @@
+// import our constants
 import React, { Component } from 'react'
-import Checkout from './Checkout'
+import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
 import Navigation from './components/navbar'
@@ -7,11 +8,16 @@ import Homelanding from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
 
+
+// Our Stripe connect url
+const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
 
 // allow for env files
 require('dotenv').config()
 
+// our main page app
 class App extends Component {
   state = { profiles: null }
 
@@ -20,6 +26,7 @@ class App extends Component {
     profileAPI.all()
     .then(profiles => {
       this.setState({ profiles })
+      // console.log(profiles)
     })
     // HARD CODED profile for initial testing
     // this.setState({
@@ -67,8 +74,10 @@ class App extends Component {
       <Router>
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
+        <Jumbotron>
         <Navigation />
-
+        </Jumbotron>
+        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
         <Switch>
           <Route path='/profiles' render={
               () => (
@@ -88,14 +97,17 @@ class App extends Component {
           {/*  our React STRIPE checkout component */}
           <Checkout
             name={'James Made This'}
-            description={'Really!'}
+            description={'Pay via stripe'}
             amount={1}
           />
         </p>
+
       </div>
       </Router>
     )
   }
 }
+
+
 
 export default App

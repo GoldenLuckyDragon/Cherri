@@ -1,9 +1,11 @@
+// set up our model for the invoices
 const mongoose = require('./base')
 const Schema = mongoose.Schema
 
 const invoiceSchema = Schema({
   invoiceNumber: String,
   amount: Number,
+  currency: String,
   offerAmount: Number,
   dueDate: Date,
   expiryDate: Date,
