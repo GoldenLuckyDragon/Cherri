@@ -9,6 +9,7 @@ export default function Profile ({
   factoryName,
   address,
   hkid,
+  stripeId,
   incorporationCertificate,
   paymentMethod,
   invoices
@@ -30,6 +31,8 @@ export default function Profile ({
       &nbsp;
       <span>HKid: {hkid}</span>
       &nbsp;
+      <span>Stripe ID: {stripeId}</span>
+      &nbsp;
       <span>Incorporation Certificate: {incorporationCertificate}</span>
       &nbsp;
       <span>Payment Method: {paymentMethod}</span>
@@ -38,9 +41,9 @@ export default function Profile ({
         invoices ? (
           invoices.map(invoice => (
             <Invoice key={invoice._id}>
-              <span>Invoice Number:{invoice.invoiceNumber}</span>
+              <span>Invoice Number:{invoice.invoiceNumber} </span>
               &nbsp;
-              <span>Invoice Amount:{invoice.amount}</span>
+              <span>Invoice Amount:{invoice.amount} </span>
             </Invoice>
           ))
         ) : ('N/A')

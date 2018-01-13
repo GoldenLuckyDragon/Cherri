@@ -9,6 +9,7 @@ const FinalProfileSchema = Schema({
   factoryName: String,
   address: String,
   hkid: String,
+  stripeId: String,
   incorporationCertificate: String,
   paymentMethod: String,
   invoices: [{ type: ObjectId, ref: 'Invoice' }]
