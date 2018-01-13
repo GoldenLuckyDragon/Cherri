@@ -3,9 +3,11 @@ import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
+import InvoiceForm from './components/InvoiceForm'
 import Navigation from './components/Navbar'
 import { Homelanding, HomelandingTwo, HomelandingThree } from './pages/HomePage'
 import * as profileAPI from './api/profiles'
+import * as invoiceAPI from './api/invoices'
 import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
@@ -28,6 +30,12 @@ class App extends Component {
     .then(profiles => {
       this.setState({ profiles })
       // console.log(profiles)
+    })
+    // setting a state when invoiceAPI is called
+    invoiceAPI.all()
+    .then(invoices => {
+      this.setState({ invoices })
+      console.log(invoices)
     })
     // HARD CODED profile for initial testing
     // this.setState({
@@ -61,12 +69,22 @@ class App extends Component {
     //   ]
     // });
   }
-
+  // event handler for Profile create
   handleProfileSubmission = (profile) => {
     this.setState(({profiles}) => {
       return { profiles: [profile].concat(profiles)}
     });
+    // calling the save function from backend API route
     profileAPI.save(profile);
+  }
+
+  // event handler for Invoice create
+  handleInvoiceSubmission = (invoice) => {
+    this.setState(({invoices}) => {
+      return { invoices: [invoice].concat(invoices)}
+    });
+    // calling the save function from backend API route
+    invoiceAPI.save(invoice);
   }
 
   render () {
@@ -96,6 +114,10 @@ class App extends Component {
             <Route path='/profile/create' render={
                 () => (
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                )}/>
+            <Route path='/profiles/:id/invoice/create' render={
+                () => (
+                  <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 )}/>
           </Switch>
       </div>

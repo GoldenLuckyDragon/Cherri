@@ -23,8 +23,6 @@ export default function Profile ({
         </Link>
       </span>
       &nbsp;
-      <span>Password: {password}</span>
-      &nbsp;
       <span>Factory: {factoryName}</span>
       &nbsp;
       <span>Address: {address}</span>
@@ -37,6 +35,7 @@ export default function Profile ({
       &nbsp;
       <span>Payment Method: {paymentMethod}</span>
       &nbsp;
+      <hr />
       Invoices: {
         invoices ? (
           invoices.map(invoice => (
@@ -44,11 +43,23 @@ export default function Profile ({
               <span>Invoice Number:{invoice.invoiceNumber} </span>
               &nbsp;
               <span>Invoice Amount:{invoice.amount} </span>
+              &nbsp;
+              <span>Invoice Currency:{invoice.currency} </span>
+              &nbsp;
+              <span>Offer Amount:{invoice.offerAmount} </span>
+              &nbsp;
+              <span>Due Date:{invoice.dueDate} </span>
+              &nbsp;
+              <span>Expiry Date:{invoice.expiryDate} </span>
+              &nbsp;
+              <span>Status:{invoice.status} </span>
             </Invoice>
           ))
         ) : ('N/A')
       }
       &nbsp;
+      <hr />
+      <hr />
     </div>
   )
 }
