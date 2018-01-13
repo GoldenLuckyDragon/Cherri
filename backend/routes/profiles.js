@@ -13,7 +13,6 @@ const profileApi = app => {
     Profile.find({})
     // add our invoices
     .populate('invoices')
-    // TODO line above isn't populating properly issue to be fixed
     .then(profiles => {
       console.log(`profiles: `, profiles)
       // render as json.
@@ -22,8 +21,25 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 
+  app.get('/invoice', (req, res) => {
+    // find all our invoices
+    Invoice.find({})
+    .then(invoices => {
+      console.log(`invoices: `, invoices)
+      // render as json.
+      res.json(invoices)
+    })
+    .catch(error => res.json({ error }))
+  })
+
   app.post('/profile', (req, res) => {
     Profile.create(req.body).then((profile) => {
+      res.status(201).json(profile).end()
+    })
+  })
+
+  app.post('/invoice', (req, res) => {
+    Invoice.create(req.body).then((profile) => {
       res.status(201).json(profile).end()
     })
   })
