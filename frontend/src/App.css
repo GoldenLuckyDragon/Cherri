@@ -1,6 +1,12 @@
 /* GENERAL STYLING */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+.center {
+  justify-content: center;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
 /* FONT STYLING */
 a:hover {
   color: #808080;
@@ -101,7 +107,7 @@ h2 {
   height: 300px;
   margin: 1rem;
   position: relative;
-  width: 70%;
+  width: 100%;
 }
 
 .card-5 {
