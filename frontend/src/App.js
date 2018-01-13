@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
-import Navigation from './components/navbar'
-import Homelanding from './pages/HomePage'
+import Navigation from './components/Navbar'
+import { Homelanding, HomelandingTwo, HomelandingThree } from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
+import Logo from './components/Logo'
 
 
 // Our Stripe connect url
@@ -75,32 +76,28 @@ class App extends Component {
       <div className='App'>
         {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
-        <a href={STRIPE_URL} class='stripe-connect dark'><span>Connect with Stripe</span></a>
-        <Switch>
-          <Route exact path='/' render={
-            () => (
-              <Homelanding />
-            )
-          }/>
-          <Route path='/profiles' render={
-              () => (
-                <AccountPage profiles={profiles}/>
-              )}/>
-
-          <Route path='/profile/create' render={
-              () => (
-                <ProfileForm onSubmit={this.handleProfileSubmission}/>
-              )}/>
-        </Switch>
-        <p className='App-intro'>
-          {/*  our React STRIPE checkout component */}
-          <Checkout
-            name={'James Made This'}
-            description={'Pay via stripe'}
-            amount={1}
-          />
-        </p>
-
+        <Jumbotron className="jumbotron-blue">
+        <Logo />  
+        <br/>
+        <Homelanding />
+        </Jumbotron>
+        <Jumbotron className="jumbotron-white">
+          <HomelandingTwo />
+        {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
+        </Jumbotron>
+        <Jumbotron className="jumbotron-blue">
+          <HomelandingThree />
+        </Jumbotron>
+          <Switch>
+            <Route path='/profiles' render={
+                () => (
+                  <AccountPage profiles={profiles}/>
+                )}/>
+            <Route path='/profile/create' render={
+                () => (
+                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                )}/>
+          </Switch>
       </div>
       </Router>
     )
