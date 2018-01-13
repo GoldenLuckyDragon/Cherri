@@ -4,7 +4,7 @@ import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
 import Navigation from './components/Navbar'
-import { Homelanding, Homelanding2 } from './pages/HomePage'
+import { Homelanding, HomelandingTwo, HomelandingThree } from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import AccountPage from './pages/AccountPage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
@@ -82,11 +82,11 @@ class App extends Component {
         <Homelanding />
         </Jumbotron>
         <Jumbotron className="jumbotron-white">
-          <Homelanding2 />
+          <HomelandingTwo />
         {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
         </Jumbotron>
         <Jumbotron className="jumbotron-blue">
-          TESTIMONIALS
+          <HomelandingThree />
         </Jumbotron>
           <Switch>
             <Route path='/profiles' render={

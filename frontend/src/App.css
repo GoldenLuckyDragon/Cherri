@@ -1,14 +1,20 @@
 /* GENERAL STYLING */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
-/* Font styling */
+/* FONT STYLING */
 a:hover {
   color: #808080;
 }
 
-h1 {
-  color: #000000;
+h2 {
   font-family: 'Raleway', sans-serif;
+  font-size: 50px !important;
+}
+
+/* COLOR STYLING */
+
+.color-white {
+  color: #ffffff;
 }
 
 /* NAVBAR STYLING */
@@ -84,4 +90,20 @@ h1 {
   height: 80px;
   display: block;
   margin-right: auto;
+}
+
+/* CARD STYLING */
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  margin: 1rem;
+  position: relative;
+  width: 70%;
+}
+
+.card-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
