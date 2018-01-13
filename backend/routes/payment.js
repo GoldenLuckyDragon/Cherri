@@ -66,8 +66,8 @@ const paymentApi = app => {
         client_secret: STRIPE_SECRET_KEY
       }
     }, function (err, r, body) {
-      // the access token
-      var accessToken = JSON.parse(body).access_token
+      // // the access token
+      // var accessToken = JSON.parse(body).access_token
 
       // their stripeID
       var stripeUserId = JSON.parse(body).stripe_user_id
@@ -83,18 +83,13 @@ const paymentApi = app => {
       console.log(' ')
       console.log(' ')
 
-    //   collection.findOneAndUpdate({_id: "12"}, {$set: {protocol: "http"}}, {upsert: true}, function(err,doc) {
-    //   if (err) { throw err; }
-    //   else { console.log("Updated"); }
-    // });
-
-    // 5a58221b88603d1b0d76bd27
-
-      Profile.findOneAndUpdate({'_id': '5a58221b88603d1b0d76bd27'}, {$set: {'incorporationCertificate': stripeUserId}}, function (err, profile) {
-        if (err) { throw err } else { console.log('updated') }
+      // find our profile by id and inject our stripe user id.
+      Profile.findOneAndUpdate({'_id': '5a5843f9ab4d393239e0d271'}, {$set: {'stripeId': stripeUserId}}, function (err, profile) {
+        // throw an error if any
+        if (err) { throw err } else { console.log('updated profile') }
       })
     })
-    res.redirect('/profile')
+    res.redirect('http://localhost:3000/profiles')
   })
 
   return app
