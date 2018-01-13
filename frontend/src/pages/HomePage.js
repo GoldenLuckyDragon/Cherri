@@ -16,8 +16,8 @@ export class Homelanding extends React.Component {
         <Row className='show-grid'>
           <Col xs={8} md={12}>
             <br />
-            <h1 className='color-white'>Need money?</h1>
-            <p>
+            <h2 className='color-white'>Need money?</h2>
+            <p className='color-white'>
               Turn your invoices into cash today.
             </p>
             <Button>Sign Up</Button>
@@ -31,7 +31,7 @@ export class Homelanding extends React.Component {
   }
 }
 
-export class Homelanding2 extends React.Component {
+export class HomelandingTwo extends React.Component {
   showSettings (event) {
     event.preventDefault()
   }
@@ -63,6 +63,23 @@ export class Homelanding2 extends React.Component {
         <Row className='show-grid'>
           <Button>Learn More</Button>
         </Row>
+      </Grid>
+    )
+  }
+}
+
+export class HomelandingThree extends React.Component {
+  showSettings (event) {
+    event.preventDefault()
+  }
+  render () {
+    return (
+      <Grid>
+        <Row className='show-grid'>
+          <p className='color-white'>Why Our Customers Love Us</p>
+          <div class='card card-5' />
+        </Row>
+        <br />
       </Grid>
     )
   }
