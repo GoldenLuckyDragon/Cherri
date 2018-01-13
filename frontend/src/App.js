@@ -77,9 +77,9 @@ class App extends Component {
         {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
         <Jumbotron className="jumbotron-blue">
-        <Logo />  
-        <br/>
-        <Homelanding />
+          <Logo />
+          <br/>
+          <Homelanding />
         </Jumbotron>
         <Jumbotron className="jumbotron-white">
           <HomelandingTwo />
@@ -103,7 +103,5 @@ class App extends Component {
     )
   }
 }
-
-
 
 export default App
