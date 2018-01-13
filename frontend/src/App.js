@@ -5,13 +5,11 @@ import './App.css'
 import ProfileForm from './components/ProfileForm'
 import InvoiceForm from './components/InvoiceForm'
 import Navigation from './components/Navbar'
-import { Homelanding, HomelandingTwo, HomelandingThree } from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import * as invoiceAPI from './api/invoices'
 import AccountPage from './pages/AccountPage'
+import HomePage from './pages/HomePage'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import { Jumbotron } from 'react-bootstrap'
-import Logo from './components/Logo'
 
 
 // Our Stripe connect url
@@ -92,21 +90,12 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
-        {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
-        <Jumbotron className="jumbotron-blue">
-          <Logo />
-          <br/>
-          <Homelanding />
-        </Jumbotron>
-        <Jumbotron className="jumbotron-white">
-          <HomelandingTwo />
-        {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
-        </Jumbotron>
-        <Jumbotron className="jumbotron-blue">
-          <HomelandingThree />
-        </Jumbotron>
           <Switch>
+            <Route exact path='/' render={
+                () => (
+                  <HomePage />
+                )}/>
             <Route path='/profiles' render={
                 () => (
                   <AccountPage profiles={profiles}/>
@@ -115,7 +104,7 @@ class App extends Component {
                 () => (
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
                 )}/>
-            <Route path='/profiles/:id/invoice/create' render={
+            <Route path='/invoice/create' render={
                 () => (
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 )}/>
