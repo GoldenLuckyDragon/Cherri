@@ -8,10 +8,10 @@ export default ({profiles}) => {
   return (
     profiles ? (
       <Switch>
-        <Route path='./invoice/new' render={
+        <Route path='/profiles/:id/invoice/new' render={
           () => (
             <div>
-              <ProfileList profiles={profiles} key={profiles._id} />
+              <h1>Invoice page</h1>
             </div>
           )
         } />
@@ -19,9 +19,9 @@ export default ({profiles}) => {
           ({ match }) => {
             const id = match.params.id
             const profile = profiles.find((p) => p._id === id)
-            console.log(match.params)
+            console.log(profile)
             return (
-              <Link to='/profiles/${profile}/invoice/new'><Button>Sign Up</Button></Link>
+              <Link to={`/profiles/${id}/invoice/new`}><Button>Add Invoice</Button></Link>
             )
           }
         } />
