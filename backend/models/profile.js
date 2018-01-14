@@ -1,15 +1,18 @@
+// our profiles model using mongoose
 const mongoose = require('./base')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
+// this is the schema
 const FinalProfileSchema = Schema({
   email: String,
   password: String,
-  factory_name: String,
+  factoryName: String,
   address: String,
   hkid: String,
-  incorporation_certificate: String,
-  payment_method: String,
+  stripeId: String,
+  incorporationCertificate: String,
+  paymentMethod: String,
   invoices: [{ type: ObjectId, ref: 'Invoice' }]
 })
 

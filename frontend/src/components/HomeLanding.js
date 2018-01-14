@@ -1,0 +1,100 @@
+import React from 'react'
+import '../App.css'
+import { Button, Grid, Row, Col } from 'react-bootstrap'
+import iphone from '../images/iphone.png'
+import clock from '../images/clock.svg'
+import upload from '../images/upload.svg'
+import cash from '../images/cash.svg'
+import jon from '../images/jon.png'
+import james from '../images/james.png'
+import carmen from '../images/carmen.png'
+
+export class Homelanding extends React.Component {
+  showSettings (event) {
+    event.preventDefault()
+  }
+  render () {
+    return (
+      <Grid>
+        <Row className='show-grid'>
+          <Col xs={12} sm={8}>
+            <br />
+            <h2 className='color-white'>Need money?</h2>
+            <p className='color-white'>
+              Turn your invoices into cash today.
+            </p>
+            <Button>Sign Up</Button>
+          </Col>
+          <Col xs={12} sm={4}>
+            <img src={iphone} alt='cherri factoring web application' width='300' height='280' />
+          </Col>
+        </Row>
+      </Grid>
+    )
+  }
+}
+
+export class HomelandingTwo extends React.Component {
+  showSettings (event) {
+    event.preventDefault()
+  }
+  render () {
+    return (
+      <Grid>
+        <Row className='show-grid'>
+          <Col xs={12} sm={4}>
+            <img src={upload} alt='Upload invoices to Cherri web application' width='100' height='100' />
+            <br />
+            <p />
+            1. Upload your unpaid invoices.
+          </Col>
+          <Col xs={12} sm={4}>
+            <img src={clock} alt='Fast time upload for Cherri web application' width='100' height='100' />
+            <br />
+            <p />
+            2. Fast approval process.
+          </Col>
+          <Col xs={12} sm={4}>
+            <img src={cash} alt='Get your invoices paid with Cherri web application' width='100' height='100' />
+            <br />
+            <p />
+            3. 90% of your invoice value paid upon approval.
+          </Col>
+        </Row>
+        <br />
+        <p />
+        <Row className='show-grid'>
+          <Button>Learn More</Button>
+        </Row>
+      </Grid>
+    )
+  }
+}
+
+export class HomelandingThree extends React.Component {
+  render () {
+    return (
+      <Grid>
+        <Row className='show-grid'>
+          <p className='color-white'>Why Our Customers Love Us</p>
+          <div className='card card-5'>
+            <div id='cf'>
+              <img className='top' src={carmen} width={150} height={150} />
+              <img className='top' src={james} width={150} height={150} />
+              <img className='top' src={jon} width={150} height={150} />
+            </div>
+          </div>
+        </Row>
+      </Grid>
+    )
+  }
+}
+var currencyApi = require('fixer-io-node')
+
+// Returns specific exchange rates
+
+currencyApi.specificRate('GBP', 'HKD').then(function (result) {
+  console.log(result.rates.GBP)
+}).catch(function (error) {
+  console.log(error)
+})

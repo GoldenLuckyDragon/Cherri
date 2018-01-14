@@ -1,38 +1,38 @@
+/* GENERAL STYLING */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+.center {
+  justify-content: center;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+/* FONT STYLING */
+a:hover {
+  color: #808080;
+}
+
+h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 50px !important;
+}
+
+/* COLOR STYLING */
+
+.color-white {
+  color: #ffffff;
+}
+
+/* NAVBAR STYLING */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #FFFFFF;
-  height: 150px;
-  padding: 10px;
-}
-
-.App-title {
-  font-size: 1.5em;
   font-family: 'Raleway', sans-serif;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 5%;
+  width: 30px;
   height: 30px;
   right: 10%;
   top: 10%;
@@ -40,7 +40,7 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #2e3c48;
 }
 
 /* Position and sizing of clickable cross button */
@@ -51,7 +51,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: #2e3c48;
 }
 
 /* General sidebar styles */
@@ -59,17 +59,7 @@
   background: #FFFFFF;
   padding: 2.5em;
   font-size: 1.15em;
-  color: #000000;
-}
-
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: #373a47;
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: #b8b7ad;
+  width: 100%;
 }
 
 /* Styling of overlay */
@@ -79,8 +69,104 @@
 
 /* Styling of navbar font */
 .menu-item {
-  color: #808080;
+  color: #2e3c48;
   text-decoration: none;
   padding: 5px;
   font-family: 'Raleway', sans-serif;
+}
+
+/* JUMBOTRONS */
+.jumbotron-blue {
+  height: 100vh;
+  width: 100vw;
+  background: #00d2ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.jumbotron-white {
+  background: #ffffff !important;
+  height: auto;
+  width: 100vw;
+  margin: 0;
+}
+
+/* LOGO */
+.logo {
+  width: 180px;
+  height: 80px;
+  display: block;
+  margin-right: auto;
+}
+
+/* CARD STYLING */
+
+.card {
+  background: #ffffff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  margin: 0;
+  position: relative;
+  width: 90%;
+}
+
+.card-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* FADES */
+
+#cf {
+  /* position:absolute; */
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  height:281px;
+  width:450px;
+}
+
+#cf img {
+  position:absolute;
+  left:0;
+  -webkit-transition: opacity 3s ease-in-out;
+  -moz-transition: opacity 3s ease-in-out;
+  -o-transition: opacity 3s ease-in-out;
+  transition: opacity 3s ease-in-out;
+}
+
+@keyframes cfFadeInOut {
+  0% {
+    opacity:1;
+  }
+  22.2% {
+    opacity:1;
+  }
+  33% {
+    opacity:0;
+  }
+  88.89% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+#cf img:nth-of-type(1) {
+  animation-delay: 18s;
+}
+#cf img:nth-of-type(2) {
+  animation-delay: 12s;
+}
+#cf img:nth-of-type(3) {
+  animation-delay: 6s;
+}
+
+#cf img.top {
+animation-name: cfFadeInOut;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 18s;
+/* animation-direction: alternate; */
 }

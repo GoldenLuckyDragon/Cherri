@@ -1,31 +1,85 @@
+// import our constants
 import React, { Component } from 'react'
-import logo from './logo.svg'
-import Checkout from './Checkout'
+import Checkout from './components/Checkout'
 import './App.css'
-import Navigation from './components/navbar'
+import ProfileForm from './components/ProfileForm'
+import InvoiceForm from './components/InvoiceForm'
+import Navigation from './components/Navbar'
+import * as profileAPI from './api/profiles'
+import * as invoiceAPI from './api/invoices'
+import AccountPage from './pages/AccountPage'
+import HomePage from './pages/HomePage'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
+
+// Our Stripe connect url
+const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
 
 // allow for env files
 require('dotenv').config()
 
+// our main page app
 class App extends Component {
+  state = { profiles: null }
+
+  componentDidMount(){
+    // calling the fetch functions from profileAPI file
+    profileAPI.all()
+    .then(profiles => {
+      this.setState({ profiles })
+      // console.log(profiles)
+    })
+    // setting a state when invoiceAPI is called
+    invoiceAPI.all()
+    .then(invoices => {
+      this.setState({ invoices })
+      console.log(invoices)
+    })
+  }
+  // event handler for Profile create
+  handleProfileSubmission = (profile) => {
+    this.setState(({profiles}) => {
+      return { profiles: [profile].concat(profiles)}
+    });
+    // calling the save function from backend API route
+    profileAPI.save(profile);
+  }
+
+  // event handler for Invoice create
+  handleInvoiceSubmission = (invoice) => {
+    this.setState(({invoices}) => {
+      return { invoices: [invoice].concat(invoices)}
+    });
+    // calling the save function from backend API route
+    invoiceAPI.save(invoice);
+  }
+
   render () {
+    const {profiles} = this.state
     return (
+      <Router>
       <div className='App'>
         <Navigation />
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to React</h1>
-        </header>
-        <p className='App-intro'>
-          {/*  our React STRIPE checkout component */}
-          <Checkout
-            name={'James Made This'}
-            description={'Really!'}
-            amount={1}
-          />
-
-        </p>
+          <Switch>
+            <Route exact path='/' render={
+                () => (
+                  <HomePage />
+                )}/>
+            <Route path='/profiles' render={
+                () => (
+                  <AccountPage profiles={profiles}/>
+                )}/>
+            <Route path='/profile/create' render={
+                () => (
+                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                )}/>
+            <Route path='/invoice/create' render={
+                () => (
+                  <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+                )}/>
+          </Switch>
       </div>
+      </Router>
     )
   }
 }

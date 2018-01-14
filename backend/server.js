@@ -1,5 +1,4 @@
 // cors allows you to talk to yourself from two differnt localports;
-
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
@@ -16,10 +15,12 @@ const corsOptions = {
     : callback(new Error('Not allowed by CORS'))
 }
 
+// let the app use cors and body parser.
 const configureServer = app => {
   app.use(cors())
 
   app.use(bodyParser.json())
 }
 
+// export
 module.exports = configureServer
