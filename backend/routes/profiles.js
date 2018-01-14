@@ -2,9 +2,6 @@
 const Profile = require('../models/profile.js')
 const Invoice = require('../models/invoice.js')
 const mongoose = require('../models/base.js')
-const db = mongoose.connection
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
 
 // set up our routes for profile.
 const profileApi = app => {
@@ -45,12 +42,12 @@ const profileApi = app => {
   })
 
   app.patch('/profile', (req, res) => {
-    const updateObject = req.body
-    const id = req.params.id
+    // const updateObject = req.body
+    // const id = req.params.id
     // db.profile.update({_id: '5a5706dd38a4d867a7bda36a'}, { $set: {factoryName: 'BARRRRRRY'} })
-    db.profile.update({_id: ObjectId(id)}, {$set: updateObject})
-    console.log(updateObject)
-    console.log(id)
+    Profile.updateOne({_id: '5a5706dd38a4d867a7bda36a'}, { $set: {factoryName: 'BARRRRRRY'} })
+    // console.log(updateObject)
+    // console.log(id)
   })
 
   return app
