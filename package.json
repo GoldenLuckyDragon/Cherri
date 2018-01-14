@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-transition-group": "1.x"
+  }
+}
