@@ -35,37 +35,6 @@ class App extends Component {
       this.setState({ invoices })
       console.log(invoices)
     })
-    // HARD CODED profile for initial testing
-    // this.setState({
-    //   profiles: [
-    //     {
-    //       _id: "5a5316b00dbd7e37f7f32723",
-    //       email: "jo@hotmail.com",
-    //       password: "12345",
-    //       factoryName: "Joe Abloe",
-    //       address: "123 Fakeee St",
-    //       hkid: "N-1191938",
-    //       incorporationCertificate: "bbbb",
-    //       paymentMethod: "cceeeccc",
-    //       invoices: [
-    //         {
-    //         _id: "5a53199665da64386f09f6ba",
-    //         invoiceNumber: "MKT-001-28t",
-    //         amount: 2553.5,
-    //         offerAmount: 2298.15,
-    //         dueDate: "2018-05-01T00:00:00.000Z",
-    //         expiryDate: "2018-02-01T00:00:00.000Z",
-    //         status: "Pending",
-    //         customerCompanyName: "Walmart",
-    //         customerFirstname: "Mary",
-    //         customerSurname: "Jones",
-    //         salePurchaseAgreement: "",
-    //         invoiceUpload: ""
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // });
   }
   // event handler for Profile create
   handleProfileSubmission = (profile) => {

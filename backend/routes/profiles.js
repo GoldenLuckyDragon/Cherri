@@ -44,11 +44,11 @@ const profileApi = app => {
     })
   })
 
-  app.patch('/profile/:id', (req, res) => {
+  app.patch('/profile', (req, res) => {
     const updateObject = req.body
     const id = req.params.id
-    db.profile.update({_id: '5a5706dd38a4d867a7bda36a'}, { $set: {factoryName: 'BARRRRRRY'} })
-    // db.profile.update({_id: ObjectId(id)}, {$set: updateObject})
+    // db.profile.update({_id: '5a5706dd38a4d867a7bda36a'}, { $set: {factoryName: 'BARRRRRRY'} })
+    db.profile.update({_id: ObjectId(id)}, {$set: updateObject})
     console.log(updateObject)
     console.log(id)
   })
