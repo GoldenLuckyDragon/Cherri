@@ -88,6 +88,7 @@ h2 {
   background: #ffffff !important;
   height: auto;
   width: 100vw;
+  margin: 0;
 }
 
 /* LOGO */
@@ -101,15 +102,71 @@ h2 {
 /* CARD STYLING */
 
 .card {
-  background: #fff;
+  background: #ffffff;
   border-radius: 2px;
   display: inline-block;
   height: 300px;
-  margin: 1rem;
+  margin: 0;
   position: relative;
-  width: 100%;
+  width: 90%;
 }
 
 .card-5 {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* FADES */
+
+#cf {
+  /* position:absolute; */
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  height:281px;
+  width:450px;
+}
+
+#cf img {
+  position:absolute;
+  left:0;
+  -webkit-transition: opacity 3s ease-in-out;
+  -moz-transition: opacity 3s ease-in-out;
+  -o-transition: opacity 3s ease-in-out;
+  transition: opacity 3s ease-in-out;
+}
+
+@keyframes cfFadeInOut {
+  0% {
+    opacity:1;
+  }
+  22.2% {
+    opacity:1;
+  }
+  33% {
+    opacity:0;
+  }
+  88.89% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+#cf img:nth-of-type(1) {
+  animation-delay: 18s;
+}
+#cf img:nth-of-type(2) {
+  animation-delay: 12s;
+}
+#cf img:nth-of-type(3) {
+  animation-delay: 6s;
+}
+
+#cf img.top {
+animation-name: cfFadeInOut;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 18s;
+/* animation-direction: alternate; */
 }
