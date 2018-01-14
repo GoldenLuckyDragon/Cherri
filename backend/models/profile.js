@@ -3,6 +3,7 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
+// this is the schema
 const FinalProfileSchema = Schema({
   email: String,
   password: String,
