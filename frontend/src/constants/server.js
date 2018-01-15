@@ -6,4 +6,6 @@
 // // or if in dev env use our api local host
 // : 'http://localhost:8080'
 
-export default PAYMENT_SERVER_URL = 'https://cherri.now.sh'
+const PAYMENT_SERVER_URL = 'https://cherri.now.sh'
+
+export default PAYMENT_SERVER_URL
