@@ -1,7 +1,7 @@
 const API_URL = `${process.env.REACT_APP_PAYMENT_SERVER_URL}`
 
 export function all () {
-  return fetch(`${API_URL}/profile`)
+  return fetch(API_URL)
     .then(res => res.json())
     .catch(error => { console.log(error) })
 }
