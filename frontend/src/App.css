@@ -127,6 +127,7 @@ h2 {
   right: 50%;
   height:281px;
   width:450px;
+  z-index: 1;
 }
 
 #cf img {
@@ -191,24 +192,6 @@ h2 {
   transition: opacity 3s ease-in-out;
 }
 
-@keyframes TextFadeOut {
-  0% {
-    opacity:1;
-  }
-  22.2% {
-    opacity:1;
-  }
-  33% {
-    opacity:0;
-  }
-  88.89% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
 .transition-text:nth-of-type(1) {
   position:absolute;
   animation-delay: 18s;
@@ -223,9 +206,11 @@ h2 {
 }
 
 .transition-text {
-  animation-name: TextFadeOut;
+  background-color: #ffffff;
+  animation-name: cfFadeInOut;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-duration: 18s;
   padding: 130px 50px 0;
+  margin: 0 30px 30px;
 }

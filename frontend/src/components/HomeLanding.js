@@ -85,15 +85,18 @@ export class HomelandingThree extends React.Component {
           <Row className='show-grid'>
             <div id='cf'>
               <img className='top' src={carmen} width={150} height={150} />
-              <img className='top' src={james} width={150} height={150} />
               <img className='top' src={jon} width={150} height={150} />
+              <img className='top' src={james} width={150} height={150} />
             </div>
           </Row>
           <Row className='show-grid'>
             <div id='testimonial'>
-              <div className='transition-text'>"Cherri has helped my business through good times and bad: with the accounts receivables financing they offer, I now have consistent cashflow, allowing me to pay my staff and suppliers without hassle."</div>
-              <div className='transition-text'>"My customers usually take around 90 days to pay my factory's bills, which makes managing cashflow difficult. From day one, Cherri has been integral to my business model: it pays for my unpaid invoices upfront, allowing me to focus on growing my company."</div>
-              <div className='transition-text'>"The turn around time with Cherri is lightning fast - within 48 hours, the platform had paid me 90% of my invoices in cash. I can't recommend them highly enough!"</div>
+              <div className='transition-text'>"Cherri has helped my business through good times and bad: with the accounts receivables financing they offer, I now have consistent cashflow, allowing me to pay my staff and suppliers without hassle."
+              <p>- Carmen, Jinx Co.</p></div>
+              <div className='transition-text'>"The turn around time with Cherri is lightning fast - within 48 hours, the platform had paid me 90% of my invoices in cash. I can't recommend them highly enough!"
+              <p>- Jon, Ablondi Brokers</p></div>
+              <div className='transition-text'>"My customers usually take around 90 days to pay my factory's bills, which makes managing cashflow difficult. From day one, Cherri has been integral to my business model: it pays for my unpaid invoices upfront, allowing me to focus on growing my company."
+                <p>- James, Frankincense Factories</p></div>
             </div>
           </Row>
         </div>
