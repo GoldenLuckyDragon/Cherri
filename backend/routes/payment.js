@@ -4,7 +4,7 @@ const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 // require our Profiles
 const Profile = require('../models/profile.js')
 
-// Set your Client_ID and TOKEN_URI from stripe dashboard
+const TOKEN_URI = 'https://connect.stripe.com/oauth/token'
 
 // include request to make our post request to stripe
 const request = require('request')
@@ -55,7 +55,7 @@ const paymentApi = app => {
     console.log('key: ', STRIPE_SECRET_KEY)
     // Make /oauth/token endpoint POST request
     request.post({
-      url: `${process.env.TOKEN_URI}`,
+      url: TOKEN_URI,
       form: {
         grant_type: 'authorization_code',
         client_id: `${process.env.CLIENT_ID}`,
