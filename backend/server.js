@@ -8,8 +8,7 @@ const CORS_WHITELIST = require('./constants/frontend')
 // dynamic origin (based on production vs dev env)
 const corsOptions = {
   origin: (origin, callback) =>
-
-// not 100% sure of this sentence, the non negative index confuses me.
+  // If the index is negative it implys that the array is empty.
   (CORS_WHITELIST.indexOf(origin) !== -1)
     ? callback(null, true)
     : callback(new Error('Not allowed by CORS'))
