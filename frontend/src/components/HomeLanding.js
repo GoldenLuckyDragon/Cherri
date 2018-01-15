@@ -77,14 +77,26 @@ export class HomelandingThree extends React.Component {
       <Grid>
         <Row className='show-grid'>
           <p className='color-white'>Why Our Customers Love Us</p>
-          <div className='card card-5'>
+          <br />
+          <br />
+          <br />
+        </Row>
+        <div className='card card-5'>
+          <Row className='show-grid'>
             <div id='cf'>
               <img className='top' src={carmen} width={150} height={150} />
               <img className='top' src={james} width={150} height={150} />
               <img className='top' src={jon} width={150} height={150} />
             </div>
-          </div>
-        </Row>
+          </Row>
+          <Row className='show-grid'>
+            <div id='testimonial'>
+              <div className='transition-text'>"Cherri has helped my business through good times and bad: with the accounts receivables financing they offer, I now have consistent cashflow, allowing me to pay my staff and suppliers without hassle."</div>
+              <div className='transition-text'>"My customers usually take around 90 days to pay my factory's bills, which makes managing cashflow difficult. From day one, Cherri has been integral to my business model: it pays for my unpaid invoices upfront, allowing me to focus on growing my company."</div>
+              <div className='transition-text'>"The turn around time with Cherri is lightning fast - within 48 hours, the platform had paid me 90% of my invoices in cash. I can't recommend them highly enough!"</div>
+            </div>
+          </Row>
+        </div>
       </Grid>
     )
   }

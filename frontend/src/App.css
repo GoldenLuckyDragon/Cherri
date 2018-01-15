@@ -4,9 +4,10 @@
 .center {
   justify-content: center;
   display: block;
-  margin: 0px;
+  margin: 0 auto;
   padding: 0px;
 }
+
 /* FONT STYLING */
 a:hover {
   color: #808080;
@@ -115,20 +116,23 @@ h2 {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
-/* FADES */
+/* TESTIMONIALS */
 
+/* Fade in and out for images */
 #cf {
-  /* position:absolute; */
   padding: 0;
   display: block;
   margin: 0 auto;
+  position:absolute;
+  right: 50%;
   height:281px;
   width:450px;
 }
 
 #cf img {
   position:absolute;
-  left:0;
+  top: -60px;
+  left: 380px;
   -webkit-transition: opacity 3s ease-in-out;
   -moz-transition: opacity 3s ease-in-out;
   -o-transition: opacity 3s ease-in-out;
@@ -164,9 +168,64 @@ h2 {
 }
 
 #cf img.top {
-animation-name: cfFadeInOut;
-animation-timing-function: ease-in-out;
-animation-iteration-count: infinite;
-animation-duration: 18s;
-/* animation-direction: alternate; */
+  animation-name: cfFadeInOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 18s;
+}
+
+/* Fade in and out for text */
+
+#testimonial {
+  display: inline;
+  margin: 0 auto;
+  height:281px;
+  width:450px;
+}
+
+.top2 {
+  position:absolute;
+  -webkit-transition: opacity 3s ease-in-out;
+  -moz-transition: opacity 3s ease-in-out;
+  -o-transition: opacity 3s ease-in-out;
+  transition: opacity 3s ease-in-out;
+}
+
+@keyframes TextFadeOut {
+  0% {
+    opacity:1;
+  }
+  22.2% {
+    opacity:1;
+  }
+  33% {
+    opacity:0;
+  }
+  88.89% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+.transition-text:nth-of-type(1) {
+  position:absolute;
+  animation-delay: 18s;
+}
+.transition-text:nth-of-type(2) {
+  position:absolute;
+  animation-delay: 12s;
+}
+.transition-text:nth-of-type(3) {
+  position:absolute;
+  animation-delay: 6s;
+}
+
+.transition-text {
+  animation-name: TextFadeOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 18s;
+  padding: 130px 50px 0;
 }
