@@ -2,9 +2,9 @@
 import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
-
 import STRIPE_PUBLISHABLE from '../constants/stripe'
-import PAYMENT_SERVER_URL from '../constants/server'
+
+const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // set currency AUD for testing possible HKD
 const CURRENCY = 'AUD'
@@ -23,7 +23,7 @@ const errorPayment = data => {
 }
 
 const onToken = (amount, description) => token =>
-  axios.post(PAYMENT_SERVER_URL,
+  axios.post(API_URL,
     {
       description,
       source: token.id,
