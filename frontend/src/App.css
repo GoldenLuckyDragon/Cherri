@@ -57,7 +57,7 @@ h2 {
 
 /* General sidebar styles */
 .bm-menu {
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 2.5em;
   font-size: 1.15em;
   width: 100%;
@@ -106,13 +106,13 @@ h2 {
   background: #ffffff;
   border-radius: 2px;
   display: inline-block;
-  height: 300px;
+  height: 100%;
   margin: 0;
   position: relative;
   width: 90%;
 }
 
-.card-5 {
+.card-shadow {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
@@ -176,7 +176,6 @@ h2 {
 }
 
 /* Fade in and out for text */
-
 #testimonial {
   display: inline;
   margin: 0 auto;
@@ -213,4 +212,71 @@ h2 {
   animation-duration: 18s;
   padding: 130px 50px 0;
   margin: 0 30px 30px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* FORMS */
+
+label {
+  display: block;
+  margin: 0px 0px 5px;
+}
+
+.upload-form {
+  background: #ffffff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  width: 70%;
+  padding: 50px 0;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* BUTTONS */
+
+.btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  font-family: 'Raleway', sans-serif;
+  background-color:transparent;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #ffffff 1px !important;
+  text-decoration: none;
+}
+
+.btn:hover {
+  color: #2e3c48;
+  background-color: #ffffff;
+  text-decoration: none;
+}
+
+.blue {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  font-family: 'Raleway', sans-serif;
+  background-color: #2B90DE;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #2B90DE 1px !important;
+  text-decoration: none;
+}
+
+.blue:hover {
+  color: #2e3c48;
+  background-color: #ffffff;
+  border: solid #2e3c48 1px !important;
+  text-decoration: none;
 }
