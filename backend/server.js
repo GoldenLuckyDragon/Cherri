@@ -3,17 +3,17 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 // whitelist our ports for the front end
-const CORS_WHITELIST = require('./constants/frontend')
+// const CORS_WHITELIST = require('./constants/frontend')
 
-// dynamic origin (based on production vs dev env)
-const corsOptions = {
-  origin: (origin, callback) => {
-  // If the index is negative it implys that the array is empty.
-    (CORS_WHITELIST.indexOf(origin) !== -1)
-    ? callback(null, true)
-    : callback(new Error('Not allowed by CORS'))
-  }
-}
+// // dynamic origin (based on production vs dev env)
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//   // If the index is negative it implys that the array is empty.
+//     (CORS_WHITELIST.indexOf(origin) !== -1)
+//     ? callback(null, true)
+//     : callback(new Error('Not allowed by CORS'))
+//   }
+// }
 
 // let the app use cors and body parser.
 const configureServer = app => {
