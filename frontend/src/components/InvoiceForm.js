@@ -30,7 +30,6 @@ class InvoiceForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
-      <div className='upload-form'>
         <br/>
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
@@ -126,11 +125,10 @@ class InvoiceForm extends React.Component {
           </label>
           <br/>
            */}
-          <button type='submit' className='btn blue'>Create Invoice</button>
+          <button type='submit' className='btn-blue'>Create Invoice</button>
           <br/>
         </form>
       </div>
-    </div>
     )
   }
 }
