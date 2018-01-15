@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-import { Button, Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import iphone from '../images/iphone.png'
 import clock from '../images/clock.svg'
 import upload from '../images/upload.svg'
@@ -9,6 +9,7 @@ import jon from '../images/jon.png'
 import james from '../images/james.png'
 import carmen from '../images/carmen.png'
 
+// First section (landing page - above the fold) of the home page
 export class Homelanding extends React.Component {
   showSettings (event) {
     event.preventDefault()
@@ -23,7 +24,7 @@ export class Homelanding extends React.Component {
             <p className='color-white'>
               Turn your invoices into cash today.
             </p>
-            <button type='button' class='btn'>Sign Up</button>
+            <button type='button' className='btn-blue border'>Sign Up</button>
           </Col>
           <Col xs={12} sm={4}>
             <img src={iphone} alt='cherri factoring web application' width='300' height='280' />
@@ -34,6 +35,7 @@ export class Homelanding extends React.Component {
   }
 }
 
+// Second section - how it works - below the fold of the home page
 export class HomelandingTwo extends React.Component {
   showSettings (event) {
     event.preventDefault()
@@ -64,13 +66,14 @@ export class HomelandingTwo extends React.Component {
         <br />
         <p />
         <Row className='show-grid'>
-          <button type='button' class='btn blue'>Learn More</button>
+          <button type='button' className='btn-blue'>Learn More</button>
         </Row>
       </Grid>
     )
   }
 }
 
+// Third section - testimonials - below the fold of the home page
 export class HomelandingThree extends React.Component {
   render () {
     return (
