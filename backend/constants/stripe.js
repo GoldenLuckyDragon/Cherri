@@ -3,7 +3,7 @@
 const configureStripe = require('stripe')
 
 // set up stripe secret key with dotenv process allows us to change on production
-const STRIPE_SECRET_KEY = process.env.NODE_ENV === 'production'
+const STRIPE_SECRET_KEY = `${process.env.NODE_ENV}` === 'production'
 ? process.env.STRIPE_PROD_SECRET
 : process.env.STRIPE_DEV_SECRET
 

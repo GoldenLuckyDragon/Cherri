@@ -1,9 +1,7 @@
-// set up constant mongo url
-// const MONGO_URI = process.env.NODE_ENV === 'production'
-// ? process.env.MONGO_PROD_URI
-// : process.env.MONGO_DEV_URI
-
-const MONGO_URI = 'mongodb://cherri:finance@ds255797.mlab.com:55797/cherrifinance'
+// set up our mongodb based on environment
+const MONGO_URI = process.env.NODE_ENV === 'production'
+? `${process.env.MONGO_PROD_URL}`
+: 'mongodb://localhost/finalProfiles'
 
 // Include mongoose and set up our connection
 const mongoose = require('mongoose')

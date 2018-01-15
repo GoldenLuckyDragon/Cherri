@@ -25,5 +25,5 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {},
-  "proxy": "https://cherri.now.sh"
+  "proxy": "https://localhost:8080"
 }
