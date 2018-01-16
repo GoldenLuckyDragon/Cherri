@@ -6,8 +6,7 @@ import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
 // invoiceAPI should be below
 import InvoiceForm from './components/InvoiceForm'
-import Navigation from './components/navbar'
-import { Homelanding, HomelandingTwo, HomelandingThree } from './pages/HomePage'
+import { Homelanding, HomelandingTwo, HomelandingThree } from './components/HomeLanding'
 import * as profileAPI from './api/profiles'
 // invoiceAPI should be below
 import * as invoiceAPI from './api/invoices'
@@ -17,7 +16,6 @@ import HomePage from './pages/HomePage'
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { register } from './api/register'
 import { Jumbotron } from 'react-bootstrap'
-import Logo from './components/Logo'
 
 // Our Stripe connect url
 const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
@@ -119,21 +117,11 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
-        {/* testing whether profiles is coming through from line17-line40 */}
-        <Navigation />
-        <Jumbotron className="jumbotron-blue">
-        <Logo />
-        <br/>
-        <Homelanding />
-        </Jumbotron>
-        <Jumbotron className="jumbotron-white">
-          <HomelandingTwo />
-        {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
-        </Jumbotron>
-        <Jumbotron className="jumbotron-blue">
-          <HomelandingThree />
-        </Jumbotron>
           <Switch>
+            <Route path='/' render={
+                () => (
+                  <HomePage/>
+                )}/>
             <Route path='/profiles' render={
                 () => (
                   <AccountPage profiles={profiles}/>
@@ -152,21 +140,18 @@ class App extends Component {
                 <div>
                 { this.state.token && <Redirect to='/profile/create'/>
                 }
-                <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+                {/* <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/> */}
                 </div>
                 )}/>
             <Route path='/invoice/create' render={
                 () => (
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 )}/>
-
           </Switch>
       </div>
       </Router>
     )
   }
 }
-
-
 
 export default App
