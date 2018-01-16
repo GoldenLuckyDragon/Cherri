@@ -222,8 +222,8 @@ form {
  margin-top: 2rem;
  margin-right: auto;
  margin-left: auto;
- max-width: 23.75rem;
- background-color: #fff;
+ max-width: 50%;
+ background-color: #ffffff;
  border-radius: 3px;
  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
 }
@@ -232,6 +232,7 @@ label {
  display: inline-block;
  margin-bottom: .5rem;
  font-size: .75rem;
+ width: 40%;
  text-transform: uppercase;
  -ms-touch-action: manipulation;
  touch-action: manipulation;
@@ -245,12 +246,12 @@ textarea {
  font-size: 1rem;
  line-height: 1.25;
  color: #2B90DE;
- background-color: #fff;
+ background-color: #ffffff;
  background-image: none;
  background-clip: padding-box;
  border-top: 0;
  border-right: 0;
- border-bottom: 1px solid #eee;
+ border-bottom: 1px solid #eeeeee;
  border-left: 0;
  border-radius: 3px;
  -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
