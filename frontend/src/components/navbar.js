@@ -16,6 +16,8 @@ export default class Navigation extends React.Component {
         <Link to={`/profile/id`}>Dashboard</Link>
         <Link to={`/invoice/create`}>Add Invoice</Link>
         <Link to={`/profile/id/edit`}>Account</Link>
+        <Link to={`/signup`}>Register</Link>
+        <Link to={`/signin`}>Login</Link>
         <Link to={`/profile/id`}>Logout</Link>
       </Menu>
     )

@@ -7,10 +7,12 @@ import Navigation from './components/navbar'
 import { Homelanding, HomelandingTwo, HomelandingThree } from './pages/HomePage'
 import * as profileAPI from './api/profiles'
 import AccountPage from './pages/AccountPage'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import RegisterForm from './components/RegisterForm'
+import HomePage from './pages/HomePage'
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { register } from './api/register'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from './components/Logo'
-
 
 // Our Stripe connect url
 const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
@@ -69,6 +71,25 @@ class App extends Component {
     profileAPI.save(profile);
   }
 
+  handleRegister = (event) => {
+    event.preventDefault()
+    const form = event.target
+    const element = form.elements
+    const email = element.email.value
+    const password = element.password.value
+    register({email, password})
+    .then((data) => {
+      const token = data.token
+      console.log(token)
+      if (token) {
+      profileAPI.all(token)
+        .then( movies =>
+          this.setState({ movies, token })
+      )}
+    })
+    console.log({ password, email })
+    // console.log({token})
+  }
 
   // handleProfileEditSubmission = (profile) => {
   //   this.setState(({profiles}) => {
@@ -116,6 +137,24 @@ class App extends Component {
                 () => (
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
                 )}/>
+
+            <Route path='/profile/edit' render={
+                () => (
+                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+                )}/>
+            <Route path='/signup' render={
+              () => (
+                <div>
+                { this.state.token && <Redirect to='/profile/create'/>
+                }
+                <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+                </div>
+                )}/>
+            <Route path='/invoice/create' render={
+                () => (
+                  <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+                )}/>
+
           </Switch>
       </div>
       </Router>

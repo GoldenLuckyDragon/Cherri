@@ -7,15 +7,15 @@ class ProfileForm extends React.Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-    const email = elements['email'].value
-    const password = elements['password'].value
+    // const email = elements['email'].value
+    // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value
     const hkid = elements['hkid'].value
     const stripeId = ''
     const incorporationCertificate = elements['incorporationCertificate'].value
     const paymentMethod = elements['paymentMethod'].value
-    this.props.onSubmit({email, password, factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod})
+    this.props.onSubmit({factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod})
     this.setState({ redirect: true })
   }
 
@@ -26,7 +26,7 @@ class ProfileForm extends React.Component {
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
-          <label>
+          {/* <label>
             Email:
             &nbsp;
             <input type='text' name='email' />
@@ -36,7 +36,7 @@ class ProfileForm extends React.Component {
             Password:
             &nbsp;
             <input type='text' name='password' />
-          </label>
+          </label> */}
 
           <label>
             Factory Name:
