@@ -18,7 +18,8 @@ import RegisterForm from './components/RegisterForm'
 import { register } from './api/register'
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
-
+import { Jumbotron } from 'react-bootstrap'
+import Logo from './components/Logo'
 
 
 // Our Stripe connect url
@@ -39,6 +40,7 @@ class App extends Component {
       // test log to ensure that  profile information is coming through from backend
       // console.log(profiles)
     })
+
     // setting a state when invoiceAPI is called
     invoiceAPI.all()
     .then(invoices => {
@@ -47,12 +49,11 @@ class App extends Component {
       // console.log(invoices)
     })
   }
-  // event handler for Profile create
+
   handleProfileSubmission = (profile) => {
     this.setState(({profiles}) => {
       return { profiles: [profile].concat(profiles)}
     });
-    // calling the save function from backend API route
     profileAPI.save(profile);
   }
 
@@ -95,17 +96,27 @@ class App extends Component {
     invoiceAPI.save(invoice);
   }
 
+
   render () {
     const {profiles} = this.state
     return (
       <Router>
       <div className='App'>
+        {/* testing whether profiles is coming through from line17-line40 */}
         <Navigation />
+        <Jumbotron className="jumbotron-blue">
+        <Logo />
+        <br/>
+        <Homelanding />
+        </Jumbotron>
+        <Jumbotron className="jumbotron-white">
+          <HomelandingTwo />
+        {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
+        </Jumbotron>
+        <Jumbotron className="jumbotron-blue">
+          <HomelandingThree />
+        </Jumbotron>
           <Switch>
-            <Route exact path='/' render={
-                () => (
-                  <HomePage />
-                )}/>
             <Route path='/profiles' render={
                 () => (
                   <AccountPage profiles={profiles}/>
@@ -114,6 +125,7 @@ class App extends Component {
                 () => (
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
                 )}/>
+
             <Route path='/profile/edit' render={
                 () => (
                   <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
@@ -130,11 +142,14 @@ class App extends Component {
                 () => (
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 )}/>
+
           </Switch>
       </div>
       </Router>
     )
   }
 }
+
+
 
 export default App

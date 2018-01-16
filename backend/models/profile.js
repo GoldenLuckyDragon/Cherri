@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId
 
 // this is the schema
 const FinalProfileSchema = Schema({
-  email: String,
+  email: { type: String, required: true },
   password: String,
   factoryName: String,
   address: String,
