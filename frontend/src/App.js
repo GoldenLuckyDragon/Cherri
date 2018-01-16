@@ -69,6 +69,25 @@ class App extends Component {
     profileAPI.save(profile);
   }
 
+
+  // handleProfileEditSubmission = (profile) => {
+  //   this.setState(({profiles}) => {
+  //     return { profiles: [profile].concat(profiles)}
+  //   });
+  //   // calling the save function from backend API route
+  //   profileAPI.edit(profile);
+  // }
+
+  // event handler for Invoice create
+  handleInvoiceSubmission = (invoice) => {
+    this.setState(({invoices}) => {
+      return { invoices: [invoice].concat(invoices)}
+    });
+    // calling the save function from backend API route
+    invoiceAPI.save(invoice);
+  }
+
+
   render () {
     const {profiles} = this.state
     return (
