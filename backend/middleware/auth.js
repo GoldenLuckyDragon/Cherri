@@ -68,6 +68,6 @@ module.exports = {
   initialize: [passport.initialize(), passport.session()],
   register,
   signJWTForUser,
-  signIn: passport.authenticate('local', {session: false}),
+  signIn: passport.authenticate('local', {session: true}),
   requireJWT: passport.authenticate('jwt', {session: false})
 }
