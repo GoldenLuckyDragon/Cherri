@@ -1,7 +1,9 @@
 import React from 'react'
 import '../App.css'
 import { Jumbotron } from 'react-bootstrap'
+import Navigation from '../components/navbar'
 import Logo from '../components/Logo'
+// call in the homelanding components
 import { Homelanding, HomelandingTwo, HomelandingThree } from '../components/HomeLanding'
 
 // using SendGrid's v3 Node.js Library
@@ -19,6 +21,7 @@ import { Homelanding, HomelandingTwo, HomelandingThree } from '../components/Hom
 export default () => {
   return (
     <div>
+      <Navigation />
       <Jumbotron className='jumbotron-blue'>
         <Logo />
         <br />

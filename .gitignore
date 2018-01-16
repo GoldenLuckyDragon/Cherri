@@ -2,6 +2,7 @@ node_modules/
 
 //protect secret keys
 backend/.env
+backend/.env.production
 frontend/.env
 *.env
 
