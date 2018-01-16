@@ -43,32 +43,37 @@ class ProfileForm extends React.Component {
             &nbsp;
             <input type='text' name='factoryName' />
           </label>
+          <br />
 
           <label>
             Address:
             &nbsp;
             <input type='text' name='address' />
           </label>
+          <br />
 
           <label>
             HK ID:
             &nbsp;
             <input type='text' name='hkid' />
           </label>
+          <br />
 
           <label>
             Incorporation Certificate:
             &nbsp;
             <input type='text' name='incorporationCertificate' />
           </label>
+          <br />
 
           <label>
             Payment Method:
             &nbsp;
             <input type='text' name='paymentMethod' />
           </label>
-
-          <button type='submit'>Create Profile</button>
+          <br />
+          
+          <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
       </div>
     )

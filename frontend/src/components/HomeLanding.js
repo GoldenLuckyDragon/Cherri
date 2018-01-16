@@ -23,7 +23,7 @@ export class Homelanding extends React.Component {
             <p className='color-white'>
               Turn your invoices into cash today.
             </p>
-            <button type='button' className='btn-blue border'>Sign Up</button>
+            <a href={`/signup`} className='btn-blue border'>Sign Up</a>
             <br />
             <p />
           </Col>
@@ -67,7 +67,7 @@ export class HomelandingTwo extends React.Component {
         <br />
         <p />
         <Row className='show-grid'>
-          <button type='button' className='btn-blue'>Learn More</button>
+          <a href={`/LearnPage`} className='btn-blue'>Learn More</a>
         </Row>
       </Grid>
     )

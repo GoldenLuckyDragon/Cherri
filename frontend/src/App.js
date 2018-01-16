@@ -2,8 +2,11 @@
 import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
-import Navigation from './components/navbar'
-// imports associated with profile
+import ProfileForm from './components/ProfileForm'
+import ProfileEditForm from './components/ProfileEditForm'
+// invoiceAPI should be below
+import InvoiceForm from './components/InvoiceForm'
+import { Homelanding, HomelandingTwo, HomelandingThree } from './components/HomeLanding'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
@@ -19,7 +22,6 @@ import { register } from './api/register'
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
-import Logo from './components/Logo'
 
 
 // Our Stripe connect url
@@ -132,14 +134,11 @@ class App extends Component {
               () => (
                 <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
               )}/>
-
         </Switch>
       </div>
       </Router>
     )
   }
 }
-
-
 
 export default App

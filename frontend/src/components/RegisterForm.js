@@ -1,29 +1,27 @@
 import React from 'react'
+import '../App.css'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
 
 function RegisterForm ({ token, onSignUp }) {
   return (
     <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <form onSubmit={onSignUp}>
-        <label>
+      <Jumbotron className='jumbotron-blue'>
+        <form onSubmit={onSignUp}>
+          <label>
         email:
         <input type='email' name='email' />
-        </label>
+          </label>
         &nbsp;
-        <label>
+          <br />
+          <label>
         password:
         <input type='text' name='password' />
-        </label>
-        <button type='submit'>Sign Up</button>
-      </form>
+          </label>
+          <br />
+          <button type='submit' className='btn-blue'>Sign Up</button>
+        </form>
+      </Jumbotron>
     </div>
   )
 }
