@@ -1,8 +1,6 @@
 import React from 'react'
 
 function RegisterForm ({ token, onSignUp }) {
-  console.log(token)
-  console.log(onSignUp)
   return (
     <div>
       <br />
