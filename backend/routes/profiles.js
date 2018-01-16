@@ -42,9 +42,9 @@ const profileApi = app => {
     })
   })
 
-  app.post('/invoice', authorize, (req, res) => {
-    Invoice.create(req.body).then((profile) => {
-      res.status(201).json(profile).end()
+  app.post('/invoice', (req, res) => {
+    Invoice.create(req.body).then((invoice) => {
+      res.status(201).json(invoice).end()
     })
   })
 

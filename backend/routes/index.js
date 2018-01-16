@@ -3,12 +3,12 @@
 // define the route files
 const paymentApi = require('./payment')
 const profileApi = require('./profiles')
-const currencyApi = require('./currency')
+const invoiceApi = require('./invoices')
 // run the routes through the app
 const configureRoutes = app => {
   paymentApi(app)
   profileApi(app)
-  currencyApi(app)
+  invoiceApi(app)
 }
 
 module.exports = configureRoutes
