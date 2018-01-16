@@ -15,7 +15,7 @@ export function save (profile) {
 }
 
 export function edit (profile) {
-  return fetch('/profile/:id', {
+  return fetch('/profile', {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(profile)

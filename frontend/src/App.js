@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
+import ProfileEditForm from './components/ProfileEditForm'
 import InvoiceForm from './components/InvoiceForm'
 import Navigation from './components/Navbar'
 import * as profileAPI from './api/profiles'
@@ -33,7 +34,7 @@ class App extends Component {
     invoiceAPI.all()
     .then(invoices => {
       this.setState({ invoices })
-      console.log(invoices)
+      // console.log(invoices)
     })
   }
   // event handler for Profile create
@@ -43,6 +44,14 @@ class App extends Component {
     });
     // calling the save function from backend API route
     profileAPI.save(profile);
+  }
+
+  handleProfileEditSubmission = (profile) => {
+    this.setState(({profiles}) => {
+      return { profiles: [profile].concat(profiles)}
+    });
+    // calling the save function from backend API route
+    profileAPI.edit(profile);
   }
 
   // event handler for Invoice create
@@ -72,6 +81,10 @@ class App extends Component {
             <Route path='/profile/create' render={
                 () => (
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                )}/>
+            <Route path='/profile/edit' render={
+                () => (
+                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
                 )}/>
             <Route path='/invoice/create' render={
                 () => (
