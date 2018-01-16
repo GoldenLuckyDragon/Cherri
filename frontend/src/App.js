@@ -102,48 +102,38 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
-        {/* testing whether profiles is coming through from line17-line40 */}
-        <Navigation />
-        <Jumbotron className="jumbotron-blue">
-        <Logo />
-        <br/>
-        <Homelanding />
-        </Jumbotron>
-        <Jumbotron className="jumbotron-white">
-          <HomelandingTwo />
-        {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
-        </Jumbotron>
-        <Jumbotron className="jumbotron-blue">
-          <HomelandingThree />
-        </Jumbotron>
-          <Switch>
-            <Route path='/profiles' render={
-                () => (
-                  <AccountPage profiles={profiles}/>
-                )}/>
-            <Route path='/profile/create' render={
-                () => (
-                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
-                )}/>
-
-            <Route path='/profile/edit' render={
-                () => (
-                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
-                )}/>
-            <Route path='/signup' render={
+        <Switch>
+          <Route exact path='/' render={
               () => (
-                <div>
-                { this.state.token && <Redirect to='/profile/create'/>
-                }
-                <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
-                </div>
-                )}/>
-            <Route path='/invoice/create' render={
-                () => (
-                  <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
-                )}/>
+                <HomePage profiles={profiles}/>
+              )}/>
+          <Route path='/profiles' render={
+              () => (
+                <AccountPage profiles={profiles}/>
+              )}/>
+          <Route path='/profile/create' render={
+              () => (
+                <ProfileForm onSubmit={this.handleProfileSubmission}/>
+              )}/>
 
-          </Switch>
+          <Route path='/profile/edit' render={
+              () => (
+                <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+              )}/>
+          <Route path='/signup' render={
+            () => (
+              <div>
+              { this.state.token && <Redirect to='/profile/create'/>
+              }
+              <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+              </div>
+              )}/>
+          <Route path='/invoice/create' render={
+              () => (
+                <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+              )}/>
+
+        </Switch>
       </div>
       </Router>
     )
