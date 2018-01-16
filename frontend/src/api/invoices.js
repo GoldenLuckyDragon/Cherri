@@ -1,11 +1,13 @@
+const API_URL = `${process.env.REACT_APP_SERVER_URL}`
+
 export function all () {
-  return fetch('/invoice')
+  return fetch(`${API_URL}/invoice`)
     .then(res => res.json())
     .catch(error => { console.log(error) })
 }
 
 export function save (invoice) {
-  return fetch('/invoice', {
+  return fetch(`${API_URL}/invoice`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(invoice)
