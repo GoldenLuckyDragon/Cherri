@@ -2,19 +2,23 @@
 import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
+import Navigation from './components/navbar'
+// imports associated with profile
+import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
-// invoiceAPI should be below
-import InvoiceForm from './components/InvoiceForm'
-import Navigation from './components/navbar'
-import * as profileAPI from './api/profiles'
-// invoiceAPI should be below
+// imports associated with invoice
 import * as invoiceAPI from './api/invoices'
+import InvoiceForm from './components/InvoiceForm'
+// imports associated with page selection
 import AccountPage from './pages/AccountPage'
-import RegisterForm from './components/RegisterForm'
 import HomePage from './pages/HomePage'
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+// imports associated with signing up & signing in
+import RegisterForm from './components/RegisterForm'
 import { register } from './api/register'
+
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+
 
 
 // Our Stripe connect url
@@ -32,12 +36,14 @@ class App extends Component {
     profileAPI.all()
     .then(profiles => {
       this.setState({ profiles })
+      // test log to ensure that  profile information is coming through from backend
       // console.log(profiles)
     })
     // setting a state when invoiceAPI is called
     invoiceAPI.all()
     .then(invoices => {
       this.setState({ invoices })
+      // test log to ensure that  profile information is coming through from backend
       // console.log(invoices)
     })
   }
@@ -50,8 +56,10 @@ class App extends Component {
     profileAPI.save(profile);
   }
 
+  // Event handler for registration of new User
   handleRegister = (event) => {
     event.preventDefault()
+    // declaration of const
     const form = event.target
     const element = form.elements
     const email = element.email.value
