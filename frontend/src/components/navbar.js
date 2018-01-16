@@ -2,6 +2,7 @@ import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
 import { Link, Route, Switch } from 'react-router-dom'
 
+// create our navbar
 export default class Navigation extends React.Component {
   showSettings (event) {
     event.preventDefault()

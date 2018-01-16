@@ -12,7 +12,7 @@ class ProfileForm extends React.Component {
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value
     const hkid = elements['hkid'].value
-    const stripeId = elements['stripeId'].value
+    const stripeId = ''
     const incorporationCertificate = elements['incorporationCertificate'].value
     const paymentMethod = elements['paymentMethod'].value
     this.props.onSubmit({email, password, factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod})
@@ -54,12 +54,6 @@ class ProfileForm extends React.Component {
             HK ID:
             &nbsp;
             <input type='text' name='hkid' />
-          </label>
-
-          <label>
-            Stripe ID:
-            &nbsp;
-            <input type='text' name='stripeId' />
           </label>
 
           <label>

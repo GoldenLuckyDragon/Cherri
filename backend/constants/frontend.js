@@ -2,7 +2,7 @@
 const FRONTEND_DEV_URLS = ['http://localhost:3000']
 
 const FRONTEND_PROD_URLS = [
-  'https://www.GLD.com.hk'
+  'https://cherri-finance.netlify.com'
 ]
 
 // export the production or the dev urls

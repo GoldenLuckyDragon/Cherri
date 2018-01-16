@@ -4,9 +4,6 @@ const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 // require our Profiles
 const Profile = require('../models/profile.js')
 
-// TODO separate into globals
-// // this is from stripe website
-const CLIENT_ID = 'ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5'
 const TOKEN_URI = 'https://connect.stripe.com/oauth/token'
 
 // include request to make our post request to stripe
@@ -21,8 +18,8 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
   }
 }
 
-/* STRIPE Customer Process (OUR paymentApi)
-  Customer clicks on special url with our client_id (to be updated)
+/* STRIPE Customer Process (Our paymentApi)
+  Customer clicks on special url with our client_id (found in connect/settings/dashboard)
   client then fills in stripe form to make an account or signs in with existing.
   redirect to our redirect_URI (inside connect/settings/dashboard ) on A GET
 
@@ -61,7 +58,7 @@ const paymentApi = app => {
       url: TOKEN_URI,
       form: {
         grant_type: 'authorization_code',
-        client_id: CLIENT_ID,
+        client_id: `${process.env.CLIENT_ID}`,
         code: code,
         client_secret: STRIPE_SECRET_KEY
       }

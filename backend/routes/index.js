@@ -4,6 +4,8 @@
 const paymentApi = require('./payment')
 const profileApi = require('./profiles')
 const invoiceApi = require('./invoices')
+// const currencyApi = require('./currency')
+
 // run the routes through the app
 const configureRoutes = app => {
   paymentApi(app)

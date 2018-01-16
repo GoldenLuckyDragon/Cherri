@@ -7,7 +7,7 @@ export default function ProfileList ({ profiles }) {
       <h1>Profile List!</h1>
       {
         profiles.map(profile => {
-          return <Profile key={profile._id} {...profile} />
+          return <Profile {...profile} />
         })
       }
     </div>
