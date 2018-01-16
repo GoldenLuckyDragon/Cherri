@@ -4,10 +4,12 @@ import Checkout from './components/Checkout'
 import './App.css'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
+// invoiceAPI should be below
 import InvoiceForm from './components/InvoiceForm'
 import Navigation from './components/navbar'
 import * as profileAPI from './api/profiles'
 // invoiceAPI should be below
+
 import * as invoiceAPI from './api/invoices'
 import AccountPage from './pages/AccountPage'
 import RegisterForm from './components/RegisterForm'
