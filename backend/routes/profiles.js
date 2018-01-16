@@ -1,14 +1,18 @@
 // include our models
 const Profile = require('../models/profile.js')
 const Invoice = require('../models/invoice.js')
-const mongoose = require('../models/base.js')
-const db = mongoose.connection
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
+
+const authorize = (req, res, next) => {
+  if (req.user) {
+    next()
+  } else {
+    res.status(403).end()
+  }
+}
 
 // set up our routes for profile.
 const profileApi = app => {
-  app.get('/profile', (req, res) => {
+  app.get('/profile', authorize, (req, res) => {
     // find our profiles
     Profile.find({})
     // add our invoices
@@ -21,7 +25,7 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.get('/invoice', (req, res) => {
+  app.get('/invoice', authorize, (req, res) => {
     // find all our invoices
     Invoice.find({})
     .then(invoices => {
@@ -32,7 +36,7 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.post('/profile', (req, res) => {
+  app.post('/profile', authorize, (req, res) => {
     Profile.create(req.body).then((profile) => {
       res.status(201).json(profile).end()
     })
@@ -44,14 +48,14 @@ const profileApi = app => {
     })
   })
 
-  app.patch('/profile', (req, res) => {
-    const updateObject = req.body
-    const id = req.params.id
-    // db.profile.update({_id: '5a5706dd38a4d867a7bda36a'}, { $set: {factoryName: 'BARRRRRRY'} })
-    db.profile.update({_id: ObjectId(id)}, {$set: updateObject})
-    console.log(updateObject)
-    console.log(id)
-  })
+  // app.patch('/profile', authorize, (req, res) => {
+  //   // const updateObject = req.body
+  //   // const id = req.params.id
+  //   // db.profile.update({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
+  //   Profile.updateOne({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
+  //   // console.log(updateObject)
+  //   // console.log(id)
+  // })
 
   return app
 }
