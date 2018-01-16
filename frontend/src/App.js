@@ -5,7 +5,7 @@ import './App.css'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
 import InvoiceForm from './components/InvoiceForm'
-import Navigation from './components/Navbar'
+import Navigation from './components/navbar'
 import * as profileAPI from './api/profiles'
 import * as invoiceAPI from './api/invoices'
 import AccountPage from './pages/AccountPage'
@@ -46,13 +46,13 @@ class App extends Component {
     profileAPI.save(profile);
   }
 
-  handleProfileEditSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
-    });
-    // calling the save function from backend API route
-    profileAPI.edit(profile);
-  }
+  // handleProfileEditSubmission = (profile) => {
+  //   this.setState(({profiles}) => {
+  //     return { profiles: [profile].concat(profiles)}
+  //   });
+  //   // calling the save function from backend API route
+  //   profileAPI.edit(profile);
+  // }
 
   // event handler for Invoice create
   handleInvoiceSubmission = (invoice) => {
