@@ -2,10 +2,9 @@
 import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
-import ProfileForm from './components/ProfileForm'
-import ProfileEditForm from './components/ProfileEditForm'
+import Navigation from './components/navbar'
+import Logo from './components/Logo'
 // invoiceAPI should be below
-import InvoiceForm from './components/InvoiceForm'
 import { Homelanding, HomelandingTwo, HomelandingThree } from './components/HomeLanding'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
@@ -104,7 +103,6 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
-        <Navigation />
         <Switch>
           <Route exact path='/' render={
               () => (
