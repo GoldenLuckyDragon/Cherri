@@ -3,6 +3,7 @@ const authMiddleware = require('../middleware/auth.js')
 
 const router = express.Router()
 
+// if successfully registered (post req), then return the User object
 router.post('/register',
   authMiddleware.register,
   authMiddleware.signJWTForUser
@@ -11,6 +12,7 @@ router.post('/register',
   // }
 )
 
+// Sign in a User. // middleware that allows us to sign in
 router.post('/signin',
   authMiddleware.signIn,
   authMiddleware.signJWTForUser
