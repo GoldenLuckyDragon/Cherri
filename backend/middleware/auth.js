@@ -5,8 +5,8 @@ const User = require('../models/user')
 
 passport.use(User.createStrategy())
 
-// passport.serializeUser(User.serializeUser())
-// passport.deserializeUser(User.deserializeUser())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 function register (req, res, next) {
   const user = new User({
@@ -57,7 +57,7 @@ function signJWTForUser (req, res) {
   'topsecret',
     {
       algorithm: 'HS256',
-      // expireIn: '7 days',
+      // expiresIn: '7 days',
       subject: user._id.toString()
     }
   )
@@ -68,6 +68,6 @@ module.exports = {
   initialize: [passport.initialize(), passport.session()],
   register,
   signJWTForUser,
-  signIn: passport.authenticate('local', {session: false}),
+  signIn: passport.authenticate('local', {session: true}),
   requireJWT: passport.authenticate('jwt', {session: false})
 }

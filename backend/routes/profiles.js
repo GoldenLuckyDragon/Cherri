@@ -25,7 +25,7 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.get('/invoice', authorize, (req, res) => {
+  app.get('/invoice', (req, res) => {
     // find all our invoices
     Invoice.find({})
     .then(invoices => {
@@ -49,12 +49,12 @@ const profileApi = app => {
   })
 
   // app.patch('/profile', authorize, (req, res) => {
-  //   // const updateObject = req.body
-  //   // const id = req.params.id
-  //   // db.profile.update({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
+    // const updateObject = req.body
+    // const id = req.params.id
+    // db.profile.update({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
   //   Profile.updateOne({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
-  //   // console.log(updateObject)
-  //   // console.log(id)
+    // console.log(updateObject)
+    // console.log(id)
   // })
 
   return app
