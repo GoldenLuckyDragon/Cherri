@@ -4,8 +4,6 @@ import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 
 function RegisterForm ({ token, onSignUp }) {
-  console.log(token)
-  console.log(onSignUp)
   return (
     <div>
       <Jumbotron className='jumbotron-blue'>
