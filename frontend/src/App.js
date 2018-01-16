@@ -116,7 +116,6 @@ class App extends Component {
               () => (
                 <ProfileForm onSubmit={this.handleProfileSubmission}/>
               )}/>
-
           <Route path='/profile/edit' render={
               () => (
                 <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
