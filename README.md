@@ -13,14 +13,14 @@
 ---
 ###Installation Instructions
 
-  To use this project locally first
+  To use this project locally
 
 ```
-git clone https://github.com/GoldenLuckyDragon/Cherri.git
+$ git clone https://github.com/GoldenLuckyDragon/Cherri.git
 ```
 Then change into the directory  
 ```
-cd Cherri
+$ cd Cherri
 ```
 The project is in front and backend lets set up the backend first
 
@@ -35,9 +35,9 @@ https://dashboard.stripe.com/account/applications/settings
 now run
 
 ```
-touch .env
+$ cd backend && touch .env
 ```
-this will create a dotenv file we can save our environment variables inside.
+this will move you to the backend folder and create a dotenv file we can save our environment variables inside.
 
 copy and paste the following inside
 ```
@@ -51,31 +51,38 @@ Keep the dashboard open as you will need it again.
 
  update your modules with
 ```
-yarn install
+$ yarn install
 ```
 Stripe requires a handshake verification process which must be done over https and cannot be done on localhost.
 
 
 
-we will use Ngrok to overcome this
+Download and install ngrok from
 https://ngrok.com/download
 
-download and install ngrok, cd to the download directory and run
+This will allow us to overcome this
+ cd to the download directory
 
 ```
-ngrok http 8080
+  cd [PATH TO NGROK probably /downloads]
+```
+and run
+```
+ $ ngrok http 8080
 ```
 
 this creates a secure public connection to your localhost
 
-![backend/public/ngrok.png](ngrok)
+![ngrok](/backend/public/ngrok.png)
 
 copy the https url and go back to your dashboard
 and it as a new redirect_URI
 
 on the bottom left of the dashboard make sure you select test data
 
-![backend/public/test_data.png](test_data)
+![test_data](backend/public/test_data.png)
+
+Goto your dashboard
 
 add your redirect_uri and make sure to add
 
@@ -85,23 +92,127 @@ add your redirect_uri and make sure to add
 to the end of your ngrok https url.
 
 it might look something like this
-
 ```
 https://2221ajecb.ngrok.io/users/auth/stripe_connect
 
 ```
 
+
 now goto click on API on the left of the dashboard and save both your stripe secret key to your new .env file
 
+
+Dashboard should look like this
+![redirect](backend/public/redirect.png)
+
+Keep a terminal open inside /backend
+and run
+```
+$ yarn start
+```
+ you should see
+ ```
+ Server running on port: 8080
+ Successful connection to MongoDB
+ ```
+
+
+
+
+If you do not already have MongoDb, you will need to install it with the following steps.
+
+---
+### MongoDb
+
+open a new Terminal window with <kbd>CMD</kbd> + <kbd>T</kbd>
+
+We use MongoDb, with this project you can install it using homebrew.
+
+You can find the MongoDb docs [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+
+First update your homebrew with
+
+```
+$ brew update
+```
+
+then run
+```
+$ brew install mongodb
+```
+once the installation is complete run
+
+```
+$ mongod --dbpath /usr/local/var/mongodb
+```
+
+a Successful connection will display
+```
+waiting for connections on port 27017
+```
+
+
+---
+
+
+
+#### Setting Up The Front End
+
+In a new terminal window (keep the other windows open)
+ <kbd>CMD</kbd>  + <kbd>T</kbd>
+
+now type
+```
+$ cd ..
+```
+to go back a folder and then
+```
+$ cd frontend
+```
+to move to the front end folder.
+
+make a new .env file with
+
+```
+$ touch .env
+```
+
+copy the following inside
+
+```
+REACT_APP_STRIPE_DEV_PUBLISH=
+REACT_APP_SERVER_URL=https://localhost:8080
+```
+Fill in the STRIPE_DEV_PUBLISH with your test publishable key from your stripe dashboard.
+
+now run
+```
+$ yarn install
+```
+
+You should have 3 terminal windows in total
+
+*1.* Cherri/backend running.
+
+*2.* mongodb running.
+
+*3.* cherri/frontend
+
+
+and then
+```
+$ yarn start
+```
+to start the website.
 
 
 
 ---
-### linter
-  we chose to use https://standardjs.com/rules.html#semicolons
+---
+### linter [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+  We chose to use https://standardjs.com/
+
   It is well documented, it has auto enforcement on save and it works with es6.
 
   Controversally it removes semicolons but we figure this to be they way of the future anyway.
-  Because of this, you can: Never start a line with (, [, or `
-
-  We have it enabled to force fix on save and when we run tests.
+  Because of this, you can never start a line with (, [, or `
