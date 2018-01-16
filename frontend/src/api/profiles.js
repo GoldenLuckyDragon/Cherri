@@ -1,6 +1,7 @@
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 export function all () {
+  console.log('all function', API_URL)
   return fetch(`${API_URL}/profile`)
     .then(res => res.json())
     .catch(error => { console.log(error) })
