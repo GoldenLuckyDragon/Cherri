@@ -3,8 +3,8 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-// this is the schema
 const FinalProfileSchema = Schema({
+  // format needed for required fields
   email: { type: String, required: true },
   password: String,
   factoryName: String,
