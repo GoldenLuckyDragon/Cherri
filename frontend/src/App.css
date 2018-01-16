@@ -78,7 +78,7 @@ h2 {
 
 /* JUMBOTRONS */
 .jumbotron-blue {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background: #00d2ff;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */

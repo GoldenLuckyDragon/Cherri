@@ -15,6 +15,7 @@ import InvoiceForm from './components/InvoiceForm'
 // imports associated with page selection
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
+import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
 import { register } from './api/register'
@@ -107,6 +108,10 @@ class App extends Component {
           <Route exact path='/' render={
               () => (
                 <HomePage profiles={profiles}/>
+              )}/>
+          <Route path='/learnmore' render={
+              () => (
+                <LearnPage/>
               )}/>
           <Route path='/profiles' render={
               () => (

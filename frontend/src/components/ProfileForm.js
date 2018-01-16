@@ -1,5 +1,8 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
 
 class ProfileForm extends React.Component {
   state = { redirect: false}
@@ -23,6 +26,9 @@ class ProfileForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
+        <Navigation />
+        <Jumbotron className='jumbotron-blue'>
+          <Logo />
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
@@ -72,9 +78,10 @@ class ProfileForm extends React.Component {
             <input type='text' name='paymentMethod' />
           </label>
           <br />
-          
+
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
+      </Jumbotron>
       </div>
     )
   }
