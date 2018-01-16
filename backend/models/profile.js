@@ -16,6 +16,6 @@ const FinalProfileSchema = Schema({
   invoices: [{ type: ObjectId, ref: 'Invoice' }]
 })
 
-const Profile = mongoose.model('finalProfile', FinalProfileSchema)
+const Profile = mongoose.models.Profile || mongoose.model('finalProfile', FinalProfileSchema)
 
 module.exports = Profile

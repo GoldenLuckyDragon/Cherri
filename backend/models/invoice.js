@@ -18,7 +18,6 @@ const invoiceSchema = Schema({
 })
 
 const Invoice =
-// mongoose.models.Invoice ||
- mongoose.model('Invoice', invoiceSchema)
+  mongoose.models.Invoice || mongoose.model('Invoice', invoiceSchema)
 
 module.exports = Invoice
