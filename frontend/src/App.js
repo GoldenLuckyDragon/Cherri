@@ -46,13 +46,13 @@ class App extends Component {
     profileAPI.save(profile);
   }
 
-  handleProfileEditSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
-    });
-    // calling the save function from backend API route
-    profileAPI.edit(profile);
-  }
+  // handleProfileEditSubmission = (profile) => {
+  //   this.setState(({profiles}) => {
+  //     return { profiles: [profile].concat(profiles)}
+  //   });
+  //   // calling the save function from backend API route
+  //   profileAPI.edit(profile);
+  // }
 
   // event handler for Invoice create
   handleInvoiceSubmission = (invoice) => {

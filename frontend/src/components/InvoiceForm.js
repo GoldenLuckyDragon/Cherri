@@ -11,19 +11,20 @@ class InvoiceForm extends React.Component {
     event.preventDefault()
     const { elements } = event.target
     const invoiceNumber = elements['invoiceNumber'].value
+    console.log(invoiceNumber)
     const amount = elements['amount'].value
-    const currency = elements['currency'].value
-    const offerAmount = elements['offerAmount'].value
+    // const currency = elements['currency'].value
+    // const offerAmount = elements['offerAmount'].value
     const dueDate = elements['dueDate'].value
-    const expiryDate = elements['expiryDate'].value
-    const status = elements['status'].value
+    // const expiryDate = elements['expiryDate'].value
+    // const status = elements['status'].value
     const customerCompanyName = elements['customerCompanyName'].value
     const customerFirstname = elements['customerFirstname'].value
     const customerSurname = elements['customerSurname'].value
     const salePurchaseAgreement = elements['salePurchaseAgreement'].value
     const invoiceUpload = elements['invoiceUpload'].value
     // onSubmit({invoiceNumber, amount})
-    this.props.onSubmit({invoiceNumber, amount, currency, offerAmount, dueDate, expiryDate, status, customerCompanyName, customerFirstname, customerSurname, salePurchaseAgreement, invoiceUpload})
+    this.props.onSubmit({invoiceNumber, amount, dueDate, customerCompanyName, customerFirstname, customerSurname, salePurchaseAgreement, invoiceUpload})
     this.setState({ redirect: true })
   }
   render() {
@@ -48,7 +49,7 @@ class InvoiceForm extends React.Component {
           </label>
           <br/>
 
-          <label>
+          {/* <label>
             Currency:
             &nbsp;
             <select>
@@ -59,7 +60,7 @@ class InvoiceForm extends React.Component {
               <option value="AUD" name='currency'>AUD</option>
             </select>
           </label>
-          <br/>
+          <br/> */}
 
           <label>
             Due Date:

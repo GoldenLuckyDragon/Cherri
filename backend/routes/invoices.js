@@ -1,9 +1,5 @@
 // include our models
 const Invoice = require('../models/invoice.js')
-const mongoose = require('../models/base.js')
-const db = mongoose.connection
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
 
 // set up our routes for invoice.
 const invoiceApi = app => {
