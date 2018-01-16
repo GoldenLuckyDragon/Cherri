@@ -1,18 +1,19 @@
 // include our models
 const Profile = require('../models/profile.js')
 const Invoice = require('../models/invoice.js')
+const authMiddleware = require('../middleware/auth')
 
-const authorize = (req, res, next) => {
-  if (req.user) {
-    next()
-  } else {
-    res.status(403).end()
-  }
-}
+// const authorize = (req, res, next) => {
+//   if (req.user) {
+//     next()
+//   } else {
+//     res.status(403).end()
+//   }
+// }
 
 // set up our routes for profile.
 const profileApi = app => {
-  app.get('/profile', (req, res) => {
+  app.get('/profile', authMiddleware.requireJWT, (req, res) => {
     // find our profiles
     Profile.find({})
     // add our invoices

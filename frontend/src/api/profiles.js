@@ -1,12 +1,12 @@
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
-export function all (token) {
+export function all () {
   console.log(API_URL)
   return fetch(`${API_URL}/profile`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Content-Type': 'application/json'
+      // 'Authorization': `Bearer ${token}`
     }
   })
   .then(res => res.json())

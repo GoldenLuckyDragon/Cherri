@@ -9,8 +9,10 @@ import Navigation from './components/navbar'
 import * as profileAPI from './api/profiles'
 import * as invoiceAPI from './api/invoices'
 import AccountPage from './pages/AccountPage'
+import RegisterForm from './components/RegisterForm'
 import HomePage from './pages/HomePage'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { register } from './api/register'
 
 
 // Our Stripe connect url
@@ -44,6 +46,26 @@ class App extends Component {
     });
     // calling the save function from backend API route
     profileAPI.save(profile);
+  }
+
+  handleRegister = (event) => {
+    event.preventDefault()
+    const form = event.target
+    const element = form.elements
+    const email = element.email.value
+    const password = element.password.value
+    register({email, password})
+    .then((data) => {
+      const token = data.token
+      console.log(token)
+      if (token) {
+      profileAPI.all(token)
+        .then( movies =>
+          this.setState({ movies, token })
+      )}
+    })
+    console.log({ password, email })
+    // console.log({token})
   }
 
   // handleProfileEditSubmission = (profile) => {
@@ -85,6 +107,14 @@ class App extends Component {
             <Route path='/profile/edit' render={
                 () => (
                   <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+                )}/>
+            <Route path='/signup' render={
+              () => (
+                <div>
+                { this.state.token && <Redirect to='/profile/create'/>
+                }
+                <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+                </div>
                 )}/>
             <Route path='/invoice/create' render={
                 () => (
