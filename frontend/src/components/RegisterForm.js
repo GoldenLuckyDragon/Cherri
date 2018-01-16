@@ -2,11 +2,14 @@ import React from 'react'
 import '../App.css'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
 
 function RegisterForm ({ token, onSignUp }) {
   return (
     <div>
+      <Navigation />
       <Jumbotron className='jumbotron-blue'>
+        <Logo />
         <form onSubmit={onSignUp}>
           <label>
         email:
