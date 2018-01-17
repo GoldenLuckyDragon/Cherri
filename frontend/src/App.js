@@ -65,15 +65,16 @@ class App extends Component {
     const form = event.target
     const element = form.elements
     const email = element.email.value
+    const firstName = element.firstName.value
     const password = element.password.value
-    auth.register({email, password})
+    auth.register({email, firstName, password})
     .then(() => {
       profileAPI.all()
         .then( profiles =>
           this.setState({ profiles })
       )}
     )
-    console.log({ password, email })
+    console.log({ password, email, firstName })
     // console.log({token})
   }
 

@@ -5,8 +5,9 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-const UserSchema = mongoose.Schema({
-  profile: { type: ObjectId, ref: 'Profile' }
+const UserSchema = Schema({
+  firstName: String,
+  account: { type: ObjectId, ref: 'finalProfile' }
 })
 
 UserSchema.plugin(passportLocalMongoose, {

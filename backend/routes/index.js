@@ -4,6 +4,7 @@
 const paymentApi = require('./payment')
 const profileApi = require('./profiles')
 const invoiceApi = require('./invoices')
+const userApi = require('./users')
 // const currencyApi = require('./currency')
 
 // run the routes through the app
@@ -11,6 +12,7 @@ const configureRoutes = app => {
   paymentApi(app)
   profileApi(app)
   invoiceApi(app)
+  userApi(app)
 }
 
 // const sgMail = require('@sendgrid/mail')
