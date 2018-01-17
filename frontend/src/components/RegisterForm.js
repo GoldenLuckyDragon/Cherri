@@ -13,6 +13,10 @@ function RegisterForm ({ onSignUp }) {
         <form onSubmit={onSignUp}>
           <label>
         email:
+        <input type='text' name='firstName' />
+          </label>
+          <label>
+        email:
         <input type='email' name='email' />
           </label>
         &nbsp;

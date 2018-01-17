@@ -41,19 +41,20 @@ export function signIn ({ email, password }) {
   .catch(error => { console.log(error) })
 }
 
-export function register ({ email, password }) {
+export function register ({ email, password, firstName }) {
   return fetch(`${API_URL}/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({email, password})
+    body: JSON.stringify({email, password, firstName})
   })
   .then(res => res.json())
   .then(json => {
     // console.dir(json)
     if (json) { setToken(json['token']) }
     console.log(decodedToken())
+    var data = decodedToken()
     // as it {} need to return something
     return json
   })
@@ -61,7 +62,7 @@ export function register ({ email, password }) {
 }
 
 export function signOut () {
-  setToken('')
+  setToken()
 }
 
 // boolean

@@ -5,9 +5,9 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-// make the schema basic because Passport-local-mongoose will add fields automatically
-const UserSchema = mongoose.Schema({
-  profile: { type: ObjectId, ref: 'Profile' }
+const UserSchema = Schema({
+  firstName: String,
+  account: { type: ObjectId, ref: 'finalProfile' }
 })
 
 // extend the schema with our Passport plugin

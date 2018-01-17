@@ -1,5 +1,4 @@
 // include our models
-const User = require('../models/user.js')
 const Profile = require('../models/profile.js')
 // we add invoices because it is used on our profiles .populate
 const Invoice = require('../models/invoice.js')
@@ -20,10 +19,10 @@ const profileApi = app => {
 
   // GET function, with authentication applied to it, can't access unless
   // token is present
-  app.get('/profiles', authMiddleware.requireJWT, (req, res) => {
-    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PROFILE ONLY WITH TERNERY INCASE PROFILE DOESNT EXIST YET
-    Profile.find({})
-    // add our invoices from our invoices model
+  app.get('/profiles', (req, res) => {
+    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
+    Profile.find()
+    // add our invoices
     .populate('invoices')
     .then(profiles => {
       console.log('profiles: ', profiles)

@@ -34,8 +34,8 @@ passport.deserializeUser(User.deserializeUser())
 function register (req, res, next) {
   const user = new User({
     email: req.body.email,
-    firstName: req.body.firstname,
-    lastName: req.body.lastname
+    firstName: req.body.firstName,
+    account: req.body.account
   })
 
   User.register(user, req.body.password,
