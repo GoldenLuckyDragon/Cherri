@@ -17,8 +17,9 @@ export function save ({profile, token}) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    'Authorization': `Bearer ${token}`,
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(profile)
   })
   .then(res => res.json())
