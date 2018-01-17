@@ -1,3 +1,4 @@
+import { token } from './signin'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // show all our profiles
@@ -7,7 +8,7 @@ export function all (token) {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token()}`
     }
   })
   .then(res => res.json())
@@ -19,8 +20,10 @@ export function save ({profile, token}) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    'Authorization': `Bearer ${token}`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
+    },
     body: JSON.stringify(profile)
   })
   .then(res => res.json())

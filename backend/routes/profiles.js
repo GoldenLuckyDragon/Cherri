@@ -1,4 +1,5 @@
 // include our models
+const User = require('../models/user.js')
 const Profile = require('../models/profile.js')
 // we add invoices because it is used on our profiles .populate
 const Invoice = require('../models/invoice.js')
