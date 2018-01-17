@@ -18,6 +18,7 @@ import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
 import { register } from './api/register'
+import Navigation from './components/navbar'
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 

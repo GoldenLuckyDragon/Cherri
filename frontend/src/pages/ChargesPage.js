@@ -3,10 +3,11 @@ import Navigation from '../components/navbar'
 import Checkout from '../components/Checkout'
 
 // import our const Current_user and Destination stripe keys
+
+// these three things are key to be taken from token
 const User = 'Carmen'
-const payee = 'acct_1BFw7WCoOW4Jzoaw'
 const label = `Pay Invoice from ${User}`
-const payeeEmail = 'cherri.finance@gmail.com'
+const amount = 123
 
 // attempt to create charges between two customers
 export default () => {
@@ -16,7 +17,7 @@ export default () => {
       <Checkout
         name={'Payment test'}
         description={label}
-        amount={85}
+        amount={amount}
       />
     </div>
   )
