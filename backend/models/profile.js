@@ -3,9 +3,9 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-// this is the schema
 const FinalProfileSchema = Schema({
-  email: String,
+  // format needed for required fields
+  email: { type: String, required: true },
   password: String,
   factoryName: String,
   address: String,
@@ -16,6 +16,6 @@ const FinalProfileSchema = Schema({
   invoices: [{ type: ObjectId, ref: 'Invoice' }]
 })
 
-const Profile = mongoose.model('finalProfile', FinalProfileSchema)
+const Profile = mongoose.models.Profile || mongoose.model('finalProfile', FinalProfileSchema)
 
 module.exports = Profile

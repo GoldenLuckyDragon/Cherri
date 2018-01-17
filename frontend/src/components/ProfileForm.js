@@ -1,5 +1,8 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
 
 class ProfileForm extends React.Component {
   state = { redirect: false}
@@ -7,15 +10,15 @@ class ProfileForm extends React.Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-    const email = elements['email'].value
-    const password = elements['password'].value
+    // const email = elements['email'].value
+    // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value
     const hkid = elements['hkid'].value
-    const stripeId = elements['stripeId'].value
+    const stripeId = ''
     const incorporationCertificate = elements['incorporationCertificate'].value
     const paymentMethod = elements['paymentMethod'].value
-    this.props.onSubmit({email, password, factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod})
+    this.props.onSubmit({factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod})
     this.setState({ redirect: true })
   }
 
@@ -23,10 +26,13 @@ class ProfileForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
+        <Navigation />
+        <Jumbotron className='jumbotron-blue'>
+          <Logo />
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
-          <label>
+          {/* <label>
             Email:
             &nbsp;
             <input type='text' name='email' />
@@ -36,46 +42,46 @@ class ProfileForm extends React.Component {
             Password:
             &nbsp;
             <input type='text' name='password' />
-          </label>
+          </label> */}
 
           <label>
             Factory Name:
             &nbsp;
             <input type='text' name='factoryName' />
           </label>
+          <br />
 
           <label>
             Address:
             &nbsp;
             <input type='text' name='address' />
           </label>
+          <br />
 
           <label>
             HK ID:
             &nbsp;
             <input type='text' name='hkid' />
           </label>
-
-          <label>
-            Stripe ID:
-            &nbsp;
-            <input type='text' name='stripeId' />
-          </label>
+          <br />
 
           <label>
             Incorporation Certificate:
             &nbsp;
             <input type='text' name='incorporationCertificate' />
           </label>
+          <br />
 
           <label>
             Payment Method:
             &nbsp;
             <input type='text' name='paymentMethod' />
           </label>
+          <br />
 
-          <button type='submit'>Create Profile</button>
+          <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
+      </Jumbotron>
       </div>
     )
   }

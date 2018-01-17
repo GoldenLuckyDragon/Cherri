@@ -4,12 +4,13 @@
 .center {
   justify-content: center;
   display: block;
-  margin: 0px;
+  margin: 0 auto;
   padding: 0px;
 }
+
 /* FONT STYLING */
-a:hover {
-  color: #808080;
+a a:hover {
+  text-decoration: none;
 }
 
 h2 {
@@ -56,7 +57,7 @@ h2 {
 
 /* General sidebar styles */
 .bm-menu {
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 2.5em;
   font-size: 1.15em;
   width: 100%;
@@ -77,7 +78,7 @@ h2 {
 
 /* JUMBOTRONS */
 .jumbotron-blue {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background: #00d2ff;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
@@ -105,30 +106,34 @@ h2 {
   background: #ffffff;
   border-radius: 2px;
   display: inline-block;
-  height: 300px;
+  height: 100%;
   margin: 0;
   position: relative;
   width: 90%;
 }
 
-.card-5 {
+.card-shadow {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
-/* FADES */
+/* TESTIMONIALS */
 
+/* Fade in and out for images */
 #cf {
-  /* position:absolute; */
   padding: 0;
   display: block;
   margin: 0 auto;
+  position:absolute;
+  right: 50%;
   height:281px;
   width:450px;
+  z-index: 1;
 }
 
 #cf img {
   position:absolute;
-  left:0;
+  top: -60px;
+  left: 380px;
   -webkit-transition: opacity 3s ease-in-out;
   -moz-transition: opacity 3s ease-in-out;
   -o-transition: opacity 3s ease-in-out;
@@ -164,9 +169,140 @@ h2 {
 }
 
 #cf img.top {
-animation-name: cfFadeInOut;
-animation-timing-function: ease-in-out;
-animation-iteration-count: infinite;
-animation-duration: 18s;
-/* animation-direction: alternate; */
+  animation-name: cfFadeInOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 18s;
+}
+
+/* Fade in and out for text */
+#testimonial {
+  display: inline;
+  margin: 0 auto;
+  height:281px;
+  width:450px;
+}
+
+.top2 {
+  position:absolute;
+  -webkit-transition: opacity 3s ease-in-out;
+  -moz-transition: opacity 3s ease-in-out;
+  -o-transition: opacity 3s ease-in-out;
+  transition: opacity 3s ease-in-out;
+}
+
+.transition-text:nth-of-type(1) {
+  position:absolute;
+  animation-delay: 18s;
+}
+.transition-text:nth-of-type(2) {
+  position:absolute;
+  animation-delay: 12s;
+}
+.transition-text:nth-of-type(3) {
+  position:absolute;
+  animation-delay: 6s;
+}
+
+.transition-text {
+  background-color: #ffffff;
+  animation-name: cfFadeInOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 18s;
+  padding: 130px 50px 0;
+  margin: 0 30px 30px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* FORMS */
+
+form {
+ padding: 2rem;
+ margin-top: 2rem;
+ margin-right: auto;
+ margin-left: auto;
+ max-width: 50%;
+ background-color: #ffffff;
+ border-radius: 3px;
+ box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+label {
+ display: inline-block;
+ margin-bottom: .5rem;
+ font-size: 1rem;
+ width: 50%;
+ text-transform: uppercase;
+ -ms-touch-action: manipulation;
+ touch-action: manipulation;
+}
+
+input,
+textarea {
+ display: block;
+ padding: .5rem .75rem;
+ width: 100%;
+ font-size: 1rem;
+ line-height: 1.25;
+ color: #2B90DE;
+ background-color: #ffffff;
+ background-image: none;
+ background-clip: padding-box;
+ border-top: 0;
+ border-right: 0;
+ border-bottom: 1px solid #eeeeee;
+ border-left: 0;
+ border-radius: 3px;
+ -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
+ transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
+}
+
+input:focus,
+textarea:focus {
+ outline: 0;
+ border-bottom-color: #2B90DE;
+}
+
+textarea {
+ resize: vertical;
+}
+
+/* BUTTONS */
+
+.btn-blue {
+ display: inline-block;
+ text-decoration: none;
+ padding: .75rem 1rem;
+ margin-top: 1.618rem;
+ font-weight: 400;
+ text-align: center;
+ text-transform: uppercase;
+ color: #ffffff;
+ vertical-align: middle;
+ white-space: nowrap;
+ background-color: #2B90DE;
+ border: 1px solid transparent;
+ box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+ cursor: pointer;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+ -webkit-transition: all 0.20s cubic-bezier(0.4, 0, 1, 1);
+ transition: all 0.20s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.border {
+  border: solid #ffffff 1px !important;
+}
+
+.btn-blue:focus, .btn-blue:hover {
+ background-color: 	#05CBFA;
+ color: #ffffff;
+ text-decoration: none;
+ box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
+}
+.btn-blue:focus {
+ outline: 0;
 }
