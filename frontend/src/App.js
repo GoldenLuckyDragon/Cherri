@@ -2,10 +2,9 @@
 import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
-import Navigation from './components/navbar'
 import Logo from './components/Logo'
+import Navigation from './components/navbar'
 // invoiceAPI should be below
-import { Homelanding, HomelandingTwo, HomelandingThree } from './components/HomeLanding'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
@@ -15,11 +14,15 @@ import InvoiceForm from './components/InvoiceForm'
 // imports associated with page selection
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
+import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
+import SignInForm from './components/SignInForm'
+import SignOutForm from './components/SignOutForm'
+import * as auth from './api/signin'
 import { register } from './api/register'
+
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
-import { Jumbotron } from 'react-bootstrap'
 
 // Our Stripe imports
 import { STRIPE_URL   } from './constants/stripe'
@@ -64,19 +67,33 @@ class App extends Component {
     const element = form.elements
     const email = element.email.value
     const password = element.password.value
-    register({email, password})
-
     // our backend register api returns a promise with our token data
-    .then((data) => {
-      const token = data.token
-      console.log(token)
-      if (token) {
-        //show profiles
-      profileAPI.all(token)
+    auth.register({email, password})
+    .then(() => {
+      profileAPI.all()
         .then( profiles =>
-          this.setState({ profiles, token })
+          this.setState({ profiles })
       )}
-    })
+    )
+    console.log({ password, email })
+    // console.log({token})
+  }
+
+  // Event handler for signin of existing User
+  handleSignIn = (event) => {
+    event.preventDefault()
+    // declaration of const
+    const form = event.target
+    const element = form.elements
+    const email = element.email.value
+    const password = element.password.value
+    auth.signIn({email, password})
+    .then(() => {
+      profileAPI.all()
+        .then( profiles =>
+          this.setState({ profiles })
+      )}
+    )
     console.log({ password, email })
     // console.log({token})
   }
@@ -89,6 +106,11 @@ class App extends Component {
   //   profileAPI.edit(profile);
   // }
 
+  handleSignOut = () => {
+    auth.signOut()
+    this.setState({profiles:null})
+  }
+
   // event handler for Invoice create
   handleInvoiceSubmission = (invoice) => {
     this.setState(({invoices}) => {
@@ -98,18 +120,22 @@ class App extends Component {
     invoiceAPI.save(invoice);
   }
 
-
   render () {
     const {profiles} = this.state
     return (
       <Router>
       <div className='App'>
-        <a  href={STRIPE_URL}> Connect with stripe </a>
+        <Navigation />
+        <a href={STRIPE_URL}> Connect with Stripe </a>
         {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
               () => (
                 <HomePage />
+              )}/>
+          <Route path='/learnmore' render={
+              () => (
+                <LearnPage/>
               )}/>
           <Route path='/profiles' render={
               () => (
@@ -126,9 +152,16 @@ class App extends Component {
           <Route path='/signup' render={
             () => (
               <div>
-              { this.state.token && <Redirect to='/profile/create'/>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
               }
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+              </div>
+              )}/>
+          <Route path='/signin' render={
+            () => (
+              <div>
+              { auth.isSignedIn() && <Redirect to='/profiles'/> }
+              <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
           <Route path='/invoice/create' render={
@@ -142,6 +175,9 @@ class App extends Component {
                    <ChargesPage />
                  </div>
                )}/>
+          <Route path='/signout' render={() => (
+                <SignOutForm onSignOut={this.handleSignOut}/>
+              )}/>
         </Switch>
       </div>
       </Router>

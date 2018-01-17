@@ -1,6 +1,9 @@
 import React from 'react'
 import Invoice from './Invoice'
 import {Link} from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
 
 export default function Profile ({
   _id,
@@ -16,27 +19,30 @@ export default function Profile ({
 }) {
   return (
     <div>
-      <span>
+      <Navigation />
+      <Jumbotron className='jumbotron-blue'>
+        <Logo />
+        <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
         <Link to={`/profiles/${_id}`}>
           {email}
         </Link>
-      </span>
+        </span>
       &nbsp;
-      <span>Factory: {factoryName}</span>
+        <span>Factory: {factoryName}</span>
       &nbsp;
-      <span>Address: {address}</span>
+        <span>Address: {address}</span>
       &nbsp;
-      <span>HKid: {hkid}</span>
+        <span>HKID: {hkid}</span>
       &nbsp;
-      <span>Stripe ID: {stripeId}</span>
+        <span>Stripe ID: {stripeId}</span>
       &nbsp;
-      <span>Incorporation Certificate: {incorporationCertificate}</span>
+        <span>Incorporation Certificate: {incorporationCertificate}</span>
       &nbsp;
-      <span>Payment Method: {paymentMethod}</span>
+        <span>Payment Method: {paymentMethod}</span>
       &nbsp;
-      <hr />
+        <hr />
       Invoices: {
         // populate our invoices
         invoices ? (
@@ -61,8 +67,9 @@ export default function Profile ({
         ) : ('N/A')
       }
       &nbsp;
-      <hr />
-      <hr />
+        <hr />
+        <hr />
+      </Jumbotron>
     </div>
   )
 }
