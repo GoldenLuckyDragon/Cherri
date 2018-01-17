@@ -16,7 +16,7 @@ export default () => {
       <Checkout
         name={'Payment test'}
         description={label}
-        amount={117}
+        amount={85}
       />
     </div>
   )
