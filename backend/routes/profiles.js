@@ -1,4 +1,5 @@
 // include our models
+const User = require('../models/user.js')
 const Profile = require('../models/profile.js')
 const Invoice = require('../models/invoice.js')
 const authMiddleware = require('../middleware/auth')
@@ -33,6 +34,7 @@ const profileApi = app => {
 
   // create new Profile and save it to database. Authentication protected too so that only once someone signs up can they create a profile. ties in with user story.
   app.post('/profiles', authMiddleware.requireJWT, (req, res) => {
+    // User.findOne()
     Profile.create(req.body).then((profile) => {
       res.status(201).json(profile).end()
     })
