@@ -19,11 +19,6 @@ configureServer(app)
 configureRoutes(app)
 
 // allow any access point (zeit changes per deployment)
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
 
 // turn on our server
 app.listen(SERVER_CONFIGS.PORT, error => {

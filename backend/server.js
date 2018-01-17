@@ -4,30 +4,22 @@ const bodyParser = require('body-parser')
 const authMiddleware = require('./middleware/auth')
 const passport = require('passport')
 
-// whitelist our ports for the front end
-// const CORS_WHITELIST = require('./constants/frontend')
-
-// // dynamic origin (based on production vs dev env)
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//   // If the index is negative it implys that the array is empty.
-//     (CORS_WHITELIST.indexOf(origin) !== -1)
-//     ? callback(null, true)
-//     : callback(new Error('Not allowed by CORS'))
-//   }
-// }
-
 // let the app use cors and body parser.
 const configureServer = app => {
   app.use(cors())
   app.use(authMiddleware.initialize)
   app.use(require('cookie-parser')())
   app.use(bodyParser.json())
-  app.use('/movies', require('./routes/profiles'))
+  app.use('/profile', require('./routes/profiles'))
   app.use('/auth', require('./routes/auth'))
   app.use(require('express-session')({ secret: 'secret', resave: false, saveUninitialized: false }))
   app.use(passport.initialize())
   app.use(passport.session())
+  app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept')
+    next()
+  })
 }
 
 // export
