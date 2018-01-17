@@ -61,7 +61,7 @@ export function register ({ email, password }) {
 }
 
 export function signOut () {
-  setToken()
+  setToken('')
 }
 
 // boolean

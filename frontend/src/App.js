@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
 import Logo from './components/Logo'
+import Navigation from './components/navbar'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
@@ -118,12 +119,12 @@ class App extends Component {
     invoiceAPI.save(invoice);
   }
 
-
   render () {
     const {profiles} = this.state
     return (
       <Router>
       <div className='App'>
+        <Navigation />
         <a href={STRIPE_URL}> Connect with Stripe </a>
         <Switch>
           <Route exact path='/' render={
