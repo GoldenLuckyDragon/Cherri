@@ -18,7 +18,7 @@ export default class Navigation extends React.Component {
         <Link to={`/profile/id/edit`}>Account</Link>
         <Link to={`/signup`}>Register</Link>
         <Link to={`/signin`}>Login</Link>
-        <Link to={`/`}>Logout</Link>
+        <Link to={`/signout`}>Logout</Link>
       </Menu>
     )
   }
