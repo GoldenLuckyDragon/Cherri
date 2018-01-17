@@ -1,24 +1,26 @@
+import { token } from './signin'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
-export function all (token) {
+export function all () {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token()}`
     }
   })
   .then(res => res.json())
   .catch(error => { console.log(error) })
 }
 
-export function save ({profile, token}) {
+export function save ({profile}) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
     },
     body: JSON.stringify(profile)
   })
