@@ -231,8 +231,8 @@ form {
 label {
  display: inline-block;
  margin-bottom: .5rem;
- font-size: .75rem;
- width: 40%;
+ font-size: 1rem;
+ width: 50%;
  text-transform: uppercase;
  -ms-touch-action: manipulation;
  touch-action: manipulation;
