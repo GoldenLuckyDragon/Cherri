@@ -1,63 +1,59 @@
 // include our models
 const Profile = require('../models/profile.js')
+// we add invoices because it is used on our profiles .populate
 const Invoice = require('../models/invoice.js')
+const authMiddleware = require('../middleware/auth')
 
-const authorize = (req, res, next) => {
-  if (req.user) {
-    next()
-  } else {
-    res.status(403).end()
-  }
-}
+// test authentication no longer needed
+// const authorize = (req, res, next) => {
+//   if (req.user) {
+//     next()
+//   } else {
+//     res.status(403).end()
+//   }
+// }
 
 // set up our routes for profile.
 const profileApi = app => {
-  app.get('/profile', authorize, (req, res) => {
-    // find our profiles
+  // due to way index.js is structure we have to seperate out our verbs within a profileApi function and return app
+
+  // GET function, with authentication applied to it, can't access unless
+  // token is present
+  app.get('/profiles', authMiddleware.requireJWT, (req, res) => {
+    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PROFILE ONLY WITH TERNERY INCASE PROFILE DOESNT EXIST YET
     Profile.find({})
-    // add our invoices
+    // add our invoices from our invoices model
     .populate('invoices')
     .then(profiles => {
-      console.log(`profiles: `, profiles)
+      console.log('profiles: ', profiles)
       // render as json.
       res.json(profiles)
     })
     .catch(error => res.json({ error }))
   })
 
-  app.get('/invoice', (req, res) => {
-    // find all our invoices
-    Invoice.find({})
-    .then(invoices => {
-      console.log(`invoices: `, invoices)
-      // render as json.
-      res.json(invoices)
-    })
-    .catch(error => res.json({ error }))
-  })
-
-  app.post('/profile', authorize, (req, res) => {
-    Profile.create(req.body).then((profile) => {
+  // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
+  app.post('/profiles', authMiddleware.requireJWT, (req, res) => {
+    // create a new profile
+    Profile.create(req.body)
+    .then((profile) => {
+      // 201 created server code and then res.json is set to the new profile
       res.status(201).json(profile).end()
     })
   })
 
-  app.post('/invoice', (req, res) => {
-    Invoice.create(req.body).then((invoice) => {
-      res.status(201).json(invoice).end()
-    })
-  })
-
+  // STILL TO BE DONE, PATCH FOR PROFILE EDITING
   // app.patch('/profile', authorize, (req, res) => {
     // const updateObject = req.body
     // const id = req.params.id
     // db.profile.update({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
   //   Profile.updateOne({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
-    // console.log(updateObject)
-    // console.log(id)
+
   // })
 
+  // app returned to routes/index.js
   return app
 }
 
+// export our profileApi
 module.exports = profileApi

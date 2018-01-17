@@ -1,3 +1,6 @@
+// Import our FRONTend endpoint
+const FRONT_END_URL = require('../constants/frontend')
+
 // include our stripe
 const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 
@@ -34,19 +37,21 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
   make sure NODE_ENV is set to DEV in package json
 
 */
-
 // payment routes
 const paymentApi = app => {
+  // add body parser so we can read our data from stripe
+  app.use(require('body-parser').urlencoded({extended: false}))
+
   app.get('/', (req, res) => {
     res.send({ message: 'Hello Stripe Checkout Server!', timestamp: new Date().toISOString() })
   })
 
-  // run post stripe charges
+  // This part is for stripe Checkout
   app.post('/', (req, res) => {
     stripe.charges.create(req.body, postStripeCharge(res))
   })
 
-  // express endpoint for redirect
+  // CONNECT  endpoint for redirect
   app.get('/users/auth/stripe_connect', (req, res) => {
     console.log('made it')
     console.log(req.query.code)
@@ -65,10 +70,9 @@ const paymentApi = app => {
     }, function (err, r, body) {
       // // the access token
       // var accessToken = JSON.parse(body).access_token
-
+      var parsedbody = JSON.parse(body)
       // their stripeID
-      var stripeUserId = JSON.parse(body).stripe_user_id
-
+      var stripeUserId = parsedbody.stripe_user_id
       // Do something with your accessToken
       console.log(' ')
       console.log(' ')
@@ -86,7 +90,8 @@ const paymentApi = app => {
         if (err) { throw err } else { console.log('updated profile') }
       })
     })
-    res.redirect('http://localhost:3000/profiles')
+    // go to charges on both dev and live environments
+    res.redirect(`${FRONT_END_URL}/charges`)
   })
 
   return app

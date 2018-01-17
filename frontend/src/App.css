@@ -9,8 +9,8 @@
 }
 
 /* FONT STYLING */
-a:hover {
-  color: #808080;
+a a:hover {
+  text-decoration: none;
 }
 
 h2 {
@@ -272,12 +272,13 @@ textarea {
 
 .btn-blue {
  display: inline-block;
+ text-decoration: none;
  padding: .75rem 1rem;
  margin-top: 1.618rem;
  font-weight: 400;
  text-align: center;
  text-transform: uppercase;
- color: #fff;
+ color: #ffffff;
  vertical-align: middle;
  white-space: nowrap;
  background-color: #2B90DE;
@@ -298,6 +299,8 @@ textarea {
 
 .btn-blue:focus, .btn-blue:hover {
  background-color: 	#05CBFA;
+ color: #ffffff;
+ text-decoration: none;
  box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
 }
 .btn-blue:focus {

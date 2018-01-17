@@ -8,7 +8,7 @@
   ####Final Project
   #####by Carmen Chung, Jon Ablondi and James Marotta.
 
-
+TODO : update ENV For backend FRONT_END_URL
 
 ---
 ###Installation Instructions
@@ -180,7 +180,7 @@ copy the following inside
 
 ```
 REACT_APP_STRIPE_DEV_PUBLISH=
-REACT_APP_SERVER_URL=https://localhost:8080
+REACT_APP_SERVER_URL=http://localhost:8080
 ```
 Fill in the STRIPE_DEV_PUBLISH with your test publishable key from your stripe dashboard.
 

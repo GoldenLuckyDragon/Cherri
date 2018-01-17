@@ -19,12 +19,13 @@ export class Homelanding extends React.Component {
       <Grid>
         <Row className='show-grid'>
           <Col xs={12} sm={8}>
-            <br />
             <h2 className='color-white'>Need money?</h2>
             <p className='color-white'>
               Turn your invoices into cash today.
             </p>
-            <button type='button' className='btn-blue border'>Sign Up</button>
+            <a href={`/signup`} className='btn-blue border'>Sign Up</a>
+            <br />
+            <p />
           </Col>
           <Col xs={12} sm={4}>
             <img src={iphone} alt='cherri factoring web application' width='300' height='280' />
@@ -66,7 +67,7 @@ export class HomelandingTwo extends React.Component {
         <br />
         <p />
         <Row className='show-grid'>
-          <button type='button' className='btn-blue'>Learn More</button>
+          <a href={`/LearnPage`} className='btn-blue'>Learn More</a>
         </Row>
       </Grid>
     )
