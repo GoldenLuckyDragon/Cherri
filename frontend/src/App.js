@@ -2,10 +2,8 @@
 import React, { Component } from 'react'
 import Checkout from './components/Checkout'
 import './App.css'
-import Navigation from './components/navbar'
 import Logo from './components/Logo'
 // invoiceAPI should be below
-import { Homelanding, HomelandingTwo, HomelandingThree } from './components/HomeLanding'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
@@ -18,10 +16,11 @@ import HomePage from './pages/HomePage'
 import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
-import { register } from './api/register'
+import SignInForm from './components/SignInForm'
+import SignOutForm from './components/SignOutForm'
+import * as auth from './api/signin'
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
-import { Jumbotron } from 'react-bootstrap'
 
 
 // Our Stripe connect url
@@ -67,16 +66,32 @@ class App extends Component {
     const element = form.elements
     const email = element.email.value
     const password = element.password.value
-    register({email, password})
-    .then((data) => {
-      const token = data.token
-      console.log(token)
-      if (token) {
-      profileAPI.all(token)
-        .then( movies =>
-          this.setState({ movies, token })
+    auth.register({email, password})
+    .then(() => {
+      profileAPI.all()
+        .then( profiles =>
+          this.setState({ profiles })
       )}
-    })
+    )
+    console.log({ password, email })
+    // console.log({token})
+  }
+
+  // Event handler for signin of existing User
+  handleSignIn = (event) => {
+    event.preventDefault()
+    // declaration of const
+    const form = event.target
+    const element = form.elements
+    const email = element.email.value
+    const password = element.password.value
+    auth.signIn({email, password})
+    .then(() => {
+      profileAPI.all()
+        .then( profiles =>
+          this.setState({ profiles })
+      )}
+    )
     console.log({ password, email })
     // console.log({token})
   }
@@ -88,6 +103,11 @@ class App extends Component {
   //   // calling the save function from backend API route
   //   profileAPI.edit(profile);
   // }
+
+  handleSignOut = () => {
+    auth.signOut()
+    this.setState({profiles:null})
+  }
 
   // event handler for Invoice create
   handleInvoiceSubmission = (invoice) => {
@@ -104,6 +124,7 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
+        <a href={STRIPE_URL}> Connect with Stripe </a>
         <Switch>
           <Route exact path='/' render={
               () => (
@@ -128,14 +149,24 @@ class App extends Component {
           <Route path='/signup' render={
             () => (
               <div>
-              { this.state.token && <Redirect to='/profile/create'/>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
               }
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+              </div>
+              )}/>
+          <Route path='/signin' render={
+            () => (
+              <div>
+              { auth.isSignedIn() && <Redirect to='/profiles'/> }
+              <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
           <Route path='/invoice/create' render={
               () => (
                 <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+              )}/>
+          <Route path='/signout' render={() => (
+                <SignOutForm onSignOut={this.handleSignOut}/>
               )}/>
         </Switch>
       </div>

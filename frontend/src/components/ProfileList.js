@@ -13,7 +13,7 @@ export default function ProfileList ({ profiles }) {
         <h2>Profile List!</h2>
         {
         profiles.map(profile => {
-          return <Profile key={profile._id} {...profile} />
+          return <Profile {...profile} />
         })
       }
       </Jumbotron>
