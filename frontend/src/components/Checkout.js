@@ -15,7 +15,7 @@ const fromDollarsToCents = amount => amount * 100
 
 // success
 const successPayment = data => {
-  alert('Payment success')
+  alert('Payment success Thankyou')
 }
 
 // failure
@@ -23,8 +23,10 @@ const errorPayment = data => {
   alert('Payment error')
 }
 
-const PAYEE = 'acct_1BFw7WCoOW4Jzoaw'
+// testing a fixed payee source
+const payee = 'acct_1BFw7WCoOW4Jzoaw'
 
+// The signed in user pays our payee
 const onToken = (amount, description) => token =>
   axios.post(API_URL,
     {
@@ -33,7 +35,9 @@ const onToken = (amount, description) => token =>
       currency: CURRENCY,
       amount: fromDollarsToCents(amount),
       destination: {
-        account: PAYEE
+        // amount less our fee, and our constant payee
+        amount: amount - 10,
+        account: payee
       }
     })
     .then(successPayment)

@@ -48,11 +48,7 @@ const paymentApi = app => {
 
   // This part is for stripe Checkout
   app.post('/', (req, res) => {
-    stripe.charges.create({
-      userEmail: req.body.stripeEmail
-    })
-    .then(console.log(req.body.stripeEmail))
-    .then(postStripeCharge(res))
+    stripe.charges.create(req.body, postStripeCharge(res))
   })
 
   // CONNECT  endpoint for redirect
