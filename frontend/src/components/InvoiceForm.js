@@ -103,7 +103,7 @@ class InvoiceForm extends React.Component {
           <br/>
 
           <label>
-            Signed Sale Purchase Agreement (download from here):
+            Signed Sale Purchase Agreement (download from <a href='http://res.cloudinary.com/cherri/image/upload/v1516149513/Accounts_Receivable_Purchase_Agreement.docx_cxglxl.pdf' target='_blank'>here</a>):
             &nbsp;
             <input type='file' name='salePurchaseAgreement' />
           </label>
