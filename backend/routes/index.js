@@ -6,7 +6,7 @@ const profileApi = require('./profiles')
 const invoiceApi = require('./invoices')
 // const currencyApi = require('./currency')
 
-// run the routes through the app
+// run the routes through the app, which is imported in index.js as express
 const configureRoutes = app => {
   paymentApi(app)
   profileApi(app)

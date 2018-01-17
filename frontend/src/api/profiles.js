@@ -1,5 +1,6 @@
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
+// show all our profiles
 export function all (token) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
@@ -13,6 +14,7 @@ export function all (token) {
   .catch(error => { console.log(error) })
 }
 
+// send a post to our backend API to add to the db
 export function save ({profile, token}) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {

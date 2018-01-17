@@ -18,6 +18,7 @@ export default function Profile ({
     <div>
       <span>
       Email:
+      {/*  match the profile information to match the profile of this email */}
         <Link to={`/profiles/${_id}`}>
           {email}
         </Link>
@@ -37,6 +38,7 @@ export default function Profile ({
       &nbsp;
       <hr />
       Invoices: {
+        // populate our invoices
         invoices ? (
           invoices.map(invoice => (
             <Invoice key={invoice._id}>
@@ -55,6 +57,7 @@ export default function Profile ({
               <span>Status:{invoice.status} </span>
             </Invoice>
           ))
+          // or show no tokens
         ) : ('N/A')
       }
       &nbsp;

@@ -15,14 +15,18 @@ class ProfileForm extends React.Component {
     const stripeId = ''
     const incorporationCertificate = elements['incorporationCertificate'].value
     const paymentMethod = elements['paymentMethod'].value
-    this.props.onSubmit({factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod})
+
+    // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
+    this.props.onSubmit({ factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod })
+    // allow the redirect after submssion
     this.setState({ redirect: true })
   }
 
   render() {
-    const {redirect} = this.state
+    const { redirect } = this.state
     return (
       <div>
+        {/*  if the redirect state is true goto profiles */}
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
@@ -72,7 +76,7 @@ class ProfileForm extends React.Component {
             <input type='text' name='paymentMethod' />
           </label>
           <br />
-          
+
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
       </div>

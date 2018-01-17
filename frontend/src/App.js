@@ -18,13 +18,13 @@ import HomePage from './pages/HomePage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
 import { register } from './api/register'
-
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 
+// Our Stripe imports
+import { STRIPE_URL   } from './constants/stripe'
+import ChargesPage from './pages/ChargesPage'
 
-// Our Stripe connect url
-const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
 
 // allow for env files
 require('dotenv').config()
@@ -39,23 +39,21 @@ class App extends Component {
     .then(profiles => {
       this.setState({ profiles })
       // test log to ensure that  profile information is coming through from backend
-      // console.log(profiles)
     })
 
     // setting a state when invoiceAPI is called
     invoiceAPI.all()
     .then(invoices => {
       this.setState({ invoices })
-      // test log to ensure that  profile information is coming through from backend
-      // console.log(invoices)
+      // {/*test log to ensure that  profile information is coming through from backend*/}
     })
   }
 
   handleProfileSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
+    this.setState( ({ profiles }) => {
+      return { profiles: [profile].concat( profiles )}
     });
-    profileAPI.save(profile);
+    profileAPI.save( profile );
   }
 
   // Event handler for registration of new User
@@ -67,13 +65,16 @@ class App extends Component {
     const email = element.email.value
     const password = element.password.value
     register({email, password})
+
+    // our backend register api returns a promise with our token data
     .then((data) => {
       const token = data.token
       console.log(token)
       if (token) {
+        //show profiles
       profileAPI.all(token)
-        .then( movies =>
-          this.setState({ movies, token })
+        .then( profiles =>
+          this.setState({ profiles, token })
       )}
     })
     console.log({ password, email })
@@ -103,10 +104,12 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
+        <a  href={STRIPE_URL}> Connect with stripe </a>
+        {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
               () => (
-                <HomePage profiles={profiles}/>
+                <HomePage />
               )}/>
           <Route path='/profiles' render={
               () => (
@@ -132,6 +135,13 @@ class App extends Component {
               () => (
                 <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
               )}/>
+               {/* our charges route for testing making a charge between two of our stripe customers */}
+             <Route path='/charges' render={
+               () => (
+                 <div>
+                   <ChargesPage />
+                 </div>
+               )}/>
         </Switch>
       </div>
       </Router>

@@ -35,7 +35,7 @@ function register (req, res, next) {
   const user = new User({
     email: req.body.email,
     firstName: req.body.firstname,
-    lsstName: req.body.lastname
+    lastName: req.body.lastname
   })
 
   User.register(user, req.body.password,

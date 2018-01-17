@@ -19,7 +19,7 @@ function RegisterForm ({ token, onSignUp }) {
           <br />
           <label>
         password:
-        <input type='text' name='password' />
+        <input type='password' name='password' />
           </label>
           <br />
           <button type='submit' className='btn-blue'>Sign Up</button>

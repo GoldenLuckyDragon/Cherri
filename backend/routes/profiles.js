@@ -1,5 +1,6 @@
 // include our models
 const Profile = require('../models/profile.js')
+// we add invoices because it is used on our profiles .populate
 const Invoice = require('../models/invoice.js')
 const authMiddleware = require('../middleware/auth')
 
@@ -19,9 +20,9 @@ const profileApi = app => {
   // GET function, with authentication applied to it, can't access unless
   // token is present
   app.get('/profiles', authMiddleware.requireJWT, (req, res) => {
-    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
+    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PROFILE ONLY WITH TERNERY INCASE PROFILE DOESNT EXIST YET
     Profile.find({})
-    // add our invoices
+    // add our invoices from our invoices model
     .populate('invoices')
     .then(profiles => {
       console.log('profiles: ', profiles)
@@ -31,9 +32,12 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  // create new Profile and save it to database. Authentication protected too so that only once someone signs up can they create a profile. ties in with user story.
+  // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
   app.post('/profiles', authMiddleware.requireJWT, (req, res) => {
-    Profile.create(req.body).then((profile) => {
+    // create a new profile
+    Profile.create(req.body)
+    .then((profile) => {
+      // 201 created server code and then res.json is set to the new profile
       res.status(201).json(profile).end()
     })
   })
@@ -44,12 +48,12 @@ const profileApi = app => {
     // const id = req.params.id
     // db.profile.update({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
   //   Profile.updateOne({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
-    // console.log(updateObject)
-    // console.log(id)
+
   // })
 
-  // app returned to index.js
+  // app returned to routes/index.js
   return app
 }
 
+// export our profileApi
 module.exports = profileApi

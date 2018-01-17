@@ -22,6 +22,7 @@ const invoiceApi = app => {
     })
   })
 
+  // return back to invoiceApi, which is called in routes/index.js
   return app
 }
 
