@@ -1,7 +1,8 @@
 import { token } from './signin'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
-export function all () {
+// show all our profiles
+export function all (token) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'GET',
@@ -14,7 +15,8 @@ export function all () {
   .catch(error => { console.log(error) })
 }
 
-export function save ({profile}) {
+// send a post to our backend API to add to the db
+export function save ({profile, token}) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',

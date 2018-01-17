@@ -10,6 +10,7 @@ const UserSchema = Schema({
   account: { type: ObjectId, ref: 'finalProfile' }
 })
 
+// extend the schema with our Passport plugin
 UserSchema.plugin(passportLocalMongoose, {
   usernameField: 'email',
   usernameLowerCase: true,

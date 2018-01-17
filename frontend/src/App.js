@@ -14,17 +14,20 @@ import InvoiceForm from './components/InvoiceForm'
 // imports associated with page selection
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
+import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
+import { register } from './api/register'
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 
+// Our Stripe imports
+import { STRIPE_URL   } from './constants/stripe'
+import ChargesPage from './pages/ChargesPage'
 
-// Our Stripe connect url
-const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
 
 // allow for env files
 require('dotenv').config()
@@ -39,23 +42,21 @@ class App extends Component {
     .then(profiles => {
       this.setState({ profiles })
       // test log to ensure that  profile information is coming through from backend
-      // console.log(profiles)
     })
 
     // setting a state when invoiceAPI is called
     invoiceAPI.all()
     .then(invoices => {
       this.setState({ invoices })
-      // test log to ensure that  profile information is coming through from backend
-      // console.log(invoices)
+      // {/*test log to ensure that  profile information is coming through from backend*/}
     })
   }
 
   handleProfileSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
+    this.setState( ({ profiles }) => {
+      return { profiles: [profile].concat( profiles )}
     });
-    profileAPI.save(profile);
+    profileAPI.save( profile );
   }
 
   // Event handler for registration of new User
@@ -126,10 +127,15 @@ class App extends Component {
       <div className='App'>
         <Navigation />
         <a href={STRIPE_URL}> Connect with Stripe </a>
+        {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
               () => (
-                <HomePage profiles={profiles}/>
+                <HomePage />
+              )}/>
+          <Route path='/learnmore' render={
+              () => (
+                <LearnPage/>
               )}/>
           <Route path='/profiles' render={
               () => (
@@ -162,6 +168,13 @@ class App extends Component {
               () => (
                 <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
               )}/>
+               {/* our charges route for testing making a charge between two of our stripe customers */}
+             <Route path='/charges' render={
+               () => (
+                 <div>
+                   <ChargesPage />
+                 </div>
+               )}/>
           <Route path='/signout' render={() => (
                 <SignOutForm onSignOut={this.handleSignOut}/>
               )}/>
