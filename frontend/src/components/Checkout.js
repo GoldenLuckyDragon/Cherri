@@ -25,7 +25,7 @@ const errorPayment = data => {
 
 // testing a fixed payee source
 const payee = 'acct_1BFw7WCoOW4Jzoaw'
-
+const payeeEmail = 'cherri.finance@gmail.com'
 // The signed in user pays our payee
 const onToken = (amount, description) => token =>
   axios.post(API_URL,
@@ -36,7 +36,7 @@ const onToken = (amount, description) => token =>
       amount: fromDollarsToCents(amount),
       destination: {
         // amount less our fee, and our constant payee
-        amount: amount - 10,
+        amount: amount,
         account: payee
       }
     })

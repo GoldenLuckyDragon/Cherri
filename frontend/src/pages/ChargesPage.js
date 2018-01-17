@@ -3,8 +3,10 @@ import Navigation from '../components/navbar'
 import Checkout from '../components/Checkout'
 
 // import our const Current_user and Destination stripe keys
-
-const PAYEE = 'acct_1BFw7WCoOW4Jzoaw'
+const User = 'Carmen'
+const payee = 'acct_1BFw7WCoOW4Jzoaw'
+const label = `Pay Invoice from ${User}`
+const payeeEmail = 'cherri.finance@gmail.com'
 
 // attempt to create charges between two customers
 export default () => {
@@ -12,10 +14,9 @@ export default () => {
     <div>
       <Navigation />
       <Checkout
-        name={'Pay Jon'}
-        description={'Test'}
-        amount={100}
-        payee={PAYEE}
+        name={'Payment test'}
+        description={label}
+        amount={117}
       />
     </div>
   )

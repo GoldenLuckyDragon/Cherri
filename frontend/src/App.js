@@ -1,11 +1,7 @@
 // import our constants
 import React, { Component } from 'react'
-import Checkout from './components/Checkout'
 import './App.css'
-import Navigation from './components/navbar'
-import Logo from './components/Logo'
 // invoiceAPI should be below
-import { Homelanding, HomelandingTwo, HomelandingThree } from './components/HomeLanding'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
@@ -18,8 +14,7 @@ import HomePage from './pages/HomePage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
 import { register } from './api/register'
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
-import { Jumbotron } from 'react-bootstrap'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 // Our Stripe imports
 import { STRIPE_URL   } from './constants/stripe'
