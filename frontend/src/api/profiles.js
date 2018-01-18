@@ -2,7 +2,7 @@ import { token } from './signin'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // show all our profiles
-export function all (token) {
+export function all () {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'GET',
@@ -16,7 +16,7 @@ export function all (token) {
 }
 
 // send a post to our backend API to add to the db
-export function save ({profile, token}) {
+export function save ({profile}) {
   console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
