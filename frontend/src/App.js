@@ -12,6 +12,7 @@ import ProfileEditForm from './components/ProfileEditForm'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 // imports associated with page selection
+import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 // imports associated with signing up & signing in
@@ -75,7 +76,6 @@ class App extends Component {
       )}
     )
     console.log({ password, email, firstName })
-    // console.log({token})
   }
 
   // Event handler for signin of existing User
@@ -131,6 +131,9 @@ class App extends Component {
               () => (
                 <HomePage profiles={profiles}/>
               )}/>
+          <Route path='/about' render={() => (
+              <AboutPage token={ auth.token() }/>
+            )}/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>

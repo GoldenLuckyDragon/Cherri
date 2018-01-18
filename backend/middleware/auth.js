@@ -2,6 +2,7 @@ const passport = require('passport')
 const JWT = require('jsonwebtoken')
 const PassportJWT = require('passport-jwt')
 const User = require('../models/user')
+// const Profile = require('../models/profile')
 
 passport.use(User.createStrategy())
 
@@ -11,8 +12,8 @@ passport.deserializeUser(User.deserializeUser())
 function register (req, res, next) {
   const user = new User({
     email: req.body.email,
-    firstName: req.body.firstName,
-    account: req.body.account
+    firstName: req.body.firstName
+    // account: req.body.account
   })
 
   User.register(user, req.body.password,

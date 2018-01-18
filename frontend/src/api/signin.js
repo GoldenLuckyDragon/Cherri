@@ -54,8 +54,6 @@ export function register ({ email, password, firstName }) {
     // console.dir(json)
     if (json) { setToken(json['token']) }
     console.log(decodedToken())
-    var data = decodedToken()
-    // as it {} need to return something
     return json
   })
   .catch(error => { console.log(error) })
