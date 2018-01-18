@@ -1,15 +1,23 @@
 import React from 'react'
 import '../App.css'
 import Navigation from '../components/navbar'
+import Profile from '../components/Profile'
+import decodeJWT from 'jwt-decode'
 
-export default () => {
+export default ({ token }) => {
+  const decodedToken = decodeJWT(token)
+  const email = decodedToken.email
+  const id = decodedToken.sub
   return (
     <div>
       <Navigation />
-      <h1>Dashboard</h1>
+      <h1>{email}</h1>
+      <h1>{id}</h1>
+      <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
     </div>
   )
 }
+
 // var currencyApi = require('fixer-io-node')
 
 // Returns specific exchange rates
