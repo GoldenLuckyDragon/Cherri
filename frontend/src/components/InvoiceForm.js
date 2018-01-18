@@ -37,9 +37,6 @@ export default class InvoiceForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
-        <Navigation />
-        <Jumbotron className='jumbotron-blue'>
-          <Logo />
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
@@ -118,7 +115,6 @@ export default class InvoiceForm extends React.Component {
           <button type='submit' className='btn-blue'>Create Invoice</button>
           <br/>
         </form>
-      </Jumbotron>
       </div>
     )
   }
