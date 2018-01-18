@@ -11,6 +11,7 @@ import ProfileEditForm from './components/ProfileEditForm'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
+import InvoiceUpload from './components/InvoiceUpload'
 // imports associated with page selection
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
@@ -169,7 +170,11 @@ class App extends Component {
                 <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
               )}/>
                {/* our charges route for testing making a charge between two of our stripe customers */}
-             <Route path='/charges' render={
+         <Route path='/invoice/upload' render={
+             () => (
+               <InvoiceUpload/>
+             )}/>
+          <Route path='/charges' render={
                () => (
                  <div>
                    <ChargesPage />
