@@ -10,7 +10,7 @@ export default function ProfileList ({ profiles }) {
       <Navigation />
       <Jumbotron className='jumbotron-blue'>
         <Logo />
-        <h2>Profile List!</h2>
+        <h2>Profile List</h2>
         {
         profiles.map(profile => {
           return <Profile {...profile} />
