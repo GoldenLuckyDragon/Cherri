@@ -51,6 +51,23 @@ export default class DashboardPage extends React.Component {
   }
   }
 
+import Profile from '../components/Profile'
+import decodeJWT from 'jwt-decode'
+
+export default ({ token }) => {
+  const decodedToken = decodeJWT(token)
+  const email = decodedToken.email
+  const id = decodedToken.sub
+  return (
+    <div>
+      <Navigation />
+      <h1>{email}</h1>
+      <h1>{id}</h1>
+      <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
+    </div>
+  )
+}
+
 // var currencyApi = require('fixer-io-node')
 
 // Returns specific exchange rates

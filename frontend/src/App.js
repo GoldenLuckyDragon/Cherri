@@ -56,10 +56,11 @@ class App extends Component {
   }
 
   handleProfileSubmission = (profile) => {
-    this.setState( ({ profiles }) => {
-      return { profiles: [profile].concat( profiles )}
+    // console.log(profile)
+    this.setState(({profiles}) => {
+      { profiles: [profile].concat(profiles)}
     });
-    profileAPI.save( profile );
+    profileAPI.save(profile);
   }
 
   // Event handler for registration of new User
@@ -164,7 +165,7 @@ class App extends Component {
           <Route path='/dashboard' render={
             () => (
               <div>
-                <DashboardPage />
+                <DashboardPage token={auth.token()}/>
               </div>
               )}/>
           <Route path='/signin' render={
