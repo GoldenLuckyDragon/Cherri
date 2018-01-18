@@ -1,6 +1,9 @@
 import React from 'react'
 import Invoice from './Invoice'
 import {Link} from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
 
 export default function Profile ({
   _id,
@@ -16,50 +19,54 @@ export default function Profile ({
 }) {
   return (
     <div>
-      <span>
+      <form>
       Email:
+      {/*  match the profile information to match the profile of this email */}
         <Link to={`/profiles/${_id}`}>
           {email}
         </Link>
-      </span>
-      &nbsp;
-      <span>Factory: {factoryName}</span>
-      &nbsp;
-      <span>Address: {address}</span>
-      &nbsp;
-      <span>HKid: {hkid}</span>
-      &nbsp;
-      <span>Stripe ID: {stripeId}</span>
-      &nbsp;
-      <span>Incorporation Certificate: {incorporationCertificate}</span>
-      &nbsp;
-      <span>Payment Method: {paymentMethod}</span>
-      &nbsp;
-      <hr />
-      Invoices: {
+        <br />
+        <span>Factory: {factoryName}</span>
+        <br />
+        <span>Address: {address}</span>
+        <br />
+        <span>HKID: {hkid}</span>
+        <br />
+        <span>Stripe ID: {stripeId}</span>
+        <br />
+        <span>Incorporation Certificate: {incorporationCertificate}</span>
+        <br />
+        <span>Payment Method: {paymentMethod}</span>
+        <br />
+        <hr />
+      Invoices:
+          <br />
+        {
+        // populate our invoices
         invoices ? (
           invoices.map(invoice => (
             <Invoice key={invoice._id}>
               <span>Invoice Number:{invoice.invoiceNumber} </span>
-              &nbsp;
+              <br />
               <span>Invoice Amount:{invoice.amount} </span>
-              &nbsp;
+              <br />
               <span>Invoice Currency:{invoice.currency} </span>
-              &nbsp;
+              <br />
               <span>Offer Amount:{invoice.offerAmount} </span>
-              &nbsp;
+              <br />
               <span>Due Date:{invoice.dueDate} </span>
-              &nbsp;
+              <br />
               <span>Expiry Date:{invoice.expiryDate} </span>
-              &nbsp;
+              <br />
               <span>Status:{invoice.status} </span>
             </Invoice>
           ))
+          // or show no tokens
         ) : ('N/A')
       }
       &nbsp;
-      <hr />
-      <hr />
+        <hr />
+      </form>
     </div>
   )
 }

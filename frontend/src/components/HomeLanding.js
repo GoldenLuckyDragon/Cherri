@@ -87,6 +87,7 @@ export class HomelandingThree extends React.Component {
         </Row>
         <div className='card'>
           <Row className='show-grid'>
+            {/* Fade in and fade out of images using css transitions */}
             <div id='cf'>
               <img className='top' src={carmen} width={150} height={150} />
               <img className='top' src={jon} width={150} height={150} />
@@ -94,6 +95,7 @@ export class HomelandingThree extends React.Component {
             </div>
           </Row>
           <Row className='show-grid'>
+            {/* Fade in and fade out of testimonial text using css transitions */}
             <div id='testimonial'>
               <div className='transition-text'>"Cherri has helped my business through good times and bad: with the accounts receivables financing they offer, I now have consistent cashflow, allowing me to pay my staff and suppliers without hassle."
               <p>- Carmen, Jinx Co.</p>
@@ -111,12 +113,3 @@ export class HomelandingThree extends React.Component {
     )
   }
 }
-var currencyApi = require('fixer-io-node')
-
-// Returns specific exchange rates
-
-currencyApi.specificRate('GBP', 'HKD').then(function (result) {
-  console.log(result.rates.GBP)
-}).catch(function (error) {
-  console.log(error)
-})
