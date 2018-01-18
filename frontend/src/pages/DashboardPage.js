@@ -1,82 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../App.css'
 import Navigation from '../components/navbar'
-import { Jumbotron, Tab, Tabs, Table } from 'react-bootstrap'
+import { Jumbotron, Tab, Tabs } from 'react-bootstrap'
 import Logo from '../components/Logo'
+import InvoiceForm from '../components/InvoiceForm'
 import Profile from '../components/Profile'
+import Invoice from '../components/Invoice'
 // import decodeJWT from 'jwt-decode'
 // import InvoiceForm from '../components/InvoiceForm'
-import axios from 'axios'
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react'
-
-class InvoiceHistory extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      gallery: []
-    }
-  }
-  componentDidMount () {
-    // Request for images tagged invoices
-    axios.get('https://res.cloudinary.com/cherri/image/list/invoice.json')
-            .then(res => {
-              console.log(res.data.resources)
-              this.setState({gallery: res.data.resources})
-            })
-  }
-  uploadWidget () {
-  }
-
-  render () {
-    // Set variable below to be all invoices associated with the profile
-    const variable = '_inv'
-    return (
-      <div>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Item No.</th>
-              <th>Due Date</th>
-              <th>Invoice No.</th>
-              <th>Customer</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-          </tbody>
-        </Table>
-
-        <Image cloudName='cherri' publicId={`invoices/${variable}.png`} height='300' crop='scale' />
-      </div>
-
-    )
-  }
-}
 
 class Dashboard extends React.Component {
   constructor (props) {
@@ -95,13 +26,16 @@ class Dashboard extends React.Component {
       <div>
         <br />
         <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-          <Tab eventKey={1} title='Payment History'>
-            <InvoiceHistory />
-            <br />
+          <Tab eventKey={1} title='Add Invoice'>
+            <InvoiceForm />
+            {/* <br />
             <a href={`/invoice/create`} className='btn-blue border'>Add Invoice</a>
-            <br />
+            <br /> */}
           </Tab>
-          <Tab eventKey={2} title='Account'>
+          <Tab eventKey={2} title='Payment History'>
+            <Invoice />
+          </Tab>
+          <Tab eventKey={3} title='Account'>
             <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
             <Profile />
           </Tab>
