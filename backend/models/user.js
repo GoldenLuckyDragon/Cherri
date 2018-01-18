@@ -6,8 +6,8 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const UserSchema = Schema({
-  firstName: String,
-  account: { type: ObjectId, ref: 'finalProfile' }
+  firstName: String
+  // account: [{ type: ObjectId, ref: 'finalProfile' }]
 })
 
 // extend the schema with our Passport plugin

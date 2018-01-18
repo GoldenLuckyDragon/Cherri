@@ -1,7 +1,7 @@
 // include our models
 const User = require('../models/user.js')
-const Profile = require('../models/profile.js')
-const Invoice = require('../models/invoice.js')
+// const Profile = require('../models/profile.js')
+// const Invoice = require('../models/invoice.js')
 const authMiddleware = require('../middleware/auth')
 
 // set up our routes for profile.
@@ -14,8 +14,8 @@ const userApi = app => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.find()
     // add our invoices
-    .populate('account')
-    .populate('invoices')
+    // .populate('account')
+    // .populate('invoices')
     .then(users => {
       console.log('users: ', users)
       // render as json.
