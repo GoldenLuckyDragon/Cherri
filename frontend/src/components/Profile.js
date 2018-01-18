@@ -6,7 +6,6 @@ import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
 import Checkout from '../components/Checkout'
 
-
 export default function Profile ({
   _id,
   email,
@@ -22,15 +21,14 @@ export default function Profile ({
   return (
     <div>
       <form>
-    <span>
+        <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
           <Link to={`/profiles/${_id}`}>
             {email}
           </Link>
         </span>
-      &nbsp;
-
+        <br />
         <span>Factory: {factoryName}</span>
         <br />
         <span>Address: {address}</span>

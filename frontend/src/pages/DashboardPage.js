@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import '../App.css'
+import Invoice from './Invoice'
 import Navigation from '../components/navbar'
 import { Jumbotron, Tab, Tabs, Table } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Profile from '../components/Profile'
+import Checkout from '../components/Checkout'
 // import decodeJWT from 'jwt-decode'
 // import InvoiceForm from '../components/InvoiceForm'
 import axios from 'axios'
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react'
 
-class InvoiceHistory extends Component {
+class InvoiceHistory extends Component({invoices}) {
   constructor (props) {
     super(props)
     this.state = {
@@ -33,6 +35,41 @@ class InvoiceHistory extends Component {
     return (
       <div>
         <Table responsive>
+          <hr />
+        Invoices:
+            <br />
+          {
+          invoices ? (
+            invoices.map(invoice => (
+              <Invoice key={invoice._id}>
+                <span>Invoice Number:{invoice.invoiceNumber} </span>
+                <br />
+                <span>Invoice Amount:{invoice.amount} </span>
+                <br />
+                <span>Invoice Currency:{invoice.currency} </span>
+                <br />
+                <span>Offer Amount:{invoice.offerAmount} </span>
+                <br />
+                <span>Due Date:{invoice.dueDate} </span>
+                <br />
+                <span>Expiry Date:{invoice.expiryDate} </span>
+                <br />
+                <span>Status:{invoice.status} </span>
+                &nbsp;
+
+                <Checkout
+                  name={invoice.customerCompanyName}
+                  description={invoice.invoiceNumber}
+                  amount={invoice.offerAmount}
+                />
+                &nbsp;
+              </Invoice>
+            ))
+            // or show no tokens
+          ) : ('N/A')
+        }
+        &nbsp;
+          <hr />
           <thead>
             <tr>
               <th>Item No.</th>
