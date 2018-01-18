@@ -26,6 +26,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 // Our Stripe imports
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
+// stats const is taken from signin as auth.sendStats
 
 
 // allow for env files
