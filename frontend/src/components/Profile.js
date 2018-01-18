@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
+import Checkout from '../components/Checkout'
 
 export default function Profile ({
   _id,
@@ -25,9 +26,9 @@ export default function Profile ({
         <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
-        <Link to={`/profiles/${_id}`}>
-          {email}
-        </Link>
+          <Link to={`/profiles/${_id}`}>
+            {email}
+          </Link>
         </span>
       &nbsp;
         <span>Factory: {factoryName}</span>
@@ -61,6 +62,14 @@ export default function Profile ({
               <span>Expiry Date:{invoice.expiryDate} </span>
               &nbsp;
               <span>Status:{invoice.status} </span>
+              &nbsp;
+
+              <Checkout
+                name={invoice.customerCompanyName}
+                description={invoice.invoiceNumber}
+                amount={invoice.offerAmount}
+              />
+              &nbsp;
             </Invoice>
           ))
           // or show no tokens

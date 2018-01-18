@@ -175,7 +175,7 @@ class App extends Component {
              <Route path='/charges' render={
                () => (
                  <div>
-                   <ChargesPage />
+                   <ChargesPage token={ auth.token() } />
                  </div>
                )}/>
           <Route path='/signout' render={() => (
