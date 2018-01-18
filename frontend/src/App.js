@@ -1,9 +1,6 @@
 // import our constants
 import React, { Component } from 'react'
-import Checkout from './components/Checkout'
 import './App.css'
-import Logo from './components/Logo'
-import Navigation from './components/navbar'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
@@ -24,12 +21,15 @@ import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
 import { register } from './api/register'
+import Navigation from './components/navbar'
 
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+
 
 // Our Stripe imports
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
+// stats const is taken from signin as auth.sendStats
 
 
 // allow for env files
@@ -187,7 +187,7 @@ class App extends Component {
           <Route path='/charges' render={
                () => (
                  <div>
-                   <ChargesPage />
+                   <ChargesPage token={ auth.token() } />
                  </div>
                )}/>
           <Route path='/signout' render={() => (

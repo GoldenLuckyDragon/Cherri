@@ -1,6 +1,11 @@
 import React from 'react'
 import Invoice from './Invoice'
 import {Link} from 'react-router-dom'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
+import Checkout from '../components/Checkout'
+
 
 export default function Profile ({
   _id,
@@ -17,12 +22,15 @@ export default function Profile ({
   return (
     <div>
       <form>
+    <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
-        <Link to={`/profiles/${_id}`}>
-          {email}
-        </Link>
-        <br />
+          <Link to={`/profiles/${_id}`}>
+            {email}
+          </Link>
+        </span>
+      &nbsp;
+
         <span>Factory: {factoryName}</span>
         <br />
         <span>Address: {address}</span>
@@ -56,6 +64,14 @@ export default function Profile ({
               <span>Expiry Date:{invoice.expiryDate} </span>
               <br />
               <span>Status:{invoice.status} </span>
+              &nbsp;
+
+              <Checkout
+                name={invoice.customerCompanyName}
+                description={invoice.invoiceNumber}
+                amount={invoice.offerAmount}
+              />
+              &nbsp;
             </Invoice>
           ))
           // or show no tokens

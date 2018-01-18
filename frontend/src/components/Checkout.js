@@ -2,7 +2,7 @@
 import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
-import { STRIPE_PUBLISHABLE } from '../constants/stripe'
+import { payee, STRIPE_PUBLISHABLE } from '../constants/stripe'
 
 // our API url
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
@@ -23,9 +23,6 @@ const errorPayment = data => {
   alert('Payment error')
 }
 
-// testing a fixed payee source
-const payee = 'acct_1BFw7WCoOW4Jzoaw'
-
 // The signed in user pays our payee
 const onToken = (amount, description) => token =>
   axios.post(API_URL,
@@ -36,7 +33,7 @@ const onToken = (amount, description) => token =>
       amount: fromDollarsToCents(amount),
       destination: {
         // amount less our fee, and our constant payee
-        amount: amount - 10,
+        amount: amount,
         account: payee
       }
     })

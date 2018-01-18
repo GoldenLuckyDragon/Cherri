@@ -53,11 +53,18 @@ const paymentApi = app => {
 
   // CONNECT  endpoint for redirect
   app.get('/users/auth/stripe_connect', (req, res) => {
-    console.log('made it')
-    console.log(req.query.code)
+    // console.log('testing')
+    // console.log(req.query.code)
+
+    console.log('START HERE :')
+    console.log('START HERE :')
+    console.log('START HERE :')
+
+    console.log(req.body)
 
     const code = req.query.code
-    console.log('key: ', STRIPE_SECRET_KEY)
+    // console.log('key: ', STRIPE_SECRET_KEY)
+
     // Make /oauth/token endpoint POST request
     request.post({
       url: TOKEN_URI,
@@ -83,11 +90,13 @@ const paymentApi = app => {
       console.log(' ')
       console.log(' ')
       console.log(' ')
+      // const decodedToken = decodeJWT(token)
 
       // find our profile by id and inject our stripe user id.
-      Profile.findOneAndUpdate({'email': '5a5843f9ab4d393239e0d271'}, {$set: {'stripeId': stripeUserId}}, function (err, profile) {
+      Profile.findOneAndUpdate({'email': 'james@mail.com'}, {$set: {'stripeId': stripeUserId}}, function (err, profile) {
+
         // throw an error if any
-        if (err) { throw err } else { console.log('updated profile') }
+        if (err) { throw err } else { console.log('stripeId added to profile') }
       })
     })
     // go to charges on both dev and live environments
