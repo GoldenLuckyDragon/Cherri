@@ -142,6 +142,10 @@ class App extends Component {
           <Route path='/about' render={() => (
               <AboutPage token={ auth.token() }/>
             )}/>
+            <Route path='/dashboard' render={
+                () => (
+                  <DashboardPage token={ auth.token() }/>
+                )}/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>
