@@ -33,7 +33,7 @@ const profileApi = app => {
   })
 
   // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
-  app.post('/profiles', authMiddleware.requireJWT, (req, res) => {
+  app.post('/profiles', (req, res) => {
     // create a new profile
     Profile.create(req.body)
     .then((profile) => {

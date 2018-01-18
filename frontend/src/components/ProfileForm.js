@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
+// import decodeJWT from 'jwt-decode'
 
 class ProfileForm extends React.Component {
   state = { redirect: false}
@@ -10,17 +11,17 @@ class ProfileForm extends React.Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-    // const email = elements['email'].value
+    const email = 'jo@bo.co'
     // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value
     const hkid = elements['hkid'].value
-    const stripeId = ''
+    const stripeId = 'test'
     const incorporationCertificate = elements['incorporationCertificate'].value
     // const paymentMethod = elements['paymentMethod'].value
 
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
-    this.props.onSubmit({ factoryName, address, hkid, stripeId, incorporationCertificate })
+    this.props.onSubmit({email, factoryName, address, hkid, stripeId, incorporationCertificate, paymentMethod })
     // allow the redirect after submssion
     this.setState({ redirect: true })
   }
@@ -33,21 +34,9 @@ class ProfileForm extends React.Component {
         <Navigation />
         <Jumbotron className='jumbotron-blue'>
           <Logo />
-        { redirect && <Redirect to="/profiles" />}
+        { redirect && <Redirect to="/dashboard" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
-          {/* <label>
-            Email:
-            &nbsp;
-            <input type='text' name='email' />
-          </label>
-
-          <label>
-            Password:
-            &nbsp;
-            <input type='text' name='password' />
-          </label> */}
-
           <label>
             Factory Name:
             &nbsp;

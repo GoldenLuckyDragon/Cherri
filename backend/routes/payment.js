@@ -94,6 +94,7 @@ const paymentApi = app => {
 
       // find our profile by id and inject our stripe user id.
       Profile.findOneAndUpdate({'email': 'james@mail.com'}, {$set: {'stripeId': stripeUserId}}, function (err, profile) {
+
         // throw an error if any
         if (err) { throw err } else { console.log('stripeId added to profile') }
       })
