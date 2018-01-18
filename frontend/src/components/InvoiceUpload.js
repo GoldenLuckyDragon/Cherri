@@ -14,18 +14,29 @@ require('dotenv').config()
 const invoice = ''
 
 export default class InvoiceUpload extends Component {
-    handleUploadClick = (event) => {
-      window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`},
-        function(error, result) { console.log(error, result) });
-    }
-      render () {
+  state = { redirect: false}
+
+  handleFormSubmission = (event) => {
+    event.preventDefault()
+    const { elements } = event.target
+    // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
+    const invoiceUpload = elements['invoiceUpload'].value
+    this.props.onSubmit({invoiceUpload})
+    this.setState({ redirect: true })
+  }
+
+  handleUploadClick = (event) => {
+    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`},
+      function(error, result) { console.log(error, result) });
+  }
+    render () {
           return (
             <div>
               <Navigation />
               <Jumbotron className='jumbotron-blue'>
                 <Logo />
                   <form>
-                  <a onClick={this.handleUploadClick} id='upload_widget_opener'>Upload Your Invoice</a>
+                  <a classname='btn-blue' onClick={this.handleUploadClick} id='upload_widget_opener'>Upload Your Invoice</a>
                   </form>
               </Jumbotron>
             </div>
