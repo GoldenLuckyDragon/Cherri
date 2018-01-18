@@ -26,7 +26,7 @@ export default class InvoiceUpload extends Component {
   }
 
   handleUploadClick = (event) => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`},
+    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`, tags:['invoice']},
       function(error, result) { console.log(error, result) });
   }
     render () {
