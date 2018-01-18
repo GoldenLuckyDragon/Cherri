@@ -72,7 +72,7 @@ class ProfileForm extends React.Component {
             <input type='text' name='paymentMethod' />
           </label>
           <br />
-          
+
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
       </div>

@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const UserSchema = Schema({
-  firstName: String
+  // firstName: String
   // account: [{ type: ObjectId, ref: 'finalProfile' }]
 })
 

@@ -13,10 +13,6 @@ function RegisterForm ({ onSignUp }) {
         <form onSubmit={onSignUp}>
           <label>
         email:
-        <input type='text' name='firstName' />
-          </label>
-          <label>
-        email:
         <input type='email' name='email' />
           </label>
         &nbsp;
@@ -26,7 +22,7 @@ function RegisterForm ({ onSignUp }) {
         <input type='password' name='password' />
           </label>
           <br />
-          <button type='submit' className='btn-blue'>Sign Up</button>
+          <button>Sign Up</button>
         </form>
       </Jumbotron>
     </div>
