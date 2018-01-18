@@ -3,6 +3,8 @@ import '../App.css'
 import Navigation from '../components/navbar'
 import { Jumbotron, TabContent, TabPane, Row, Col, Tab, Tabs } from 'react-bootstrap'
 import Logo from '../components/Logo'
+import Profile from '../components/Profile'
+import decodeJWT from 'jwt-decode'
 
 class Dashboard extends React.Component {
   constructor (props) {
@@ -18,11 +20,14 @@ class Dashboard extends React.Component {
 
   render () {
     return (
-      <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-        <Tab eventKey={1} title='Payment History'>Tab 1 content</Tab>
-        <Tab eventKey={2} title='Add Invoice'>Tab 2 content</Tab>
-        <Tab eventKey={3} title='Account'>Tab 3 content</Tab>
-      </Tabs>
+      <div>
+        <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
+        <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
+          <Tab eventKey={1} title='Payment History'>Tab 1 content</Tab>
+          <Tab eventKey={2} title='Add Invoice'>Tab 2 content</Tab>
+          <Tab eventKey={3} title='Account'>Tab 3 content</Tab>
+        </Tabs>
+      </div>
     )
   }
 
@@ -50,23 +55,6 @@ export default class DashboardPage extends React.Component {
     )
   }
   }
-
-import Profile from '../components/Profile'
-import decodeJWT from 'jwt-decode'
-
-export default ({ token }) => {
-  const decodedToken = decodeJWT(token)
-  const email = decodedToken.email
-  const id = decodedToken.sub
-  return (
-    <div>
-      <Navigation />
-      <h1>{email}</h1>
-      <h1>{id}</h1>
-      <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
-    </div>
-  )
-}
 
 // var currencyApi = require('fixer-io-node')
 
