@@ -5,7 +5,7 @@ import { Jumbotron } from 'react-bootstrap'
 import Navigation from '../components/navbar'
 import Logo from '../components/Logo'
 
-class InvoiceForm extends React.Component {
+export default class InvoiceForm extends React.Component {
   state = { redirect: false}
 
   handleFormSubmission = (event) => {
@@ -124,5 +124,3 @@ class InvoiceForm extends React.Component {
     )
   }
 }
-
-export default InvoiceForm

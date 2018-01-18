@@ -5,6 +5,7 @@ import { Jumbotron, TabContent, TabPane, Row, Col, Tab, Tabs } from 'react-boots
 import Logo from '../components/Logo'
 import Profile from '../components/Profile'
 import decodeJWT from 'jwt-decode'
+import InvoiceForm from '../components/InvoiceForm'
 
 class Dashboard extends React.Component {
   constructor (props) {
@@ -21,11 +22,16 @@ class Dashboard extends React.Component {
   render () {
     return (
       <div>
-        <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
+        <br />
         <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-          <Tab eventKey={1} title='Payment History'>Tab 1 content</Tab>
-          <Tab eventKey={2} title='Add Invoice'>Tab 2 content</Tab>
-          <Tab eventKey={3} title='Account'>Tab 3 content</Tab>
+          <Tab eventKey={1} title='Payment History'>
+            <a href={`/invoice/create`} className='btn-blue border'>Add Invoice</a>
+            <br />
+          </Tab>
+          <Tab eventKey={2} title='Account'>
+            <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
+            <Profile />
+          </Tab>
         </Tabs>
       </div>
     )
@@ -46,7 +52,9 @@ export default class DashboardPage extends React.Component {
         <Navigation />
         <Jumbotron className='jumbotron-blue'>
           <Logo />
-          <div className='card'>
+          <div className='card card-shadow'>
+            <br />
+            DASHBOARD
             {/* Set which tab the default is (tab 1) */}
             <Dashboard activeTab={1} />
           </div>
