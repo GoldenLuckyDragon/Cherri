@@ -9,6 +9,7 @@ import ProfileEditForm from './components/ProfileEditForm'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 // imports associated with page selection
+import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import LearnPage from './pages/LearnPage'
@@ -66,17 +67,16 @@ class App extends Component {
     const form = event.target
     const element = form.elements
     const email = element.email.value
+    const firstName = element.firstName.value
     const password = element.password.value
-    // our backend register api returns a promise with our token data
-    auth.register({email, password})
+    auth.register({email, firstName, password})
     .then(() => {
       profileAPI.all()
         .then( profiles =>
           this.setState({ profiles })
       )}
     )
-    console.log({ password, email })
-    // console.log({token})
+    console.log({ password, email, firstName })
   }
 
   // Event handler for signin of existing User
@@ -137,6 +137,9 @@ class App extends Component {
               () => (
                 <LearnPage/>
               )}/>
+          <Route path='/about' render={() => (
+              <AboutPage token={ auth.token() }/>
+            )}/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>
