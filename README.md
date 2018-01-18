@@ -104,6 +104,10 @@ now goto click on API on the left of the dashboard and save both your stripe sec
 Dashboard should look like this
 ![redirect](backend/public/redirect.png)
 
+Important Note: you must verify your identity on stripe for connect to accept payments
+
+
+
 Keep a terminal open inside /backend
 and run
 ```

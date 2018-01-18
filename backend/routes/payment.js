@@ -1,3 +1,4 @@
+// import { requirejwt } from '../middleware/auth'
 // Import our FRONTend endpoint
 const FRONT_END_URL = require('../constants/frontend')
 
@@ -53,14 +54,7 @@ const paymentApi = app => {
 
   // CONNECT  endpoint for redirect
   app.get('/users/auth/stripe_connect', (req, res) => {
-    // console.log('testing')
-    // console.log(req.query.code)
-
-    console.log('START HERE :')
-    console.log('START HERE :')
-    console.log('START HERE :')
-
-    console.log(req.body)
+    // console.log(req.header.authorization)
 
     const code = req.query.code
     // console.log('key: ', STRIPE_SECRET_KEY)
@@ -75,34 +69,42 @@ const paymentApi = app => {
         client_secret: STRIPE_SECRET_KEY
       }
     }, function (err, r, body) {
-      // // the access token
       // var accessToken = JSON.parse(body).access_token
       var parsedbody = JSON.parse(body)
       // their stripeID
       var stripeUserId = parsedbody.stripe_user_id
-      // Do something with your accessToken
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
+
       console.log('error', err)
       // save the stripe user id
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
       console.log('stripe_user_id: ', stripeUserId)
       console.log(' ')
+      console.log('HERRRRRRRRRRREEEE ')
+
       console.log(' ')
       console.log(' ')
-      // const decodedToken = decodeJWT(token)
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
+      console.log(' ')
 
       // find our profile by id and inject our stripe user id.
-      Profile.findOneAndUpdate({'email': 'james@mail.com'}, {$set: {'stripeId': stripeUserId}}, function (err, profile) {
+      Profile.findOneAndUpdate({'email': 'james@mail.com'}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
         // throw an error if any
         if (err) { throw err } else { console.log('stripeId added to profile') }
       })
-    })
     // go to charges on both dev and live environments
-    res.redirect(`${FRONT_END_URL}/charges`)
+      stripe.accounts.retrieve(stripeUserId)
+      console.log(res.body)
+      res.redirect(`${FRONT_END_URL}/charges`)
+    })
+    return app
   })
-
-  return app
 }
 
 module.exports = paymentApi
