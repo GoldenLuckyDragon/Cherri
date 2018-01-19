@@ -5,7 +5,7 @@ import { Jumbotron } from 'react-bootstrap'
 import Navigation from '../components/navbar'
 import Logo from '../components/Logo'
 
-class InvoiceForm extends React.Component {
+export default class InvoiceForm extends React.Component {
   state = { redirect: false}
 
   handleFormSubmission = (event) => {
@@ -28,19 +28,15 @@ class InvoiceForm extends React.Component {
     const customerCompanyName = elements['customerCompanyName'].value
     const customerFirstname = elements['customerFirstname'].value
     const customerSurname = elements['customerSurname'].value
-    const salePurchaseAgreement = elements['salePurchaseAgreement'].value
-    const invoiceUpload = elements['invoiceUpload'].value
-    // onSubmit({invoiceNumber, amount})
-    this.props.onSubmit({invoiceNumber, amount, currency, offerAmount, dueDate, expiryDate, status, customerCompanyName, customerFirstname, customerSurname, salePurchaseAgreement, invoiceUpload})
+    // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
+    // const invoiceUpload = elements['invoiceUpload'].value
+    this.props.onSubmit({invoiceNumber, amount, currency, offerAmount, dueDate, expiryDate, status, customerCompanyName, customerFirstname, customerSurname})
     this.setState({ redirect: true })
   }
   render() {
     const {redirect} = this.state
     return (
       <div>
-        <Navigation />
-        <Jumbotron className='jumbotron-blue'>
-          <Logo />
         { redirect && <Redirect to="/profiles" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
@@ -102,7 +98,7 @@ class InvoiceForm extends React.Component {
           </label>
           <br/>
 
-          <label>
+          {/* <label>
             Signed Sale Purchase Agreement (download from <a href='http://res.cloudinary.com/cherri/image/upload/v1516149513/Accounts_Receivable_Purchase_Agreement.docx_cxglxl.pdf' target='_blank'>here</a>):
             &nbsp;
             <input type='file' name='salePurchaseAgreement' />
@@ -114,15 +110,12 @@ class InvoiceForm extends React.Component {
             &nbsp;
             <input type='file' name='invoiceUpload' />
           </label>
-          <br/>
+          <br/> */}
 
           <button type='submit' className='btn-blue'>Create Invoice</button>
           <br/>
         </form>
-      </Jumbotron>
       </div>
     )
   }
 }
-
-export default InvoiceForm

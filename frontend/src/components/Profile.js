@@ -50,17 +50,17 @@ export default function Profile ({
           invoices.map(invoice => (
             <Invoice key={invoice._id}>
               <span>Invoice Number:{invoice.invoiceNumber} </span>
-              &nbsp;
+              <br />
               <span>Invoice Amount:{invoice.amount} </span>
-              &nbsp;
+              <br />
               <span>Invoice Currency:{invoice.currency} </span>
-              &nbsp;
+              <br />
               <span>Offer Amount:{invoice.offerAmount} </span>
-              &nbsp;
+              <br />
               <span>Due Date:{invoice.dueDate} </span>
-              &nbsp;
+              <br />
               <span>Expiry Date:{invoice.expiryDate} </span>
-              &nbsp;
+              <br />
               <span>Status:{invoice.status} </span>
               &nbsp;
 
@@ -77,9 +77,14 @@ export default function Profile ({
         ) : ('N/A')
       }
       &nbsp;
+<<<<<<< HEAD
       <hr />
       <hr />
       {/* </Jumbotron> */}
+=======
+        <hr />
+      </form>
+>>>>>>> a0c86bbd9c9d6460262f94742c602f1b13894785
     </div>
   )
 }
