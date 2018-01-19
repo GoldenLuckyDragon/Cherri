@@ -144,10 +144,10 @@ class App extends Component {
           <Route path='/about' render={() => (
               <AboutPage token={ auth.token() }/>
             )}/>
-            <Route path='/dashboard' render={
-                () => (
-                  <DashboardPage token={ auth.token() }/>
-                )}/>
+          <Route path='/dashboard' render={
+              () => (
+                <DashboardPage token={ auth.token() }/>
+              )}/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>
@@ -173,13 +173,15 @@ class App extends Component {
           <Route path='/signin' render={
             () => (
               <div>
-              { auth.isSignedIn() && <Redirect to='/profiles'/> }
-              <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
+                { auth.isSignedIn() && <Redirect to='/profiles'/> }
+                <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
           <Route path='/invoice/create' render={
               () => (
-                <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+                <div>
+                  <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+                </div>
               )}/>
                {/* our charges route for testing making a charge between two of our stripe customers */}
          <Route path='/invoice/upload' render={
