@@ -65,9 +65,10 @@ export default function Profile ({
               &nbsp;
 
               <Checkout
-                name={invoice.customerCompanyName}
-                description={invoice.invoiceNumber}
+                name={` Pay ${invoice.customerCompanyName}`}
+                description={` Invoice :${invoice.invoiceNumber}`}
                 amount={invoice.offerAmount}
+                payee={invoice.payee}
               />
               &nbsp;
             </Invoice>

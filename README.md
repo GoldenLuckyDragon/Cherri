@@ -32,6 +32,9 @@ Stripe connect allows the platform to be a middleman between a transaction of tw
 Once you have a stripe account register your platform here
 https://dashboard.stripe.com/account/applications/settings
 
+Important Note: you must verify your identity on stripe for connect to accept payments
+
+
 now run
 
 ```
@@ -60,7 +63,8 @@ Stripe requires a handshake verification process which must be done over https a
 Download and install ngrok from
 https://ngrok.com/download
 
-This will allow us to overcome this
+This will allow us to overcome this problem.
+
  cd to the download directory
 
 ```
@@ -103,6 +107,7 @@ now goto click on API on the left of the dashboard and save both your stripe sec
 
 Dashboard should look like this
 ![redirect](backend/public/redirect.png)
+
 
 Keep a terminal open inside /backend
 and run
