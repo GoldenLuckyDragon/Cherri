@@ -7,16 +7,12 @@ import Navigation from '../components/navbar'
 export default function ProfileList ({ profiles }) {
   return (
     <div>
-      <Navigation />
-      <Jumbotron className='jumbotron-blue'>
-        <Logo />
-        <h2>Profile List</h2>
-        {
+      <h2>Profile List!</h2>
+      {
         profiles.map(profile => {
           return <Profile {...profile} />
         })
       }
-      </Jumbotron>
     </div>
   )
 }

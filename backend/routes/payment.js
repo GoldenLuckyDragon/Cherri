@@ -1,9 +1,9 @@
-// import { requirejwt } from '../middleware/auth'
+const authMiddleware = require('../middleware/auth')
 // Import our FRONTend endpoint
 const FRONT_END_URL = require('../constants/frontend')
 
 // include our stripe
-const { stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
+const { STRIPE_SECRET_KEY } = require('../constants/stripe')
 
 // require our Profiles
 const Profile = require('../models/profile.js')
@@ -47,18 +47,27 @@ const paymentApi = app => {
     res.send({ message: 'Hello Stripe Checkout Server!', timestamp: new Date().toISOString() })
   })
 
+  // middleware for our charges endpoint
+  app.get('/charges', authMiddleware.requireJWT, (req, res) => {
+    Profile.findOneAndUpdate({'email': req.user.email}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
+      // throw an error if any
+      if (err) {
+        throw err
+      } else {
+        console.log('%c STRIPE CREATE CHARGES ', 'color: red')
+      }
+    })
+  })
+
   // This part is for stripe Checkout
-  app.post('/', (req, res) => {
+  app.post('/', authMiddleware.requireJWT, (req, res) => {
     stripe.charges.create(req.body, postStripeCharge(res))
     console.log('%c STRIPE CREATE CHARGES ', 'color: red', req)
   })
 
   // CONNECT  endpoint for redirect
   app.get('/users/auth/stripe_connect', (req, res) => {
-    // console.log(req.header.authorization)
-
     const code = req.query.code
-    // console.log('key: ', STRIPE_SECRET_KEY)
 
     // Make /oauth/token endpoint POST request
     request.post({
@@ -74,32 +83,17 @@ const paymentApi = app => {
       var parsedbody = JSON.parse(body)
       // their stripeID
       var stripeUserId = parsedbody.stripe_user_id
-
-      console.log('error', err)
+      console.log('error: ', err)
       // save the stripe user id
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
       console.log('stripe_user_id: ', stripeUserId)
-      console.log(' ')
-      console.log('HERRRRRRRRRRREEEE ')
-
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
-      console.log(' ')
       console.log(' ')
       console.log(' ')
 
       // find our profile by id and inject our stripe user id.
-      Profile.findOneAndUpdate({'email': 'james@mail.com'}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
-
-        // throw an error if any
-        if (err) { throw err } else { console.log('stripeId added to profile') }
-      })
+      // Profile.findOneAndUpdate({'email': req.user.email}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
+      //   // throw an error if any
+      //   if (err) { throw err } else { console.log('INJECTION') }
+      // })
     })
     res.redirect(`${FRONT_END_URL}/charges`)
   })

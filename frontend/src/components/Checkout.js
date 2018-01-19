@@ -2,13 +2,13 @@
 import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
-import {payee, STRIPE_PUBLISHABLE } from '../constants/stripe'
+import { STRIPE_PUBLISHABLE } from '../constants/stripe'
 
 // our API url
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // set currency AUD for testing possible HKD
-const CURRENCY = 'AUD'
+const CURRENCY = 'HKD'
 
 // change our cents to currency
 const fromDollarsToCents = amount => amount * 100
