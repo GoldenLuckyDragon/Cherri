@@ -50,6 +50,7 @@ const paymentApi = app => {
   // This part is for stripe Checkout
   app.post('/', (req, res) => {
     stripe.charges.create(req.body, postStripeCharge(res))
+    console.log('%c STRIPE CREATE CHARGES ', 'color: red', req)
   })
 
   // CONNECT  endpoint for redirect
@@ -98,13 +99,10 @@ const paymentApi = app => {
         // throw an error if any
         if (err) { throw err } else { console.log('stripeId added to profile') }
       })
-    // go to charges on both dev and live environments
-      stripe.accounts.retrieve(stripeUserId)
-      console.log(res.body)
-      res.redirect(`${FRONT_END_URL}/charges`)
     })
-    return app
+    res.redirect(`${FRONT_END_URL}/charges`)
   })
+  return app
 }
 
 module.exports = paymentApi

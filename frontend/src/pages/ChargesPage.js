@@ -8,6 +8,8 @@ import decodeJWT from 'jwt-decode'
 const User = 'Carmen'
 const label = `Pay Invoice from ${User}`
 const amount = 555
+// const cherri = 'acct_1BlAVECQoy8qPPYE'
+// const jon = 'acct_1BFw7WCoOW4Jzoaw'
 
 // attempt to create charges between two customers
 export default ({ token }) => {
