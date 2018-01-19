@@ -19,9 +19,24 @@ const profileApi = app => {
 
   // GET function, with authentication applied to it, can't access unless
   // token is present
-  app.get('/profiles', (req, res) => {
+  // app.get('/profiles', (req, res) => {
+  //   // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
+  //   Profile.find()
+  //   // add our invoices
+  //   .populate('invoices')
+  //   .then(profiles => {
+  //     console.log('profiles: ', profiles)
+  //     // render as json.
+  //     res.json(profiles)
+  //   })
+  //   .catch(error => res.json({ error }))
+  // })
+
+// add for authentication authMiddleware.requireJWT,
+  app.get('/profiles', authMiddleware.requireJWT, (req, res) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
-    Profile.find()
+    // Profile.find()
+    Profile.find({'email': `${req.user.email}`})
     // add our invoices
     .populate('invoices')
     .then(profiles => {

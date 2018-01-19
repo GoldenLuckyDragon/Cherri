@@ -17,7 +17,10 @@ export function save (invoice) {
   // console.log(API_URL)
   return fetch(`${API_URL}/invoice`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
+    },
     body: JSON.stringify(invoice)
   })
   .then(res => res.json())
