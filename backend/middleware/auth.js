@@ -75,11 +75,11 @@ passport.use(new PassportJWT.Strategy(
   }
 ))
 
-function token (req, res, next) {
-  const user = req.user
-  res.json(user)
-  next()
-}
+// function token (req, res, next) {
+//   const user = req.user
+//   res.json(user)
+//   next()
+// }
 
 // function to start using Json web tokens
 function signJWTForUser (req, res) {
@@ -102,8 +102,8 @@ module.exports = {
   initialize: [passport.initialize(), passport.session()],
   register,
   signJWTForUser,
-  token,
+  // token,
   // export our signin function to use passport authentication.
-  signIn: passport.authenticate('local', {session: false}),
+  signIn: passport.authenticate('local', {session: true}),
   requireJWT: passport.authenticate('jwt', {session: false})
 }

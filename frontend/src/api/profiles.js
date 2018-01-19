@@ -23,7 +23,8 @@ export function save (profile) {
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer: ${token()}`
     },
     body: JSON.stringify(profile)
   })
