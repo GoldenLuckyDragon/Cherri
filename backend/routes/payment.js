@@ -3,7 +3,7 @@ const authMiddleware = require('../middleware/auth')
 const FRONT_END_URL = require('../constants/frontend')
 
 // include our stripe
-const { STRIPE_SECRET_KEY } = require('../constants/stripe')
+const {stripe, STRIPE_SECRET_KEY } = require('../constants/stripe')
 
 // require our Profiles
 const Profile = require('../models/profile.js')
@@ -49,14 +49,12 @@ const paymentApi = app => {
 
   // middleware for our charges endpoint
   app.get('/charges', authMiddleware.requireJWT, (req, res) => {
-    Profile.findOneAndUpdate({'email': req.user.email}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
-      // throw an error if any
-      if (err) {
-        throw err
-      } else {
-        console.log('%c STRIPE CREATE CHARGES ', 'color: red')
-      }
-    })
+  }, function (error, req, body) {
+    if (error) {
+      console.log((error))
+      return
+    }
+    console.log('%c STRIPE CREATE CHARGES ', 'color: red', req)
   })
 
   // This part is for stripe Checkout
@@ -68,7 +66,19 @@ const paymentApi = app => {
   // CONNECT  endpoint for redirect
   app.get('/users/auth/stripe_connect', (req, res) => {
     const code = req.query.code
+    console.log(
+      'the request : ', req._passport.instance.Authenticator
+    )
 
+    console.log(' *********   ')
+
+    console.dir(
+      req._passport.instance.Authenticator.function
+    )
+
+    // console.log(
+    //   'the request 2 : ', req._passport.instance.Authenticator._userProperty
+    // )
     // Make /oauth/token endpoint POST request
     request.post({
       url: TOKEN_URI,
@@ -86,8 +96,7 @@ const paymentApi = app => {
       console.log('error: ', err)
       // save the stripe user id
       console.log('stripe_user_id: ', stripeUserId)
-      console.log(' ')
-      console.log(' ')
+      console.log()
 
       // find our profile by id and inject our stripe user id.
       // Profile.findOneAndUpdate({'email': req.user.email}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {

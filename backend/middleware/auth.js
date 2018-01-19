@@ -3,35 +3,11 @@ const passport = require('passport')
 const JWT = require('jsonwebtoken')
 const PassportJWT = require('passport-jwt')
 const User = require('../models/user')
-// const Profile = require('../models/profile')
 
 // strategies are for avoiding username you set up a strategy with passport.
 passport.use(User.createStrategy())
 
 // this sends the cookie to the front so we can see it in the request object
-// passport.serializeUser(User.serializeUser())
-// passport.deserializeUser(User.deserializeUser())
-
-// Serialization flow
-// passport.serializeUser(function(user, done) {
-//    done(null, user.id);
-//                 |
-// });              |
-//                 |
-//                 |____________________> saved to session req.session.passport.user = {id:'..'}
-//                                   |
-//                                  \|/
-// passport.deserializeUser(function(id, done) {
-//                   ________________|
-//                   |
-//                  \|/
-//    User.findById(id, function(err, user) {
-//        done(err, user);
-//                   |______________>user object attaches to the request as req.user
-//
-// });
-//  });
-
 function register (req, res, next) {
   const user = new User({
     email: req.body.email

@@ -28,4 +28,11 @@ router.get('/profiles',
   }
 )
 
+router.get('/charges',
+  authMiddleware.requireJWT,
+  (req, res) => {
+    console.log(req)
+  }
+)
+
 module.exports = router
