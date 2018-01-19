@@ -18,8 +18,6 @@ const app = express()
 configureServer(app)
 configureRoutes(app)
 
-// allow any access point (zeit changes per deployment)
-
 // turn on our server
 app.listen(SERVER_CONFIGS.PORT, error => {
   if (error) throw error

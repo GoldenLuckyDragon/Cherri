@@ -26,7 +26,8 @@ export function signIn ({ email, password }) {
   return fetch(`${API_URL}/auth/signin`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
     },
     body: JSON.stringify({email, password})
   })
@@ -34,9 +35,11 @@ export function signIn ({ email, password }) {
   .then(json => {
     // console.dir(json)
     if (json) { setToken(json['token']) }
-    console.log(decodedToken())
+    const stats = decodedToken()
+    // console.dir('the signin json is', json)
+    console.log('stats are :', stats)
     // as it {} need to return something
-    return json
+    return (json)
   })
   .catch(error => { console.log(error) })
 }
@@ -51,16 +54,18 @@ export function register ({ email, password, firstName }) {
   })
   .then(res => res.json())
   .then(json => {
-    // console.dir(json)
     if (json) { setToken(json['token']) }
-    console.log(decodedToken())
+    // console.log(decodedToken())
+    // as it {} need to return something
     return json
   })
   .catch(error => { console.log(error) })
 }
 
+// if you sign out clear the token
 export function signOut () {
-  setToken()
+  setToken('')
+  alert('You have Logged out')
 }
 
 // boolean

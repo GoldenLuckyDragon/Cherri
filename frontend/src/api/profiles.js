@@ -8,7 +8,7 @@ export function one () {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token()}`
+      'Authorization': `Bearer: ${token()}`
     }
   })
   .then(res => res.json())
@@ -16,6 +16,7 @@ export function one () {
 }
 
 // send a post to our backend API to add to the db
+
 export function save (profile) {
   // console.log(API_URL)
   console.log(profile)

@@ -71,12 +71,6 @@ class ProfileForm extends React.Component {
           </label>
           <br />
 
-          <label>
-            Payment Method:
-            &nbsp;
-            <input type='text' name='paymentMethod' />
-          </label>
-          <br />
 
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>

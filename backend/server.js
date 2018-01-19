@@ -15,6 +15,8 @@ const configureServer = app => {
   app.use(require('express-session')({ secret: 'secret', resave: false, saveUninitialized: false }))
   app.use(passport.initialize())
   app.use(passport.session())
+
+  // allow any access point (zeit changes per deployment)
   app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept')

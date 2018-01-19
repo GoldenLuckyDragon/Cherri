@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
+import Checkout from '../components/Checkout'
 
 export default function Profile ({
   _id,
@@ -19,29 +20,31 @@ export default function Profile ({
 }) {
   return (
     <div>
-      <form>
+      {/* <Navigation />
+      <Jumbotron className='jumbotron-blue'>
+        <Logo /> */}
+      <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
         <Link to={`/profiles/${_id}`}>
           {email}
         </Link>
-        <br />
-        <span>Factory: {factoryName}</span>
-        <br />
-        <span>Address: {address}</span>
-        <br />
-        <span>HKID: {hkid}</span>
-        <br />
-        <span>Stripe ID: {stripeId}</span>
-        <br />
-        <span>Incorporation Certificate: {incorporationCertificate}</span>
-        <br />
-        <span>Payment Method: {paymentMethod}</span>
-        <br />
-        <hr />
-      Invoices:
-          <br />
-        {
+      </span>
+      &nbsp;
+      <span>Factory: {factoryName}</span>
+      &nbsp;
+      <span>Address: {address}</span>
+      &nbsp;
+      <span>HKID: {hkid}</span>
+      &nbsp;
+      <span>Stripe ID: {stripeId}</span>
+      &nbsp;
+      <span>Incorporation Certificate: {incorporationCertificate}</span>
+      &nbsp;
+      <span>Payment Method: {paymentMethod}</span>
+      &nbsp;
+      <hr />
+      Invoices: {
         // populate our invoices
         invoices ? (
           invoices.map(invoice => (
@@ -59,14 +62,25 @@ export default function Profile ({
               <span>Expiry Date:{invoice.expiryDate} </span>
               <br />
               <span>Status:{invoice.status} </span>
+              &nbsp;
+
+              <Checkout
+                name={` Pay ${invoice.customerCompanyName}`}
+                description={` Invoice :${invoice.invoiceNumber}`}
+                amount={invoice.offerAmount}
+                payee={stripeId}
+              />
+              &nbsp;
             </Invoice>
           ))
           // or show no tokens
         ) : ('N/A')
       }
       &nbsp;
-        <hr />
-      </form>
+      <hr />
+      <hr />
+      {/* </Jumbotron> */}
+
     </div>
   )
 }

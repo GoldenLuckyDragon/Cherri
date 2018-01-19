@@ -8,26 +8,27 @@ import { STRIPE_PUBLISHABLE } from '../constants/stripe'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // set currency AUD for testing possible HKD
-const CURRENCY = 'AUD'
+const CURRENCY = 'HKD'
 
 // change our cents to currency
 const fromDollarsToCents = amount => amount * 100
 
 // success
 const successPayment = data => {
+  console.log({ data })
   alert('Payment success Thankyou')
 }
 
 // failure
 const errorPayment = data => {
+  console.log({ data })
   alert('Payment error')
 }
 
-// testing a fixed payee source
-const payee = 'acct_1BFw7WCoOW4Jzoaw'
-
 // The signed in user pays our payee
-const onToken = (amount, description) => token =>
+const onToken = (token, amount, payee, description) => {
+  console.log('*********')
+  console.log({ token, amount, payee, description })
   axios.post(API_URL,
     {
       description,
@@ -36,19 +37,20 @@ const onToken = (amount, description) => token =>
       amount: fromDollarsToCents(amount),
       destination: {
         // amount less our fee, and our constant payee
-        amount: amount - 10,
+        amount: amount,
         account: payee
       }
     })
     .then(successPayment)
     .catch(errorPayment)
+}
 
-const Checkout = ({ name, description, amount }) =>
+const Checkout = ({ payee, name, description, amount }) =>
   <StripeCheckout
     name={name}
     description={description}
     amount={fromDollarsToCents(amount)}
-    token={onToken(amount, description)}
+    token={(token) => onToken(token, amount, payee, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
   />
