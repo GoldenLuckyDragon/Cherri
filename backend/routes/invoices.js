@@ -17,7 +17,7 @@ const invoiceApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.post('/invoice', authMiddleware.requireJWT, (req, res) => {
+  app.post('/invoice', (req, res) => {
     // console.log(req.user.email)
     // Will need to be refactored as invoice will need to be associated with profile
     Invoice.create(req.body).then((invoice) => {
