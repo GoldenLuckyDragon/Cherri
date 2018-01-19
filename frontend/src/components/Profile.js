@@ -20,9 +20,9 @@ export default function Profile ({
 }) {
   return (
     <div>
-      <Navigation />
+      {/* <Navigation />
       <Jumbotron className='jumbotron-blue'>
-        <Logo />
+        <Logo /> */}
         <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
@@ -79,7 +79,7 @@ export default function Profile ({
       &nbsp;
         <hr />
         <hr />
-      </Jumbotron>
+      {/* </Jumbotron> */}
     </div>
   )
 }
