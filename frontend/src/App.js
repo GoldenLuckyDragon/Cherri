@@ -41,8 +41,9 @@ class App extends Component {
 
   componentDidMount(){
     // calling the fetch functions from profileAPI file
-    profileAPI.all()
+    profileAPI.one()
     .then(profiles => {
+      // console.log(profiles)
       this.setState({ profiles })
       // test log to ensure that  profile information is coming through from backend
     })
@@ -73,7 +74,7 @@ class App extends Component {
     const password = element.password.value
     auth.register({email, password})
     .then(() => {
-      profileAPI.all()
+      profileAPI.one()
         .then( profiles =>
           this.setState({ profiles })
       )}
@@ -91,8 +92,9 @@ class App extends Component {
     const password = element.password.value
     auth.signIn({email, password})
     .then(() => {
-      profileAPI.all()
+      profileAPI.one()
         .then( profiles =>
+          // console.log(profiles)
           this.setState({ profiles })
       )}
     )
@@ -148,7 +150,7 @@ class App extends Component {
               )}/>
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                <ProfileForm token={ auth.token()} onSubmit={this.handleProfileSubmission}/>
               )}/>
           <Route path='/signup' render={
             () => (
@@ -161,7 +163,7 @@ class App extends Component {
           <Route path='/dashboard' render={
             () => (
               <div>
-                <DashboardPage token={auth.token()}/>
+                <DashboardPage profiles={profiles} token={auth.token()}/>
               </div>
               )}/>
           <Route path='/signin' render={

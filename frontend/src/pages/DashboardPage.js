@@ -2,17 +2,19 @@ import React from 'react'
 import '../App.css'
 import Navigation from '../components/navbar'
 import Profile from '../components/Profile'
-import decodeJWT from 'jwt-decode'
+// import decodeJWT from 'jwt-decode'
 
-export default ({ token }) => {
-  const decodedToken = decodeJWT(token)
-  const email = decodedToken.email
-  const id = decodedToken.sub
+export default ({ token, profiles }) => {
+  console.log(profiles)
+  // const decodedToken = decodeJWT(token)
+  // const email = decodedToken.email
+  // const id = decodedToken.sub
   return (
     <div>
       <Navigation />
-      <h1>{email}</h1>
-      <h1>{id}</h1>
+      {/* <h1>{email}</h1>
+      <h1>{id}</h1> */}
+      <Profile profile={profiles} />
       <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
     </div>
   )

@@ -3,7 +3,9 @@ import {Redirect} from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
-// import decodeJWT from 'jwt-decode'
+import decodeJWT from 'jwt-decode'
+
+const token = window.localStorage.getItem('token')
 
 class ProfileForm extends React.Component {
   state = { redirect: false}
@@ -11,7 +13,11 @@ class ProfileForm extends React.Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-    const email = 'jo@bo.co'
+
+    const decodedToken = decodeJWT(token)
+    console.log(decodedToken)
+    const email = decodedToken.email
+    console.log(email)
     // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value

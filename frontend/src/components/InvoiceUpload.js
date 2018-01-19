@@ -12,6 +12,7 @@ require('dotenv').config()
 
 // Set a constant of invoice to be the invoice ID that was passed in from the InvoiceForm page.
 const invoice = ''
+const token = window.localStorage.getItem('token')
 
 export default class InvoiceUpload extends Component {
     handleUploadClick = (event) => {

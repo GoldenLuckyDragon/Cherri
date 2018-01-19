@@ -9,8 +9,8 @@ const User = require('../models/user')
 passport.use(User.createStrategy())
 
 // this sends the cookie to the front so we can see it in the request object
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+// passport.serializeUser(User.serializeUser())
+// passport.deserializeUser(User.deserializeUser())
 
 // Serialization flow
 // passport.serializeUser(function(user, done) {
@@ -75,6 +75,12 @@ passport.use(new PassportJWT.Strategy(
   }
 ))
 
+function token (req, res, next) {
+  const user = req.user
+  res.json(user)
+  next()
+}
+
 // function to start using Json web tokens
 function signJWTForUser (req, res) {
   const user = req.user
@@ -96,7 +102,8 @@ module.exports = {
   initialize: [passport.initialize(), passport.session()],
   register,
   signJWTForUser,
+  token,
   // export our signin function to use passport authentication.
-  signIn: passport.authenticate('local', {session: true}),
+  signIn: passport.authenticate('local', {session: false}),
   requireJWT: passport.authenticate('jwt', {session: false})
 }
