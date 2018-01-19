@@ -68,6 +68,7 @@ export default function Profile ({
                 name={` Pay ${invoice.customerCompanyName}`}
                 description={` Invoice :${invoice.invoiceNumber}`}
                 amount={invoice.offerAmount}
+                payee={invoice.payee}
               />
               &nbsp;
             </Invoice>
