@@ -8,22 +8,6 @@ import Profile from '../components/Profile'
 import Invoice from '../components/Invoice'
 // import decodeJWT from 'jwt-decode'
 
-// export default ({ token, profiles }) => {
-//   console.log(profiles)
-//   // const decodedToken = decodeJWT(token)
-//   // const email = decodedToken.email
-//   // const id = decodedToken.sub
-//   return (
-//     <div>
-//       <Navigation />
-//       {/* <h1>{email}</h1>
-//       <h1>{id}</h1> */}
-//       <Profile profile={profiles} />
-//       <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
-//     </div>
-//   )
-// }
-
 export default class DashboardPage extends React.Component {
   constructor (props) {
     super()
@@ -42,10 +26,7 @@ export default class DashboardPage extends React.Component {
         <br />
         <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
           <Tab eventKey={1} title='Add Invoice'>
-            <InvoiceForm />
-            {/* <br />
-            <a href={`/invoice/create`} className='btn-blue border'>Add Invoice</a>
-            <br /> */}
+            <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a>
           </Tab>
           <Tab eventKey={2} title='Payment History'>
             <Invoice />

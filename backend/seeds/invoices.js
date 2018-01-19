@@ -1,18 +1,14 @@
 const Invoice = require('../models/invoice')
 
 // {
-//   "invoiceNumber": "hkd",
-//   "amount": "123",
-//   "currency": "hkd",
-//   "offerAmount": "123",
+//   "invoiceNumber": "exemple",
+//   "amount": "1234",
+//   "currency": "HKD",
 //   "dueDate": "12/12/2020",
-//   "expiryDate": "12/12/2020",
-//   "status": "hkd",
-//   "customerCompanyName": "hkd",
-//   "customerFirstname": "hkd",
-//   "customerSurname": "hkd",
-//   "salePurchaseAgreement": "hkd",
-//   "invoiceUpload": "hkd"
+//   "status": "pending",
+//   "customerCompanyName": "Marking",
+//   "customerFirstname": "Mark",
+//   "customerSurname": "King"
 // }
 
 Invoice.create([
