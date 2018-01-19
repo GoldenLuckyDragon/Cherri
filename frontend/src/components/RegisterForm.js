@@ -10,24 +10,22 @@ function RegisterForm ({ onSignUp }) {
       <Navigation />
       <Jumbotron className='jumbotron-blue'>
         <Logo />
-        <form onSubmit={onSignUp}>
-          <label>
-        email:
-        <input type='text' name='firstName' />
-          </label>
-          <label>
+        <div className='card card-shadow'>
+          <form onSubmit={onSignUp}>
+            <label>
         email:
         <input type='email' name='email' />
-          </label>
+            </label>
         &nbsp;
-          <br />
-          <label>
+            <br />
+            <label>
         password:
         <input type='password' name='password' />
-          </label>
-          <br />
-          <button type='submit' className='btn-blue'>Sign Up</button>
-        </form>
+            </label>
+            <br />
+            <button type='submit' className='btn-blue'>Sign Up</button>
+          </form>
+        </div>
       </Jumbotron>
     </div>
   )

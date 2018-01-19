@@ -20,9 +20,7 @@ export default function Profile ({
 }) {
   return (
     <div>
-      <Navigation />
-      <Jumbotron className='jumbotron-blue'>
-        <Logo />
+      <form>
         <span>
       Email:
       {/*  match the profile information to match the profile of this email */}
@@ -30,37 +28,39 @@ export default function Profile ({
             {email}
           </Link>
         </span>
-      &nbsp;
+        <br />
         <span>Factory: {factoryName}</span>
-      &nbsp;
+        <br />
         <span>Address: {address}</span>
-      &nbsp;
+        <br />
         <span>HKID: {hkid}</span>
-      &nbsp;
+        <br />
         <span>Stripe ID: {stripeId}</span>
-      &nbsp;
+        <br />
         <span>Incorporation Certificate: {incorporationCertificate}</span>
-      &nbsp;
+        <br />
         <span>Payment Method: {paymentMethod}</span>
-      &nbsp;
+        <br />
         <hr />
-      Invoices: {
+      Invoices:
+          <br />
+        {
         // populate our invoices
         invoices ? (
           invoices.map(invoice => (
             <Invoice key={invoice._id}>
               <span>Invoice Number:{invoice.invoiceNumber} </span>
-              &nbsp;
+              <br />
               <span>Invoice Amount:{invoice.amount} </span>
-              &nbsp;
+              <br />
               <span>Invoice Currency:{invoice.currency} </span>
-              &nbsp;
+              <br />
               <span>Offer Amount:{invoice.offerAmount} </span>
-              &nbsp;
+              <br />
               <span>Due Date:{invoice.dueDate} </span>
-              &nbsp;
+              <br />
               <span>Expiry Date:{invoice.expiryDate} </span>
-              &nbsp;
+              <br />
               <span>Status:{invoice.status} </span>
               &nbsp;
 
@@ -78,8 +78,7 @@ export default function Profile ({
       }
       &nbsp;
         <hr />
-        <hr />
-      </Jumbotron>
+      </form>
     </div>
   )
 }

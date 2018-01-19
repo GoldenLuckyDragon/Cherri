@@ -16,13 +16,14 @@ export function all () {
 }
 
 // send a post to our backend API to add to the db
-export function save ({profile}) {
-  console.log(API_URL)
+
+export function save (profile) {
+  // console.log(API_URL)
+  console.log(profile)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token()}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(profile)
   })

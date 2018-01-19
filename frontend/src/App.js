@@ -8,10 +8,12 @@ import ProfileEditForm from './components/ProfileEditForm'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
+import InvoiceUpload from './components/InvoiceUpload'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
+import DashboardPage from './pages/DashboardPage'
 import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
@@ -54,10 +56,11 @@ class App extends Component {
   }
 
   handleProfileSubmission = (profile) => {
-    this.setState( ({ profiles }) => {
-      return { profiles: [profile].concat( profiles )}
+    // console.log(profile)
+    this.setState(({profiles}) => {
+      { profiles: [profile].concat(profiles)}
     });
-    profileAPI.save( profile );
+    profileAPI.save(profile);
   }
 
   // Event handler for registration of new User
@@ -67,16 +70,15 @@ class App extends Component {
     const form = event.target
     const element = form.elements
     const email = element.email.value
-    const firstName = element.firstName.value
     const password = element.password.value
-    auth.register({email, firstName, password})
+    auth.register({email, password})
     .then(() => {
       profileAPI.all()
         .then( profiles =>
           this.setState({ profiles })
       )}
     )
-    console.log({ password, email, firstName })
+    console.log({ password, email})
   }
 
   // Event handler for signin of existing User
@@ -140,6 +142,10 @@ class App extends Component {
           <Route path='/about' render={() => (
               <AboutPage token={ auth.token() }/>
             )}/>
+            <Route path='/dashboard' render={
+                () => (
+                  <DashboardPage token={ auth.token() }/>
+                )}/>
           <Route path='/profiles' render={
               () => (
                 <AccountPage profiles={profiles}/>
@@ -148,16 +154,18 @@ class App extends Component {
               () => (
                 <ProfileForm onSubmit={this.handleProfileSubmission}/>
               )}/>
-          <Route path='/profile/edit' render={
-              () => (
-                <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
-              )}/>
           <Route path='/signup' render={
             () => (
               <div>
-              { auth.isSignedIn() && <Redirect to='/profile/create'/>
+              { auth.isSignedIn() && <Redirect to='/dashboard'/>
               }
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+              </div>
+              )}/>
+          <Route path='/dashboard' render={
+            () => (
+              <div>
+                <DashboardPage token={auth.token()}/>
               </div>
               )}/>
           <Route path='/signin' render={
@@ -172,7 +180,11 @@ class App extends Component {
                 <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
               )}/>
                {/* our charges route for testing making a charge between two of our stripe customers */}
-             <Route path='/charges' render={
+         <Route path='/invoice/upload' render={
+             () => (
+               <InvoiceUpload/>
+             )}/>
+          <Route path='/charges' render={
                () => (
                  <div>
                    <ChargesPage token={ auth.token() } />
@@ -181,6 +193,10 @@ class App extends Component {
           <Route path='/signout' render={() => (
                 <SignOutForm onSignOut={this.handleSignOut}/>
               )}/>
+          {/* <Route path='/profile/edit' render={
+              () => (
+                <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+              )}/> */}
         </Switch>
       </div>
       </Router>
