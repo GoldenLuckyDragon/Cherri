@@ -77,14 +77,10 @@ export default function Profile ({
         ) : ('N/A')
       }
       &nbsp;
-<<<<<<< HEAD
       <hr />
       <hr />
       {/* </Jumbotron> */}
-=======
-        <hr />
-      </form>
->>>>>>> a0c86bbd9c9d6460262f94742c602f1b13894785
+
     </div>
   )
 }
