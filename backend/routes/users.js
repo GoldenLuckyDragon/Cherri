@@ -2,7 +2,6 @@
 const User = require('../models/user.js')
 // const Profile = require('../models/profile.js')
 // const Invoice = require('../models/invoice.js')
-const authMiddleware = require('../middleware/auth')
 
 // set up our routes for profile.
 const userApi = app => {

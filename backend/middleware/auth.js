@@ -34,9 +34,9 @@ passport.use(User.createStrategy())
 
 function register (req, res, next) {
   const user = new User({
-    email: req.body.email
+    email: req.body.email,
     // firstName: req.body.firstName
-    // account: req.body.account
+    account: req.body.account
   })
 
   User.register(user, req.body.password,

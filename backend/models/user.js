@@ -7,7 +7,7 @@ const ObjectId = Schema.Types.ObjectId
 
 const UserSchema = Schema({
   // firstName: String
-  // account: [{ type: ObjectId, ref: 'finalProfile' }]
+  account: { type: ObjectId, ref: 'finalProfile' }
 })
 
 // extend the schema with our Passport plugin
