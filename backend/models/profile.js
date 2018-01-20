@@ -14,7 +14,7 @@ const ObjectId = Schema.Types.ObjectId
 
 const FinalProfileSchema = Schema({
   // format needed for required fields
-  email: { type: String, required: true },
+  // email: { type: String, required: true },
   password: String,
   factoryName: String,
   address: String,

@@ -1,4 +1,5 @@
 // include our models
+const User = require('../models/user.js')
 const Profile = require('../models/profile.js')
 // we add invoices because it is used on our profiles .populate
 const Invoice = require('../models/invoice.js')
@@ -19,7 +20,7 @@ const profileApi = app => {
 
   // GET function, with authentication applied to it, can't access unless
   // token is present
-  app.get('/profiles', (req, res) => {
+  app.get('/profiles', authMiddleware.requireJWT, (req, res) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     Profile.find()
     // add our invoices
@@ -35,9 +36,10 @@ const profileApi = app => {
 // add for authentication authMiddleware.requireJWT,
   app.get('/profile', authMiddleware.requireJWT, (req, res) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
-    // Profile.find()
+    // User.find({'_id': `${req.user._id}`})
     Profile.find({'email': `${req.user.email}`})
     // add our invoices
+    // .populate('account')
     .populate('invoices')
     .then(profiles => {
       console.log('profiles: ', profiles)
@@ -48,13 +50,33 @@ const profileApi = app => {
   })
 
   // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
-  app.post('/profiles', (req, res) => {
+  // app.post('/profiles', (req, res) => {
+  //   // create a new profile
+  //   Profile.create(req.body)
+  //   .then((profile) => {
+  //     // 201 created server code and then res.json is set to the new profile
+  //     res.status(201).json(profile).end()
+  //   })
+  // })
+
+  // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
+  app.post('/profiles', authMiddleware.requireJWT, (req, res) => {
+    // console.log(req.user._id)
     // create a new profile
     Profile.create(req.body)
     .then((profile) => {
-      // 201 created server code and then res.json is set to the new profile
-      res.status(201).json(profile).end()
+      return (
+        User.findOne({'_id': `${req.user._id}`})
+        .then(u => {
+          u.account = profile._id
+          u.save()
+        })
+      )
     })
+      .then((profile) => {
+      // 201 created server code and then res.json is set to the new profile
+        res.status(201).json(profile).end()
+      })
   })
 
   // STILL TO BE DONE, PATCH FOR PROFILE EDITING

@@ -71,15 +71,16 @@ class App extends Component {
     const form = event.target
     const element = form.elements
     const email = element.email.value
+    const account = '5a63a30b4db988e620265bff'
     const password = element.password.value
-    auth.register({email, password})
+    auth.register({email, password, account})
     .then(() => {
       profileAPI.one()
         .then( profiles =>
           this.setState({ profiles })
       )}
     )
-    console.log({ password, email})
+    console.log({ password, email, account})
   }
 
   // Event handler for signin of existing User
