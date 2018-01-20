@@ -15,7 +15,7 @@ router.post('/register',
 // Sign in a User. // middleware that allows us to sign in
 router.post('/signin',
   authMiddleware.signIn,
-  authMiddleware.signJWTForUser,
+  authMiddleware.signJWTForUser
   // (req, res) => {
   //   res.json({ user: req.user })
   // }
