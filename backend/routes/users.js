@@ -14,7 +14,7 @@ const userApi = app => {
     User.find()
     // add our invoices
     .populate('account')
-    .populate('invoices')
+    // .populate('invoices')
     .then(users => {
       console.log('users: ', users)
       // render as json.

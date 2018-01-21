@@ -1,5 +1,6 @@
 // include our models
 const Profile = require('../models/profile.js')
+const User = require('../models/user.js')
 const Invoice = require('../models/invoice.js')
 const authMiddleware = require('../middleware/auth')
 
@@ -17,16 +18,21 @@ const invoiceApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.post('/invoice', (req, res) => {
-    // console.log(req.user.email)
+  app.post('/invoice', authMiddleware.requireJWT, (req, res) => {
+    console.log(req.user._id)
     // Will need to be refactored as invoice will need to be associated with profile
     Invoice.create(req.body)
     .then(invoice => {
       return (
-        Profile.findOne({'email': `${req.user.email}`})
-          .then(p => {
-            p.invoices.push({'_id': `${invoice._id}`})
-            p.save()
+        User.findOne({'_id': `${req.user._id}`})
+          .then(u => {
+            console.log(u)
+            console.log(u.account)
+            Profile.findOne({'_id': `${u.account}`})
+              .then(p => {
+                p.invoices.push({'_id': `${invoice._id}`})
+                p.save()
+              })
           })
       )
     })

@@ -23,7 +23,7 @@ class ProfileForm extends React.Component {
     const address = elements['address'].value
     const hkid = elements['hkid'].value
     const stripeId = ''
-    const invoices = [{'_id': '5a61762ba28878e18fdfb42e'}]
+    const invoices = []
     const incorporationCertificate = elements['incorporationCertificate'].value
 
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
