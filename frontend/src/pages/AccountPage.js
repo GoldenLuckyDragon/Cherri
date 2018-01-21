@@ -38,15 +38,16 @@ export default ({users, profiles, invoices}) => {
         <Route path='/profiles' render={
           () => {
             const user = users.account
-            console.log(users.account._id)
+            console.log(invoices)
             return (
-              <Profile {...user} />
+              <Profile invoice={invoices} {...user} />
             )
           }
         } />
         <Route path='/invoices' render={
           () => {
             const user = users.account
+            console.log(invoices)
             return (
               <InvoiceList users={user} invoice={invoices} profile={profiles} />
             )

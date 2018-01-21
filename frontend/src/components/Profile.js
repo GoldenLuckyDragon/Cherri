@@ -13,7 +13,8 @@ export default function Profile ({
   hkid,
   incorporationCertificate,
   paymentMethod,
-  invoices
+  invoices,
+  invoice
 }) {
   return (
     <div>
@@ -30,38 +31,42 @@ export default function Profile ({
       &nbsp;
       <hr />
       Invoices: {
+        invoices.map(i => {
+          console.log(i)
+          // invoice.find({'_id': `${i}`})
+        })
         // populate our invoices
-        invoices ? (
-          invoices.map(invoice => {
-            console.log(invoice)
-            return (
-              <div>
-                <span>Invoice Number:{invoice.invoiceNumber} </span>
-                <br />
-                <span>Invoice Amount:{invoice.amount} </span>
-                <br />
-                <span>Invoice Currency:{invoice.currency} </span>
-                <br />
-                <span>Offer Amount:{invoice.offerAmount} </span>
-                <br />
-                <span>Due Date:{invoice.dueDate} </span>
-                <br />
-                <span>Expiry Date:{invoice.expiryDate} </span>
-                <br />
-                <span>Status:{invoice.status} </span>
-              &nbsp;
+        // invoices ? (
+        //   invoices.map(inv => {
+        //     console.log(inv)
+        //     return (
+        //       <div>
+        //         <span>Invoice Number:{invoice.invoiceNumber} </span>
+        //         <br />
+        //         <span>Invoice Amount:{invoice.amount} </span>
+        //         <br />
+        //         <span>Invoice Currency:{invoice.currency} </span>
+        //         <br />
+        //         <span>Offer Amount:{invoice.offerAmount} </span>
+        //         <br />
+        //         <span>Due Date:{invoice.dueDate} </span>
+        //         <br />
+        //         <span>Expiry Date:{invoice.expiryDate} </span>
+        //         <br />
+        //         <span>Status:{invoice.status} </span>
+        //       &nbsp;
 
-                <Checkout
-                  name={` Pay ${invoice.customerCompanyName}`}
-                  description={` Invoice :${invoice.invoiceNumber}`}
-                  amount={invoice.offerAmount}
-                // payee={stripeId}
-              />
-              </div>
-            )
-          })
-          // or show no tokens
-        ) : ('N/A')
+              // <Checkout
+              //     name={` Pay ${invoice.customerCompanyName}`}
+              //     description={` Invoice :${invoice.invoiceNumber}`}
+              //     amount={invoice.offerAmount}
+              //   // payee={stripeId}
+              // />
+        //       </div>
+        //     )
+        //   })
+        //   // or show no tokens
+        // ) : ('N/A')
       }
       &nbsp;
       <hr />

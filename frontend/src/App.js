@@ -179,7 +179,8 @@ class App extends Component {
               )}/>
           <Route path='/profiles' render={
               () => (
-                <AccountPage users={users} profiles={profiles}/>
+                <AccountPage users={users}
+                  invoices={invoices} profiles={profiles}/>
               )}/>
           <Route path='/invoices' render={
               () => (
