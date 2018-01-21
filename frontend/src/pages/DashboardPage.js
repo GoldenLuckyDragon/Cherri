@@ -30,10 +30,11 @@ export default class DashboardPage extends React.Component {
           <div className='card card-shadow'>
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
               <Tab eventKey={1} title='Add Invoice'>
-                <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a>
+                <InvoiceForm />
+                {/* <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a> */}
                 <br />
               </Tab>
-              <Tab eventKey={2} title='Payment History'>
+              <Tab eventKey={2} title='Invoice History'>
                 <Invoice />
               </Tab>
               <Tab eventKey={3} title='Account'>

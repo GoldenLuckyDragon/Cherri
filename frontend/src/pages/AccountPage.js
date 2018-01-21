@@ -26,12 +26,12 @@ export default ({profiles}) => {
             </div>
           )
         } />
-        <Route path='/profiles/:id/edit' render={
+        {/* <Route path='/profiles/:id/edit' render={
           ({match}) => {
             const id = match.params.id
             const profile = profiles.find((p) => p._id === id)
-            // console.log(id)
-            // console.log(profile)
+            console.log(id)
+            console.log(profile)
             return (
               <div>
                 <h1> Edit profile </h1>
@@ -39,12 +39,12 @@ export default ({profiles}) => {
               </div>
             )
           }
-        } />
+        } /> */}
         <Route path='/profiles/:id' render={
           ({ match }) => {
             const id = match.params.id
             const profile = profiles.find((p) => p._id === id)
-            // console.log(profile)
+            console.log(profile)
             return (
               <div>
                 <Profile {...profile} />
