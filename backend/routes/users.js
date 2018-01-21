@@ -13,8 +13,8 @@ const userApi = app => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.find()
     // add our invoices
-    // .populate('account')
-    // .populate('invoices')
+    .populate('account')
+    .populate('invoices')
     .then(users => {
       console.log('users: ', users)
       // render as json.

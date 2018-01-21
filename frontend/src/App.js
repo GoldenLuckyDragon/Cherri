@@ -41,7 +41,7 @@ class App extends Component {
 
   componentDidMount(){
     // calling the fetch functions from profileAPI file
-    profileAPI.one()
+    profileAPI.all()
     .then(profiles => {
       // console.log(profiles)
       this.setState({ profiles })
@@ -57,9 +57,8 @@ class App extends Component {
   }
 
   handleProfileSubmission = (profile) => {
-    // console.log(profile)
     this.setState(({profiles}) => {
-      { profiles: [profile].concat(profiles)}
+      return { profiles: [profile].concat(profiles)}
     });
     profileAPI.save(profile);
   }
@@ -75,7 +74,7 @@ class App extends Component {
     const password = element.password.value
     auth.register({email, password, account})
     .then(() => {
-      profileAPI.one()
+      profileAPI.all()
         .then( profiles =>
           this.setState({ profiles })
       )}
@@ -93,7 +92,7 @@ class App extends Component {
     const password = element.password.value
     auth.signIn({email, password})
     .then(() => {
-      profileAPI.one()
+      profileAPI.all()
         .then( profiles =>
           // console.log(profiles)
           this.setState({ profiles })
@@ -155,12 +154,12 @@ class App extends Component {
               )}/>
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm token={ auth.token()} onSubmit={this.handleProfileSubmission}/>
+                <ProfileForm onSubmit={this.handleProfileSubmission}/>
               )}/>
           <Route path='/signup' render={
             () => (
               <div>
-              { auth.isSignedIn() && <Redirect to='/dashboard'/>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
               }
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
               </div>

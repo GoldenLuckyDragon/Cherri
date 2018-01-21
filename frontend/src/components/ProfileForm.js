@@ -14,20 +14,20 @@ class ProfileForm extends React.Component {
     event.preventDefault()
     const { elements } = event.target
 
-    const decodedToken = decodeJWT(token)
-    console.log(decodedToken)
-    const email = decodedToken.email
-    console.log(email)
+    // const decodedToken = decodeJWT(token)
+    // console.log(decodedToken)
+    // const email = decodedToken.email
+    // console.log(email)
     // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value
     const hkid = elements['hkid'].value
-    const stripeId = 'acct_1BFw7WCoOW4Jzoaw'
+    const stripeId = ''
     const invoices = [{'_id': '5a61762ba28878e18fdfb42e'}]
     const incorporationCertificate = elements['incorporationCertificate'].value
 
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
-    this.props.onSubmit({email, factoryName, address, hkid, stripeId, invoices, incorporationCertificate })
+    this.props.onSubmit({factoryName, address, hkid, stripeId, invoices, incorporationCertificate })
     // allow the redirect after submssion
     this.setState({ redirect: true })
   }
