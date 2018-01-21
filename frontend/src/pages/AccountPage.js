@@ -2,44 +2,22 @@ import React from 'react'
 import ProfileList from '../components/ProfileList'
 import {Route, Switch, Link} from 'react-router-dom'
 import Profile from '../components/Profile'
+import Invoice from '../components/Invoice'
+import InvoiceList from '../components/InvoiceList'
 import InvoiceForm from '../components/InvoiceForm'
 // import * as invoiceAPI from './api/invoices'
 import ProfileEditForm from '../components/ProfileEditForm'
 import { Button } from 'react-bootstrap'
+import decodeJWT from 'jwt-decode'
 
-export default ({profiles}) => {
-  // function handleInvoiceSubmission (invoice) {
-  //   this.setState(({invoices}) => {
-  //     return {invoices: [invoice].concat(invoices)}
-  //   })
-  //   // calling the save function from backend API route
-  //   invoiceAPI.save(invoice)
-  // }
+const token = window.localStorage.getItem('token')
 
+console.log(token)
+
+export default ({users, profiles, invoices}) => {
   return (
-    profiles ? (
+    users ? (
       <Switch>
-        <Route path='/profiles/:id/invoice/new' render={
-          () => (
-            <div>
-              <InvoiceForm onSubmit={this.handleInvoiceSubmission} />
-            </div>
-          )
-        } />
-        <Route path='/profiles/:id/edit' render={
-          ({match}) => {
-            const id = match.params.id
-            const profile = profiles.find((p) => p._id === id)
-            // console.log(id)
-            // console.log(profile)
-            return (
-              <div>
-                <h1> Edit profile </h1>
-                <ProfileEditForm profiles={profile} onSubmit={this.handleProfileSubmission} />
-              </div>
-            )
-          }
-        } />
         <Route path='/profiles/:id' render={
           ({ match }) => {
             const id = match.params.id
@@ -58,11 +36,21 @@ export default ({profiles}) => {
           }
         } />
         <Route path='/profiles' render={
-          () => (
-            <div>
-              <ProfileList profiles={profiles} key={profiles._id} />
-            </div>
-          )
+          () => {
+            const user = users.account
+            console.log(users.account._id)
+            return (
+              <Profile {...user} />
+            )
+          }
+        } />
+        <Route path='/invoices' render={
+          () => {
+            const user = users.account
+            return (
+              <InvoiceList users={user} invoice={invoices} profile={profiles} />
+            )
+          }
         } />
       </Switch>
     ) : (

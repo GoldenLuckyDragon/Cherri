@@ -4,10 +4,23 @@ import axios from 'axios'
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react'
 import { Jumbotron, Tab, Tabs, Table } from 'react-bootstrap'
 
-export default function Invoice ({ children }) {
+export default function Invoice ({
+  invoice,
+  invoiceNumber,
+  amount,
+  currency,
+  offerAmount,
+  dueDate,
+  expiryDate,
+  status,
+  customerCompanyName,
+  customerFirstname,
+  customerSurname
+}) {
+  console.dir(invoice)
   return (
     <div>
-      <span> { children } </span>
+      <span> { invoice } </span>
     </div>
   )
 }

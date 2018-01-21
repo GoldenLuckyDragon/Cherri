@@ -1,7 +1,8 @@
 // include our models
 const User = require('../models/user.js')
-// const Profile = require('../models/profile.js')
-// const Invoice = require('../models/invoice.js')
+const Profile = require('../models/profile.js')
+const authMiddleware = require('../middleware/auth')
+const Invoice = require('../models/invoice.js')
 
 // set up our routes for profile.
 const userApi = app => {
@@ -13,10 +14,29 @@ const userApi = app => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.find()
     // add our invoices
-    .populate('account')
+    .populate({
+      path: 'account',
+      populate: [{
+        path: 'invoices'
+      }]
+    })
     // .populate('invoices')
     .then(users => {
       console.log('users: ', users)
+      // render as json.
+      res.json(users)
+    })
+    .catch(error => res.json({ error }))
+  })
+
+  app.get('/user', authMiddleware.requireJWT, (req, res) => {
+    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
+    User.findOne(({'_id': `${req.user._id}`}))
+    // add our invoices
+    .populate('account')
+    // .populate('invoices')
+    .then(users => {
+      console.log('user: ', users)
       // render as json.
       res.json(users)
     })
