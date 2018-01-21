@@ -2,13 +2,13 @@ import { token } from './signin'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // show all our profiles
-export function one () {
+export function all () {
   // console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer: ${token()}`
+      'Authorization': `Bearer ${token()}`
     }
   })
   .then(res => res.json())
@@ -18,13 +18,11 @@ export function one () {
 // send a post to our backend API to add to the db
 
 export function save (profile) {
-  // console.log(API_URL)
-  console.log(profile)
   return fetch(`${API_URL}/profiles`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer: ${token()}`
+      'Authorization': `Bearer ${token()}`
     },
     body: JSON.stringify(profile)
   })

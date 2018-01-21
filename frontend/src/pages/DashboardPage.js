@@ -20,7 +20,7 @@ export default class DashboardPage extends React.Component {
     this.handleSelect = this.handleSelect.bind(this)
   }
 
-  render () {
+  render (profile) {
     return (
       <div>
         <br />
@@ -32,7 +32,6 @@ export default class DashboardPage extends React.Component {
             <Invoice />
           </Tab>
           <Tab eventKey={3} title='Account'>
-            <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
             <Profile />
           </Tab>
         </Tabs>
