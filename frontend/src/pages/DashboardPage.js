@@ -23,18 +23,26 @@ export default class DashboardPage extends React.Component {
   render (profile) {
     return (
       <div>
-        <br />
-        <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-          <Tab eventKey={1} title='Add Invoice'>
-            <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a>
-          </Tab>
-          <Tab eventKey={2} title='Payment History'>
-            <Invoice />
-          </Tab>
-          <Tab eventKey={3} title='Account'>
-            <Profile />
-          </Tab>
-        </Tabs>
+        <Navigation />
+        <Jumbotron className='jumbotron-blue'>
+          <Logo />
+          <br />
+          <div className='card card-shadow'>
+            <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
+              <Tab eventKey={1} title='Add Invoice'>
+                <InvoiceForm />
+                {/* <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a> */}
+                <br />
+              </Tab>
+              <Tab eventKey={2} title='Invoice History'>
+                <Invoice />
+              </Tab>
+              <Tab eventKey={3} title='Account'>
+                <Profile />
+              </Tab>
+            </Tabs>
+          </div>
+        </Jumbotron>
       </div>
     )
   }
