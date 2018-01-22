@@ -34,21 +34,6 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 
-// add for authentication authMiddleware.requireJWT,
-  app.get('/profile', authMiddleware.requireJWT, (req, res, next) => {
-    // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
-    Profile.find({'email': `${req.user.email}`})
-    // add our invoices
-    // .populate('account')
-    .populate('invoices')
-    .then(profiles => {
-      // console.log('profiles: ', profiles)
-      // render as json.
-      res.json(profiles)
-    })
-    .catch(error => res.json({ error }))
-  })
-
   // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
   app.post('/profiles', authMiddleware.requireJWT, (req, res, next) => {
     // console.log(req.user._id)
@@ -69,17 +54,15 @@ const profileApi = app => {
       })
   })
 
-  // STILL TO BE DONE, PATCH FOR PROFILE EDITING
-  // app.patch('/profile', authorize, (req, res) => {
-    // const updateObject = req.body
-    // const id = req.params.id
-    // db.profile.update({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
-  //   Profile.updateOne({_id: '5a55a570526f535e89dadcc1'}, { $set: {factoryName: 'BARRRRRRY'} })
-
-  // })
-
-  // app returned to routes/index.js
-  return app
+  app.patch('/profiles', authMiddleware.requireJWT, (req, res) => {
+    Profile.findOneAndUpdate(({'_id': `${req.user.account}`}), req.body)
+    .then(profiles => {
+      console.log('profile: ', profiles)
+      // render as json.
+      res.json(profiles)
+    })
+    .catch(error => res.json({ error }))
+  })
 }
 
 // export our profileApi

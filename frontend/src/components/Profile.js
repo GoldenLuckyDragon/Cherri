@@ -17,24 +17,20 @@ export default function Profile ({
   profile,
   invoice
 }) {
-  // console.log(profile)
-  // console.log(invoice)
-  // // const profile = profiles.find((p) => p._id === id)
-  // console.log(_id)
   const henry = profile.find((p) => p._id === _id)
   return (
     <div>
-      &nbsp;
-      <span>Factory: {henry.factoryName}</span>
-      &nbsp;
+      <br />
+      <span>Factory Name: {henry.factoryName}</span>
+      <br />
       <span>Address: {henry.address}</span>
-      &nbsp;
+      <br />
       <span>HKID: {henry.hkid}</span>
-      &nbsp;
+      <br />
       <span>Incorporation Certificate: {henry.incorporationCertificate}</span>
-      &nbsp;
+      <br />
       <span>Payment Method: {henry.paymentMethod}</span>
-      &nbsp;
+      <br />
     </div>
   )
 }

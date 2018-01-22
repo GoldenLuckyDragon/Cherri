@@ -9,6 +9,7 @@ import ProfileEditForm from './components/ProfileEditForm'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -22,7 +23,7 @@ import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 import Navigation from './components/navbar'
-
+import UploadHkid from './components/UploadHkid'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 
@@ -74,25 +75,6 @@ class App extends Component {
     });
     profileAPI.save(profile);
   }
-
-  // // Event handler for registration of new User
-  // handleRegister = (event) => {
-  //   event.preventDefault()
-  //   // declaration of const
-  //   const form = event.target
-  //   const element = form.elements
-  //   const email = element.email.value
-  //   const account = '5a63a30b4db988e620265bff'
-  //   const password = element.password.value
-  //   auth.register({email, password, account})
-  //   .then(() => {
-  //     profileAPI.all()
-  //       .then( profiles =>
-  //         this.setState({ profiles })
-  //     )}
-  //   )
-  //   console.log({ password, email, account})
-  // }
 
   handleRegister = (event) => {
     event.preventDefault()
@@ -205,11 +187,20 @@ class App extends Component {
               )}/>
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm
-                  currentEmail={this.state.currentEmail}
-                  onSubmit={this.handleProfileSubmission}
-                />
+                <div>
+                  { auth.hasProfile() && <Redirect to='/uploadHkid'/>
+                  }
+                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                </div>
               )}/>
+          <Route path='/uploadHkid' render={
+              () => {
+                if (auth.isSignedIn() && users) {
+                  return <UploadHkid users={users}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/signup' render={
             () => (
               <div>
@@ -236,6 +227,10 @@ class App extends Component {
              () => (
                <InvoiceUpload/>
              )}/>
+         <Route path='/invoice/spaupload' render={
+             () => (
+               <InvoiceSpaUpload/>
+             )}/>
           <Route path='/charges' render={
                () => (
                  <div>
@@ -255,5 +250,5 @@ class App extends Component {
     )
   }
 }
-
+// comment for push
 export default App
