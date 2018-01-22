@@ -180,11 +180,18 @@ class App extends Component {
               <AboutPage token={ auth.token() }/>
             )}/>
           <Route path='/dashboard' render={
-              () => (
-                <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
-              )}/>
+              () => {
+                if (users && profiles && invoices) {
+                  return <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/profiles' render={
               () => (
+                console.log(users),
+                console.log(profiles),
+                console.log(invoices),
                 <AccountPage users={users}
                   invoices={invoices} profiles={profiles}/>
               )}/>
@@ -202,12 +209,6 @@ class App extends Component {
               { auth.isSignedIn() && <Redirect to='/profile/create'/>
               }
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
-              </div>
-              )}/>
-          <Route path='/dashboard' render={
-            () => (
-              <div>
-                <DashboardPage profiles={profiles} token={auth.token()}/>
               </div>
               )}/>
           <Route path='/signin' render={
