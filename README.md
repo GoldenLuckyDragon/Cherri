@@ -28,10 +28,11 @@ TODO : update ENV For backend FRONT_END_URL
 
 [FURTHER WORK](#furtherwork)
 
-
 ---
 <a name="installation"/>
+
 ### 1. Installation Instructions
+
 </a>
 
 To use this project locally:
@@ -43,7 +44,12 @@ Move into the directory:
 ```
 $ cd Cherri
 ```
-The project consists of both a front and back end. To begin with, you will need a stripe account. Go to  https://dashboard.stripe.com/register
+The project consists of both a front and back end.
+
+---
+
+#### Back End
+To begin with, you will need a stripe account. Go to  https://dashboard.stripe.com/register
 and register an account. In the Stripe dashboard, sign up for Stripe Connect (which allows the platform to be a middleman in a transaction between two clients).
 
 Once you have a Stripe account, register your platform here:
