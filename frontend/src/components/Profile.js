@@ -11,6 +11,8 @@ export default function Profile ({
   factoryName,
   address,
   hkid,
+  // stripeId,
+
   incorporationCertificate,
   paymentMethod,
   profile,
@@ -57,22 +59,64 @@ export default function Profile ({
               &nbsp;
 
               <Checkout
-                  name={` Pay ${invoice.customerCompanyName}`}
-                  description={` Invoice :${invoice.invoiceNumber}`}
-                  amount={invoice.offerAmount}
+                name={` Pay ${invoice.customerCompanyName}`}
+                description={` Invoice :${invoice.invoiceNumber}`}
+                amount={invoice.offerAmount}
                 // payee={stripeId}
               />
               </div>
             )
           })
           // or show no tokens
-        ) : ('N/A')
+        ) : ('You have no submitted invoices available.')
       }
       &nbsp;
-      <hr />
       <hr />
       {/* </Jumbotron> */}
 
     </div>
   )
 }
+
+// export function InvoiceHistory ({
+//   invoices
+// }) {
+//   return (
+//     <div>
+//       Invoices: {
+//         // populate our invoices
+//         invoices ? (
+//           invoices.map(invoice => (
+//             <Invoice key={invoice._id}>
+//               <span>Invoice Number:{invoice.invoiceNumber} </span>
+//               <br />
+//               <span>Invoice Amount:{invoice.amount} </span>
+//               <br />
+//               <span>Invoice Currency:{invoice.currency} </span>
+//               <br />
+//               <span>Offer Amount:{invoice.offerAmount} </span>
+//               <br />
+//               <span>Due Date:{invoice.dueDate} </span>
+//               <br />
+//               <span>Expiry Date:{invoice.expiryDate} </span>
+//               <br />
+//               <span>Status:{invoice.status} </span>
+//               &nbsp;
+//
+//               <Checkout
+//                 name={` Pay ${invoice.customerCompanyName}`}
+//                 description={` Invoice :${invoice.invoiceNumber}`}
+//                 amount={invoice.offerAmount}
+//                 // payee={stripeId}
+//               />
+//               &nbsp;
+//             </Invoice>
+//           ))
+//           // or show no tokens
+//         ) : ('You have no submitted invoices available.')
+//       }
+//       &nbsp;
+//       <hr />
+//     </div>
+//   )
+// }

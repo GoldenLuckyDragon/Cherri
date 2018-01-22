@@ -22,7 +22,7 @@ export default ({users, profiles, invoices}) => {
           ({ match }) => {
             const id = match.params.id
             const profile = profiles.find((p) => p._id === id)
-            // console.log(profile)
+            console.log(profile)
             return (
               <div>
                 <Profile {...profile} />
