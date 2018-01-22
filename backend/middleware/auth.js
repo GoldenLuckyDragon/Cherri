@@ -56,7 +56,7 @@ passport.use(new PassportJWT.Strategy(
 // our email function
 function getEmail (req, res, next) {
   console.log('***************')
-  console.dir('request body: ', req.body)
+  console.dir('request body: ', req)
   console.log('***************')
   console.log('YOUR EMAIL IS : ', userEmail)
   next()
@@ -67,7 +67,6 @@ function token (req, res, next) {
   res.json(user)
   next()
 }
-
 
 // function to start using Json web tokens
 function signJWTForUser (req, res) {

@@ -49,8 +49,8 @@ const paymentApi = app => {
   })
 
   // middleware for our charges endpoint
-  app.get('/charges', authMiddleware.requireJWT, authMiddleware.getEmail, (req, res, next) => {
-  }, function (error, req, body) {
+  app.get('/charges', authMiddleware.requireJWT, (req, res, next) => {
+  }, function (error, req, res, body) {
     if (error) {
       console.log((error))
       return
@@ -65,7 +65,14 @@ const paymentApi = app => {
 
   // CONNECT  endpoint for redirect
   app.get('/users/auth/stripe_connect', authMiddleware.getEmail, (req, res, next) => {
+    // FIXME - edge cases where no referrer
+    let userEmail = req.headers.referer.split('&')[3].split('=')[1]
+
+    // console.log('in stripe_connect with req: ', req)
+    // console.log('in stripe_connect with req._passport: ', req._passport)
+    console.log('req.headers.referer: ', userEmail)
     const code = req.query.code
+
     // Make /oauth/token endpoint POST request
     request.post({
       url: TOKEN_URI,
@@ -83,12 +90,12 @@ const paymentApi = app => {
       console.log('error: ', err)
       // save the stripe user id
       console.log('stripe_user_id: ', stripeUserId)
-
-      // find our profile by id and inject our stripe user id.
-      // Profile.findOneAndUpdate({'email': req.user.email}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
-      //   // throw an error if any
-      //   if (err) { throw err } else { console.log('INJECTION') }
-      // })
+      // res.redirect(`${FRONT_END_URL}/charges`)
+      // // find our profile by id and inject our stripe user id.
+      Profile.findOneAndUpdate({'email': userEmail}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
+        // throw an error if any
+        if (err) { throw err } else { console.log('INJECTION') }
+      })
     })
     res.redirect(`${FRONT_END_URL}/charges`)
   })
