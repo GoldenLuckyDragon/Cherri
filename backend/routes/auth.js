@@ -3,6 +3,7 @@ const authMiddleware = require('../middleware/auth.js')
 
 const router = express.Router()
 
+// if successfully registered (post req), then return the User object
 router.post('/register',
   authMiddleware.register,
   authMiddleware.signJWTForUser
@@ -11,6 +12,7 @@ router.post('/register',
   // }
 )
 
+// Sign in a User. // middleware that allows us to sign in
 router.post('/signin',
   authMiddleware.signIn,
   authMiddleware.signJWTForUser
@@ -20,10 +22,13 @@ router.post('/signin',
 )
 
 router.get('/profiles',
-  authMiddleware.signIn,
-  (req, res) => {
+  authMiddleware.signIn, authMiddleware.getEmail, (req, res, next) => {
     res.send({profiles: [ 'profile' ]})
   }
 )
+
+router.get('/charges', authMiddleware.requireJWT, (req, res, next) => {
+  console.dir(req)
+})
 
 module.exports = router

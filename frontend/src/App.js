@@ -1,57 +1,158 @@
 // import our constants
 import React, { Component } from 'react'
-import Checkout from './components/Checkout'
 import './App.css'
+// invoiceAPI should be below
+import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
-import InvoiceForm from './components/InvoiceForm'
-import Navigation from './components/navbar'
-import * as profileAPI from './api/profiles'
+// imports associated with invoice
 import * as invoiceAPI from './api/invoices'
+import InvoiceForm from './components/InvoiceForm'
+import InvoiceUpload from './components/InvoiceUpload'
+// imports associated with page selection
+import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import DashboardPage from './pages/DashboardPage'
+import LearnPage from './pages/LearnPage'
+// imports associated with signing up & signing in
+import RegisterForm from './components/RegisterForm'
+import SignInForm from './components/SignInForm'
+import SignOutForm from './components/SignOutForm'
+import * as auth from './api/signin'
+import * as userAPI from './api/user'
+import Navigation from './components/navbar'
+
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 
-// Our Stripe connect url
-const STRIPE_URL = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_BjHuFmrEKXcxfPWEGG7eFkFienrbbAs5&scope=read_write'
+// Our Stripe imports
+import { STRIPE_URL   } from './constants/stripe'
+import ChargesPage from './pages/ChargesPage'
+// stats const is taken from signin as auth.sendStats
+
 
 // allow for env files
 require('dotenv').config()
 
 // our main page app
 class App extends Component {
-  state = { profiles: null }
+  state = {
+    profiles: null,
+    users: null,
+    invoices: null,
+    currentEmail: null
+  }
 
   componentDidMount(){
     // calling the fetch functions from profileAPI file
     profileAPI.all()
     .then(profiles => {
-      this.setState({ profiles })
       // console.log(profiles)
+      this.setState({ profiles })
+      // test log to ensure that  profile information is coming through from backend
     })
+
     // setting a state when invoiceAPI is called
     invoiceAPI.all()
     .then(invoices => {
       this.setState({ invoices })
-      // console.log(invoices)
+      // {/*test log to ensure that  profile information is coming through from backend*/}
+    })
+
+    // setting a state when userAPI is called
+    userAPI.all()
+    .then(users => {
+      this.setState({ users })
+      // {/*test log to ensure that  profile information is coming through from backend*/}
     })
   }
-  // event handler for Profile create
+
   handleProfileSubmission = (profile) => {
     this.setState(({profiles}) => {
       return { profiles: [profile].concat(profiles)}
     });
-    // calling the save function from backend API route
     profileAPI.save(profile);
   }
 
-  handleProfileEditSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
-    });
-    // calling the save function from backend API route
-    profileAPI.edit(profile);
+  // // Event handler for registration of new User
+  // handleRegister = (event) => {
+  //   event.preventDefault()
+  //   // declaration of const
+  //   const form = event.target
+  //   const element = form.elements
+  //   const email = element.email.value
+  //   const account = '5a63a30b4db988e620265bff'
+  //   const password = element.password.value
+  //   auth.register({email, password, account})
+  //   .then(() => {
+  //     profileAPI.all()
+  //       .then( profiles =>
+  //         this.setState({ profiles })
+  //     )}
+  //   )
+  //   console.log({ password, email, account})
+  // }
+
+  handleRegister = (event) => {
+    event.preventDefault()
+    // declaration of const
+    const form = event.target
+    const element = form.elements
+    const email = element.email.value
+    const account = '5a63a30b4db988e620265bff'
+    const password = element.password.value
+    auth.register({email, password, account})
+    .then(() => {
+      console.log('in App.js with response from server. setting state for currentEmail: ', email);
+      this.setState({ currentEmail: email })
+      userAPI.all()
+        // .populate({
+        //   path: 'account',
+        //   populate: [{
+        //     path: 'invoices'
+        //   }]
+      // })
+        .then( users =>
+          this.setState({ users })
+      )}
+    )
+    // console.log({ password, email, account})
+  }
+
+  // Event handler for signin of existing User
+  handleSignIn = (event) => {
+    event.preventDefault()
+    // declaration of const
+    const form = event.target
+    const element = form.elements
+    const email = element.email.value
+    const password = element.password.value
+    auth.signIn({email, password})
+    .then((json) => {
+      console.log('App.js signed in and setting state with email: ', email);
+      this.setState({ currentEmail: email })
+      userAPI.all()
+        .then( users =>
+          // console.log(profiles)
+          this.setState({ users })
+      )}
+    )
+    // console.log({ password, email })
+    // console.log({token})
+  }
+
+  // handleProfileEditSubmission = (profile) => {
+  //   this.setState(({profiles}) => {
+  //     return { profiles: [profile].concat(profiles)}
+  //   });
+  //   // calling the save function from backend API route
+  //   profileAPI.edit(profile);
+  // }
+
+  handleSignOut = () => {
+    auth.signOut()
+    this.setState({profiles:null})
   }
 
   // event handler for Invoice create
@@ -64,33 +165,91 @@ class App extends Component {
   }
 
   render () {
-    const {profiles} = this.state
+    const {users, invoices, profiles} = this.state
     return (
       <Router>
       <div className='App'>
         <Navigation />
-          <Switch>
-            <Route exact path='/' render={
-                () => (
-                  <HomePage />
-                )}/>
-            <Route path='/profiles' render={
-                () => (
-                  <AccountPage profiles={profiles}/>
-                )}/>
-            <Route path='/profile/create' render={
-                () => (
-                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
-                )}/>
-            <Route path='/profile/edit' render={
-                () => (
-                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
-                )}/>
-            <Route path='/invoice/create' render={
-                () => (
+        {/*  Switch statment to handle all our routes */}
+        <Switch>
+          <Route exact path='/' render={
+              () => (
+                <HomePage />
+              )}/>
+          <Route path='/learnmore' render={
+              () => (
+                <LearnPage/>
+              )}/>
+          <Route path='/about' render={() => (
+              <AboutPage token={ auth.token() }/>
+            )}/>
+          <Route path='/dashboard' render={
+              () => {
+                if (users && profiles && invoices) {
+                  return <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                } else {
+                  return null
+                }
+              }}/>
+          <Route path='/profiles' render={
+              () => (
+                console.log(users),
+                console.log(profiles),
+                console.log(invoices),
+                <AccountPage users={users}
+                  invoices={invoices} profiles={profiles}/>
+              )}/>
+          <Route path='/invoices' render={
+              () => (
+                <AccountPage users={users} invoices={invoices} profiles={profiles}/>
+              )}/>
+          <Route path='/profile/create' render={
+              () => (
+                <ProfileForm
+                  currentEmail={this.state.currentEmail}
+                  onSubmit={this.handleProfileSubmission}
+                />
+              )}/>
+          <Route path='/signup' render={
+            () => (
+              <div>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
+              }
+              <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+              </div>
+              )}/>
+          <Route path='/signin' render={
+            () => (
+              <div>
+                { auth.isSignedIn() && <Redirect to='/profiles'/> }
+                <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
+              </div>
+              )}/>
+          <Route path='/invoice/create' render={
+              () => (
+                <div>
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
-                )}/>
-          </Switch>
+                </div>
+              )}/>
+               {/* our charges route for testing making a charge between two of our stripe customers */}
+         <Route path='/invoice/upload' render={
+             () => (
+               <InvoiceUpload/>
+             )}/>
+          <Route path='/charges' render={
+               () => (
+                 <div>
+                   <ChargesPage token={ auth.token() } />
+                 </div>
+               )}/>
+          <Route path='/signout' render={() => (
+                <SignOutForm onSignOut={this.handleSignOut}/>
+              )}/>
+          {/* <Route path='/profile/edit' render={
+              () => (
+                <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+              )}/> */}
+        </Switch>
       </div>
       </Router>
     )

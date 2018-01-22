@@ -1,4 +1,7 @@
 import React from 'react'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
 
 export default function ProfileEditForm ({onSubmit}) {
   function handleFormSubmission (event) {
@@ -13,39 +16,45 @@ export default function ProfileEditForm ({onSubmit}) {
   }
 
   return (
-    <form onSubmit={handleFormSubmission} >
+    <div>
+      <Navigation />
+      <Jumbotron className='jumbotron-blue'>
+        <Logo />
+        <form onSubmit={handleFormSubmission} >
         &nbsp;
-      <label>
+          <label>
         Factory Name:
         &nbsp;
         <input placeholder='' type='text' name='factoryName' />
-      </label>
+          </label>
 
-      <label>
+          <label>
         Address:
         &nbsp;
         <input type='text' name='address' />
-      </label>
+          </label>
 
-      <label>
+          <label>
         HK ID:
         &nbsp;
         <input type='text' name='hkid' />
-      </label>
+          </label>
 
-      <label>
+          <label>
         Incorporation Certificate:
         &nbsp;
         <input type='text' name='incorporationCertificate' />
-      </label>
+          </label>
 
-      <label>
+          <label>
         Payment Method:
         &nbsp;
         <input type='text' name='paymentMethod' />
-      </label>
+          </label>
 
-      <button type='submit'>Edit Profile</button>
-    </form>
+          <button type='submit' className='btn-blue'>Edit Profile</button>
+        </form>
+      </Jumbotron>
+    </div>
   )
 }

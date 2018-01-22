@@ -3,10 +3,19 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-// this is the schema
+// "email": "exemple@hotmail.com"
+// "factoryName": "exemple",
+// "address": "exemple",
+// "hkid": "exemple",
+// "stripeId": "exemple",
+// "incorporationCertificate": "exemple",
+// "paymentMethod": "exemple",
+// "invoices": [{ type: ObjectId, ref: 'Invoice' }]
+
 const FinalProfileSchema = Schema({
-  email: String,
-  password: String,
+  // format needed for required fields
+  // email: { type: String, required: true },
+  // password: String,
   factoryName: String,
   address: String,
   hkid: String,

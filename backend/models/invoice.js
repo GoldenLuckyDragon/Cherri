@@ -3,7 +3,7 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 
 const invoiceSchema = Schema({
-  invoiceNumber: String,
+  invoiceNumber: { type: String, required: true },
   amount: Number,
   currency: String,
   offerAmount: Number,
