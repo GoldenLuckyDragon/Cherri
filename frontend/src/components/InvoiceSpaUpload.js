@@ -20,9 +20,8 @@ export default class InvoiceUpload extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-    // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
-    const invoiceUpload = elements['invoiceUpload'].value
-    this.props.onSubmit({invoiceUpload})
+    const invoiceSpaUpload = elements['invoiceSpaUpload'].value
+    this.props.onSubmit({invoiceSpaUpload})
     this.setState({ redirect: true })
   }
 

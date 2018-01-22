@@ -37,7 +37,7 @@ export default class InvoiceForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
-        {/* { redirect && <Redirect to="/InvoiceUpload" />} */}
+        { redirect && <Redirect to="/invoice/upload" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
           SUBMIT AN INVOICE
@@ -97,8 +97,7 @@ export default class InvoiceForm extends React.Component {
             <input type='text' name='customerSurname' />
           </label>
           <br/>
-          <a href={`/invoice/upload`} className='btn-blue'>Submit</a>
-          {/* <button type='submit' className='btn-blue'>Create Invoice</button> */}
+          <button type='submit' className='btn-blue'>Create Invoice</button>
           <br/>
         </form>
       </div>
