@@ -3,7 +3,7 @@ const mongoose = require('./base')
 const Schema = mongoose.Schema
 
 const invoiceSchema = Schema({
-  invoiceNumber: String,
+  invoiceNumber: { type: String, required: true },
   amount: Number,
   currency: String,
   offerAmount: Number,
@@ -18,7 +18,6 @@ const invoiceSchema = Schema({
 })
 
 const Invoice =
-// mongoose.models.Invoice ||
- mongoose.model('Invoice', invoiceSchema)
+  mongoose.models.Invoice || mongoose.model('Invoice', invoiceSchema)
 
 module.exports = Invoice

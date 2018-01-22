@@ -1,0 +1,32 @@
+### Register
+Send Request
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "email": "q@gmail.com",
+  "firstName": "J",
+  "account": "5a559f41bd928b5df0f92721",
+  "password": "password1"
+}
+
+
+### signin
+POST http://localhost:8080/auth/signin
+Content-Type: application/json
+
+{
+  "email": "q@example.com",
+  "password": "password1"
+}
+
+### Protected movies
+GET http://localhost:8080/profiles
+Content-Type: application/json
+Cookie: connect.sid=s%3AO-GccvNHRa9h496g627VCL8nkN9ejQHC.jtMqAgaepMR8dDo2go2yf%2Bzkx6bdhGc8j8KJLl%2BsU9s; Path=/; HttpOnly
+
+### Protected Movies with a bearer token
+GET http://localhost:8080/profiles
+Content-Type: application/json
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imouc21vQGV4YW1wbGUuY29tIiwiaWF0IjoxNTE2MTQxMzUyLCJleHAiOjE1MTY3NDYxNTIsInN1YiI6IjVhNWQ0NGYzNTYxYzlkYWEyMzUyYTVmYyJ9.kD3uECEcGUSRU-n3Lm98rHdgvjIhQ_ZgbzZOilybVwY

@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "cloudinary": "^1.9.1",
+    "nodemailer": "^4.4.1",
     "react-transition-group": "1.x"
   }
 }
