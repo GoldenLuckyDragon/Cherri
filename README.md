@@ -229,8 +229,24 @@ First we submit our mongo DB up to m-lab.
   in the selection screen select AMAZON WEB Service
   and then select sandbox, push continue.
 
-  
+  ![Sandbox](backend/public/awssandbox.png)
 
+  Select US east for region and push continue.
+
+  ![US East](backend/public/mlabmap.png)
+
+  You will see a confirmation page, double check your details and confirm you are using the free tier.
+
+  ![Confirm](backend/public/mlabconfirm.png)
+
+
+  #####Zeit
+
+  To install the Cli tools, run:
+
+  ```
+  $  npm install -g now
+  ```
 
 
 
