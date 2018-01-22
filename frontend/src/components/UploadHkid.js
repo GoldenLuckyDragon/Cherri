@@ -25,8 +25,8 @@ export default class UploadHkid extends React.Component {
     this.setState({ redirect: true })
   }
   handleUploadClick = (event) => {
-    // window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${userid}_hkid`, tags:['hkid']},
-    //   function(error, result) { console.log(error, result) });
+    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', folder: 'companydocs', upload_preset: 'cherri', public_id: `${userid}_hkid`, tags:['hkid']},
+    function(error, result) { console.log(error, result) });
   }
 
     render (profiles) {
