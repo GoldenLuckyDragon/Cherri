@@ -17,6 +17,8 @@ import DashboardPage from './pages/DashboardPage'
 import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
+// import UploadHkid from './components/UploadHkid'
+// import UploadIc from './components/UploadIc'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
@@ -181,7 +183,7 @@ class App extends Component {
             )}/>
           <Route path='/dashboard' render={
               () => {
-                if (users && profiles && invoices) {
+                if (users && profiles) {
                   return <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
                 } else {
                   return null
@@ -199,10 +201,17 @@ class App extends Component {
               () => (
                 <AccountPage users={users} invoices={invoices} profiles={profiles}/>
               )}/>
+
+              {/* After creating their profile, user is redirected to profile/uploadhkid to upload their HKID */}
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm onSubmit={this.handleProfileSubmission}/>
+              <div>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
+              }
+              <ProfileForm onSubmit={this.handleProfileSubmission}/>
+              </div>
               )}/>
+              {/* Upon registering, user is redirected to profile/create in order to fill in information about them */}
           <Route path='/signup' render={
             () => (
               <div>
@@ -211,6 +220,26 @@ class App extends Component {
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
               </div>
               )}/>
+
+              {/* After creating their profile and uploading the HKID and Incorporation Certificate, user is redirected to the dashboard */}
+          {/* <Route path='/uploadic' render={
+              () => (
+              <div>
+                { auth.isSignedIn() && <Redirect to='/profile/create'/>
+                }
+              <UploadIc/>
+              </div>
+              )}/> */}
+              {/* After creating their profile and uploading the HKID, user is redirected to profile/uploadic to upload their Incorporation Certificate */}
+          {/* <Route path='/uploadhkid' render={
+              () => (
+              <div>
+                <h1>hello</h1>
+                { auth.isSignedIn() && <Redirect to='/dashboard'/>
+                }
+                <UploadHkid profiles={profiles}/>
+              </div>
+              )}/> */}
           <Route path='/signin' render={
             () => (
               <div>
