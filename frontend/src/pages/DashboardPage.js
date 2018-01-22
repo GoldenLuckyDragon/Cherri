@@ -4,7 +4,7 @@ import Navigation from '../components/navbar'
 import { Jumbotron, Tab, Tabs } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import InvoiceForm from '../components/InvoiceForm'
-import Profile from '../components/Profile'
+import ProfileList from '../components/ProfileList'
 import Invoice from '../components/Invoice'
 // import decodeJWT from 'jwt-decode'
 
@@ -13,16 +13,31 @@ export default class DashboardPage extends React.Component {
     super()
     this.state = {
       // Takes active tab from props if it is defined there
-      activeTab: props.activeTab || 1
+      activeTab: props.activeTab || 1,
+      profiles: {}
     }
 
     // Bind the handleSelect function already here (not in the render function)
     this.handleSelect = this.handleSelect.bind(this)
   }
 
-  render (profile) {
+  render () {
+    const { profiles } = this.state
     return (
       <div>
+//         <br />
+//         <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
+//           <Tab eventKey={1} title='Add Invoice'>
+//             <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a>
+//           </Tab>
+//           <Tab eventKey={2} title='Payment History'>
+//             <Invoice />
+//           </Tab>
+//           <Tab eventKey={3} title='Account'>
+//             <ProfileList profiles={profiles} />
+//           </Tab>
+//         </Tabs>
+
         <Navigation />
         <Jumbotron className='jumbotron-blue'>
           <Logo />
