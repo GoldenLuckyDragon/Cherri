@@ -8,25 +8,23 @@ TODO : update ENV For backend FRONT_END_URL
 
 ## TABLE OF CONTENTS
 
-[INSTALLATION INSTRUCTIONS](#installation)
+[1. INSTALLATION INSTRUCTIONS](#installation)
 
-[OVERVIEW](#overview)  
+[2. TOOLS & METHODOLOGIES](#tools)
 
-[BUSINESS PROBLEM](#businessproblem)
+[3. BUSINESS PROBLEM](#businessproblem)
 
-[BUSINESS SOLUTION](#businesssolution)
+[4. BUSINESS SOLUTION](#businesssolution)
 
-[PROJECT PLANNING](#businesssolution)
+[5. PROJECT PLANNING](#businesssolution)
 * [User Stories](#userstories)
 * [Workflow Diagram & Project Plan](#workflow)
 * [Wireframes](#wireframes)
 * [Entity Relationship Diagram (ERD)](#erd)
 
-[TOOLS & METHODOLOGIES](#tools)
+[6. KEY FEATURES](#keyfeatures)
 
-[KEY FEATURES](#keyfeatures)
-
-[FURTHER WORK](#furtherwork)
+[7. FURTHER WORK](#furtherwork)
 
 ---
 <a name="installation"/>
@@ -201,9 +199,25 @@ $ yarn start
 to start the website.
 
 ---
----
+<a name="tools"/>
+
+### 2. TOOLS & METHODOLOGIES
+
+</a>
+
 ### Linter  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 We chose to use the following Linter: https://standardjs.com/
 
-It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `.
+It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
+
+---
+<a name="installation"/>
+
+### 3. BUSINESS PROBLEM
+
+</a>
+
+Our client, Winsome Stock, seeks to create an online web application platform where manufacturers can create an account to upload their unpaid invoices (up to a limit of US$3 million), proof of delivery documents (signed by their end customer) and a signed Account Receivables Sale & Purchase Agreement. These documents can then be reviewed by Winsome Stock, which can immediately purchase the unpaid invoices at a specified percentage of the invoice value. While we understand that in the future, Winsome Stock would prefer to set the percentage based on the risk profile of the manufacturer and its end customer, it is agreed that the current iteration of the platform will set the purchase amount at 90% of the invoice value.
+
+Ideally, verification of both the manufacturer and the invoice authenticity would be done online through automated systems implemented on the platform (for example, through document recognition software), but the current iteration of this project will require Winsome Stock to conduct its own verification process offline, external to the platform (for example, by calling end-customers to request confirmation of the invoice’s authenticity).
