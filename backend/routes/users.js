@@ -10,7 +10,7 @@ const userApi = app => {
 
   // GET function, with authentication applied to it, can't access unless
   // token is present
-  app.get('/users', (req, res) => {
+  app.get('/users', authMiddleware.getEmail, (req, res, next) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.find()
     // add our invoices

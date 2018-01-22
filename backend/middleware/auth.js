@@ -4,6 +4,8 @@ const JWT = require('jsonwebtoken')
 const PassportJWT = require('passport-jwt')
 const User = require('../models/user')
 
+var { userEmail } = require('../constants/stripe')
+
 // strategies are for avoiding username you set up a strategy with passport.
 passport.use(User.createStrategy())
 
@@ -51,6 +53,15 @@ passport.use(new PassportJWT.Strategy(
   }
 ))
 
+// our email function
+function getEmail (req, res, next) {
+  console.log('***************')
+  console.dir('request body: ', req.body)
+  console.log('***************')
+  console.log('YOUR EMAIL IS : ', userEmail)
+  next()
+}
+
 function token (req, res, next) {
   const user = req.user
   res.json(user)
@@ -79,6 +90,7 @@ module.exports = {
   register,
   signJWTForUser,
   token,
+  getEmail,
   // export our signin function to use passport authentication.
   signIn: passport.authenticate('local', {session: false}),
   requireJWT: passport.authenticate('jwt', {session: false})

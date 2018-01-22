@@ -6,7 +6,8 @@ const router = express.Router()
 // if successfully registered (post req), then return the User object
 router.post('/register',
   authMiddleware.register,
-  authMiddleware.signJWTForUser
+  authMiddleware.signJWTForUser,
+  authMiddleware.getEmail
   // (req, res) => {
   //   res.json({ user: req.user })
   // }
@@ -16,22 +17,21 @@ router.post('/register',
 router.post('/signin',
   authMiddleware.signIn,
   authMiddleware.signJWTForUser,
+  authMiddleware.getEmail
   // (req, res) => {
   //   res.json({ user: req.user })
   // }
 )
 
 router.get('/profiles',
-  authMiddleware.signIn,
-  (req, res) => {
+  authMiddleware.signIn, authMiddleware.getEmail, (req, res, next) => {
     res.send({profiles: [ 'profile' ]})
   }
 )
 
-router.get('/charges',
-  authMiddleware.requireJWT,
-  (req, res) => {
-    console.log(req)
+router.get('/charges', authMiddleware.requireJWT, authMiddleware.getEmail,
+  (req, res, next) => {
+    console.dir(req)
   }
 )
 
