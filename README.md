@@ -2,29 +2,36 @@
 
 # Cherri 樱桃
 
-## Coder Academy Node / React.js Project By Golden Lucky Dragon (Carmen Chung, Jon Ablondi and James Marotta).
+### Node / React.js Project
+#### By Golden Lucky Dragon
+##### (Carmen Chung, Jon Ablondi and James Marotta).
 
-TODO : update ENV For backend FRONT_END_URL
+#### Coder Academy Final Work
+
 
 ## TABLE OF CONTENTS
 
 [1. INSTALLATION INSTRUCTIONS](#installation)
 
-[2. TOOLS & METHODOLOGIES](#tools)
+[2. HOW TO DEPLOY](#deployment)
 
-[3. BUSINESS PROBLEM](#businessproblem)
+[3. TOOLS & METHODOLOGIES](#tools)
 
-[4. BUSINESS SOLUTION](#businesssolution)
+[4. BUSINESS PROBLEM](#businessproblem)
 
-[5. PROJECT PLANNING](#businesssolution)
+[5. BUSINESS SOLUTION](#businesssolution)
+
+[6. PROJECT PLANNING](#businesssolution)
 * [User Stories](#userstories)
 * [Workflow Diagram & Project Plan](#workflow)
 * [Wireframes](#wireframes)
 * [Entity Relationship Diagram (ERD)](#erd)
 
-[6. KEY FEATURES](#keyfeatures)
+[7. KEY FEATURES](#keyfeatures)
 
-[7. FURTHER WORK](#furtherwork)
+[8. FURTHER WORK](#furtherwork)
+
+[9. LICENSE](#LICENSE)
 
 ---
 <a name="installation"/>
@@ -199,9 +206,42 @@ $ yarn start
 to start the website.
 
 ---
+<a name="deployment"/>
+
+###2. HOW TO DEPLOY
+
+You will need accounts with the three following websites.
+
+M-lab   
+https://mlab.com/home
+
+Zeit  
+https://zeit.co/
+
+Netlify   
+https://www.netlify.com/
+
+
+#####Back to front.
+First we submit our mongo DB up to m-lab.
+
+  Sign In and create a new db with the button on the right
+  in the selection screen select AMAZON WEB Service
+  and then select sandbox, push continue.
+
+  
+
+
+
+
+
+
+
+
+---
 <a name="tools"/>
 
-### 2. TOOLS & METHODOLOGIES
+### 3. TOOLS & METHODOLOGIES
 
 </a>
 
@@ -212,9 +252,9 @@ We chose to use the following Linter: https://standardjs.com/
 It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
 
 ---
-<a name="installation"/>
+<a name="businessproblem"/>
 
-### 3. BUSINESS PROBLEM
+### 4. BUSINESS PROBLEM
 
 </a>
 

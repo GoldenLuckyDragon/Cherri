@@ -31,7 +31,7 @@ const userApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.get('/user', authMiddleware.requireJWT, (req, res, next) => {
+  app.get('/user', (req, res, next) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.findOne(({'_id': `${req.user._id}`}))
     // add our invoices
