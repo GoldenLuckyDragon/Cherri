@@ -9,6 +9,7 @@ import ProfileEditForm from './components/ProfileEditForm'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -216,6 +217,10 @@ class App extends Component {
          <Route path='/invoice/upload' render={
              () => (
                <InvoiceUpload/>
+             )}/>
+         <Route path='/invoice/spaupload' render={
+             () => (
+               <InvoiceSpaUpload/>
              )}/>
           <Route path='/charges' render={
                () => (

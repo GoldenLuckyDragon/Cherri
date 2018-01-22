@@ -20,7 +20,7 @@ export default class UploadIc extends React.Component {
     this.setState({ redirect: true })
   }
   handleUploadClick = (event) => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${userid}_ic`, tags:['ic']},
+    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', folder: 'companydocs', public_id: `${userid}_ic`, tags:['ic']},
       function(error, result) { console.log(error, result) });
   }
     render () {
