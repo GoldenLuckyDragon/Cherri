@@ -11,8 +11,8 @@ import Profile from '../components/Profile'
 // import decodeJWT from 'jwt-decode'
 
 export default class DashboardPage extends React.Component {
-  constructor (props, profiles, invoices, user) {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       // Takes active tab from props if it is defined there
       activeTab: props.activeTab || 1
@@ -23,7 +23,9 @@ export default class DashboardPage extends React.Component {
   }
 
   render () {
-    const { profiles, invoices, user } = this.state
+    const { profiles, invoices, users } = this.props
+    const user = users.account
+
     return (
       <div>
         <Navigation />

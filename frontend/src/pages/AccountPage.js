@@ -18,23 +18,6 @@ export default ({users, profiles, invoices}) => {
   return (
     users ? (
       <Switch>
-        <Route path='/profiles/:id' render={
-          ({ match }) => {
-            const id = match.params.id
-            const profile = profiles.find((p) => p._id === id)
-            console.log(profile)
-            return (
-              <div>
-                <Profile {...profile} />
-                <Link to={`/profiles/${id}/invoice/new`}><Button>Add Invoice</Button></Link>
-                <br />
-                &nbsp;
-                <br />
-                <Link to={`/profiles/${id}/edit`}><Button>Edit Profile</Button></Link>
-              </div>
-            )
-          }
-        } />
         <Route path='/profiles' render={
           () => {
             const user = users.account

@@ -13,6 +13,7 @@ export default function Invoice ({
   profile,
   invoice
 }) {
+  console.log(profile)
   const henry = profile.find((p) => p._id === _id)
   console.log(henry.factoryName)
   const barry = henry.invoices
