@@ -22,7 +22,7 @@ import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 import Navigation from './components/navbar'
-
+import UploadHkid from './components/UploadHkid'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 
@@ -182,8 +182,20 @@ class App extends Component {
               )}/>
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                <div>
+                  { auth.hasProfile() && <Redirect to='/uploadHkid'/>
+                  }
+                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
+                </div>
               )}/>
+          <Route path='/uploadHkid' render={
+              () => {
+                if (auth.isSignedIn() && users) {
+                  return <UploadHkid users={users}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/signup' render={
             () => (
               <div>

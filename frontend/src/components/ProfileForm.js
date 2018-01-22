@@ -40,7 +40,7 @@ class ProfileForm extends React.Component {
         <Navigation />
         <Jumbotron className='jumbotron-blue'>
           <Logo />
-        { redirect && <Redirect to="/dashboard" />}
+        { redirect && <Redirect to="/uploadHkid" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
           <label>

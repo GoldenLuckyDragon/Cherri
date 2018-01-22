@@ -53,13 +53,7 @@ const profileApi = app => {
       })
   })
 
-  // STILL TO BE DONE, PATCH FOR PROFILE EDITING
   app.patch('/profiles', authMiddleware.requireJWT, (req, res) => {
-    // const terry = req.body
-    // console.log(req.user._id)
-    // console.log(req.user.account)
-    // console.dir(Profile)
-    // Profile.findOneAndUpdate({_id:
     Profile.findOneAndUpdate(({'_id': `${req.user.account}`}), req.body)
     .then(profiles => {
       console.log('profile: ', profiles)
@@ -69,15 +63,6 @@ const profileApi = app => {
     .catch(error => res.json({ error }))
   })
 }
-
-// patch: function(req, res, next) {
-//     var conditions = {_id: req.params.id};
-//
-//     Model.findOneAndUpdate(conditions, req.body)
-//     .then(function(model, blah) {
-//       res.json(model);
-//     });
-//   },
 
 // export our profileApi
 module.exports = profileApi
