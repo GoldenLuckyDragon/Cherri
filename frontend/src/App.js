@@ -104,12 +104,12 @@ class App extends Component {
     auth.register({email, password, account})
     .then(() => {
       userAPI.all()
-        .populate({
-          path: 'account',
-          populate: [{
-            path: 'invoices'
-          }]
-        })
+        // .populate({
+        //   path: 'account',
+        //   populate: [{
+        //     path: 'invoices'
+        //   }]
+      // })
         .then( users =>
           this.setState({ users })
       )}
@@ -181,7 +181,7 @@ class App extends Component {
             )}/>
           <Route path='/dashboard' render={
               () => (
-                <DashboardPage token={ auth.token() }/>
+                <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
               )}/>
           <Route path='/profiles' render={
               () => (

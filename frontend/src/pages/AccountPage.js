@@ -49,7 +49,7 @@ export default ({users, profiles, invoices}) => {
             const user = users.account
             console.log(invoices)
             return (
-              <InvoiceList users={user} invoice={invoices} profile={profiles} />
+              <Invoice profile={profiles} invoice={invoices} {...user} />
             )
           }
         } />
