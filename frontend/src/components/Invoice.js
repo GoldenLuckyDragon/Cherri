@@ -19,38 +19,37 @@ export default function Invoice ({
   const barry = henry.invoices
   return (
     <div>
-      {
-      barry ? (
-        barry.map(invoice => {
-          return (
-            <div>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>Item No.</th>
-                    <th>Due Date</th>
-                    <th>Invoice No.</th>
-                    <th>Customer</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>{invoice.dueDate}</td>
-                    <td>{invoice.invoiceNumber}</td>
-                    <td>{invoice.customerCompanyName}</td>
-                    <td>{invoice.amount}</td>
-                    <td>{invoice.status}</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          )
-        })) : ('You have no submitted invoices available.')
-      }
-      {/* <Image cloudName='cherri' publicId={`invoices/${variable}.png`} height='300' crop='scale' /> */}
+      <Table responsive>
+        <thead>
+          <tr>
+            <th>Item No.</th>
+            <th>Due Date</th>
+            <th>Invoice No.</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+          barry ? (
+            barry.map(invoice => {
+              return (
+                <tr>
+                  <td>1</td>
+                  <td>{invoice.dueDate}</td>
+                  <td>{invoice.invoiceNumber}</td>
+                  <td>{invoice.customerCompanyName}</td>
+                  <td>{invoice.amount}</td>
+                  <td>{invoice.status}</td>
+                </tr>
+              )
+            })) : ('You have no submitted invoices available.')
+          }
+        </tbody>
+      </Table>
     </div>
   )
 }
+
+// <Image cloudName='cherri' publicId={`invoices/${variable}.png`} height='300' crop='scale' /> */}
