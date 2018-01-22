@@ -7,11 +7,11 @@ const authMiddleware = require('../middleware/auth')
 // set up our routes for invoice.
 const invoiceApi = app => {
   // useful for now to be able to see all the invoices created during testing but maybe not the best way to go about it. WHAT IF YOU PUSH A NEW INVOICE INTO PROFILES SCHEMA DIRECTLY IN THE INVOICES ARRAY?
-  app.get('/invoice', (req, res) => {
+  app.get('/invoice', authMiddleware.requireJWT, authMiddleware.getEmail, (req, res) => {
     // find all our invoices
     Invoice.find()
     .then(invoices => {
-      console.log(`invoices: `, invoices)
+      // console.log(`invoices: `, invoices)
       // render as json.
       res.json(invoices)
     })
