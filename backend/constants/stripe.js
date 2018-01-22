@@ -10,8 +10,12 @@ const STRIPE_SECRET_KEY = `${process.env.NODE_ENV}` === 'production'
 // run stripe with our secret key.
 const stripe = configureStripe(STRIPE_SECRET_KEY)
 
+// our user email
+var userEmail = 'empty'
+
 // export our stripe and secret key
 module.exports = {
   stripe,
-  STRIPE_SECRET_KEY
+  STRIPE_SECRET_KEY,
+  userEmail
 }

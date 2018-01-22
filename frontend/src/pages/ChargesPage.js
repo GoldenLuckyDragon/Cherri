@@ -1,8 +1,7 @@
 import React from 'react'
 import Navigation from '../components/navbar'
 import Checkout from '../components/Checkout'
-// import decodeJWT from 'jwt-decode'
-// import our const Current_user and Destination stripe keys
+// import {}
 
 // these three things are key to be taken from token
 const User = 'James'
@@ -24,6 +23,8 @@ export default ({ token }) => {
         amount={amount}
         payee={cherri}
       />
+
+      {/* STRIPE ID = {stripeId} */}
     </div>
   )
 }

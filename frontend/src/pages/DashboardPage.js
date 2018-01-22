@@ -3,6 +3,7 @@ import '../App.css'
 import Navigation from '../components/navbar'
 import { Jumbotron, Tab, Tabs } from 'react-bootstrap'
 import Logo from '../components/Logo'
+
 // import InvoiceForm from '../components/InvoiceForm'
 // import ProfileList from '../components/ProfileList'
 import Invoice from '../components/Invoice'
@@ -56,6 +57,7 @@ export default class DashboardPage extends React.Component {
     })
   }
 }
+
 
 //
 //

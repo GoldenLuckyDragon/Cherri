@@ -25,9 +25,10 @@ class ProfileForm extends React.Component {
     const stripeId = ''
     const invoices = []
     const incorporationCertificate = elements['incorporationCertificate'].value
-
+    
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
     this.props.onSubmit({factoryName, address, hkid, stripeId, invoices, incorporationCertificate })
+
     // allow the redirect after submssion
     this.setState({ redirect: true })
   }
