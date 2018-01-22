@@ -2,222 +2,222 @@
 
 # Cherri 樱桃
 
-## By Golden Lucky Dragon
-
-  #### Coder Academy Sydney
-  ####Final Project
-  #####by Carmen Chung, Jon Ablondi and James Marotta.
+## Coder Academy Node / React.js Project By Golden Lucky Dragon (Carmen Chung, Jon Ablondi and James Marotta).
 
 TODO : update ENV For backend FRONT_END_URL
 
----
-###Installation Instructions
+## TABLE OF CONTENTS
 
-  To use this project locally
+[1. INSTALLATION INSTRUCTIONS](#installation)
+
+[2. TOOLS & METHODOLOGIES](#tools)
+
+[3. BUSINESS PROBLEM](#businessproblem)
+
+[4. BUSINESS SOLUTION](#businesssolution)
+
+[5. PROJECT PLANNING](#businesssolution)
+* [User Stories](#userstories)
+* [Workflow Diagram & Project Plan](#workflow)
+* [Wireframes](#wireframes)
+* [Entity Relationship Diagram (ERD)](#erd)
+
+[6. KEY FEATURES](#keyfeatures)
+
+[7. FURTHER WORK](#furtherwork)
+
+---
+<a name="installation"/>
+
+### 1. Installation Instructions
+
+</a>
+
+To use this project locally:
 
 ```
 $ git clone https://github.com/GoldenLuckyDragon/Cherri.git
 ```
-Then change into the directory  
+Move into the directory:  
 ```
 $ cd Cherri
 ```
-The project is in front and backend lets set up the backend first
+The project consists of both a front and back end.
 
-you will need a stripe account goto https://dashboard.stripe.com/register
-register for an account and in the dashboard sign up for connect.
+---
 
-Stripe connect allows the platform to be a middleman between a transaction of two clients.
+#### Back End
+To begin with, you will need a stripe account. Go to  https://dashboard.stripe.com/register
+and register an account. In the Stripe dashboard, sign up for Stripe Connect (which allows the platform to be a middleman in a transaction between two clients).
 
-Once you have a stripe account register your platform here
+Once you have a Stripe account, register your platform here:
 https://dashboard.stripe.com/account/applications/settings
 
-Important Note: you must verify your identity on stripe for connect to accept payments
+Important Note: you must verify your identity on Stripe for Stripe Connect to accept payments.
 
-
-now run
+In Terminal, move into the backend folder and create a dotenv file that will host your environment variables.
 
 ```
 $ cd backend && touch .env
 ```
-this will move you to the backend folder and create a dotenv file we can save our environment variables inside.
 
-copy and paste the following inside
+Copy and paste the following inside the dotenv file:
 ```
 STRIPE_DEV_SECRET=
 CLIENT_ID=
 
 ```
-fill in your Client ID from your stripe dashboard under settings.
+Fill in your Client ID from your Stripe dashboard under Settings (and keep your dashboard open, as it will be used again).
 
-Keep the dashboard open as you will need it again.
-
- update your modules with
+Update your modules with the following command in Terminal:
 ```
 $ yarn install
 ```
-Stripe requires a handshake verification process which must be done over https and cannot be done on localhost.
+Stripe requires a handshake verification process which must be done over https and cannot be done on localhost. As such, download and install ngrok from
+https://ngrok.com/download (which will facilitate the handshake verification).
 
-
-
-Download and install ngrok from
-https://ngrok.com/download
-
-This will allow us to overcome this problem.
-
- cd to the download directory
+Move to the download directory with the following Terminal command:
 
 ```
-  cd [PATH TO NGROK probably /downloads]
+  cd [PATH TO NGROK - likely to be "/downloads"]
 ```
-and run
+and run the following command to create a secure public connection to your localhost:
 ```
  $ ngrok http 8080
 ```
-
-this creates a secure public connection to your localhost
-
 ![ngrok](/backend/public/ngrok.png)
 
-copy the https url and go back to your dashboard
-and it as a new redirect_URI
-
-on the bottom left of the dashboard make sure you select test data
+Then copy the https url and go back to your Stripe dashboard. There will be a new redirect_URI on the bottom left of the dashboard. Select "Viewing test data" as per below:
 
 ![test_data](backend/public/test_data.png)
 
-Goto your dashboard
-
-add your redirect_uri and make sure to add
+Go to your dashboard - when you add your redirect_URI, make sure to add the following to the end of your ngrok https url:
 
 ```
 /users/auth/stripe_connect
 ```
-to the end of your ngrok https url.
 
-it might look something like this
+It might look something like this:
 ```
 https://2221ajecb.ngrok.io/users/auth/stripe_connect
 
 ```
 
+Then click on "API" on the left of the dashboard and save both your stripe secret key to your new .env file. The dashboard should look like this:
 
-now goto click on API on the left of the dashboard and save both your stripe secret key to your new .env file
-
-
-Dashboard should look like this
 ![redirect](backend/public/redirect.png)
 
-
-Keep a terminal open inside /backend
-and run
+Keep Terminal open inside the /backend folder
+and run:
 ```
 $ yarn start
 ```
- you should see
+You should see:
  ```
  Server running on port: 8080
  Successful connection to MongoDB
  ```
 
-
-
-
 If you do not already have MongoDb, you will need to install it with the following steps.
 
 ---
-### MongoDb
+#### MongoDb
 
-open a new Terminal window with <kbd>CMD</kbd> + <kbd>T</kbd>
+Open a new Terminal window with <kbd>CMD</kbd> + <kbd>T</kbd>
 
-We use MongoDb, with this project you can install it using homebrew.
+We use MongoDb - with this project you can install it using Homebrew.
 
-You can find the MongoDb docs [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+You can find the MongoDb docs [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/).
 
-First update your homebrew with
+First update your homebrew with the following:
 
 ```
 $ brew update
 ```
 
-then run
+Then run:
 ```
 $ brew install mongodb
 ```
-once the installation is complete run
+Once the installation is complete, run:
 
 ```
 $ mongod --dbpath /usr/local/var/mongodb
 ```
 
-a Successful connection will display
+A successful connection will display as follows:
 ```
 waiting for connections on port 27017
 ```
 
-
 ---
 
+#### Front End
 
-
-#### Setting Up The Front End
-
-In a new terminal window (keep the other windows open)
+Open a new Terminal window (keep the other windows open) by pressing
  <kbd>CMD</kbd>  + <kbd>T</kbd>
 
-now type
+Now type:
 ```
 $ cd ..
 ```
-to go back a folder and then
+to go back a folder and then:
 ```
 $ cd frontend
 ```
 to move to the front end folder.
 
-make a new .env file with
+Make a new .env file by entering in Terminal:
 
 ```
 $ touch .env
 ```
 
-copy the following inside
+and copy the following inside:
 
 ```
 REACT_APP_STRIPE_DEV_PUBLISH=
 REACT_APP_SERVER_URL=http://localhost:8080
 ```
-Fill in the STRIPE_DEV_PUBLISH with your test publishable key from your stripe dashboard.
-
-now run
+Fill in the STRIPE_DEV_PUBLISH with your test publishable key from your stripe dashboard; then run:
 ```
 $ yarn install
 ```
 
-You should have 3 terminal windows in total
+You should have 3 terminal windows running:
 
-*1.* Cherri/backend running.
+*1.* Cherri/backend.
 
-*2.* mongodb running.
+*2.* Mongodb.
 
-*3.* cherri/frontend
+*3.* Cherri/frontend.
 
-
-and then
+Type into Terminal:
 ```
 $ yarn start
 ```
 to start the website.
 
+---
+<a name="tools"/>
 
+### 2. TOOLS & METHODOLOGIES
+
+</a>
+
+### Linter  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+We chose to use the following Linter: https://standardjs.com/
+
+It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
 
 ---
----
-### linter [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+<a name="installation"/>
 
-  We chose to use https://standardjs.com/
+### 3. BUSINESS PROBLEM
 
-  It is well documented, it has auto enforcement on save and it works with es6.
+</a>
 
-  Controversally it removes semicolons but we figure this to be they way of the future anyway.
-  Because of this, you can never start a line with (, [, or `
+Our client, Winsome Stock, seeks to create an online web application platform where manufacturers can create an account to upload their unpaid invoices (up to a limit of US$3 million), proof of delivery documents (signed by their end customer) and a signed Account Receivables Sale & Purchase Agreement. These documents can then be reviewed by Winsome Stock, which can immediately purchase the unpaid invoices at a specified percentage of the invoice value. While we understand that in the future, Winsome Stock would prefer to set the percentage based on the risk profile of the manufacturer and its end customer, it is agreed that the current iteration of the platform will set the purchase amount at 90% of the invoice value.
+
+Ideally, verification of both the manufacturer and the invoice authenticity would be done online through automated systems implemented on the platform (for example, through document recognition software), but the current iteration of this project will require Winsome Stock to conduct its own verification process offline, external to the platform (for example, by calling end-customers to request confirmation of the invoice’s authenticity).

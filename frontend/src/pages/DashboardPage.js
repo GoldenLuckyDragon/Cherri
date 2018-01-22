@@ -3,31 +3,15 @@ import '../App.css'
 import Navigation from '../components/navbar'
 import { Jumbotron, Tab, Tabs } from 'react-bootstrap'
 import Logo from '../components/Logo'
-import InvoiceForm from '../components/InvoiceForm'
-import Profile from '../components/Profile'
-import Invoice from '../components/Invoice'
 
-// import decodeJWT from 'jwt-decode'
-//
-// export default ({ token, profiles }) => {
-//   console.log(profiles)
-//   // const decodedToken = decodeJWT(token)
-//   // const email = decodedToken.email
-//   // const id = decodedToken.sub
-//   return (
-//     <div>
-//       <Navigation />
-//       {/* <h1>{email}</h1>
-//       <h1>{id}</h1> */}
-//       <Profile profile={profiles} />
-//       <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
-//     </div>
-//   )
-// import decodeJWT from 'jwt-decode'
 // import InvoiceForm from '../components/InvoiceForm'
+// import ProfileList from '../components/ProfileList'
+import Invoice from '../components/Invoice'
+import Profile from '../components/Profile'
+// import decodeJWT from 'jwt-decode'
 
 export default class DashboardPage extends React.Component {
-  constructor (props) {
+  constructor (props, profiles, invoices, user) {
     super()
     this.state = {
       // Takes active tab from props if it is defined there
@@ -39,24 +23,29 @@ export default class DashboardPage extends React.Component {
   }
 
   render () {
+    const { profiles, invoices, user } = this.state
     return (
       <div>
-        <br />
-        <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-          <Tab eventKey={1} title='Add Invoice'>
-            <InvoiceForm />
-            {/* <br />
-            <a href={`/invoice/create`} className='btn-blue border'>Add Invoice</a>
-            <br /> */}
-          </Tab>
-          <Tab eventKey={2} title='Payment History'>
-            <Invoice />
-          </Tab>
-          <Tab eventKey={3} title='Account'>
-            <a href={`/profile/create`} className='btn-blue border'>Create Profile</a>
-            <Profile />
-          </Tab>
-        </Tabs>
+        <Navigation />
+        <Jumbotron className='jumbotron-blue'>
+          <Logo />
+          <br />
+          <div className='card card-shadow'>
+            <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
+              <Tab eventKey={1} title='Add Invoice'>
+                {/* <InvoiceForm />
+                <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a> */}
+                <br />
+              </Tab>
+              <Tab eventKey={2} title='Invoice History'>
+                <Invoice profile={profiles} invoice={invoices} {...user} />
+              </Tab>
+              <Tab eventKey={3} title='Account'>
+                <Profile profile={profiles} invoice={invoices} {...user} />
+              </Tab>
+            </Tabs>
+          </div>
+        </Jumbotron>
       </div>
     )
   }
@@ -69,7 +58,10 @@ export default class DashboardPage extends React.Component {
   }
 }
 
- // export default class DashboardPage extends React.Component {
+
+//
+//
+// export default class DashboardPage extends React.Component {
 //   render () {
 //     return (
 //       <div>

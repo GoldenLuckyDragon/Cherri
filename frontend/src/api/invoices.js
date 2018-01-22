@@ -6,7 +6,8 @@ export function all () {
   return fetch(`${API_URL}/invoice`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
     }
   })
     .then(res => res.json())

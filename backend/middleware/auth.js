@@ -12,9 +12,9 @@ passport.use(User.createStrategy())
 // this sends the cookie to the front so we can see it in the request object
 function register (req, res, next) {
   const user = new User({
-    email: req.body.email
+    email: req.body.email,
     // firstName: req.body.firstName
-    // account: req.body.account
+    account: req.body.account
   })
 
   User.register(user, req.body.password,
@@ -68,6 +68,7 @@ function token (req, res, next) {
   next()
 }
 
+
 // function to start using Json web tokens
 function signJWTForUser (req, res) {
   const user = req.user
@@ -91,7 +92,8 @@ module.exports = {
   signJWTForUser,
   token,
   getEmail,
+
   // export our signin function to use passport authentication.
-  signIn: passport.authenticate('local', {session: false}),
+  signIn: passport.authenticate('local', {session: true}),
   requireJWT: passport.authenticate('jwt', {session: false})
 }

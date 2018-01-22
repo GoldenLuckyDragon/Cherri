@@ -67,7 +67,7 @@ export class HomelandingTwo extends React.Component {
         <br />
         <p />
         <Row className='show-grid'>
-          <a href={`/LearnPage`} className='btn-blue'>Learn More</a>
+          <a href={`/LearnMore`} className='btn-blue'>Learn More</a>
         </Row>
       </Grid>
     )

@@ -7,7 +7,7 @@ import decodeJWT from 'jwt-decode'
 
 const token = window.localStorage.getItem('token')
 
-export default function ProfileList ({ profiles }) {
+export default function ProfileList ({ profiles, invoices }) {
   // const decodedToken = decodeJWT(token)
   // console.log(decodedToken)
   // const email = decodedToken.email
@@ -18,7 +18,7 @@ export default function ProfileList ({ profiles }) {
       <h2>Profile List!</h2>
       {
         profiles.map(profile => {
-          return <Profile {...profile} />
+          return <Profile invoice={invoices} {...profile} />
         })
       }
     </div>

@@ -20,7 +20,7 @@ import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
-import { register } from './api/register'
+import * as userAPI from './api/user'
 import Navigation from './components/navbar'
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
@@ -37,11 +37,15 @@ require('dotenv').config()
 
 // our main page app
 class App extends Component {
-  state = { profiles: null }
+  state = {
+    profiles: null,
+    users: null,
+    invoices: null
+  }
 
   componentDidMount(){
     // calling the fetch functions from profileAPI file
-    profileAPI.one()
+    profileAPI.all()
     .then(profiles => {
       // console.log(profiles)
       this.setState({ profiles })
@@ -54,32 +58,63 @@ class App extends Component {
       this.setState({ invoices })
       // {/*test log to ensure that  profile information is coming through from backend*/}
     })
+
+    // setting a state when userAPI is called
+    userAPI.all()
+    .then(users => {
+      this.setState({ users })
+      // {/*test log to ensure that  profile information is coming through from backend*/}
+    })
   }
 
   handleProfileSubmission = (profile) => {
-    // console.log(profile)
     this.setState(({profiles}) => {
-      { profiles: [profile].concat(profiles)}
+      return { profiles: [profile].concat(profiles)}
     });
     profileAPI.save(profile);
   }
 
-  // Event handler for registration of new User
+  // // Event handler for registration of new User
+  // handleRegister = (event) => {
+  //   event.preventDefault()
+  //   // declaration of const
+  //   const form = event.target
+  //   const element = form.elements
+  //   const email = element.email.value
+  //   const account = '5a63a30b4db988e620265bff'
+  //   const password = element.password.value
+  //   auth.register({email, password, account})
+  //   .then(() => {
+  //     profileAPI.all()
+  //       .then( profiles =>
+  //         this.setState({ profiles })
+  //     )}
+  //   )
+  //   console.log({ password, email, account})
+  // }
+
   handleRegister = (event) => {
     event.preventDefault()
     // declaration of const
     const form = event.target
     const element = form.elements
     const email = element.email.value
+    const account = '5a63a30b4db988e620265bff'
     const password = element.password.value
-    auth.register({email, password})
+    auth.register({email, password, account})
     .then(() => {
-      profileAPI.one()
-        .then( profiles =>
-          this.setState({ profiles })
+      userAPI.all()
+        // .populate({
+        //   path: 'account',
+        //   populate: [{
+        //     path: 'invoices'
+        //   }]
+      // })
+        .then( users =>
+          this.setState({ users })
       )}
     )
-    console.log({ password, email})
+    // console.log({ password, email, account})
   }
 
   // Event handler for signin of existing User
@@ -92,13 +127,13 @@ class App extends Component {
     const password = element.password.value
     auth.signIn({email, password})
     .then(() => {
-      profileAPI.one()
-        .then( profiles =>
+      userAPI.all()
+        .then( users =>
           // console.log(profiles)
-          this.setState({ profiles })
+          this.setState({ users })
       )}
     )
-    console.log({ password, email })
+    // console.log({ password, email })
     // console.log({token})
   }
 
@@ -125,7 +160,7 @@ class App extends Component {
   }
 
   render () {
-    const {profiles} = this.state
+    const {users, invoices, profiles} = this.state
     return (
       <Router>
       <div className='App'>
@@ -144,22 +179,27 @@ class App extends Component {
           <Route path='/about' render={() => (
               <AboutPage token={ auth.token() }/>
             )}/>
-            <Route path='/dashboard' render={
-                () => (
-                  <DashboardPage token={ auth.token() }/>
-                )}/>
+          <Route path='/dashboard' render={
+              () => (
+                <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
+              )}/>
           <Route path='/profiles' render={
               () => (
-                <AccountPage profiles={profiles}/>
+                <AccountPage users={users}
+                  invoices={invoices} profiles={profiles}/>
+              )}/>
+          <Route path='/invoices' render={
+              () => (
+                <AccountPage users={users} invoices={invoices} profiles={profiles}/>
               )}/>
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm token={ auth.token()} onSubmit={this.handleProfileSubmission}/>
+                <ProfileForm onSubmit={this.handleProfileSubmission}/>
               )}/>
           <Route path='/signup' render={
             () => (
               <div>
-              { auth.isSignedIn() && <Redirect to='/dashboard'/>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
               }
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
               </div>
@@ -173,13 +213,15 @@ class App extends Component {
           <Route path='/signin' render={
             () => (
               <div>
-              { auth.isSignedIn() && <Redirect to='/profiles'/> }
-              <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
+                { auth.isSignedIn() && <Redirect to='/profiles'/> }
+                <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
           <Route path='/invoice/create' render={
               () => (
-                <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+                <div>
+                  <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
+                </div>
               )}/>
                {/* our charges route for testing making a charge between two of our stripe customers */}
          <Route path='/invoice/upload' render={

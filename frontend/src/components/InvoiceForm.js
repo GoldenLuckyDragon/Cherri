@@ -37,7 +37,7 @@ export default class InvoiceForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
-        { redirect && <Redirect to="/profiles" />}
+        { redirect && <Redirect to="/dashboard" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
           SUBMIT AN INVOICE
