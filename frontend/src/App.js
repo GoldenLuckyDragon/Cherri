@@ -104,6 +104,12 @@ class App extends Component {
     auth.register({email, password, account})
     .then(() => {
       userAPI.all()
+        .populate({
+          path: 'account',
+          populate: [{
+            path: 'invoices'
+          }]
+        })
         .then( users =>
           this.setState({ users })
       )}
