@@ -3,35 +3,13 @@ const passport = require('passport')
 const JWT = require('jsonwebtoken')
 const PassportJWT = require('passport-jwt')
 const User = require('../models/user')
-// const Profile = require('../models/profile')
+
+var { userEmail } = require('../constants/stripe')
 
 // strategies are for avoiding username you set up a strategy with passport.
 passport.use(User.createStrategy())
 
 // this sends the cookie to the front so we can see it in the request object
-// passport.serializeUser(User.serializeUser())
-// passport.deserializeUser(User.deserializeUser())
-
-// Serialization flow
-// passport.serializeUser(function(user, done) {
-//    done(null, user.id);
-//                 |
-// });              |
-//                 |
-//                 |____________________> saved to session req.session.passport.user = {id:'..'}
-//                                   |
-//                                  \|/
-// passport.deserializeUser(function(id, done) {
-//                   ________________|
-//                   |
-//                  \|/
-//    User.findById(id, function(err, user) {
-//        done(err, user);
-//                   |______________>user object attaches to the request as req.user
-//
-// });
-//  });
-
 function register (req, res, next) {
   const user = new User({
     email: req.body.email,
@@ -75,11 +53,20 @@ passport.use(new PassportJWT.Strategy(
   }
 ))
 
-// function token (req, res, next) {
-//   const user = req.user
-//   res.json(user)
-//   next()
-// }
+// our email function
+function getEmail (req, res, next) {
+  console.log('***************')
+  console.dir('request body: ', req)
+  console.log('***************')
+  console.log('YOUR EMAIL IS : ', userEmail)
+  next()
+}
+
+function token (req, res, next) {
+  const user = req.user
+  res.json(user)
+  next()
+}
 
 // function to start using Json web tokens
 function signJWTForUser (req, res) {
@@ -102,7 +89,9 @@ module.exports = {
   initialize: [passport.initialize(), passport.session()],
   register,
   signJWTForUser,
-  // token,
+  token,
+  getEmail,
+
   // export our signin function to use passport authentication.
   signIn: passport.authenticate('local', {session: true}),
   requireJWT: passport.authenticate('jwt', {session: false})

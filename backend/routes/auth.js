@@ -22,10 +22,13 @@ router.post('/signin',
 )
 
 router.get('/profiles',
-  authMiddleware.signIn,
-  (req, res) => {
+  authMiddleware.signIn, authMiddleware.getEmail, (req, res, next) => {
     res.send({profiles: [ 'profile' ]})
   }
 )
+
+router.get('/charges', authMiddleware.requireJWT, (req, res, next) => {
+  console.dir(req)
+})
 
 module.exports = router

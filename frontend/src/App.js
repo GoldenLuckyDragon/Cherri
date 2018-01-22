@@ -9,6 +9,7 @@ import ProfileEditForm from './components/ProfileEditForm'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -40,7 +41,8 @@ class App extends Component {
   state = {
     profiles: null,
     users: null,
-    invoices: null
+    invoices: null,
+    currentEmail: null
   }
 
   componentDidMount(){
@@ -84,6 +86,8 @@ class App extends Component {
     const password = element.password.value
     auth.register({email, password, account})
     .then(() => {
+      console.log('in App.js with response from server. setting state for currentEmail: ', email);
+      this.setState({ currentEmail: email })
       userAPI.all()
         // .populate({
         //   path: 'account',
@@ -107,7 +111,9 @@ class App extends Component {
     const email = element.email.value
     const password = element.password.value
     auth.signIn({email, password})
-    .then(() => {
+    .then((json) => {
+      console.log('App.js signed in and setting state with email: ', email);
+      this.setState({ currentEmail: email })
       userAPI.all()
         .then( users =>
           // console.log(profiles)
@@ -146,7 +152,6 @@ class App extends Component {
       <Router>
       <div className='App'>
         <Navigation />
-        <a href={STRIPE_URL}> Connect with Stripe </a>
         {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
@@ -221,6 +226,10 @@ class App extends Component {
          <Route path='/invoice/upload' render={
              () => (
                <InvoiceUpload/>
+             )}/>
+         <Route path='/invoice/spaupload' render={
+             () => (
+               <InvoiceSpaUpload/>
              )}/>
           <Route path='/charges' render={
                () => (

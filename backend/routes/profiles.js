@@ -4,6 +4,7 @@ const Profile = require('../models/profile.js')
 // we add invoices because it is used on our profiles .populate
 const Invoice = require('../models/invoice.js')
 const authMiddleware = require('../middleware/auth')
+var { userEmail } = require('../constants/stripe')
 
 // test authentication no longer needed
 // const authorize = (req, res, next) => {
@@ -20,13 +21,13 @@ const profileApi = app => {
 
   // GET function, with authentication applied to it, can't access unless
   // token is present
-  app.get('/profiles', authMiddleware.requireJWT, (req, res) => {
+  app.get('/profiles', authMiddleware.requireJWT, authMiddleware.getEmail, (req, res) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     Profile.find()
     // add our invoices
     .populate('invoices')
     .then(profiles => {
-      console.log('profiles: ', profiles)
+      // console.log('profiles: ', profiles)
       // render as json.
       res.json(profiles)
     })
@@ -34,7 +35,7 @@ const profileApi = app => {
   })
 
   // create new Profile and save it to database. It's Authenticated so that only once someone signs up they have permission to create a profile. ties in with user story.
-  app.post('/profiles', authMiddleware.requireJWT, (req, res) => {
+  app.post('/profiles', authMiddleware.requireJWT, (req, res, next) => {
     // console.log(req.user._id)
     // create a new profile
     Profile.create(req.body)

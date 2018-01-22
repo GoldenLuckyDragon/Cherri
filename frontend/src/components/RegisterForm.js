@@ -13,13 +13,13 @@ function RegisterForm ({ onSignUp }) {
         <div className='card card-shadow'>
           <form onSubmit={onSignUp}>
             <label>
-        email:
+        Email:
         <input type='email' name='email' />
             </label>
         &nbsp;
             <br />
             <label>
-        password:
+        Password:
         <input type='password' name='password' />
             </label>
             <br />

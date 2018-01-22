@@ -5,13 +5,14 @@ import { Jumbotron } from 'react-bootstrap'
 import Navigation from '../components/navbar'
 import Logo from '../components/Logo'
 import { render } from 'react-dom'
+// import cloudinary from 'cloudinary-react'
 var cloudinary = require('cloudinary')
 
 require('dotenv').config()
 
 // Set a constant of invoice to be the invoice ID that was passed in from the InvoiceForm page.
-const token = window.localStorage.getItem('token')
 const invoice = ''
+const token = window.localStorage.getItem('token')
 
 export default class InvoiceUpload extends Component {
   state = { redirect: false}
@@ -19,13 +20,13 @@ export default class InvoiceUpload extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-    const invoiceUpload = elements['invoiceUpload'].value
-    this.props.onSubmit({invoiceUpload})
+    const invoiceSpaUpload = elements['invoiceSpaUpload'].value
+    this.props.onSubmit({invoiceSpaUpload})
     this.setState({ redirect: true })
   }
 
   handleUploadClick = (event) => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`, folder: 'invoices', tags:['invoice']},
+    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_spa`, folder: 'invoices', tags:['spa']},
       function(error, result) { console.log(error, result) });
   }
     render () {
@@ -35,9 +36,9 @@ export default class InvoiceUpload extends Component {
               <Jumbotron className='jumbotron-blue'>
                 <Logo />
                   <form>
-                  <a classname='btn-blue' onClick={this.handleUploadClick} id='upload_widget_opener'>Upload Your Invoice</a>
+                  <a classname='btn-blue' onClick={this.handleUploadClick} id='upload_widget_opener'>Upload Your Signed Sale and Purchase Agreement</a>
                   <br />
-                  <a href={`/invoice/spaupload`} className='btn-blue'>Submit</a>
+                  <a href={`/Dashboard`} className='btn-blue'>Submit</a>
                   </form>
               </Jumbotron>
             </div>

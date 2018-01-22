@@ -54,6 +54,7 @@ export function register ({ email, password, account }) {
   })
   .then(res => res.json())
   .then(json => {
+    console.log('in signin.js with response from server')
     if (json) { setToken(json['token']) }
     // console.log(decodedToken())
     // as it {} need to return something

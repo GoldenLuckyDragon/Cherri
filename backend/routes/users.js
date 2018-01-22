@@ -4,13 +4,15 @@ const Profile = require('../models/profile.js')
 const authMiddleware = require('../middleware/auth')
 const Invoice = require('../models/invoice.js')
 
+var { userEmail } = require('../constants/stripe')
+
 // set up our routes for profile.
 const userApi = app => {
   // due to way index.js is structure we have to seperate out our verbs within a profileApi function and return app
 
   // GET function, with authentication applied to it, can't access unless
   // token is present
-  app.get('/users', (req, res) => {
+  app.get('/users', (req, res, next) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.find()
     // add our invoices
@@ -22,14 +24,14 @@ const userApi = app => {
     })
     // .populate('invoices')
     .then(users => {
-      console.log('users: ', users)
+      // console.log('users: ', users)
       // render as json.
       res.json(users)
     })
     .catch(error => res.json({ error }))
   })
 
-  app.get('/user', authMiddleware.requireJWT, (req, res) => {
+  app.get('/user', authMiddleware.requireJWT, (req, res, next) => {
     // finds all our profiles for now. WILL NEED TO BE REFACTORED TO FIND ONE PORFILE ONLY WITH TERNIRY INCASE PROFILE DOESNT EXIST YET
     User.findOne(({'_id': `${req.user._id}`}))
     // add our invoices
@@ -39,6 +41,8 @@ const userApi = app => {
       console.log('user: ', users)
       // render as json.
       res.json(users)
+      userEmail = users.email
+      console.log('NEW EMAIL :', userEmail)
     })
     .catch(error => res.json({ error }))
   })
