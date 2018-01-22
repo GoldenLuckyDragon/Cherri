@@ -16,14 +16,13 @@ const invoice = ''
 export default class InvoiceUpload extends Component {
   state = { redirect: false}
 
-  // handleFormSubmission = (event) => {
-  //   event.preventDefault()
-  //   const { elements } = event.target
-  //   // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
-  //   const invoiceUpload = elements['invoiceUpload'].value
-  //   this.props.onSubmit({invoiceUpload})
-  //   this.setState({ redirect: true })
-  // }
+  handleFormSubmission = (event) => {
+    event.preventDefault()
+    const { elements } = event.target
+    const invoiceUpload = elements['invoiceUpload'].value
+    this.props.onSubmit({invoiceUpload})
+    this.setState({ redirect: true })
+  }
 
   handleUploadClick = (event) => {
     window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`, folder: 'invoices', tags:['invoice']},
