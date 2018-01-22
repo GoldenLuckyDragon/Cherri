@@ -17,10 +17,6 @@ export default function Profile ({
   profile,
   invoice
 }) {
-  // console.log(profile)
-  // console.log(invoice)
-  // // const profile = profiles.find((p) => p._id === id)
-  // console.log(_id)
   const henry = profile.find((p) => p._id === _id)
   return (
     <div>

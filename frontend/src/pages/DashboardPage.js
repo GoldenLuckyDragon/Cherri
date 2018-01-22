@@ -3,8 +3,8 @@ import '../App.css'
 import Navigation from '../components/navbar'
 import { Jumbotron, Tab, Tabs } from 'react-bootstrap'
 import Logo from '../components/Logo'
-// import InvoiceForm from '../components/InvoiceForm'
-// import ProfileList from '../components/ProfileList'
+import InvoiceForm from '../components/InvoiceForm'
+import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
 // import decodeJWT from 'jwt-decode'
@@ -24,6 +24,9 @@ export default class DashboardPage extends React.Component {
   render () {
     const { profiles, invoices, users } = this.props
     const user = users.account
+    console.log(user)
+    console.log(profiles)
+    console.log(invoices)
 
     return (
       <div>
@@ -34,8 +37,8 @@ export default class DashboardPage extends React.Component {
           <div className='card card-shadow'>
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
               <Tab eventKey={1} title='Add Invoice'>
-                {/* <InvoiceForm />
-                <a href={`/invoice/create`} className='btn-blue border'>Create Invoice</a> */}
+                {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
+                <a href='/invoice/create' ><button type='submit' className='btn-blue'>Add Invoice</button></a>
                 <br />
               </Tab>
               <Tab eventKey={2} title='Invoice History'>

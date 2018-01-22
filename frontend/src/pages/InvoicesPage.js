@@ -1,5 +1,4 @@
 import React from 'react'
-import InvoiceList from '../components/InvoiceList'
 import {Route, Switch, Link} from 'react-router-dom'
 import Invoice from '../components/Invoice'
 import InvoiceForm from '../components/InvoiceForm'
@@ -32,13 +31,6 @@ export default ({invoices}) => {
               </div>
             )
           }
-        } />
-        <Route path='/invoices' render={
-          () => (
-            <div>
-              <InvoiceList invoices={invoices} key={invoices._id} />
-            </div>
-          )
         } />
       </Switch>
     ) : (
