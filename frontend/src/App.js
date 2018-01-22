@@ -75,25 +75,6 @@ class App extends Component {
     profileAPI.save(profile);
   }
 
-  // // Event handler for registration of new User
-  // handleRegister = (event) => {
-  //   event.preventDefault()
-  //   // declaration of const
-  //   const form = event.target
-  //   const element = form.elements
-  //   const email = element.email.value
-  //   const account = '5a63a30b4db988e620265bff'
-  //   const password = element.password.value
-  //   auth.register({email, password, account})
-  //   .then(() => {
-  //     profileAPI.all()
-  //       .then( profiles =>
-  //         this.setState({ profiles })
-  //     )}
-  //   )
-  //   console.log({ password, email, account})
-  // }
-
   handleRegister = (event) => {
     event.preventDefault()
     // declaration of const
