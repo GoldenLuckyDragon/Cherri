@@ -1,97 +1,55 @@
 import React, { Component } from 'react'
 import Checkout from './Checkout'
-import axios from 'axios'
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react'
-import { Jumbotron, Tab, Tabs, Table } from 'react-bootstrap'
-
-// invoice,
-// invoiceNumber,
-// amount,
-// currency,
-// offerAmount,
-// dueDate,
-// expiryDate,
-// status,
-// customerCompanyName,
-// customerFirstname,
-// customerSurname
+import { Table } from 'react-bootstrap'
 
 export default function Invoice ({
-  children
+  _id,
+  factoryName,
+  address,
+  hkid,
+  incorporationCertificate,
+  paymentMethod,
+  invoices,
+  profile,
+  invoice
 }) {
-  console.dir(children)
+  const henry = profile.find((p) => p._id === _id)
+  console.log(henry.factoryName)
+  const barry = henry.invoices
   return (
     <div>
-      <span> { children } </span>
+      {
+      barry ? (
+        barry.map(invoice => {
+          return (
+            <div>
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th>Item No.</th>
+                    <th>Due Date</th>
+                    <th>Invoice No.</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>{invoice.dueDate}</td>
+                    <td>{invoice.invoiceNumber}</td>
+                    <td>{invoice.customerCompanyName}</td>
+                    <td>{invoice.amount}</td>
+                    <td>{invoice.status}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+          )
+        })) : ('You have no submitted invoices available.')
+      }
+      {/* <Image cloudName='cherri' publicId={`invoices/${variable}.png`} height='300' crop='scale' /> */}
     </div>
   )
-}
-
-class InvoiceHistory extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      gallery: []
-    }
-  }
-  componentDidMount () {
-    // Request for images tagged invoices
-    axios.get('https://res.cloudinary.com/cherri/image/list/invoice.json')
-            .then(res => {
-              console.log(res.data.resources)
-              this.setState({gallery: res.data.resources})
-            })
-  }
-  uploadWidget () {
-  }
-
-  render () {
-    // Set variable below to be all invoices associated with the profile
-    const variable = '_inv'
-    return (
-      <div>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Item No.</th>
-              <th>Due Date</th>
-              <th>Invoice No.</th>
-              <th>Customer</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-          </tbody>
-        </Table>
-
-        <Image cloudName='cherri' publicId={`invoices/${variable}.png`} height='300' crop='scale' />
-      </div>
-
-    )
-  }
 }
