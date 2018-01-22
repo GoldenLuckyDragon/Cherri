@@ -1,13 +1,24 @@
 import React from 'react'
 import Profile from './Profile'
+import { Jumbotron } from 'react-bootstrap'
+import Logo from '../components/Logo'
+import Navigation from '../components/navbar'
+import decodeJWT from 'jwt-decode'
 
-export default function ProfileList ({ profiles }) {
+const token = window.localStorage.getItem('token')
+
+export default function ProfileList ({ profiles, invoices }) {
+  // const decodedToken = decodeJWT(token)
+  // console.log(decodedToken)
+  // const email = decodedToken.email
+  // console.log(email)
+
   return (
     <div>
-      <h1>Profile List!</h1>
+      <h2>Profile List!</h2>
       {
         profiles.map(profile => {
-          return <Profile key={profile._id} {...profile} />
+          return <Profile invoice={invoices} {...profile} />
         })
       }
     </div>

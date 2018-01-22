@@ -1,18 +1,15 @@
 const Invoice = require('../models/invoice')
 
-// const invoiceSchema = Schema({
-//   invoice_number: String,
-//   amount: Number,
-//   offer_amount: Number,
-//   due_date: Date,
-//   expiry_date: Date,
-//   status: String,
-//   customerCompany_name: String,
-//   customerFirstname: String,
-//   customer_surname: String,
-//   sale_purchase_agreement: String,
-//   invoice_upload: String
-// })
+// {
+//   "invoiceNumber": "exemple",
+//   "amount": "1234",
+//   "currency": "HKD",
+//   "dueDate": "12/12/2020",
+//   "status": "pending",
+//   "customerCompanyName": "Marking",
+//   "customerFirstname": "Mark",
+//   "customerSurname": "King"
+// }
 
 Invoice.create([
   {

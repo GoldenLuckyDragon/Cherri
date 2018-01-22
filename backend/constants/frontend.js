@@ -1,11 +1,7 @@
 // set up urls that can dynamically change with production
-const FRONTEND_DEV_URLS = ['http://localhost:3000']
-
-const FRONTEND_PROD_URLS = [
-  'https://cherri-finance.netlify.com'
-]
+const FRONT_END_URL = `${process.env.NODE_ENV}` === 'production'
+? process.env.FRONTEND_PROD_URLS
+: process.env.FRONTEND_DEV_URLS
 
 // export the production or the dev urls
-module.exports = process.env.NODE_ENV === 'production'
-? FRONTEND_PROD_URLS
-: FRONTEND_DEV_URLS
+module.exports = FRONT_END_URL

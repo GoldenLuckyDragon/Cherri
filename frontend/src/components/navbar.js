@@ -12,10 +12,14 @@ export default class Navigation extends React.Component {
     return (
       <Menu right>
         {/* This nav should only show when the person is signed in. Remember to pass profile_id (i.e. add /${_id} in the part where id is typed) when going to these links - to be added once profile table has been finalised */}
-        <Link to={`/profiles`}>Profiles(temp)</Link>
-        <Link to={`/profile/id`}>Dashboard</Link>
-        <Link to={`/profile/id/edit`}>Account</Link>
-        <Link to={`/profile/id`}>Logout</Link>
+        <Link to={`/`}>Home</Link>
+        <Link to={`/signup`}>Register</Link>
+        <Link to={`/signin`}>Login</Link>
+        <Link to={`/profiles`}>Profiles (temp)</Link>
+        <Link to={`/dashboard`}>Dashboard</Link>
+        <Link to={`/invoice/create`}>Add Invoice (temp)</Link>
+        <Link to={`/profile/id/edit`}>Account (temp)</Link>
+        <Link to={`/signout`}>Logout</Link>
       </Menu>
     )
   }

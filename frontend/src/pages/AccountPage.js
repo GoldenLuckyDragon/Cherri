@@ -2,39 +2,39 @@ import React from 'react'
 import ProfileList from '../components/ProfileList'
 import {Route, Switch, Link} from 'react-router-dom'
 import Profile from '../components/Profile'
+import Invoice from '../components/Invoice'
+import InvoiceList from '../components/InvoiceList'
 import InvoiceForm from '../components/InvoiceForm'
+// import * as invoiceAPI from './api/invoices'
+import ProfileEditForm from '../components/ProfileEditForm'
 import { Button } from 'react-bootstrap'
+import decodeJWT from 'jwt-decode'
 
-export default ({profiles}) => {
+const token = window.localStorage.getItem('token')
+
+console.log(token)
+
+export default ({users, profiles, invoices}) => {
   return (
-    profiles ? (
+    users ? (
       <Switch>
-        <Route path='/profiles/:id/invoice/new' render={
-          () => (
-            <div>
-              <InvoiceForm onSubmit={this.handleInvoiceSubmission} />
-            </div>
-          )
-        } />
-        <Route path='/profiles/:id' render={
-          ({ match }) => {
-            const id = match.params.id
-            const profile = profiles.find((p) => p._id === id)
-            console.log(profile)
+        <Route path='/profiles' render={
+          () => {
+            const user = users.account
+            console.log(invoices)
             return (
-              <div>
-                <Profile {...profile} />
-                <Link to={`/profiles/${id}/invoice/new`}><Button>Add Invoice</Button></Link>
-              </div>
+              <Profile profile={profiles} invoice={invoices} {...user} />
             )
           }
         } />
-        <Route path='/profiles' render={
-          () => (
-            <div>
-              <ProfileList profiles={profiles} key={profiles._id} />
-            </div>
-          )
+        <Route path='/invoices' render={
+          () => {
+            const user = users.account
+            console.log(invoices)
+            return (
+              <Invoice profile={profiles} invoice={invoices} {...user} />
+            )
+          }
         } />
       </Switch>
     ) : (
