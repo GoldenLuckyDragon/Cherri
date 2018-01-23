@@ -29,7 +29,6 @@ export default () => {
       </Jumbotron>
       <Jumbotron className='jumbotron-white'>
         <HomelandingTwo />
-        {/* <a href={STRIPE_URL} className='stripe-connect dark'><span>Connect with Stripe</span></a> */}
       </Jumbotron>
       <Jumbotron className='jumbotron-blue'>
         <HomelandingThree />

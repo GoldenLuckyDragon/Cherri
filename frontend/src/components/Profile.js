@@ -3,6 +3,7 @@ import Invoice from './Invoice'
 import {Link} from 'react-router-dom'
 import Checkout from '../components/Checkout'
 import {Image, CloudinaryContext} from 'cloudinary-react'
+import { Grid, Row, Col } from 'react-bootstrap'
 var cloudinary = require('cloudinary')
 
 export default function Profile ({
@@ -22,21 +23,34 @@ export default function Profile ({
   const icImg = `companydocs/${userid}_ic.png`
   return (
     <div>
-      <br />
-      <span>Factory Name: {henry.factoryName}</span>
-      <hr />
-      <span>Address: {henry.address}</span>
-      <hr />
-      <span>HKID:</span>
-      <CloudinaryContext cloudName='cherri'>
-        <Image publicId={hkidImg} width='150' />
-      </CloudinaryContext>
-      <hr />
-      <span>Incorporation Certificate:</span>
-      <CloudinaryContext cloudName='cherri'>
-        <Image publicId={icImg} width='150' />
-      </CloudinaryContext>
-      <hr />
+      <Grid>
+        <h3>ACCOUNT DETAILS</h3>
+        <Row className='show-grid'>
+          <Col xs={12} sm={6}>
+            <br />
+            <CloudinaryContext cloudName='cherri'>
+              <Image publicId={icImg} width='150' />
+            </CloudinaryContext>
+            <br />
+            <CloudinaryContext cloudName='cherri'>
+              <Image publicId={hkidImg} width='150' />
+            </CloudinaryContext>
+            <br />
+          </Col>
+          <Col xs={12} sm={2}>
+            <br />
+            <span><b>Factory Name:</b></span>
+            <br />
+            <span><b>Address:</b></span>
+          </Col>
+          <Col xs={12} sm={2}>
+            <br />
+            <span>{henry.factoryName}</span>
+            <br />
+            <span>{henry.address}</span>
+          </Col>
+        </Row>
+      </Grid>
     </div>
   )
 }

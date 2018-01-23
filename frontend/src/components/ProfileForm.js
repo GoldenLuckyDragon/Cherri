@@ -56,8 +56,13 @@ class ProfileForm extends React.Component {
             <input type='text' name='factoryName' />
           </label>
           <br />
+          <label>
+            Registered Address:
+            &nbsp;
+            <input type='text' name='address' />
+          </label>
           <br />
-          
+
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
       </Jumbotron>
