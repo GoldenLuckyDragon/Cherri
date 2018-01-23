@@ -12,7 +12,6 @@ export default function Profile ({
   address,
   hkid,
   incorporationCertificate,
-  paymentMethod,
   invoices,
   profile,
   invoice
@@ -27,9 +26,6 @@ export default function Profile ({
       <br />
       <span>HKID: {henry.hkid}</span>
       <br />
-      <span>Incorporation Certificate: {henry.incorporationCertificate}</span>
-      <br />
-      <span>Payment Method: {henry.paymentMethod}</span>
       <br />
     </div>
   )

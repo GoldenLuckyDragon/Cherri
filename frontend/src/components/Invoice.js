@@ -51,5 +51,3 @@ export default function Invoice ({
     </div>
   )
 }
-
-// <Image cloudName='cherri' publicId={`invoices/${variable}.png`} height='300' crop='scale' /> */}
