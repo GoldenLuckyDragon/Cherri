@@ -1,16 +1,14 @@
 // import our constants
 import React, { Component } from 'react'
 import './App.css'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
+import Navigation from './components/navbar'
 import UploadHkid from './components/UploadHkid'
 import UploadIc from './components/UploadIc'
-// imports associated with invoice
-import * as invoiceAPI from './api/invoices'
-import InvoiceForm from './components/InvoiceForm'
-import InvoiceUpload from './components/InvoiceUpload'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -23,11 +21,14 @@ import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
-import Navigation from './components/navbar'
-
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-
-// Our Stripe imports
+// imports associated with invoice
+import * as invoiceAPI from './api/invoices'
+import Invoice from './components/Invoice'
+import InvoiceForm from './components/InvoiceForm'
+import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
+import InvoiceDetails from './components/InvoiceDetails'
+// imports associated with Stripe
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
 // stats const is taken from signin as auth.sendStats
@@ -123,13 +124,13 @@ class App extends Component {
     // console.log({token})
   }
 
-  handleProfileEditSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
-    });
-    // calling the save function from backend API route
-    profileAPI.edit(profile);
-  }
+  // handleProfileEditSubmission = (profile) => {
+  //   this.setState(({profiles}) => {
+  //     return { profiles: [profile].concat(profiles)}
+  //   });
+  //   // calling the save function from backend API route
+  //   profileAPI.edit(profile);
+  // }
 
   handleSignOut = () => {
     auth.signOut()
@@ -161,9 +162,10 @@ class App extends Component {
               () => (
                 <LearnPage/>
               )}/>
-          <Route path='/about' render={() => (
-              <AboutPage token={ auth.token() }/>
-            )}/>
+          <Route path='/about' render={
+              () => (
+                <AboutPage token={ auth.token() }/>
+              )}/>
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
@@ -172,26 +174,17 @@ class App extends Component {
                   return null
                 }
               }}/>
+          <Route path='/invoices' render={
+              () => (
+                <AccountPage users={users} invoices={invoices} profiles={profiles}/>
+              )}/>
           <Route path='/profile/create' render={
               () => (
-                <ProfileForm
-                  currentEmail={this.state.currentEmail}
-                  onSubmit={this.handleProfileSubmission}
-                />
-              )}/>
-          <Route path='/profile/edit' render={
-              () => (
                 <div>
-                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+                  { auth.hasProfile() && <Redirect to='/uploadHkid'/>
+                  }
+                  <ProfileForm onSubmit={this.handleProfileSubmission}/>
                 </div>
-              )}/>
-          <Route path='/signup' render={
-            () => (
-              <div>
-              { auth.isSignedIn() && <Redirect to='/profile/create'/>
-              }
-              <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
-              </div>
               )}/>
           <Route path='/uploadHkid' render={
               () => {
@@ -209,6 +202,14 @@ class App extends Component {
                   return null
                 }
               }}/>
+          <Route path='/signup' render={
+            () => (
+              <div>
+              { auth.isSignedIn() && <Redirect to='/profile/create'/>
+              }
+              <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
+              </div>
+              )}/>
           <Route path='/signin' render={
             () => (
               <div>
@@ -229,10 +230,40 @@ class App extends Component {
                 </div> */}
               )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
-          <Route path='/invoice/upload' render={
-             () => (
-               <InvoiceUpload/>
-             )}/>
+         <Route path='/invoice/upload' render={
+             () => {
+                 if (auth.isSignedIn() && users && profiles) {
+                   return <InvoiceUpload profile={profiles} users={users}/>
+                 } else {
+                   return null
+                 }
+             }}/>
+         <Route path='/invoice/spaupload' render={
+           () => {
+               if (auth.isSignedIn() && users && profiles) {
+                 return <InvoiceSpaUpload profile={profiles} users={users}/>
+               } else {
+                 return null
+               }
+           }}/>
+           <Route path='/invoice/:id' render={
+             ({ match }) => {
+               if ( invoices ) {
+               const id = match.params.id
+               console.log(id)
+               console.log(invoices)
+               const invoice = invoices.find((i) => i._id === id)
+               console.log(invoice)
+               return (
+                 <div>
+                   <InvoiceDetails invoice={invoice} />
+                   <br />
+                 </div>
+               )
+             } else {
+               return <h1>broken</h1>
+             }
+             }} />
           <Route path='/charges' render={
                () => (
                  <div>
@@ -252,5 +283,5 @@ class App extends Component {
     )
   }
 }
-
+// comment for push
 export default App

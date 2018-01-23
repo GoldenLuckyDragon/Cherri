@@ -6,9 +6,9 @@ import Logo from '../components/Logo'
 import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
-// import PaymentMethod from '../components/PaymentMethod'
+// import decodeJWT from 'jwt-decode'
 
-export default class DashboardPage extends React.Component {
+export default class AdminDashboardPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -32,19 +32,11 @@ export default class DashboardPage extends React.Component {
           <br />
           <div className='card card-shadow'>
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-              <Tab eventKey={1} title='Invoice History'>
+              <Tab eventKey={1} title='Invoices'>
                 <Invoice profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
-              <Tab eventKey={2} title='Add Invoice'>
-                {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
-                <a href='/invoice/create' ><button type='submit' className='btn-blue'>Add Invoice</button></a>
-                <br />
-              </Tab>
-              <Tab eventKey={3} title='Account'>
+              <Tab eventKey={2} title='Factories'>
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
-              </Tab>
-              <Tab eventKey={4} title='Payment Method'>
-                {/* <PaymentMethod profile={profiles} invoice={invoices} {...user} /> */}
                 <br />
               </Tab>
             </Tabs>
@@ -61,3 +53,13 @@ export default class DashboardPage extends React.Component {
     })
   }
 }
+
+// var currencyApi = require('fixer-io-node')
+
+// Returns specific exchange rates
+
+// currencyApi.specificRate('GBP', 'HKD').then(function (result) {
+//   console.log(result.rates.GBP)
+// }).catch(function (error) {
+//   console.log(error)
+// })
