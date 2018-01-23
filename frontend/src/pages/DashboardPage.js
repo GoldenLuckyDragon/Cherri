@@ -7,6 +7,7 @@ import InvoiceForm from '../components/InvoiceForm'
 import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
+import PaymentMethod from '../components/PaymentMethod'
 // import decodeJWT from 'jwt-decode'
 
 export default class DashboardPage extends React.Component {
@@ -51,6 +52,10 @@ export default class DashboardPage extends React.Component {
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
                 {/* <PaymentMethod profile={profiles} invoice={invoices} {...user} /> */}
+                <br />
+              </Tab>
+              <Tab eventKey={4} title='Payment Method'>
+                <PaymentMethod profile={profiles} invoice={invoices} {...user} />
                 <br />
               </Tab>
             </Tabs>
