@@ -125,13 +125,13 @@ class App extends Component {
     // console.log({token})
   }
 
-  // handleProfileEditSubmission = (profile) => {
-  //   this.setState(({profiles}) => {
-  //     return { profiles: [profile].concat(profiles)}
-  //   });
-  //   // calling the save function from backend API route
-  //   profileAPI.edit(profile);
-  // }
+  handleProfileEditSubmission = (profile) => {
+    this.setState(({profiles}) => {
+      return { profiles: [profile].concat(profiles)}
+    });
+    // calling the save function from backend API route
+    profileAPI.edit(profile);
+  }
 
   handleSignOut = () => {
     auth.signOut()
@@ -192,6 +192,12 @@ class App extends Component {
                   currentEmail={this.state.currentEmail}
                   onSubmit={this.handleProfileSubmission}
                 />
+              )}/>
+          <Route path='/profile/edit' render={
+              () => (
+                <div>
+                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+                </div>
               )}/>
           <Route path='/signup' render={
             () => (
