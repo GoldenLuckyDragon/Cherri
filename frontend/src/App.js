@@ -83,7 +83,8 @@ class App extends Component {
     const email = element.email.value
     const account = '5a63a30b4db988e620265bff'
     const password = element.password.value
-    auth.register({email, password, account})
+    const admin = false
+    auth.register({email, password, account, admin})
     .then(() => {
       console.log('in App.js with response from server. setting state for currentEmail: ', email);
       this.setState({ currentEmail: email })
@@ -225,8 +226,8 @@ class App extends Component {
           {/* <Route path='/invoice/edit' render={
               () => (
                 <div>
-                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
-                </div> */}
+                  <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
+                </div>
               )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
           <Route path='/invoice/upload' render={
