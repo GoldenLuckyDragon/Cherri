@@ -122,13 +122,13 @@ class App extends Component {
     // console.log({token})
   }
 
-  // handleProfileEditSubmission = (profile) => {
-  //   this.setState(({profiles}) => {
-  //     return { profiles: [profile].concat(profiles)}
-  //   });
-  //   // calling the save function from backend API route
-  //   profileAPI.edit(profile);
-  // }
+  handleProfileEditSubmission = (profile) => {
+    this.setState(({profiles}) => {
+      return { profiles: [profile].concat(profiles)}
+    });
+    // calling the save function from backend API route
+    profileAPI.edit(profile);
+  }
 
   handleSignOut = () => {
     auth.signOut()
@@ -191,6 +191,12 @@ class App extends Component {
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
                 </div>
               )}/>
+          <Route path='/profile/edit' render={
+              () => (
+                <div>
+                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+                </div>
+              )}/>
           <Route path='/uploadHkid' render={
               () => {
                 if (auth.isSignedIn() && users) {
@@ -199,14 +205,14 @@ class App extends Component {
                   return null
                 }
               }}/>
-              <Route path='/uploadIc' render={
-                  () => {
-                    if (auth.isSignedIn() && users) {
-                      return <UploadIc users={users}/>
-                    } else {
-                      return null
-                    }
-                  }}/>
+          <Route path='/uploadIc' render={
+              () => {
+                if (auth.isSignedIn() && users) {
+                  return <UploadIc users={users}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/signup' render={
             () => (
               <div>
