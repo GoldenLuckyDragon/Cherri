@@ -7,6 +7,8 @@ import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
 import Navigation from './components/navbar'
+import UploadHkid from './components/UploadHkid'
+import UploadIc from './components/UploadIc'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -17,8 +19,6 @@ import LearnPage from './pages/LearnPage'
 import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
-import UploadHkid from './components/UploadHkid'
-import UploadIc from './components/UploadIc'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 // imports associated with invoice
@@ -223,6 +223,12 @@ class App extends Component {
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 </div>
               )}/>
+          {/* <Route path='/invoice/edit' render={
+              () => (
+                <div>
+                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
+                </div> */}
+              )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
          <Route path='/invoice/upload' render={
              () => {
