@@ -57,18 +57,7 @@ class ProfileForm extends React.Component {
           </label>
           <br />
           <br />
-          <label>
-            {
-              !!currentEmail ? (
-                <a href={stripeUrlWithEmail}>
-                  <img src={connectStripe} alt="connect with stripe" height='30' />
-                </a>
-              ) : ( "Waiting for token prior to allowing access to stripe")
-            }
-          </label>
-          <br />
-
-
+          
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>
       </Jumbotron>
