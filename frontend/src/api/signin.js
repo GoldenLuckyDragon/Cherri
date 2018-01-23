@@ -74,6 +74,10 @@ export function isSignedIn () {
   return !!token()
 }
 
+export function isSignedOut () {
+  return !token()
+}
+
 export function hasProfile () {
   return !token()
 }

@@ -155,9 +155,13 @@ class App extends Component {
         {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
-              () => (
-                <HomePage />
-              )}/>
+              () => {
+                if ( auth.isSignedOut() ) {
+                  return  <HomePage />
+                } else {
+                  return <DashboardPage />
+                }
+              }}/>
           <Route path='/learnmore' render={
               () => (
                 <LearnPage/>
@@ -175,9 +179,9 @@ class App extends Component {
               }}/>
           <Route path='/profiles' render={
               () => (
-                console.log(users),
-                console.log(profiles),
-                console.log(invoices),
+                // console.log(users),
+                // console.log(profiles),
+                // console.log(invoices),
                 <AccountPage users={users}
                   invoices={invoices} profiles={profiles}/>
               )}/>
