@@ -97,7 +97,7 @@ const paymentApi = app => {
         if (err) { throw err } else { console.log('INJECTION') }
       })
     })
-    res.redirect(`${FRONT_END_URL}/charges`)
+    res.redirect(`${FRONT_END_URL}/dashboard`)
   })
   return app
 }
