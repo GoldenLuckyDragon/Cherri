@@ -62,28 +62,6 @@ export default class DashboardPage extends React.Component {
   }
 }
 
-
-//
-//
-// export default class DashboardPage extends React.Component {
-//   render () {
-//     return (
-//       <div>
-//         <Navigation />
-//         <Jumbotron className='jumbotron-blue'>
-//           <Logo />
-//           <div className='card card-shadow'>
-//             <br />
-//             DASHBOARD
-//             {/* Set which tab the default is (tab 1) */}
-//             <Dashboard activeTab={1} />
-//           </div>
-//         </Jumbotron>
-//       </div>
-//     )
-//   }
-//   }
-
 // var currencyApi = require('fixer-io-node')
 
 // Returns specific exchange rates
