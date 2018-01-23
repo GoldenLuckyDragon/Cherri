@@ -151,7 +151,7 @@ class App extends Component {
     return (
       <Router>
       <div className='App'>
-        <Navigation />
+        <Navigation  email={currentEmail}/>
         {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
