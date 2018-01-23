@@ -147,7 +147,7 @@ class App extends Component {
   }
 
   render () {
-    const {users, invoices, profiles} = this.state
+    const {users, invoices, profiles, currentEmail} = this.state
     return (
       <Router>
       <div className='App'>
@@ -168,7 +168,7 @@ class App extends Component {
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
-                  return <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                  return <DashboardPage users={users} invoices={invoices} email={currentEmail} profiles={profiles}/>
                 } else {
                   return null
                 }

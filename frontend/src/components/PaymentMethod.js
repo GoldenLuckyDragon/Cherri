@@ -1,19 +1,8 @@
 import React from 'react'
-import Invoice from './Invoice'
-import {Link} from 'react-router-dom'
-import Checkout from '../components/Checkout'
 import connectStripe from '../images/connectStripe.png'
 import { STRIPE_URL } from '../constants/stripe'
-import decodeJWT from 'jwt-decode'
 
-const token = window.localStorage.getItem('token')
-const decodedToken = decodeJWT(token)
-const currentEmail = decodedToken.email
-
-export default function PaymentMethod ({
-  _id,
-  profile
-}) {
+export default function PaymentMethod ({ currentEmail }) {
   let stripeUrlWithEmail = STRIPE_URL + `&user_email=${currentEmail}`
   return (
     <div>
