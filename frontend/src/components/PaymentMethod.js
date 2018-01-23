@@ -8,11 +8,12 @@ export default function PaymentMethod ({ currentEmail }) {
     <div>
       <br />
       <span>
-        {
-          <a href={stripeUrlWithEmail}>
-            <img src={connectStripe} alt='connect with stripe' height='30' />
-          </a>
-        }
+        <a href={stripeUrlWithEmail}>
+          <img src={connectStripe} alt='connect with stripe' height='30' />
+        </a>
+        <br />
+        <br />
+          For direct deposit bank transfers: Contact Jeff on cherri.finance@gmail.com
       </span>
     </div>
   )
