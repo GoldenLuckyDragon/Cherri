@@ -30,12 +30,15 @@ export function save (profile) {
   .catch(error => { console.log(error) })
 }
 
-// export function edit (profile) {
-//   return fetch(`${API_URL}/profile/:id`, {
-//     method: 'PATCH',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify(profile)
-//   })
-//   .then(res => res.json())
-//   .catch(error => { console.log(error) })
-// }
+export function edit (profile) {
+  return fetch(`${API_URL}/profiles`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
+    },
+    body: JSON.stringify(profile)
+  })
+  .then(res => res.json())
+  .catch(error => { console.log(error) })
+}
