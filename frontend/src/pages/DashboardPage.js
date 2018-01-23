@@ -6,7 +6,7 @@ import Logo from '../components/Logo'
 import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
-import PaymentMethod from '../components/PaymentMethod'
+// import PaymentMethod from '../components/PaymentMethod'
 
 export default class DashboardPage extends React.Component {
   constructor (props) {
@@ -44,7 +44,7 @@ export default class DashboardPage extends React.Component {
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
-                <PaymentMethod profile={profiles} invoice={invoices} {...user} />
+                {/* <PaymentMethod profile={profiles} invoice={invoices} {...user} /> */}
                 <br />
               </Tab>
             </Tabs>

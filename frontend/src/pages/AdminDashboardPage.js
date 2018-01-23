@@ -6,7 +6,6 @@ import Logo from '../components/Logo'
 import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
-import PaymentMethod from '../components/PaymentMethod'
 // import decodeJWT from 'jwt-decode'
 
 export default class AdminDashboardPage extends React.Component {
