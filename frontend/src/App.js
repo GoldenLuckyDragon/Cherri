@@ -19,6 +19,7 @@ import LearnPage from './pages/LearnPage'
 import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
+import UploadHkid from './components/UploadHkid'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 import Navigation from './components/navbar'
@@ -199,6 +200,14 @@ class App extends Component {
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
               </div>
               )}/>
+          <Route path='/uploadHkid' render={
+              () => {
+                if (auth.isSignedIn() && users) {
+                  return <UploadHkid users={users}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/signin' render={
             () => (
               <div>
