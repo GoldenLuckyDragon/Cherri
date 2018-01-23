@@ -5,6 +5,8 @@ import './App.css'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
+import UploadHkid from './components/UploadHkid'
+import UploadIc from './components/UploadIc'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
@@ -19,20 +21,16 @@ import LearnPage from './pages/LearnPage'
 import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
-import UploadHkid from './components/UploadHkid'
-import UploadIc from './components/UploadIc'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 import Navigation from './components/navbar'
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-
 // Our Stripe imports
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
 // stats const is taken from signin as auth.sendStats
-
 
 // allow for env files
 require('dotenv').config()
@@ -125,13 +123,13 @@ class App extends Component {
     // console.log({token})
   }
 
-  // handleProfileEditSubmission = (profile) => {
-  //   this.setState(({profiles}) => {
-  //     return { profiles: [profile].concat(profiles)}
-  //   });
-  //   // calling the save function from backend API route
-  //   profileAPI.edit(profile);
-  // }
+  handleProfileEditSubmission = (profile) => {
+    this.setState(({profiles}) => {
+      return { profiles: [profile].concat(profiles)}
+    });
+    // calling the save function from backend API route
+    profileAPI.edit(profile);
+  }
 
   handleSignOut = () => {
     auth.signOut()
@@ -174,24 +172,18 @@ class App extends Component {
                   return null
                 }
               }}/>
-          <Route path='/profiles' render={
-              () => (
-                console.log(users),
-                console.log(profiles),
-                console.log(invoices),
-                <AccountPage users={users}
-                  invoices={invoices} profiles={profiles}/>
-              )}/>
-          <Route path='/invoices' render={
-              () => (
-                <AccountPage users={users} invoices={invoices} profiles={profiles}/>
-              )}/>
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm
                   currentEmail={this.state.currentEmail}
                   onSubmit={this.handleProfileSubmission}
                 />
+              )}/>
+          <Route path='/profile/edit' render={
+              () => (
+                <div>
+                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
+                </div>
               )}/>
           <Route path='/signup' render={
             () => (
@@ -230,8 +222,14 @@ class App extends Component {
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 </div>
               )}/>
+          {/* <Route path='/invoice/edit' render={
+              () => (
+                <div>
+                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
+                </div> */}
+              )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
-         <Route path='/invoice/upload' render={
+          <Route path='/invoice/upload' render={
              () => (
                <InvoiceUpload/>
              )}/>

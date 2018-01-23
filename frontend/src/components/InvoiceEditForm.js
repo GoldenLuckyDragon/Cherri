@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom'
 class ProfileEditForm extends React.Component {
   state = {
     redirect: false,
-    account: {}
+    invoice: {}
   }
 
   handleFormSubmission = (event) => {
@@ -15,16 +15,16 @@ class ProfileEditForm extends React.Component {
 
     const { elements } = event.target;
     this.setState({ redirect: true})
-    this.props.onSubmit(this.state.account);
+    this.props.onSubmit(this.state.invoice);
   }
 
   handleInputChange = (event) => {
     const attr = event.target.name
     const value = event.target.value
-    const profile = this.state.account
+    const invoices = this.state.invoice
     // need [] cause otherwise you are trying to set profile.attr = value which isn't a thing.
-    profile[attr] = value
-    this.setState({ profile })
+    invoices[attr] = value
+    this.setState({ invoices })
   }
   render() {
     const {redirect} = this.state
@@ -36,13 +36,13 @@ class ProfileEditForm extends React.Component {
           <label>
             Factory Name:
             &nbsp;
-            <input onChange={ this.handleInputChange } type='text' name='factoryName' />
+            <input onChange={ this.handleInputChange } type='text' name='invoiceNumber' />
           </label>
           &nbsp;
           <label>
             Address:
             &nbsp;
-            <input onChange={ this.handleInputChange } type='text' name='address' />
+            <input onChange={ this.handleInputChange } type='date' name='dueDate' />
           </label>
           &nbsp;
           <button type='submit' className='btn-blue'>Edit Profile</button>

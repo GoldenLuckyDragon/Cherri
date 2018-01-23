@@ -36,16 +36,22 @@ export default class DashboardPage extends React.Component {
           <br />
           <div className='card card-shadow'>
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-              <Tab eventKey={1} title='Add Invoice'>
+              <Tab eventKey={1} title='Invoice History'>
+                <Invoice profile={profiles} invoice={invoices} {...user} />
+              </Tab>
+              <Tab eventKey={2} title='Add Invoice'>
                 {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
                 <a href='/invoice/create' ><button type='submit' className='btn-blue'>Add Invoice</button></a>
                 <br />
               </Tab>
-              <Tab eventKey={2} title='Invoice History'>
-                <Invoice profile={profiles} invoice={invoices} {...user} />
-              </Tab>
               <Tab eventKey={3} title='Account'>
                 <Profile profile={profiles} invoice={invoices} {...user} />
+                <a href='/profile/edit'><button className='btn-blue'>Edit</button></a>
+                <n />
+              </Tab>
+              <Tab eventKey={4} title='Payment Method'>
+                {/* <PaymentMethod profile={profiles} invoice={invoices} {...user} /> */}
+                <br />
               </Tab>
             </Tabs>
           </div>
