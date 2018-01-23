@@ -34,12 +34,14 @@ export default function Invoice ({
             barry.map((invoice, index) => {
               return (
                 <tr>
-                  <td>{index + 1}</td>
-                  <td>{invoice.dueDate}</td>
-                  <td>{invoice.invoiceNumber}</td>
-                  <td>{invoice.customerCompanyName}</td>
-                  <td>{invoice.amount}</td>
-                  <td>{invoice.status}</td>
+                  <a href='/invoicedetails'>
+                    <td>{index + 1}</td>
+                    <td>{invoice.dueDate}</td>
+                    <td>{invoice.invoiceNumber}</td>
+                    <td>{invoice.customerCompanyName}</td>
+                    <td>{invoice.amount}</td>
+                    <td>{invoice.status}</td>
+                  </a>
                 </tr>
               )
             })) : ('You have no submitted invoices available.')

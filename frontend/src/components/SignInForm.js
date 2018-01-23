@@ -12,13 +12,13 @@ function SignInForm ({ onSignIn }) {
         <Logo />
         <form onSubmit={onSignIn}>
           <label>
-        email:
+        Email:
         <input type='email' name='email' />
           </label>
         &nbsp;
           <br />
           <label>
-        password:
+        Password:
         <input type='password' name='password' />
           </label>
           <br />

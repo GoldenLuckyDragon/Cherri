@@ -10,7 +10,6 @@ function RegisterForm ({ onSignUp }) {
       <Navigation />
       <Jumbotron className='jumbotron-blue'>
         <Logo />
-        <div className='card card-shadow'>
           <form onSubmit={onSignUp}>
             <label>
         Email:
@@ -25,7 +24,6 @@ function RegisterForm ({ onSignUp }) {
             <br />
             <button type='submit' className='btn-blue'>Sign Up</button>
           </form>
-        </div>
       </Jumbotron>
     </div>
   )
