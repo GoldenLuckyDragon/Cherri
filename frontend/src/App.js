@@ -11,6 +11,7 @@ import UploadIc from './components/UploadIc'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceDetails from './components/InvoiceDetails'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -233,11 +234,29 @@ class App extends Component {
              () => (
                <InvoiceUpload/>
              )}/>
+           <Route path='/invoice/:id' render={
+          ({ match }) => {
+            if ( invoices ) {
+            const id = match.params.id
+            console.log(id)
+            console.log(invoices)
+            const invoice = invoices.find((i) => i._id === id)
+            console.log(invoice)
+            return (
+              <div>
+                <InvoiceDetails invoice={invoice} />
+                <br />
+              </div>
+            )
+          } else {
+            return <h1>broken</h1>
+          }
+          }} />
           <Route path='/charges' render={
                () => (
-                 <div>
-                   <ChargesPage token={ auth.token() } />
-                 </div>
+               <div>
+                 <ChargesPage token={ auth.token() } />
+               </div>
                )}/>
           <Route path='/signout' render={() => (
                 <SignOutForm onSignOut={this.handleSignOut}/>
