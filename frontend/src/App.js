@@ -45,7 +45,7 @@ class App extends Component {
     currentEmail: null
   }
 
-  componentDidMount(){
+  componentWillMount(){
     // calling the fetch functions from profileAPI file
     profileAPI.all()
     .then(profiles => {
