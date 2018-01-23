@@ -27,6 +27,7 @@
     "jwt-decode": "^2.2.0",
     "mocha": "^4.1.0",
     "mongoose": "^4.13.9",
+    "node-notifier": "^5.2.1",
     "nodemailer": "^4.4.1",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",

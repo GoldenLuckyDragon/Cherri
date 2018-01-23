@@ -1,6 +1,6 @@
 import decodeJWT from 'jwt-decode'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
-
+const notifier = require('node-notifier')
 // setting the token at this level so that it can be called whenever we want.
 function setToken (token) {
   if (token) {
@@ -66,7 +66,7 @@ export function register ({ email, password, account }) {
 // if you sign out clear the token
 export function signOut () {
   setToken('')
-  alert('You have Logged out')
+  alert('Signed Out')
 }
 
 // boolean
