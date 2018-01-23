@@ -17,6 +17,7 @@ import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
 import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
@@ -172,6 +173,12 @@ class App extends Component {
                 } else {
                   return null
                 }
+              }}/>
+          <Route path='/admindashboard' render={
+              () => {
+                <div>
+                  <AdminDashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                </div>
               }}/>
           <Route path='/profile/create' render={
               () => (
