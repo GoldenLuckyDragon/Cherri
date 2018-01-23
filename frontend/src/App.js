@@ -5,6 +5,8 @@ import './App.css'
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
+import UploadHkid from './components/UploadHkid'
+import UploadIc from './components/UploadIc'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
@@ -19,20 +21,16 @@ import LearnPage from './pages/LearnPage'
 import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
-import UploadHkid from './components/UploadHkid'
-import UploadIc from './components/UploadIc'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 import Navigation from './components/navbar'
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-
 // Our Stripe imports
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
 // stats const is taken from signin as auth.sendStats
-
 
 // allow for env files
 require('dotenv').config()
