@@ -177,9 +177,11 @@ class App extends Component {
               }}/>
           <Route path='/admindashboard' render={
               () => {
-                <div>
-                  <AdminDashboardPage users={users} invoices={invoices} profiles={profiles}/>
-                </div>
+                if (users && profiles && invoices) {
+                  return <AdminDashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                } else {
+                  return null
+                }
               }}/>
           <Route path='/profile/create' render={
               () => (
