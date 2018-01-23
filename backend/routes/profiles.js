@@ -55,6 +55,7 @@ const profileApi = app => {
   })
 
   app.patch('/profiles', authMiddleware.requireJWT, (req, res) => {
+    console.log(req.body)
     Profile.findOneAndUpdate(({'_id': `${req.user.account}`}), req.body)
     .then(profiles => {
       console.log('profile: ', profiles)

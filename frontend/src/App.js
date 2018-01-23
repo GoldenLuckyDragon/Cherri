@@ -172,18 +172,6 @@ class App extends Component {
                   return null
                 }
               }}/>
-          <Route path='/profiles' render={
-              () => (
-                console.log(users),
-                console.log(profiles),
-                console.log(invoices),
-                <AccountPage users={users}
-                  invoices={invoices} profiles={profiles}/>
-              )}/>
-          <Route path='/invoices' render={
-              () => (
-                <AccountPage users={users} invoices={invoices} profiles={profiles}/>
-              )}/>
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm
@@ -234,8 +222,14 @@ class App extends Component {
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 </div>
               )}/>
+          {/* <Route path='/invoice/edit' render={
+              () => (
+                <div>
+                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
+                </div> */}
+              )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
-         <Route path='/invoice/upload' render={
+          <Route path='/invoice/upload' render={
              () => (
                <InvoiceUpload/>
              )}/>
