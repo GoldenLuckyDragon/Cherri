@@ -247,7 +247,7 @@ form {
 label {
  display: inline-block;
  margin-bottom: .5rem;
- font-size: 1rem;
+ font-size: 1.3rem;
  width: 50%;
  text-transform: uppercase;
  -ms-touch-action: manipulation;
@@ -259,7 +259,7 @@ textarea {
  display: block;
  padding: .5rem .75rem;
  width: 100%;
- font-size: 1rem;
+ font-size: 1.3rem;
  line-height: 1.25;
  color: #2B90DE;
  background-color: #ffffff;
