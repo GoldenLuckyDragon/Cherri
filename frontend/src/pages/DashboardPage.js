@@ -42,7 +42,6 @@ export default class DashboardPage extends React.Component {
                 <div class='btn-expired'> Expired </div>
               </Tab>
               <Tab eventKey={2} title='Add Invoice'>
-                {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
                 <a href='/invoice/create' ><button type='submit' className='btn-blue'>Add Invoice</button></a>
                 <br />
                 <br />
@@ -51,7 +50,6 @@ export default class DashboardPage extends React.Component {
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
-                {/* {console.log(user.profile)} */}
                 <PaymentMethod email={currentEmail} profile={profiles} {...user} />
                 <br />
               </Tab>
