@@ -20,6 +20,7 @@ import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
 import UploadHkid from './components/UploadHkid'
+import UploadIc from './components/UploadIc'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
 import Navigation from './components/navbar'
@@ -204,6 +205,14 @@ class App extends Component {
               () => {
                 if (auth.isSignedIn() && users) {
                   return <UploadHkid users={users}/>
+                } else {
+                  return null
+                }
+              }}/>
+          <Route path='/uploadIc' render={
+              () => {
+                if (auth.isSignedIn() && users) {
+                  return <UploadIc users={users}/>
                 } else {
                   return null
                 }
