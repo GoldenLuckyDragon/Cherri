@@ -2,59 +2,54 @@ import React from 'react'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
+import {Redirect} from 'react-router-dom'
 
-export default function ProfileEditForm ({onSubmit}) {
-  function handleFormSubmission (event) {
-    event.preventDefault()
-    const { elements } = event.target
-    const factoryName = elements['factoryName'].value
-    const address = elements['address'].value
-    const hkid = elements['hkid'].value
-    const incorporationCertificate = elements['incorporationCertificate'].value
-    const paymentMethod = elements['paymentMethod'].value
-    onSubmit({factoryName, address, hkid, incorporationCertificate, paymentMethod})
+class ProfileEditForm extends React.Component {
+  state = {
+    redirect: false,
+    account: {}
   }
 
-  return (
-    <div>
-      <Navigation />
-      <Jumbotron className='jumbotron-blue'>
-        <Logo />
-        <form onSubmit={handleFormSubmission} >
-        &nbsp;
-          <label>
-        Factory Name:
-        &nbsp;
-        <input placeholder='' type='text' name='factoryName' />
-          </label>
+  handleFormSubmission = (event) => {
+    event.preventDefault();
 
-          <label>
-        Address:
-        &nbsp;
-        <input type='text' name='address' />
-          </label>
+    const { elements } = event.target;
+    this.setState({ redirect: true})
+    this.props.onSubmit(this.state.account);
+  }
 
+  handleInputChange = (event) => {
+    const attr = event.target.name
+    const value = event.target.value
+    const profile = this.state.account
+    // need [] cause otherwise you are trying to set profile.attr = value which isn't a thing.
+    profile[attr] = value
+    this.setState({ profile })
+  }
+  render() {
+    const {redirect} = this.state
+      return (
+      <div>
+        { redirect && <Redirect to="/dashboard"/>}
+        <form onSubmit={this.handleFormSubmission} >
+          &nbsp;
           <label>
-        HK ID:
-        &nbsp;
-        <input type='text' name='hkid' />
+            Factory Name:
+            &nbsp;
+            <input onChange={ this.handleInputChange } type='text' name='factoryName' />
           </label>
-
+          &nbsp;
           <label>
-        Incorporation Certificate:
-        &nbsp;
-        <input type='text' name='incorporationCertificate' />
+            Address:
+            &nbsp;
+            <input onChange={ this.handleInputChange } type='text' name='address' />
           </label>
-
-          <label>
-        Payment Method:
-        &nbsp;
-        <input type='text' name='paymentMethod' />
-          </label>
-
+          &nbsp;
           <button type='submit' className='btn-blue'>Edit Profile</button>
         </form>
-      </Jumbotron>
-    </div>
-  )
+      </div>
+    )
+  }
 }
+
+export default ProfileEditForm
