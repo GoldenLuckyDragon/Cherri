@@ -1,5 +1,4 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
 import { Jumbotron } from 'react-bootstrap'
 import Logo from '../components/Logo'
 import Navigation from '../components/navbar'
@@ -13,7 +12,7 @@ export default function UploadHkid ({
   }) {
   const userid = users._id
   function handleUploadClick (event) {
-    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${userid}_hkid`, tags: ['hkid'] },
+    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'companydocs', folder: 'companydocs', public_id: `${userid}_hkid`, tags: ['hkid'] },
       function (error, result) { console.log(error, result) })
   }
   return (

@@ -1,15 +1,12 @@
 // import our constants
 import React, { Component } from 'react'
 import './App.css'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
 import ProfileForm from './components/ProfileForm'
 import ProfileEditForm from './components/ProfileEditForm'
-// imports associated with invoice
-import * as invoiceAPI from './api/invoices'
-import InvoiceForm from './components/InvoiceForm'
-import InvoiceUpload from './components/InvoiceUpload'
-import InvoiceSpaUpload from './components/InvoiceSpaUpload'
+import Navigation from './components/navbar'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
@@ -20,18 +17,19 @@ import LearnPage from './pages/LearnPage'
 import RegisterForm from './components/RegisterForm'
 import SignInForm from './components/SignInForm'
 import SignOutForm from './components/SignOutForm'
+import UploadHkid from './components/UploadHkid'
+import UploadIc from './components/UploadIc'
 import * as auth from './api/signin'
 import * as userAPI from './api/user'
-import Navigation from './components/navbar'
-import UploadHkid from './components/UploadHkid'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-
-
-// Our Stripe imports
+// imports associated with invoice
+import * as invoiceAPI from './api/invoices'
+import InvoiceForm from './components/InvoiceForm'
+import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
+// imports associated with Stripe
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
 // stats const is taken from signin as auth.sendStats
-
 
 // allow for env files
 require('dotenv').config()
@@ -201,6 +199,14 @@ class App extends Component {
                   return null
                 }
               }}/>
+              <Route path='/uploadIc' render={
+                  () => {
+                    if (auth.isSignedIn() && users) {
+                      return <UploadIc users={users}/>
+                    } else {
+                      return null
+                    }
+                  }}/>
           <Route path='/signup' render={
             () => (
               <div>
@@ -224,13 +230,21 @@ class App extends Component {
               )}/>
                {/* our charges route for testing making a charge between two of our stripe customers */}
          <Route path='/invoice/upload' render={
-             () => (
-               <InvoiceUpload/>
-             )}/>
+             () => {
+                 if (auth.isSignedIn() && users && profiles) {
+                   return <InvoiceUpload profile={profiles} users={users}/>
+                 } else {
+                   return null
+                 }
+             }}/>
          <Route path='/invoice/spaupload' render={
-             () => (
-               <InvoiceSpaUpload/>
-             )}/>
+           () => {
+               if (auth.isSignedIn() && users && profiles) {
+                 return <InvoiceSpaUpload profile={profiles} users={users}/>
+               } else {
+                 return null
+               }
+           }}/>
           <Route path='/charges' render={
                () => (
                  <div>
