@@ -217,24 +217,6 @@ class App extends Component {
                 <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
-          <Route path='/invoice/:id' render={
-            ({ match }) => {
-              if ( invoices ) {
-              const id = match.params.id
-              console.log(id)
-              console.log(invoices)
-              const invoice = invoices.find((i) => i._id === id)
-              console.log(invoice)
-              return (
-                <div>
-                  <InvoiceDetails invoice={invoice} />
-                  <br />
-                </div>
-              )
-            } else {
-              return <h1>broken</h1>
-            }
-            }} />
           <Route path='/invoice/create' render={
               () => (
                 <div>
@@ -258,6 +240,24 @@ class App extends Component {
                  return null
                }
            }}/>
+           <Route path='/invoice/:id' render={
+             ({ match }) => {
+               if ( invoices ) {
+               const id = match.params.id
+               console.log(id)
+               console.log(invoices)
+               const invoice = invoices.find((i) => i._id === id)
+               console.log(invoice)
+               return (
+                 <div>
+                   <InvoiceDetails invoice={invoice} />
+                   <br />
+                 </div>
+               )
+             } else {
+               return <h1>broken</h1>
+             }
+             }} />
           <Route path='/charges' render={
                () => (
                  <div>
