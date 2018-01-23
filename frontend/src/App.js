@@ -249,7 +249,7 @@ class App extends Component {
               </div>
             )
           } else {
-            return <h1>broken</h1>
+            return <h1></h1>
           }
           }} />
           <Route path='/charges' render={

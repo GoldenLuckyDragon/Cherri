@@ -39,6 +39,7 @@ export default class DashboardPage extends React.Component {
                 {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
                 <a href='/invoice/create' ><button type='submit' className='btn-blue'>Add Invoice</button></a>
                 <br />
+                <br />
               </Tab>
               <Tab eventKey={3} title='Account'>
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
