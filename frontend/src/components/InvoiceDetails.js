@@ -5,29 +5,39 @@ import {Image, CloudinaryContext} from 'cloudinary-react'
 var cloudinary = require('cloudinary')
 
 export default function InvoiceDetails ({
-  _id,
-  invoices,
   invoice
 }) {
-  const invoiceId = invoices.find((i) => i._id === _id)
-  console.log(invoiceId)
+  console.log(invoice)
   return (
     <div>
       <br />
-      {/* <span>Factory Name: {henry.factoryName}</span>
+      <span>Invoice Number: {invoice.invoiceNumber}</span>
       <hr />
-      <span>Address: {henry.address}</span>
+      <span>Status: {invoice.status}</span>
       <hr />
-      <span>HKID:</span>
-      <CloudinaryContext cloudName='cherri'>
+      <span>Invoice Amount: {invoice.currency}{invoice.amount}</span>
+      <hr />
+      <span>Offer Amount: {invoice.offerAmount}</span>
+      <hr />
+      <span>Due Date: {invoice.dueDate}</span>
+      <hr />
+      <span>Offer Expiry Date: {invoice.expiryDate}</span>
+      <hr />
+      <span>Customer Company Name: {invoice.customerCompanyName}</span>
+      <hr />
+      <span>Customer First Name: {invoice.customerFirstname}</span>
+      <hr />
+      <span>Customer Surname: {invoice.customerSurname}</span>
+      <hr />
+      {/* <CloudinaryContext cloudName='cherri'>
         <Image publicId={hkidImg} width='150' />
       </CloudinaryContext>
       <hr />
       <span>Incorporation Certificate:</span>
       <CloudinaryContext cloudName='cherri'>
         <Image publicId={icImg} width='150' />
-      </CloudinaryContext>
-      <hr /> */}
+      </CloudinaryContext> */}
+      <hr />
     </div>
   )
 }

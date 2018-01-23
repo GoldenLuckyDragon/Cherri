@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Checkout from './Checkout'
 import { Table } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 export default function Invoice ({
   _id,
@@ -42,7 +43,9 @@ export default function Invoice ({
                   <td>{invoice.amount}</td>
                   <td>{invoice.status}</td>
                   <td>
-                    <a href='/invoices/:id'>View</a>
+                    <Link to={`/invoice/${invoice._id}`}>
+                    View
+                    </Link>
                   </td>
                 </tr>
               )

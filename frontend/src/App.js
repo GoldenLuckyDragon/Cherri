@@ -23,6 +23,7 @@ import * as auth from './api/signin'
 import * as userAPI from './api/user'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
+import Invoice from './components/Invoice'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
 import InvoiceSpaUpload from './components/InvoiceSpaUpload'
@@ -216,6 +217,24 @@ class App extends Component {
                 <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
+          <Route path='/invoice/:id' render={
+            ({ match }) => {
+              if ( invoices ) {
+              const id = match.params.id
+              console.log(id)
+              console.log(invoices)
+              const invoice = invoices.find((i) => i._id === id)
+              console.log(invoice)
+              return (
+                <div>
+                  <InvoiceDetails invoice={invoice} />
+                  <br />
+                </div>
+              )
+            } else {
+              return <h1>broken</h1>
+            }
+            }} />
           <Route path='/invoice/create' render={
               () => (
                 <div>
@@ -239,14 +258,6 @@ class App extends Component {
                  return null
                }
            }}/>
-           <Route path='/invoicedetails' render={
-             () => {
-                 if (auth.isSignedIn() && users && profiles && invoices) {
-                   return <InvoiceDetails invoices={invoices}/>
-                 } else {
-                   return null
-                 }
-             }}/>
           <Route path='/charges' render={
                () => (
                  <div>
