@@ -25,9 +25,6 @@ export default class DashboardPage extends React.Component {
   render () {
     const { profiles, invoices, users } = this.props
     const user = users.account
-    console.log(user)
-    console.log(profiles)
-    console.log(invoices)
 
     return (
       <div>
@@ -38,7 +35,7 @@ export default class DashboardPage extends React.Component {
           <div className='card card-shadow'>
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
               <Tab eventKey={1} title='Invoice History'>
-                <Invoice profile={profiles} invoice={invoices} {...user} />
+                <Invoice profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={2} title='Add Invoice'>
                 {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
@@ -46,13 +43,7 @@ export default class DashboardPage extends React.Component {
                 <br />
               </Tab>
               <Tab eventKey={3} title='Account'>
-                <Profile profile={profiles} invoice={invoices} {...user} />
-                <a href='/profile/edit'><button className='btn-blue'>Edit</button></a>
-                <n />
-              </Tab>
-              <Tab eventKey={4} title='Payment Method'>
-                {/* <PaymentMethod profile={profiles} invoice={invoices} {...user} /> */}
-                <br />
+                <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
                 <PaymentMethod profile={profiles} invoice={invoices} {...user} />

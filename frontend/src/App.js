@@ -26,6 +26,7 @@ import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
 import InvoiceSpaUpload from './components/InvoiceSpaUpload'
+import InvoiceDetails from './components/InvoiceDetails'
 // imports associated with Stripe
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
@@ -122,13 +123,13 @@ class App extends Component {
     // console.log({token})
   }
 
-  handleProfileEditSubmission = (profile) => {
-    this.setState(({profiles}) => {
-      return { profiles: [profile].concat(profiles)}
-    });
-    // calling the save function from backend API route
-    profileAPI.edit(profile);
-  }
+  // handleProfileEditSubmission = (profile) => {
+  //   this.setState(({profiles}) => {
+  //     return { profiles: [profile].concat(profiles)}
+  //   });
+  //   // calling the save function from backend API route
+  //   profileAPI.edit(profile);
+  // }
 
   handleSignOut = () => {
     auth.signOut()
@@ -160,9 +161,10 @@ class App extends Component {
               () => (
                 <LearnPage/>
               )}/>
-          <Route path='/about' render={() => (
-              <AboutPage token={ auth.token() }/>
-            )}/>
+          <Route path='/about' render={
+              () => (
+                <AboutPage token={ auth.token() }/>
+              )}/>
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
@@ -171,14 +173,6 @@ class App extends Component {
                   return null
                 }
               }}/>
-          <Route path='/profiles' render={
-              () => (
-                console.log(users),
-                console.log(profiles),
-                console.log(invoices),
-                <AccountPage users={users}
-                  invoices={invoices} profiles={profiles}/>
-              )}/>
           <Route path='/invoices' render={
               () => (
                 <AccountPage users={users} invoices={invoices} profiles={profiles}/>
@@ -189,12 +183,6 @@ class App extends Component {
                   { auth.hasProfile() && <Redirect to='/uploadHkid'/>
                   }
                   <ProfileForm onSubmit={this.handleProfileSubmission}/>
-                </div>
-              )}/>
-          <Route path='/profile/edit' render={
-              () => (
-                <div>
-                  <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
                 </div>
               )}/>
           <Route path='/uploadHkid' render={
@@ -221,22 +209,6 @@ class App extends Component {
               <RegisterForm onSignUp={this.handleRegister} profiles={profiles}/>
               </div>
               )}/>
-          <Route path='/uploadHkid' render={
-              () => {
-                if (auth.isSignedIn() && users) {
-                  return <UploadHkid users={users}/>
-                } else {
-                  return null
-                }
-              }}/>
-          <Route path='/uploadIc' render={
-              () => {
-                if (auth.isSignedIn() && users) {
-                  return <UploadIc users={users}/>
-                } else {
-                  return null
-                }
-              }}/>
           <Route path='/signin' render={
             () => (
               <div>
@@ -267,6 +239,14 @@ class App extends Component {
                  return null
                }
            }}/>
+           <Route path='/invoicedetails' render={
+             () => {
+                 if (auth.isSignedIn() && users && profiles && invoices) {
+                   return <InvoiceDetails invoices={invoices}/>
+                 } else {
+                   return null
+                 }
+             }}/>
           <Route path='/charges' render={
                () => (
                  <div>

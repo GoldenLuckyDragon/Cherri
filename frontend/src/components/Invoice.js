@@ -13,9 +13,7 @@ export default function Invoice ({
   profile,
   invoice
 }) {
-  console.log(profile)
   const henry = profile.find((p) => p._id === _id)
-  console.log(henry.factoryName)
   const barry = henry.invoices
   return (
     <div>
@@ -28,20 +26,24 @@ export default function Invoice ({
             <th>Customer</th>
             <th>Amount</th>
             <th>Status</th>
+            <th />
           </tr>
         </thead>
         <tbody>
           {
           barry ? (
-            barry.map(invoice => {
+            barry.map((invoice, index) => {
               return (
                 <tr>
-                  <td>1</td>
+                  <td>{index + 1}</td>
                   <td>{invoice.dueDate}</td>
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
                   <td>{invoice.status}</td>
+                  <td>
+                    <a href='/invoices/:id'>View</a>
+                  </td>
                 </tr>
               )
             })) : ('You have no submitted invoices available.')

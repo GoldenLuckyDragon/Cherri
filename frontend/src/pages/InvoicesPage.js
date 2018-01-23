@@ -5,6 +5,7 @@ import InvoiceForm from '../components/InvoiceForm'
 // import * as invoiceAPI from './api/invoices'
 // import InvoiceEditForm from '../components/InvoiceEditForm'
 import { Button } from 'react-bootstrap'
+import InvoiceDetails from '../components/InvoiceDetails'
 
 export default ({invoices}) => {
   // function handleInvoiceSubmission (invoice) {
@@ -25,8 +26,8 @@ export default ({invoices}) => {
             console.log(invoice)
             return (
               <div>
-                <Invoice {...invoice} />
-                <Link to={`/profiles/${id}/invoice/new`}><Button>Add Invoice</Button></Link>
+                <InvoiceDetails {...invoice} />
+                {/* <Link to={`/profiles/${id}/invoice/new`}><Button>Add Invoice</Button></Link> */}
                 <br />
               </div>
             )
