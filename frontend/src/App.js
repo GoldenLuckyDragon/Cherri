@@ -26,6 +26,7 @@ import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
 import InvoiceSpaUpload from './components/InvoiceSpaUpload'
+import InvoiceDetails from './components/InvoiceDetails'
 // imports associated with Stripe
 import { STRIPE_URL   } from './constants/stripe'
 import ChargesPage from './pages/ChargesPage'
@@ -160,9 +161,10 @@ class App extends Component {
               () => (
                 <LearnPage/>
               )}/>
-          <Route path='/about' render={() => (
-              <AboutPage token={ auth.token() }/>
-            )}/>
+          <Route path='/about' render={
+              () => (
+                <AboutPage token={ auth.token() }/>
+              )}/>
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
@@ -237,6 +239,14 @@ class App extends Component {
                  return null
                }
            }}/>
+           <Route path='/invoicedetails' render={
+             () => {
+                 if (auth.isSignedIn() && users && profiles && invoices) {
+                   return <InvoiceDetails invoices={invoices}/>
+                 } else {
+                   return null
+                 }
+             }}/>
           <Route path='/charges' render={
                () => (
                  <div>

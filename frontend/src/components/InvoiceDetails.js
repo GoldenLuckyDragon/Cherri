@@ -4,25 +4,17 @@ import {Link} from 'react-router-dom'
 import {Image, CloudinaryContext} from 'cloudinary-react'
 var cloudinary = require('cloudinary')
 
-export default function Profile ({
+export default function InvoiceDetails ({
   _id,
-  factoryName,
-  address,
-  hkid,
-  incorporationCertificate,
   invoices,
-  profile,
-  invoice,
-  users
+  invoice
 }) {
-  const henry = profile.find((p) => p._id === _id)
-  const userid = users._id
-  const hkidImg = `companydocs/${userid}_hkid.png`
-  const icImg = `companydocs/${userid}_ic.png`
+  const invoiceId = invoices.find((i) => i._id === _id)
+  console.log(invoiceId)
   return (
     <div>
       <br />
-      <span>Factory Name: {henry.factoryName}</span>
+      {/* <span>Factory Name: {henry.factoryName}</span>
       <hr />
       <span>Address: {henry.address}</span>
       <hr />
@@ -35,7 +27,7 @@ export default function Profile ({
       <CloudinaryContext cloudName='cherri'>
         <Image publicId={icImg} width='150' />
       </CloudinaryContext>
-      <hr />
+      <hr /> */}
     </div>
   )
 }
