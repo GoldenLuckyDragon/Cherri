@@ -248,6 +248,39 @@ First we submit our mongo DB up to m-lab.
   $  npm install -g now
   ```
 
+  type
+
+  ```
+  $ now login
+  ```
+  you will need to login, and verify your identity via email.
+
+  read more about now from Zeit, [here](https://github.com/zeit/now-cli)
+
+  To send your codebase to zeit,
+
+  from yourproject/backend run
+
+  ```
+  $ npm install
+  ```
+
+  now doesn't like Yarn install and you will have errors please use npm install
+
+  duplicate your .env file and rename to .env.production
+
+  ```
+  mv .env .env.production
+  ```
+  then run
+
+  ```
+  now -E .env.production --public
+  ```
+
+  this will send your .env to zeit, be sure to check our [Installation steps](#installation) to be sure you have the right keys in the file.
+
+  the --public will allow you to skip a confirmation that if using the free version of Zeit your code will be made public.
 
 
 

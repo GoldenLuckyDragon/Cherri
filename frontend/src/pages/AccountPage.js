@@ -11,7 +11,7 @@ import decodeJWT from 'jwt-decode'
 
 const token = window.localStorage.getItem('token')
 
-console.log(token)
+// console.log(token)
 
 export default ({users, profiles, invoices}) => {
   return (
