@@ -6,14 +6,16 @@ import Logo from '../components/Logo'
 import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
-// import PaymentMethod from '../components/PaymentMethod'
+import PaymentMethod from '../components/PaymentMethod'
 
 export default class DashboardPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      email: props.email,
       // Takes active tab from props if it is defined there
       activeTab: props.activeTab || 1
+
     }
 
     // Bind the handleSelect function already here (not in the render function)
@@ -21,7 +23,7 @@ export default class DashboardPage extends React.Component {
   }
 
   render () {
-    const { profiles, invoices, users } = this.props
+    const { profiles, invoices, users, currentEmail } = this.props
     const user = users.account
 
     return (
@@ -45,7 +47,8 @@ export default class DashboardPage extends React.Component {
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
-                {/* <PaymentMethod profile={profiles} invoice={invoices} {...user} /> */}
+                {/* {console.log(user.profile)} */}
+                <PaymentMethod email={currentEmail} profile={profiles} {...user} />
                 <br />
               </Tab>
             </Tabs>

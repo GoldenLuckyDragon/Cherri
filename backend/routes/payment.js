@@ -14,7 +14,8 @@
   make sure NODE_ENV is set to DEV in package json
 
 */
-
+// pop up notifications
+const notifier = require('node-notifier')
 const authMiddleware = require('../middleware/auth')
 // Import our FRONTend endpoint
 const FRONT_END_URL = require('../constants/frontend')
@@ -94,10 +95,17 @@ const paymentApi = app => {
       // // find our profile by id and inject our stripe user id.
       Profile.findOneAndUpdate({'email': userEmail}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
         // throw an error if any
-        if (err) { throw err } else { console.log('INJECTION') }
+        if (err) { throw err } else {
+          console.log(`INJECTED`)
+          // notifier.notify(`You've Connected To Stripe`)
+          notifier.notify({
+            title: 'Cherri',
+            message: `You've Connected To Stripe`
+          })
+        }
       })
     })
-    res.redirect(`${FRONT_END_URL}/charges`)
+    res.redirect(`${FRONT_END_URL}/dashboard`)
   })
   return app
 }
