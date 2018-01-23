@@ -171,14 +171,6 @@ class App extends Component {
                   return null
                 }
               }}/>
-          <Route path='/profiles' render={
-              () => (
-                console.log(users),
-                console.log(profiles),
-                console.log(invoices),
-                <AccountPage users={users}
-                  invoices={invoices} profiles={profiles}/>
-              )}/>
           <Route path='/invoices' render={
               () => (
                 <AccountPage users={users} invoices={invoices} profiles={profiles}/>
@@ -199,14 +191,14 @@ class App extends Component {
                   return null
                 }
               }}/>
-              <Route path='/uploadIc' render={
-                  () => {
-                    if (auth.isSignedIn() && users) {
-                      return <UploadIc users={users}/>
-                    } else {
-                      return null
-                    }
-                  }}/>
+          <Route path='/uploadIc' render={
+              () => {
+                if (auth.isSignedIn() && users) {
+                  return <UploadIc users={users}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/signup' render={
             () => (
               <div>

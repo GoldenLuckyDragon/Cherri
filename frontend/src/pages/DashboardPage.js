@@ -25,9 +25,6 @@ export default class DashboardPage extends React.Component {
   render () {
     const { profiles, invoices, users } = this.props
     const user = users.account
-    console.log(user)
-    console.log(profiles)
-    console.log(invoices)
 
     return (
       <div>
@@ -46,7 +43,7 @@ export default class DashboardPage extends React.Component {
                 <Invoice profile={profiles} invoice={invoices} {...user} />
               </Tab>
               <Tab eventKey={3} title='Account'>
-                <Profile profile={profiles} invoice={invoices} {...user} />
+                <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
                 <PaymentMethod profile={profiles} invoice={invoices} {...user} />
@@ -66,27 +63,6 @@ export default class DashboardPage extends React.Component {
     })
   }
 }
-
-//
-//
-// export default class DashboardPage extends React.Component {
-//   render () {
-//     return (
-//       <div>
-//         <Navigation />
-//         <Jumbotron className='jumbotron-blue'>
-//           <Logo />
-//           <div className='card card-shadow'>
-//             <br />
-//             DASHBOARD
-//             {/* Set which tab the default is (tab 1) */}
-//             <Dashboard activeTab={1} />
-//           </div>
-//         </Jumbotron>
-//       </div>
-//     )
-//   }
-//   }
 
 // var currencyApi = require('fixer-io-node')
 

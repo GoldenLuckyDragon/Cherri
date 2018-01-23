@@ -13,7 +13,8 @@ require('dotenv').config()
 
 export default function InvoiceUpload ({
   users,
-  profile
+  profile,
+  invoices
   }) {
   const account = profile.find((p) => p._id === users.account._id)
   const invoice = account.invoices.slice(-1)[0]

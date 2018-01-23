@@ -13,22 +13,30 @@ export default function Profile ({
   incorporationCertificate,
   invoices,
   profile,
-  invoice
+  invoice,
+  users
 }) {
   const henry = profile.find((p) => p._id === _id)
+  const userid = users._id
+  const hkidImg = `companydocs/${userid}_hkid.png`
+  const icImg = `companydocs/${userid}_ic.png`
   return (
     <div>
       <br />
       <span>Factory Name: {henry.factoryName}</span>
-      <br />
+      <hr />
       <span>Address: {henry.address}</span>
-      <br />
+      <hr />
       <span>HKID:</span>
       <CloudinaryContext cloudName='cherri'>
-        <Image publicId='companydocs/5a66880978baec24c24d0940_hkid.png' />
+        <Image publicId={hkidImg} width='150' />
       </CloudinaryContext>
-      <br />
-      <br />
+      <hr />
+      <span>Incorporation Certificate:</span>
+      <CloudinaryContext cloudName='cherri'>
+        <Image publicId={icImg} width='150' />
+      </CloudinaryContext>
+      <hr />
     </div>
   )
 }
