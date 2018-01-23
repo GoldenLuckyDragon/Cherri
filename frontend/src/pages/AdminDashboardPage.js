@@ -34,7 +34,7 @@ export default class AdminDashboardPage extends React.Component {
           <div className='card card-shadow'>
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
               <Tab eventKey={1} title='Invoices'>
-                {/* <InvoicesAdmin profile={profiles} invoice={invoices} users={users} {...user} /> */}
+                <InvoicesAdmin profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={2} title='Factories'>
                 {/* <ProfilesAdmin profile={profiles} invoice={invoices} users={users} {...user} /> */}
