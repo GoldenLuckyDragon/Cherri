@@ -52,7 +52,11 @@ export default function InvoiceDetails ({
           <CloudinaryContext cloudName='cherri'>
             <Image publicId={spaImg} width='300' />
           </CloudinaryContext>
-          <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
+          <span>
+            <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
+            &nbsp;
+            <a href={`/invoice/${invoiceid}/delete`}><button type='submit' className='btn-blue'>Delete Invoice</button></a>
+          </span>
           <br />
           { (currentEmail === 'jeff@cherri-finance.com') ? (
             <a href={`/AdminDashboard`} className='btn-blue'>Back</a>

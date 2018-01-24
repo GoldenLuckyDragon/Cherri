@@ -40,3 +40,16 @@ export function edit (invoice) {
   .then(res => res.json())
   .catch(error => { console.log(error) })
 }
+
+export function supprimer (invoice) {
+  return fetch(`${API_URL}/invoice`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
+    },
+    body: JSON.stringify(invoice)
+  })
+  .then(res => res.json())
+  .catch(error => { console.log(error) })
+}
