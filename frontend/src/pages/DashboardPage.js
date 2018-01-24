@@ -51,6 +51,7 @@ export default class DashboardPage extends React.Component {
               <Tab eventKey={4} title='Payment Method'>
                 <PaymentMethod email={email} profile={profiles} {...user} />
                 {console.log(email)}
+
               </Tab>
             </Tabs>
           </div>

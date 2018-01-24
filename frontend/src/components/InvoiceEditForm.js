@@ -8,10 +8,12 @@ class InvoiceEditForm extends React.Component {
   state = {
     redirect: false,
     invoice: this.props.invoice
+
   }
 
   handleFormSubmission = (event) => {
     event.preventDefault();
+    const { elements } = event.target;
     this.setState({ redirect: true})
     this.props.onSubmit(this.state.invoice);
   }
@@ -76,6 +78,7 @@ class InvoiceEditForm extends React.Component {
           </label>
           <br />
           <button type='submit' className='btn-blue'>Edit Invoice</button>
+
         </form>
       </div>
     )
@@ -83,3 +86,4 @@ class InvoiceEditForm extends React.Component {
 }
 
 export default InvoiceEditForm
+

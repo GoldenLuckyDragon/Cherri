@@ -250,6 +250,12 @@ class App extends Component {
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 </div>
               )}/>
+          {/* <Route path='/invoice/edit' render={
+              () => (
+                <div>
+                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
+                </div> */}
+              )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
          <Route path='/invoice/upload' render={
             () => {
@@ -305,6 +311,7 @@ class App extends Component {
               return <h1></h1>
             }
           }} />
+
           <Route path='/charges' render={
                () => (
                <div>
