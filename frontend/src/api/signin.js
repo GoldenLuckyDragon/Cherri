@@ -32,10 +32,8 @@ export function signIn ({ email, password }) {
   })
   .then(res => res.json())
   .then(json => {
-    // console.dir(json)
     if (json) { setToken(json['token']) }
     const stats = decodedToken()
-    // console.dir('the signin json is', json)
     console.log('stats are :', stats)
     // as it {} need to return something
     return (json)
@@ -55,7 +53,6 @@ export function register ({ email, password, account, admin }) {
   .then(json => {
     console.log('in signin.js with response from server')
     if (json) { setToken(json['token']) }
-    // console.log(decodedToken())
     // as it {} need to return something
     return json
   })

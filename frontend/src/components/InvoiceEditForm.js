@@ -20,7 +20,6 @@ class InvoiceEditForm extends React.Component {
     const attr = event.target.name
     const value = event.target.value
     const invoice = this.state.invoice
-    // console.log(this.state.invoice)
     // need [] cause otherwise you are trying to set invoice.attr = value which isn't a thing.
     invoice[attr] = value
     this.setState({ invoice })

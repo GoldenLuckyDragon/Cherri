@@ -1,13 +1,8 @@
 import React from 'react'
-import ProfileList from '../components/ProfileList'
-import {Route, Switch, Link} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Profile from '../components/Profile'
 import Invoice from '../components/Invoice'
-import InvoiceForm from '../components/InvoiceForm'
-// import * as invoiceAPI from './api/invoices'
-import ProfileEditForm from '../components/ProfileEditForm'
 import { Button } from 'react-bootstrap'
-import decodeJWT from 'jwt-decode'
 
 const token = window.localStorage.getItem('token')
 

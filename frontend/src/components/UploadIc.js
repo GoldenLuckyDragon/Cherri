@@ -5,7 +5,7 @@ import Navigation from '../components/navbar'
 var cloudinary = require('cloudinary')
 require('dotenv').config()
 
-// Set a constant of profile to be the profile ID that was passed in from the profile/create page.
+// Set a constant of user if to be the user ID that was passed in from the profile/create page for the purpose of Cloudinary file naming.
 
 export default function UploadIc ({
   users

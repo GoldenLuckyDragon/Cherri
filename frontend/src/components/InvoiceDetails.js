@@ -44,6 +44,7 @@ export default function InvoiceDetails ({
           <span>Customer Surname: {invoice.customerSurname}</span>
           <hr />
           <span>Invoice Upload:</span>
+          {/* Show the images from Cloudinary with the invoice ID number */}
           <CloudinaryContext cloudName='cherri'>
             <Image publicId={invoiceImg} width='300' />
           </CloudinaryContext>
