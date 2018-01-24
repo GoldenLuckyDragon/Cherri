@@ -1,5 +1,7 @@
 // import our constants
 import React, { Component } from 'react'
+import decodeJWT from 'jwt-decode'
+
 import './App.css'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
@@ -46,6 +48,20 @@ class App extends Component {
   }
 
   componentDidMount(){
+    // App remounts on submit for HKids,
+    // current email is dropped so we have to reset it.
+    const token = localStorage.getItem('token')
+    if (!!token) {
+      try {
+        const decodedToken = decodeJWT(token)
+        const email = decodedToken.email
+        console.log({ decodedToken })
+        this.setState({ currentEmail: email })
+      } catch(err) {
+        console.log("Invalid token", token)
+      }
+    }
+
     // calling the fetch functions from profileAPI file
     profileAPI.all()
     .then(profiles => {
@@ -148,6 +164,9 @@ class App extends Component {
 
   render () {
     const {users, invoices, profiles, currentEmail} = this.state
+    console.log("app.js#render()")
+    console.dir({ currentEmail })
+    console.dir({ state: this.state })
     return (
       <Router>
       <div className='App'>
@@ -168,7 +187,7 @@ class App extends Component {
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
-                  return <DashboardPage users={users} invoices={invoices} email={currentEmail} profiles={profiles}/>
+                  return (<DashboardPage users={users} invoices={invoices} email={currentEmail} profiles={profiles}/>)
                 } else {
                   return null
                 }
