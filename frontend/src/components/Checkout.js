@@ -20,9 +20,11 @@ const successPayment = data => {
 }
 
 // failure
-const errorPayment = data => {
+const errorPayment = (data, err) => {
   console.log({ data })
-  alert('Payment error')
+  if (err) {
+    console.log(err)
+  }
 }
 
 // The signed in user pays our payee

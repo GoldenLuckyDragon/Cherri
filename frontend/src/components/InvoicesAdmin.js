@@ -7,6 +7,7 @@ export default function InvoicesAdmin ({
   _id,
   profile,
   invoice,
+  stripeId,
   users
 }) {
   // Display all invoices for admin to see - order by those pending (in chronological order) at the top, followed by those that have been approved (in chronological order), followed by those that have expired, followed by those that have been declined.
@@ -17,11 +18,12 @@ export default function InvoicesAdmin ({
       // const invId = (invoice['_id'])
       // const invId = (invoice['_factoryName'])
       // console.log(invId)
-      console.log(profile)
+      // console.log(profile)
       // const currentProfile = profile.find({'_id': `${variable}`})
       // console.log(currentProfile.factoryName)
     })
   })
+  const jon = 'acct_1BFw7WCoOW4Jzoaw'
 
   return (
     <div>
@@ -48,7 +50,12 @@ export default function InvoicesAdmin ({
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
-                  {invoice.status === 'Pending' && <div className='btn-pending'> Pending </div>}
+                  {invoice.status === 'Pending' && <Checkout
+                    name={invoice.customerCompanyName}
+                    description={invoice.invoiceNumber}
+                    amount={invoice.amount * 0.9}
+                    payee={'acct_1BFw7WCoOW4Jzoaw'}
+                  />}
                   {invoice.status === 'Approved' && <div className='btn-approved'> Approved </div>}
                   {invoice.status === 'Declined' && <div className='btn-declined'> Declined </div>}
                   {invoice.status === 'Expired' && <div className='btn-expired'> Expired </div>}

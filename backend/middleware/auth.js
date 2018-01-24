@@ -58,10 +58,10 @@ passport.use(new PassportJWT.Strategy(
 
 // our email function
 function getEmail (req, res, next) {
-  console.log('***************')
-  console.dir('request body: ', req)
-  console.log('***************')
-  console.log('YOUR EMAIL IS : ', userEmail)
+  // console.log('***************')
+  // console.dir('request body: ', req)
+  // console.log('***************')
+  // console.log('YOUR EMAIL IS : ', userEmail)
   next()
 }
 
