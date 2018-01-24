@@ -9,11 +9,9 @@ var cloudinary = require('cloudinary')
 
 export default function InvoiceDetails ({
   users,
-  currentEmail,
+  email,
   invoice
 }) {
-  console.log(invoice)
-  console.log(currentEmail)
   const invoiceid = invoice._id
   const invoiceImg = `invoices/${invoiceid}_inv.png`
   const spaImg = `invoices/${invoiceid}_spa.png`
@@ -59,7 +57,7 @@ export default function InvoiceDetails ({
             <a href={`/invoice/${invoiceid}/delete`}><button type='submit' className='btn-blue'>Delete Invoice</button></a>
           </span>
           <br />
-          { (currentEmail === 'jeff@cherri-finance.com') ? (
+          { (email === 'jeff@cherri-finance.com') ? (
             <a href={`/AdminDashboard`} className='btn-blue'>Back</a>
           ) : (
             <a href={`/dashboard`} className='btn-blue'>Back</a>

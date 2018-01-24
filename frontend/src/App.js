@@ -239,7 +239,7 @@ class App extends Component {
           <Route path='/signin' render={
             () => (
               <div>
-                { auth.isSignedIn() && currentEmail==='jeff@cherri-finance.com' && <Redirect to='/admindashboard'/> }
+                { auth.isSignedIn() && email==='jeff@cherri-finance.com' && <Redirect to='/admindashboard'/> }
                 { auth.isSignedIn() && <Redirect to='/dashboard'/> }
                 <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
