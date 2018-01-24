@@ -3,7 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import { STRIPE_PUBLISHABLE } from '../constants/stripe'
-
+import * as crud from '../api/invoices'
 // our API url
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
@@ -22,6 +22,7 @@ const updateInvoice = (invoice) => {
   alert(invoice.status)
   invoice.status = 'Approved'
   alert(invoice.status)
+  crud.edit(invoice)
 }
 
 // success
