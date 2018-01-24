@@ -1,7 +1,6 @@
 // import our constants
 import React, { Component } from 'react'
 import decodeJWT from 'jwt-decode'
-
 import './App.css'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
@@ -109,17 +108,10 @@ class App extends Component {
       console.log('in App.js with response from server. setting state for email: ', email);
       this.setState({ email: email })
       userAPI.all()
-        // .populate({
-        //   path: 'account',
-        //   populate: [{
-        //     path: 'invoices'
-        //   }]
-      // })
         .then( users =>
           this.setState({ users })
       )}
     )
-    // console.log({ password, email, account})
   }
 
   // Event handler for signin of existing User
@@ -136,12 +128,9 @@ class App extends Component {
       this.setState({ email: email })
       userAPI.all()
         .then( users =>
-          // console.log(profiles)
           this.setState({ users })
       )}
     )
-    // console.log({ password, email })
-    // console.log({token})
   }
 
   handleProfileEditSubmission = (profile) => {
@@ -250,7 +239,8 @@ class App extends Component {
           <Route path='/signin' render={
             () => (
               <div>
-                { auth.isSignedIn() && <Redirect to='/profiles'/> }
+                { auth.isSignedIn() && email==='jeff@cherri-finance.com' && <Redirect to='/admindashboard'/> }
+                { auth.isSignedIn() && <Redirect to='/dashboard'/> }
                 <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>

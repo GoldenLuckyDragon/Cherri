@@ -28,8 +28,6 @@ export default class InvoiceForm extends React.Component {
     const customerCompanyName = elements['customerCompanyName'].value
     const customerFirstname = elements['customerFirstname'].value
     const customerSurname = elements['customerSurname'].value
-    // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
-    // const invoiceUpload = elements['invoiceUpload'].value
     this.props.onSubmit({invoiceNumber, amount, currency, offerAmount, dueDate, expiryDate, status, customerCompanyName, customerFirstname, customerSurname})
     this.setState({ redirect: true })
   }

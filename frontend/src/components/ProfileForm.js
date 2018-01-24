@@ -31,8 +31,8 @@ class ProfileForm extends React.Component {
 
   render() {
     const { redirect } = this.state;
-    const { currentEmail } = this.props;
-    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${currentEmail}`;
+    const { email } = this.props;
+    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${email}`;
     return (
       <div>
           {/*  if the redirect state is true goto profiles */}

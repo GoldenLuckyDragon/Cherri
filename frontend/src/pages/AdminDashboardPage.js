@@ -56,6 +56,7 @@ export default class AdminDashboardPage extends React.Component {
   }
 }
 
+// Currency converter (not actually implemented)
 // var currencyApi = require('fixer-io-node')
 
 // Returns specific exchange rates
