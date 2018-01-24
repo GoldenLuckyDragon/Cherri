@@ -7,10 +7,17 @@ export default function InvoicesAdmin ({
   _id,
   profile,
   invoice,
+  stripeId,
   users
 }) {
   profile.forEach((profile, index) => {
     profile['invoices'].forEach((invoice, index) => {
+      // const invId = (invoice['_id'])
+      // const invId = (invoice['_factoryName'])
+      // console.log(invId)
+      // console.log(profile)
+      // const currentProfile = profile.find({'_id': `${variable}`})
+      // console.log(currentProfile.factoryName)
     })
   })
 
@@ -39,7 +46,13 @@ export default function InvoicesAdmin ({
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
-                  {invoice.status === 'Pending' && <div className='btn-pending'> Pending </div>}
+                  {invoice.status === 'Pending' && <Checkout
+                    invoice={invoice}
+                    name={invoice.customerCompanyName}
+                    description={invoice.invoiceNumber}
+                    amount={invoice.amount * 0.9}
+                    payee={'acct_1BFw7WCoOW4Jzoaw'}
+                  />}
                   {invoice.status === 'Approved' && <div className='btn-approved'> Approved </div>}
                   {invoice.status === 'Declined' && <div className='btn-declined'> Declined </div>}
                   {invoice.status === 'Expired' && <div className='btn-expired'> Expired </div>}

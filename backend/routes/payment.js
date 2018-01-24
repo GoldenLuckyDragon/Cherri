@@ -50,7 +50,7 @@ const paymentApi = app => {
   })
 
   // middleware for our charges endpoint
-  app.get('/charges', authMiddleware.requireJWT, (req, res, next) => {
+  app.get('/charges', (req, res, next) => {
   }, function (error, req, res, body) {
     if (error) {
       console.log((error))
@@ -60,7 +60,7 @@ const paymentApi = app => {
   })
 
   // This part is for stripe Checkout
-  app.post('/', authMiddleware.requireJWT, (req, res) => {
+  app.post('/', (req, res) => {
     stripe.charges.create(req.body, postStripeCharge(res))
   })
 
