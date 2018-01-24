@@ -65,9 +65,16 @@ const paymentApi = app => {
   })
 
   // CONNECT  endpoint for redirect
-  app.get('/users/auth/stripe_connect', authMiddleware.getEmail, (req, res, next) => {
+  app.get('/users/auth/stripe_connect', (req, res, next) => {
     // FIXME - edge cases where no referrer
-    let userEmail = req.headers.referer.split('&')[3].split('=')[1]
+    let userEmail = ''
+    if (req.headers.hasOwnProperty('referer')) {
+      console.log('Headers found with referer: ', req.headers.referer)
+      userEmail = req.headers.referer.split('&')[3].split('=')[1]
+    } else {
+      console.log('No referer found in headers. Headers are: ', req.headers)
+      res.redirect(`${FRONT_END_URL}/charges`)
+    }
 
     // console.log('in stripe_connect with req: ', req)
     // console.log('in stripe_connect with req._passport: ', req._passport)
