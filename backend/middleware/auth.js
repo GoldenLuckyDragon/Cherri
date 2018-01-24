@@ -8,6 +8,8 @@ var { userEmail } = require('../constants/stripe')
 
 // strategies are for avoiding username you set up a strategy with passport.
 passport.use(User.createStrategy())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 // this sends the cookie to the front so we can see it in the request object
 function register (req, res, next) {
