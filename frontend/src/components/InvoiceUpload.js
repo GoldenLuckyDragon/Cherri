@@ -5,42 +5,34 @@ import { Jumbotron } from 'react-bootstrap'
 import Navigation from '../components/navbar'
 import Logo from '../components/Logo'
 import { render } from 'react-dom'
-// import cloudinary from 'cloudinary-react'
 var cloudinary = require('cloudinary')
 
 require('dotenv').config()
 
 // Set a constant of invoice to be the invoice ID that was passed in from the InvoiceForm page.
-const invoice = ''
-const token = window.localStorage.getItem('token')
 
-export default class InvoiceUpload extends Component {
-  state = { redirect: false}
-
-  handleFormSubmission = (event) => {
-    event.preventDefault()
-    const { elements } = event.target
-    // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
-    const invoiceUpload = elements['invoiceUpload'].value
-    this.props.onSubmit({invoiceUpload})
-    this.setState({ redirect: true })
+export default function InvoiceUpload ({
+  users,
+  profile
+  }) {
+  const account = profile.find((p) => p._id === users.account._id)
+  const invoice = account.invoices.slice(-1)[0]
+  const invoiceId = invoice._id
+  function handleUploadClick (event) {
+    window.cloudinary.openUploadWidget({cloud_name: 'Cherri', upload_preset: 'invoices', public_id: `${invoiceId}_inv`, folder: 'invoices', tags: ['invoice']},
+      function (error, result) { console.log(error, result) })
   }
-
-  handleUploadClick = (event) => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'Cherri', upload_preset: 'cherri', public_id: `${invoice}_inv`, tags:['invoice']},
-      function(error, result) { console.log(error, result) });
-  }
-    render () {
-          return (
-            <div>
-              <Navigation />
-              <Jumbotron className='jumbotron-blue'>
-                <Logo />
-                  <form>
-                  <a classname='btn-blue' onClick={this.handleUploadClick} id='upload_widget_opener'>Upload Your Invoice</a>
-                  </form>
-              </Jumbotron>
-            </div>
-    )
-  }
+  return (
+    <div>
+      <Navigation />
+      <Jumbotron className='jumbotron-blue'>
+        <Logo />
+        <form>
+          <a classname='btn-blue' onClick={handleUploadClick} id='upload_widget_opener'>Upload Your Invoice</a>
+          <br />
+          <a href={`/invoice/spaupload`} className='btn-blue'>Submit</a>
+        </form>
+      </Jumbotron>
+    </div>
+  )
 }

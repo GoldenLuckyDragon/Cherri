@@ -16,6 +16,7 @@ export default function InvoiceSpaUpload ({
   const account = profile.find((p) => p._id === users.account._id)
   const invoice = account.invoices.slice(-1)[0]
   const invoiceId = invoice._id
+  console.log(invoiceId)
   function handleUploadClick (event) {
     window.cloudinary.openUploadWidget({cloud_name: 'Cherri', upload_preset: 'invoices', public_id: `${invoiceId}_spa`, folder: 'invoices', tags: ['spa']},
       function (error, result) { console.log(error, result) })

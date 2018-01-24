@@ -9,8 +9,9 @@ export default function InvoicesAdmin ({
   _id,
   profile,
   invoice,
-  user
+  users
 }) {
+  console.log(users._id)
   // Display all factory profiles
   // profile.forEach((profile, index) => {
   //   profile['invoices'].forEach((invoice, index) => {
@@ -39,7 +40,7 @@ export default function InvoicesAdmin ({
           {
           profile ? (
             profile.map((profile, index) => {
-              const userid = profile._id
+              const userid = users._id
               const hkidImg = `companydocs/${userid}_hkid.jpg`
               const icImg = `companydocs/${userid}_ic.jpg`
               return (
