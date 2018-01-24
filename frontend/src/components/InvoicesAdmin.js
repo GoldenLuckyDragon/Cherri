@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 export default function InvoicesAdmin ({
   _id,
+  stripeId,
   profile,
   invoice,
   users
