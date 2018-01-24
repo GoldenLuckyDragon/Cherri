@@ -36,10 +36,10 @@ export default class DashboardPage extends React.Component {
             <Tabs className='myClass' activeKey={this.state.activeTab} onSelect={this.handleSelect}>
               <Tab eventKey={1} title='Invoice History'>
                 <Invoice profile={profiles} invoice={invoices} users={users} {...user} />
-                <div class='btn-approved'> Approved </div>
-                <div class='btn-declined'> Declined </div>
-                <div class='btn-pending'> Pending </div>
-                <div class='btn-expired'> Expired </div>
+                <div className='btn-approved'> Approved </div>
+                <div className='btn-declined'> Declined </div>
+                <div className='btn-pending'> Pending </div>
+                <div className='btn-expired'> Expired </div>
               </Tab>
               <Tab eventKey={2} title='Add Invoice'>
                 {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}

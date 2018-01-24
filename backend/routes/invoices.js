@@ -42,6 +42,8 @@ const invoiceApi = app => {
   })
 
   app.patch('/invoice', authMiddleware.requireJWT, (req, res) => {
+    console.log('*********', req.body)
+    console.log('*****Invoice patch detail ********')
     Invoice.findOneAndUpdate(({'_id': `${req.body._id}`}), req.body)
     .then(invoices => {
       console.log('invoice: ', invoices)

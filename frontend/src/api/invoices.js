@@ -28,12 +28,15 @@ export function save (invoice) {
   .catch(error => { console.log(error) })
 }
 
-// export function edit (invoice) {
-//   return fetch('/invoice/:id', {
-//     method: 'PATCH',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify(invoice)
-//   })
-//   .then(res => res.json())
-//   .catch(error => { console.log(error) })
-// }
+export function edit (invoice) {
+  return fetch(`${API_URL}/invoice`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token()}`
+    },
+    body: JSON.stringify(invoice)
+  })
+  .then(res => res.json())
+  .catch(error => { console.log(error) })
+}

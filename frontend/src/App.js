@@ -151,7 +151,7 @@ class App extends Component {
 
   handleInvoiceEditSubmission = (invoice) => {
     this.setState(({invoices}) => {
-      return { invoices: [invoice].concat(invoices)}
+      return { invoice: [invoice].concat(invoices)}
     });
     // calling the save function from backend API route
     invoiceAPI.edit(invoice);
@@ -252,10 +252,7 @@ class App extends Component {
             ({ match }) => {
              if ( invoices ) {
              const id = match.params.id
-             console.log(id)
-             console.log(invoices)
              const invoice = invoices.find((i) => i._id === id)
-             console.log(invoice)
              return (
                <div>
                  <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission} invoice={invoice} />

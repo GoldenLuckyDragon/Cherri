@@ -7,22 +7,20 @@ import {Redirect} from 'react-router-dom'
 class InvoiceEditForm extends React.Component {
   state = {
     redirect: false,
-    invoices: {}
+    invoice: this.props.invoice
   }
 
   handleFormSubmission = (event) => {
     event.preventDefault();
-
-    const { elements } = event.target;
     this.setState({ redirect: true})
-    this.props.onSubmit(this.state.invoices);
+    this.props.onSubmit(this.state.invoice);
   }
 
   handleInputChange = (event) => {
     const attr = event.target.name
     const value = event.target.value
-    const invoice = this.state.invoices
-    console.log(this.state.invoices)
+    const invoice = this.state.invoice
+    console.log(this.state.invoice)
     // need [] cause otherwise you are trying to set invoice.attr = value which isn't a thing.
     invoice[attr] = value
     this.setState({ invoice })
@@ -30,13 +28,11 @@ class InvoiceEditForm extends React.Component {
   render() {
     const {redirect} = this.state
     const inv = this.props.invoice
+    console.log(inv._id)
       return (
       <div>
-        { redirect && <Redirect to="/dashboard"/>}
+        { redirect && <Redirect to='/dashboard'/>}
         <form onSubmit={this.handleFormSubmission} >
-          <label>
-            <input type='hidden' name='_id' id="_id" value={this.props.invoice._id} />
-          </label>
           &nbsp;
           <label>
             Invoice Number:
