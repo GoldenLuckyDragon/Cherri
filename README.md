@@ -4,8 +4,6 @@
 
 ## Coder Academy Node / React.js Project By Golden Lucky Dragon (Carmen Chung, Jon Ablondi and James Marotta).
 
-TODO : update ENV For backend FRONT_END_URL
-
 ## TABLE OF CONTENTS
 
 [1. INSTALLATION INSTRUCTIONS](#installation)
@@ -224,6 +222,46 @@ to start the website.
 We chose to use the following Linter: https://standardjs.com/
 
 It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
+
+
+###TECHNOLOGIES USED
+(Marked in bold)
+
+This project was built with:
+**node.js** and **Mongodb** with mongoose for the server.
+**create-react-app** for the frontend.
+
+We discussed among the team early in development about using **Firebase** as our database, but after consulting several other developers, we found that it didn't really add any value to our application, and increased the learning curve.
+
+Some other dependencies we used include **Bootstrap-React** for our frontend design elements.
+
+**React-router-dom** for all our routing allows for a seamless flow between pages.
+
+#####Image Uploads
+For image upload, we used **Cloudinary** upload widget, it allows for quick and easy access to your cloudinary account and with some skillful tinkering we were able to manipulate the uploaded file names to suit our needs.
+
+Cloudinary also allows for easy transformations and it's a piece of cake to display images.
+
+##### Authentication
+Passport combined with JWT tokens was used for authenticating the user on the frontend. 
+
+#####Stripe
+Stripe was decided early on in development, to be essential in allowing easy transfers between our clients using the application.
+
+There was some serious errors encounted with this, which began because we added Authentication late into the game, Stripe Connect allows you to be a platform and clients are able to pay each other via your website.
+
+This is designed to be the initial Oauth flow where they would sign in via Stripe, and then you would add their details from stripe back into your database.
+
+Because our users have access to direct deposits and stripe is non-compulsory this instead cause problems for us.
+
+The Stripe connect performs a handshake with stripe servers where we send a GET request to stripe(via and approved link associated with our website), then they send back an authorization code, which must be send back to stripe on a POST, and after that they return a stripe_id associated with a user, which is essentially a bank account number for the client.
+
+As we based the entire application on React-Router, once we clicked on the link to goto stripe, we refresh the page and lost our state, and we were also not able to pass any information about the current_user after going away from our site and essentially coming back without any data.
+
+We were able to save state of the current user email, only to have the entire process uprooted by stripe changing params on the requests to their endpoint.
+
+In the end we were able to make payments via our customised invoice dashboard, but the recipients had to be hardcoded, as we could not dynamically update the database to have our stripe id, because the connect code was on our backend server, and the authentication token made from our email, is on the front end.
+
 
 ---
 <a name="businessproblem"/>
