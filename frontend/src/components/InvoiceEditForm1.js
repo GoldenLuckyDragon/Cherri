@@ -1,13 +1,17 @@
 import React from 'react'
-import { Jumbotron } from 'react-bootstrap'
-import Logo from '../components/Logo'
+import {Link} from 'react-router-dom'
+import {Image, CloudinaryContext} from 'cloudinary-react'
+import '../App.css'
 import Navigation from '../components/navbar'
+import { Jumbotron, Table } from 'react-bootstrap'
+import Logo from '../components/Logo'
 import {Redirect} from 'react-router-dom'
+var cloudinary = require('cloudinary')
 
 class InvoiceEditForm extends React.Component {
   state = {
     redirect: false,
-    invoices: {}
+    invoice: {}
   }
 
   handleFormSubmission = (event) => {
@@ -15,15 +19,14 @@ class InvoiceEditForm extends React.Component {
 
     const { elements } = event.target;
     this.setState({ redirect: true})
-    this.props.onSubmit(this.state.invoices);
+    this.props.onSubmit(this.state.invoice);
   }
 
   handleInputChange = (event) => {
     const attr = event.target.name
     const value = event.target.value
-    const invoice = this.state.invoices
-    console.log(this.state.invoices)
-    // need [] cause otherwise you are trying to set invoice.attr = value which isn't a thing.
+    const invoice = this.state.invoice
+    // need [] cause otherwise you are trying to set profile.attr = value which isn't a thing.
     invoice[attr] = value
     this.setState({ invoice })
   }
@@ -35,7 +38,7 @@ class InvoiceEditForm extends React.Component {
         { redirect && <Redirect to="/dashboard"/>}
         <form onSubmit={this.handleFormSubmission} >
           <label>
-            <input type='hidden' name='_id' id="_id" value={this.props.invoice._id} />
+            <input type='hidden' name='_id' value={this.props.invoice._id} />
           </label>
           &nbsp;
           <label>
@@ -47,7 +50,7 @@ class InvoiceEditForm extends React.Component {
           <label>
             Currency:
             &nbsp;
-            <input placeholder={inv.currency} onChange={ this.handleInputChange } type='text' name='currency' />
+            <input placeholder={inv.currency} onChange={ this.handleInputChange } type='text' name='amount' />
           </label>
           &nbsp;
           <label>
@@ -55,7 +58,7 @@ class InvoiceEditForm extends React.Component {
             &nbsp;
             <input placeholder={inv.amount} onChange={ this.handleInputChange } type='number' name='amount' />
           </label>
-          &nbsp;
+          {/* &nbsp;
           <label>
             Due Date:
             &nbsp;
@@ -79,7 +82,7 @@ class InvoiceEditForm extends React.Component {
             &nbsp;
             <input placeholder={inv.customerSurname} onChange={ this.handleInputChange } type='text' name='customerSurname' />
           </label>
-          <br />
+          <br /> */}
           <button type='submit' className='btn-blue'>Edit Invoice</button>
         </form>
       </div>

@@ -49,6 +49,8 @@ export default function InvoiceDetails ({
           <CloudinaryContext cloudName='cherri'>
             <Image publicId={spaImg} width='150' />
           </CloudinaryContext>
+          <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
+          <br />
         </div>
       </Jumbotron>
     </div>
