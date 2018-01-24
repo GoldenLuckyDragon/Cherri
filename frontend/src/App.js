@@ -11,8 +11,10 @@ import UploadHkid from './components/UploadHkid'
 import UploadIc from './components/UploadIc'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
+import InvoiceEditForm from './components/InvoiceEditForm'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
 import InvoiceDetails from './components/InvoiceDetails'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
@@ -164,6 +166,14 @@ class App extends Component {
     invoiceAPI.save(invoice);
   }
 
+  handleInvoiceEditSubmission = (invoice) => {
+    this.setState(({invoices}) => {
+      return { invoice: [invoice].concat(invoices)}
+    });
+    // calling the save function from backend API route
+    invoiceAPI.edit(invoice);
+  }
+
   render () {
     const {users, invoices, profiles, currentEmail} = this.state
     console.log("app.js#render()")
@@ -256,34 +266,57 @@ class App extends Component {
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 </div>
               )}/>
-          {/* <Route path='/invoice/edit' render={
-              () => (
-                <div>
-                  <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
-                </div>
-              )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
-          <Route path='/invoice/upload' render={
-             () => (
-               <InvoiceUpload/>
-             )}/>
-           <Route path='/invoice/:id' render={
+
+         <Route path='/invoice/upload' render={
+            () => {
+                if (auth.isSignedIn() && users && profiles) {
+                  return <InvoiceUpload profile={profiles} users={users}/>
+                } else {
+                  return null
+                }
+            }}/>
+        <Route path='/invoice/spaupload' render={
+          () => {
+              if (auth.isSignedIn() && users && profiles) {
+                return <InvoiceSpaUpload profile={profiles} users={users}/>
+              } else {
+                return null
+              }
+          }}/>
+
+          <Route path='/invoice/:id/edit' render={
+            ({ match }) => {
+             if ( invoices ) {
+             const id = match.params.id
+             const invoice = invoices.find((i) => i._id === id)
+             return (
+               <div>
+                 <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission} invoice={invoice} />
+                 <br />
+               </div>
+             )
+            } else {
+             return <h1></h1>
+            }
+            }} />
+          <Route path='/invoice/:id' render={
           ({ match }) => {
             if ( invoices ) {
-            const id = match.params.id
-            console.log(id)
-            console.log(invoices)
-            const invoice = invoices.find((i) => i._id === id)
-            console.log(invoice)
-            return (
-              <div>
-                <InvoiceDetails invoice={invoice} />
-                <br />
-              </div>
-            )
-          } else {
-            return <h1></h1>
-          }
+              const id = match.params.id
+              console.log(id)
+              console.log(invoices)
+              const invoice = invoices.find((i) => i._id === id)
+              console.log(invoice)
+              return (
+               <div>
+                 <InvoiceDetails invoice={invoice} />
+                 <br />
+               </div>
+              )
+            } else {
+              return <h1></h1>
+            }
           }} />
           <Route path='/charges' render={
                () => (

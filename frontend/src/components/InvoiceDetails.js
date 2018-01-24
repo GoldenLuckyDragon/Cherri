@@ -13,7 +13,7 @@ export default function InvoiceDetails ({
   console.log(invoice)
   const invoiceid = invoice._id
   const invoiceImg = `invoices/${invoiceid}_inv.png`
-  const spaImg = `invoices/${invoiceid}_ic.png`
+  const spaImg = `invoices/${invoiceid}_spa.png`
   return (
     <div>
       <Navigation />
@@ -42,13 +42,14 @@ export default function InvoiceDetails ({
           <hr />
           <span>Invoice Upload:</span>
           <CloudinaryContext cloudName='cherri'>
-            <Image publicId={invoiceImg} width='150' />
+            <Image publicId={invoiceImg} width='300' />
           </CloudinaryContext>
           <hr />
-          <span>Signed Sale and Purchase Agreement:</span>
+          Signed Sale and Purchase Agreement:
           <CloudinaryContext cloudName='cherri'>
-            <Image publicId={spaImg} width='150' />
+            <Image publicId={spaImg} width='300' />
           </CloudinaryContext>
+          <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
           <br />
           <a href={`/AdminDashboard`} className='btn-blue'>Back</a>
           <br />
