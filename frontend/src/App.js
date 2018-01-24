@@ -13,6 +13,7 @@ import UploadIc from './components/UploadIc'
 import * as invoiceAPI from './api/invoices'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
 import InvoiceDetails from './components/InvoiceDetails'
 // imports associated with page selection
 import AboutPage from './pages/about.js'
@@ -259,10 +260,22 @@ class App extends Component {
                 </div>
               )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
-          <Route path='/invoice/upload' render={
-             () => (
-               <InvoiceUpload/>
-             )}/>
+         <Route path='/invoice/upload' render={
+            () => {
+                if (auth.isSignedIn() && users && profiles) {
+                  return <InvoiceUpload profile={profiles} users={users}/>
+                } else {
+                  return null
+                }
+            }}/>
+        <Route path='/invoice/spaupload' render={
+          () => {
+              if (auth.isSignedIn() && users && profiles) {
+                return <InvoiceSpaUpload profile={profiles} users={users}/>
+              } else {
+                return null
+              }
+          }}/>
            <Route path='/invoice/:id' render={
           ({ match }) => {
             if ( invoices ) {
