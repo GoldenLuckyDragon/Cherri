@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 export default function InvoicesAdmin ({
   _id,
+  stripeId,
   profile,
   invoice,
-  stripeId,
   users
 }) {
   profile.forEach((profile, index) => {
@@ -46,7 +46,9 @@ export default function InvoicesAdmin ({
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
-                  {invoice.status === 'Pending' && <Checkout
+                  {invoice.status === 'Pending' &&
+                  // add our stripe id and give it all our props
+                  <Checkout
                     invoice={invoice}
                     name={invoice.customerCompanyName}
                     description={invoice.invoiceNumber}

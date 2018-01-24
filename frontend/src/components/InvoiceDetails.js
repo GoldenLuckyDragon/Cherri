@@ -5,7 +5,16 @@ import '../App.css'
 import Navigation from '../components/navbar'
 import { Jumbotron, Table } from 'react-bootstrap'
 import Logo from '../components/Logo'
+import * as crud from '../api/invoices'
+
 var cloudinary = require('cloudinary')
+const notifier = require('node-notifier')
+
+// deleting function called on button click
+const deleteInvoice = (invoice) => {
+  crud.supprimer(invoice)
+  alert('Invoice Deleted')
+}
 
 export default function InvoiceDetails ({
   users,
@@ -54,6 +63,9 @@ export default function InvoiceDetails ({
           <span>
             <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
             &nbsp;
+            {/* DELETE BUTTON  */}
+            {/* <button onSubmit={deleteInvoice(invoice)} className='btn-blue'>Delete by James</button> */}
+
             <a href={`/invoice/${invoiceid}/delete`}><button type='submit' className='btn-blue'>Delete Invoice</button></a>
           </span>
           <br />
