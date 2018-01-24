@@ -51,7 +51,7 @@ const invoiceApi = app => {
     .catch(error => res.json({ error }))
   })
 
-  app.supprimer('/invoice', authMiddleware.requireJWT, (req, res) => {
+  app.delete('/invoice', authMiddleware.requireJWT, (req, res) => {
     Invoice.findOneAndRemove({'_id': `${req.body._id}`})
     .then(invoices => {
       console.log('invoice: ', invoices)
