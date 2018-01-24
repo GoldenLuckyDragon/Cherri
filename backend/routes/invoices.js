@@ -60,7 +60,6 @@ const invoiceApi = app => {
     })
     .catch(error => res.json({ error }))
   })
-
   // return back to invoiceApi, which is called in routes/index.js
   return app
 }
