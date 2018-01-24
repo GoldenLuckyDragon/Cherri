@@ -17,18 +17,10 @@ class ProfileForm extends React.Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-
-    // const decodedToken = decodeJWT(token)
-    // console.log(decodedToken)
-    // const email = decodedToken.email
-    // console.log(email)
-    // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
-    // const address = elements['address'].value
-    // const hkid = elements['hkid'].value
+    const address = elements['address'].value
     const stripeId = ''
     const invoices = []
-    // const incorporationCertificate = elements['incorporationCertificate'].value
 
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
     this.props.onSubmit({factoryName, stripeId, invoices})

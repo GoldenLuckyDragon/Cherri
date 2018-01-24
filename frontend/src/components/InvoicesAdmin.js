@@ -3,18 +3,25 @@ import Checkout from './Checkout'
 import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export default function Invoice ({
+export default function InvoicesAdmin ({
   _id,
-  factoryName,
-  address,
-  hkid,
-  incorporationCertificate,
-  paymentMethod,
-  invoices,
   profile,
-  invoice
+  invoice,
+  users
 }) {
   // Display all invoices for admin to see - order by those pending (in chronological order) at the top, followed by those that have been approved (in chronological order), followed by those that have expired, followed by those that have been declined.
+  // console.log(JSON.stringify(invoice, null, 2))
+  // console.log(JSON.stringify(profile, null, 2))
+  profile.forEach((profile, index) => {
+    profile['invoices'].forEach((invoice, index) => {
+      // const invId = (invoice['_id'])
+      // const invId = (invoice['_factoryName'])
+      // console.log(invId)
+      console.log(profile)
+      // const currentProfile = profile.find({'_id': `${variable}`})
+      // console.log(currentProfile.factoryName)
+    })
+  })
 
   return (
     <div>
@@ -22,7 +29,6 @@ export default function Invoice ({
         <thead>
           <tr>
             <th>Item No.</th>
-            <th>Factory</th>
             <th>Due Date</th>
             <th>Invoice No.</th>
             <th>End Customer</th>
@@ -37,9 +43,7 @@ export default function Invoice ({
             invoice.map((invoice, index) => {
               return (
                 <tr>
-                  {/* If there are pending invoices */}
                   <td>{index + 1}</td>
-                  {/* Bring in factory name and link to profile page of factory */}
                   <td>{invoice.dueDate}</td>
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>

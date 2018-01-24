@@ -24,6 +24,7 @@ export default class AdminDashboardPage extends React.Component {
   render () {
     const { profiles, invoices, users, currentEmail } = this.props
     const user = users.account
+    const profile = profiles
 
     return (
       <div>
@@ -37,7 +38,7 @@ export default class AdminDashboardPage extends React.Component {
                 <InvoicesAdmin profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={2} title='Factories'>
-                {/* <ProfilesAdmin profile={profiles} invoice={invoices} users={users} {...user} /> */}
+                <ProfilesAdmin profile={profiles} invoice={invoices} users={users} {...user} />
                 <br />
               </Tab>
             </Tabs>
