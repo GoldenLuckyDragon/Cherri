@@ -19,6 +19,7 @@ import AboutPage from './pages/about.js'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
 import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
@@ -100,7 +101,8 @@ class App extends Component {
     const email = element.email.value
     const account = '5a63a30b4db988e620265bff'
     const password = element.password.value
-    auth.register({email, password, account})
+    const admin = false
+    auth.register({email, password, account, admin})
     .then(() => {
       console.log('in App.js with response from server. setting state for currentEmail: ', email);
       this.setState({ currentEmail: email })
@@ -192,6 +194,14 @@ class App extends Component {
                   return null
                 }
               }}/>
+          <Route path='/admindashboard' render={
+              () => {
+                if (users && profiles && invoices) {
+                  return <AdminDashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                } else {
+                  return null
+                }
+              }}/>
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm
@@ -245,8 +255,8 @@ class App extends Component {
           {/* <Route path='/invoice/edit' render={
               () => (
                 <div>
-                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
-                </div> */}
+                  <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
+                </div>
               )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
           <Route path='/invoice/upload' render={
@@ -268,7 +278,7 @@ class App extends Component {
               </div>
             )
           } else {
-            return <h1>broken</h1>
+            return <h1></h1>
           }
           }} />
           <Route path='/charges' render={

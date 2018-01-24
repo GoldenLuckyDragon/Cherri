@@ -44,13 +44,13 @@ export function signIn ({ email, password }) {
   .catch(error => { console.log(error) })
 }
 
-export function register ({ email, password, account }) {
+export function register ({ email, password, account, admin }) {
   return fetch(`${API_URL}/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({email, password, account})
+    body: JSON.stringify({email, password, account, admin})
   })
   .then(res => res.json())
   .then(json => {
