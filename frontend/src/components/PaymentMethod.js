@@ -2,8 +2,8 @@ import React from 'react'
 import connectStripe from '../images/connectStripe.png'
 import { STRIPE_URL } from '../constants/stripe'
 
-export default function PaymentMethod ({ currentEmail }) {
-  let stripeUrlWithEmail = STRIPE_URL + `&user_email=${currentEmail}`
+export default function PaymentMethod ({ email }) {
+  let stripeUrlWithEmail = STRIPE_URL + `&user_email=${email}`
   return (
     <div>
       <br />

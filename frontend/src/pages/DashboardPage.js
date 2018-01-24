@@ -12,7 +12,7 @@ export default class DashboardPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: props.email,
+      email: props.currentEmail,
       // Takes active tab from props if it is defined there
       activeTab: props.activeTab || 1
 
@@ -23,7 +23,9 @@ export default class DashboardPage extends React.Component {
   }
 
   render () {
-    const { profiles, invoices, users, currentEmail } = this.props
+    console.log('DashboardPage#render()')
+    console.dir({ props: this.props })
+    const { profiles, invoices, users, email } = this.props
     const user = users.account
 
     return (
@@ -42,7 +44,6 @@ export default class DashboardPage extends React.Component {
                 <div className='btn-expired'> Expired </div>
               </Tab>
               <Tab eventKey={2} title='Add Invoice'>
-                {/* <InvoiceForm invoices={invoices} onSubmit={this.props.invoices.handleInvoiceSubmission} /> */}
                 <a href='/invoice/create' ><button type='submit' className='btn-blue'>Add Invoice</button></a>
                 <br />
                 <br />
@@ -52,7 +53,7 @@ export default class DashboardPage extends React.Component {
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
                 {/* {console.log(user.profile)} */}
-                <PaymentMethod email={currentEmail} profile={profiles} {...user} />
+                <PaymentMethod email={email} profile={profiles} {...user} />
                 <br />
               </Tab>
             </Tabs>

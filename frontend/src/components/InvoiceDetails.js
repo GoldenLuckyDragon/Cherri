@@ -51,6 +51,9 @@ export default function InvoiceDetails ({
           </CloudinaryContext>
           <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
           <br />
+          <a href={`/AdminDashboard`} className='btn-blue'>Back</a>
+          <br />
+          <br />
         </div>
       </Jumbotron>
     </div>
