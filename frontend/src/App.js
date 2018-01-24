@@ -176,14 +176,11 @@ class App extends Component {
 
   render () {
     const {users, invoices, profiles, email} = this.state
-    // console.log("app.js#render()")
-    // console.dir({ email })
-    // console.dir({ state: this.state })
-    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${email}`
+
     return (
       <Router>
       <div className='App'>
-        <Navigation />
+        <Navigation email={email}/>
         {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={

@@ -22,7 +22,7 @@ export default class AdminDashboardPage extends React.Component {
   }
 
   render () {
-    const { profiles, invoices, users, currentEmail } = this.props
+    const { profiles, invoices, users, email } = this.props
     const user = users.account
     const profile = profiles
 

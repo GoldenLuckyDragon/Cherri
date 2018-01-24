@@ -27,9 +27,7 @@ export default class DashboardPage extends React.Component {
     const { _id, profiles, invoices, users, email } = this.props
     const user = users.account
     const profile = profiles.find((p) => p._id === user._id)
-    const hasStripe = profile.stripeId
-
-    console.log('********', hasStripe)
+    const gotStripe = profile.stripeId
 
     return (
       <div>
@@ -51,13 +49,8 @@ export default class DashboardPage extends React.Component {
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
-                {() => {
-                  if (hasStripe === 'EMPTY') {
-                    return <PaymentMethod email={email} profile={profiles} {...user} />
-                  } else {
-                    return <ConnectedToStripe profile={profiles} {...user} />
-                  }
-                }}
+                <PaymentMethod email={email} profile={profiles} {...user} />
+                {console.log(email)}
               </Tab>
             </Tabs>
           </div>
