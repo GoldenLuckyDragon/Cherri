@@ -238,25 +238,19 @@ class App extends Component {
               }}/>
           <Route path='/signin' render={
             () => (
-              <div>
-                { auth.isSignedIn() && email==='jeff@cherri-finance.com' && <Redirect to='/admindashboard'/> }
-                { auth.isSignedIn() && <Redirect to='/dashboard'/> }
-                <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
-              </div>
-              )}/>
+                <div>
+                  { auth.isSignedIn() && email==="jeff@cherri-finance.com" && <Redirect to='/admindashboard'/> }
+                  { auth.isSignedIn() && <Redirect to='/dashboard'/> }
+                  <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
+                </div>
+                )
+              }/>
           <Route path='/invoice/create' render={
               () => (
                 <div>
                   <InvoiceForm onSubmit={this.handleInvoiceSubmission}/>
                 </div>
               )}/>
-          {/* <Route path='/invoice/edit' render={
-              () => (
-                <div>
-                  {/* <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission}/>
-                </div> */}
-              )}/> */}
-               {/* our charges route for testing making a charge between two of our stripe customers */}
          <Route path='/invoice/upload' render={
             () => {
                 if (auth.isSignedIn() && users && profiles) {
@@ -289,13 +283,12 @@ class App extends Component {
             }
             }} />
           <Route path='/invoice/:id/delete' render={
-            () => {
-                (invoice) => {
-                  this.setState(({invoices}) => {
-                    return { invoice: [invoice].concat(invoices)}
-                  });
-                  invoiceAPI.supprimer(invoice);
-            }}} />
+            ({ match }) => {
+              {<Redirect to='/dashboard'/>}
+              const id = match.params.id
+              const invoice = invoices.find((i) => i._id === id)
+              invoiceAPI.supprimer(invoice);
+            }} />
           <Route path='/invoice/:id' render={
           ({ match }) => {
             if ( invoices ) {
