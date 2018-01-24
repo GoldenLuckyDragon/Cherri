@@ -13,10 +13,10 @@ import UploadIc from './components/UploadIc'
 import * as invoiceAPI from './api/invoices'
 import InvoiceEditForm from './components/InvoiceEditForm'
 import InvoiceForm from './components/InvoiceForm'
+import InvoiceDelete from './components/InvoiceDelete'
 import InvoiceUpload from './components/InvoiceUpload'
 import InvoiceDetails from './components/InvoiceDetails'
-// imports associated with page selection
-import AboutPage from './pages/about.js'
+// imports associated with page selection'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage'
@@ -192,9 +192,6 @@ class App extends Component {
               () => (
                 <LearnPage/>
               )}/>
-          <Route path='/about' render={() => (
-              <AboutPage token={ auth.token() }/>
-            )}/>
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
@@ -266,7 +263,6 @@ class App extends Component {
              () => (
                <InvoiceUpload/>
              )}/>
-
           <Route path='/invoice/:id/edit' render={
             ({ match }) => {
              if ( invoices ) {
@@ -282,6 +278,14 @@ class App extends Component {
              return <h1></h1>
             }
             }} />
+          <Route path='/invoice/:id/delete' render={
+            () => {
+                (invoice) => {
+                  this.setState(({invoices}) => {
+                    return { invoice: [invoice].concat(invoices)}
+                  });
+                  invoiceAPI.supprimer(invoice);
+            }}} />
           <Route path='/invoice/:id' render={
           ({ match }) => {
             if ( invoices ) {
@@ -309,10 +313,10 @@ class App extends Component {
           <Route path='/signout' render={() => (
                 <SignOutForm onSignOut={this.handleSignOut}/>
               )}/>
-          {/* <Route path='/profile/edit' render={
+          <Route path='/profile/edit' render={
               () => (
                 <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
-              )}/> */}
+              )} />
         </Switch>
       </div>
       </Router>

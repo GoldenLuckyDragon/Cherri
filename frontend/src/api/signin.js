@@ -26,8 +26,7 @@ export function signIn ({ email, password }) {
   return fetch(`${API_URL}/auth/signin`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token()}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({email, password})
   })
