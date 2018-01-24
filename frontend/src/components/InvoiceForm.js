@@ -28,8 +28,6 @@ export default class InvoiceForm extends React.Component {
     const customerCompanyName = elements['customerCompanyName'].value
     const customerFirstname = elements['customerFirstname'].value
     const customerSurname = elements['customerSurname'].value
-    // const salePurchaseAgreement = elements['salePurchaseAgreement'].value
-    // const invoiceUpload = elements['invoiceUpload'].value
     this.props.onSubmit({invoiceNumber, amount, currency, offerAmount, dueDate, expiryDate, status, customerCompanyName, customerFirstname, customerSurname})
     this.setState({ redirect: true })
   }
@@ -37,7 +35,7 @@ export default class InvoiceForm extends React.Component {
     const {redirect} = this.state
     return (
       <div>
-        { redirect && <Redirect to="/dashboard" />}
+        { redirect && <Redirect to="/invoice/upload" />}
         <form onSubmit={this.handleFormSubmission} >
           &nbsp;
           SUBMIT AN INVOICE
@@ -97,20 +95,6 @@ export default class InvoiceForm extends React.Component {
             <input type='text' name='customerSurname' />
           </label>
           <br/>
-
-          {/* <label>
-            Signed Sale Purchase Agreement (download from <a href='http://res.cloudinary.com/cherri/image/upload/v1516149513/Accounts_Receivable_Purchase_Agreement.docx_cxglxl.pdf' target='_blank'>here</a>):
-            &nbsp;
-            <input type='file' name='salePurchaseAgreement' />
-          </label>
-          <br/>
-
-          <label>
-            Invoice Upload:
-            &nbsp;
-            <input type='file' name='invoiceUpload' />
-          </label>
-          <br/> */}
 
           <button type='submit' className='btn-blue'>Create Invoice</button>
           <br/>

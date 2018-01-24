@@ -14,7 +14,8 @@
   make sure NODE_ENV is set to DEV in package json
 
 */
-
+// pop up notifications
+const notifier = require('node-notifier')
 const authMiddleware = require('../middleware/auth')
 // Import our FRONTend endpoint
 const FRONT_END_URL = require('../constants/frontend')
@@ -49,7 +50,7 @@ const paymentApi = app => {
   })
 
   // middleware for our charges endpoint
-  app.get('/charges', authMiddleware.requireJWT, (req, res, next) => {
+  app.get('/charges', (req, res, next) => {
   }, function (error, req, res, body) {
     if (error) {
       console.log((error))
@@ -59,18 +60,31 @@ const paymentApi = app => {
   })
 
   // This part is for stripe Checkout
-  app.post('/', authMiddleware.requireJWT, (req, res) => {
+  app.post('/', (req, res) => {
     stripe.charges.create(req.body, postStripeCharge(res))
   })
 
   // CONNECT  endpoint for redirect
-  app.get('/users/auth/stripe_connect', authMiddleware.getEmail, (req, res, next) => {
-    // FIXME - edge cases where no referrer
-    let userEmail = req.headers.referer.split('&')[3].split('=')[1]
+  app.get('/users/auth/stripe_connect', (req, res, next) => {
+    // FIXME: // Need to idenfity the
+
+    // let userEmail = ''
+    // if (req.headers.hasOwnProperty('referer')) {
+    //   console.log('Headers found with referer: ', req.headers)
+    //   userEmail = req.headers.referer.split('&')[3].split('=')[1]
+    // } else {
+    //   console.log('No referer found in headers. Headers are: ', req.headers.referer)
+    //   res.redirect(`${FRONT_END_URL}/charges`)
+    // }
+
+    notifier.notify({
+      title: 'Cherri',
+      message: `You've Connected To Stripe`
+    })
 
     // console.log('in stripe_connect with req: ', req)
     // console.log('in stripe_connect with req._passport: ', req._passport)
-    console.log('req.headers.referer: ', userEmail)
+    // console.log('req.headers.referer: ', userEmail)
     const code = req.query.code
 
     // Make /oauth/token endpoint POST request
@@ -94,10 +108,17 @@ const paymentApi = app => {
       // // find our profile by id and inject our stripe user id.
       Profile.findOneAndUpdate({'email': userEmail}, {$set: { 'stripeId': stripeUserId }}, function (err, profile) {
         // throw an error if any
-        if (err) { throw err } else { console.log('INJECTION') }
+        if (err) { throw err } else {
+          console.log(`INJECTED`)
+          // notifier.notify(`You've Connected To Stripe`)
+          notifier.notify({
+            title: 'Cherri',
+            message: `You've Connected To Stripe`
+          })
+        }
       })
     })
-    res.redirect(`${FRONT_END_URL}/charges`)
+    res.redirect(`${FRONT_END_URL}/dashboard`)
   })
   return app
 }

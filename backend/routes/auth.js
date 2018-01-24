@@ -22,12 +22,12 @@ router.post('/signin',
 )
 
 router.get('/profiles',
-  authMiddleware.signIn, authMiddleware.getEmail, (req, res, next) => {
+  authMiddleware.signIn, (req, res, next) => {
     res.send({profiles: [ 'profile' ]})
   }
 )
 
-router.get('/charges', authMiddleware.requireJWT, (req, res, next) => {
+router.get('/charges', (req, res, next) => {
   console.dir(req)
 })
 

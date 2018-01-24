@@ -17,18 +17,10 @@ class ProfileForm extends React.Component {
   handleFormSubmission = (event) => {
     event.preventDefault()
     const { elements } = event.target
-
-    // const decodedToken = decodeJWT(token)
-    // console.log(decodedToken)
-    // const email = decodedToken.email
-    // console.log(email)
-    // const password = elements['password'].value
     const factoryName = elements['factoryName'].value
-    // const address = elements['address'].value
-    // const hkid = elements['hkid'].value
-    const stripeId = ''
+    const address = elements['address'].value
+    const stripeId = 'EMPTY'
     const invoices = []
-    // const incorporationCertificate = elements['incorporationCertificate'].value
 
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)
     this.props.onSubmit({factoryName, stripeId, invoices})
@@ -39,8 +31,8 @@ class ProfileForm extends React.Component {
 
   render() {
     const { redirect } = this.state;
-    const { currentEmail } = this.props;
-    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${currentEmail}`;
+    const { email } = this.props;
+    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${email}`;
     return (
       <div>
           {/*  if the redirect state is true goto profiles */}
@@ -56,18 +48,12 @@ class ProfileForm extends React.Component {
             <input type='text' name='factoryName' />
           </label>
           <br />
-          <br />
           <label>
-            {
-              !!currentEmail ? (
-                <a href={stripeUrlWithEmail}>
-                  <img src={connectStripe} alt="connect with stripe" height='30' />
-                </a>
-              ) : ( "Waiting for token prior to allowing access to stripe")
-            }
+            Registered Address:
+            &nbsp;
+            <input type='text' name='address' />
           </label>
           <br />
-
 
           <button type='submit' className='btn-blue'>Create Profile</button>
         </form>

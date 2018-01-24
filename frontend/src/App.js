@@ -1,5 +1,6 @@
 // import our constants
 import React, { Component } from 'react'
+import decodeJWT from 'jwt-decode'
 import './App.css'
 // invoiceAPI should be below
 import * as profileAPI from './api/profiles'
@@ -9,13 +10,17 @@ import UploadHkid from './components/UploadHkid'
 import UploadIc from './components/UploadIc'
 // imports associated with invoice
 import * as invoiceAPI from './api/invoices'
+import InvoiceEditForm from './components/InvoiceEditForm'
 import InvoiceForm from './components/InvoiceForm'
+import InvoiceDelete from './components/InvoiceDelete'
 import InvoiceUpload from './components/InvoiceUpload'
-// imports associated with page selection
-import AboutPage from './pages/about.js'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
+import InvoiceDetails from './components/InvoiceDetails'
+// imports associated with page selection'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
 import LearnPage from './pages/LearnPage'
 // imports associated with signing up & signing in
 import RegisterForm from './components/RegisterForm'
@@ -41,10 +46,24 @@ class App extends Component {
     profiles: null,
     users: null,
     invoices: null,
-    currentEmail: null
+    email: null
   }
 
   componentDidMount(){
+    // App remounts on submit for HKids,
+    // current email is dropped so we have to reset it.
+    const token = localStorage.getItem('token')
+    if (!!token) {
+      try {
+        const decodedToken = decodeJWT(token)
+        const email = decodedToken.email
+        console.log({ decodedToken })
+        this.setState({ email: email })
+      } catch(err) {
+        console.log("Invalid token", token)
+      }
+    }
+
     // calling the fetch functions from profileAPI file
     profileAPI.all()
     .then(profiles => {
@@ -83,22 +102,16 @@ class App extends Component {
     const email = element.email.value
     const account = '5a63a30b4db988e620265bff'
     const password = element.password.value
-    auth.register({email, password, account})
+    const admin = false
+    auth.register({email, password, account, admin})
     .then(() => {
-      console.log('in App.js with response from server. setting state for currentEmail: ', email);
-      this.setState({ currentEmail: email })
+      console.log('in App.js with response from server. setting state for email: ', email);
+      this.setState({ email: email })
       userAPI.all()
-        // .populate({
-        //   path: 'account',
-        //   populate: [{
-        //     path: 'invoices'
-        //   }]
-      // })
         .then( users =>
           this.setState({ users })
       )}
     )
-    // console.log({ password, email, account})
   }
 
   // Event handler for signin of existing User
@@ -112,15 +125,12 @@ class App extends Component {
     auth.signIn({email, password})
     .then((json) => {
       console.log('App.js signed in and setting state with email: ', email);
-      this.setState({ currentEmail: email })
+      this.setState({ email: email })
       userAPI.all()
         .then( users =>
-          // console.log(profiles)
           this.setState({ users })
       )}
     )
-    // console.log({ password, email })
-    // console.log({token})
   }
 
   handleProfileEditSubmission = (profile) => {
@@ -145,12 +155,21 @@ class App extends Component {
     invoiceAPI.save(invoice);
   }
 
+  handleInvoiceEditSubmission = (invoice) => {
+    this.setState(({invoices}) => {
+      return { invoice: [invoice].concat(invoices)}
+    });
+    // calling the save function from backend API route
+    invoiceAPI.edit(invoice);
+  }
+
   render () {
-    const {users, invoices, profiles} = this.state
+    const {users, invoices, profiles, email} = this.state
+
     return (
       <Router>
       <div className='App'>
-        <Navigation />
+        <Navigation email={email}/>
         {/*  Switch statment to handle all our routes */}
         <Switch>
           <Route exact path='/' render={
@@ -161,13 +180,21 @@ class App extends Component {
               () => (
                 <LearnPage/>
               )}/>
-          <Route path='/about' render={() => (
-              <AboutPage token={ auth.token() }/>
-            )}/>
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
-                  return <DashboardPage users={users} invoices={invoices} profiles={profiles}/>
+                  return (
+                    <DashboardPage users={users} invoices={invoices} email={email} profiles={profiles}/>
+                  )
+
+                } else {
+                  return null
+                }
+              }}/>
+          <Route path='/admindashboard' render={
+              () => {
+                if (users && profiles && invoices) {
+                  return <AdminDashboardPage users={users} invoices={invoices} profiles={profiles}/>
                 } else {
                   return null
                 }
@@ -175,7 +202,7 @@ class App extends Component {
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm
-                  currentEmail={this.state.currentEmail}
+                  email={this.state.email}
                   onSubmit={this.handleProfileSubmission}
                 />
               )}/>
@@ -212,7 +239,8 @@ class App extends Component {
           <Route path='/signin' render={
             () => (
               <div>
-                { auth.isSignedIn() && <Redirect to='/profiles'/> }
+                { auth.isSignedIn() && email==='jeff@cherri-finance.com' && <Redirect to='/admindashboard'/> }
+                { auth.isSignedIn() && <Redirect to='/dashboard'/> }
                 <SignInForm onSignIn={this.handleSignIn} profiles={profiles}/>
               </div>
               )}/>
@@ -229,23 +257,74 @@ class App extends Component {
                 </div> */}
               )}/> */}
                {/* our charges route for testing making a charge between two of our stripe customers */}
-          <Route path='/invoice/upload' render={
-             () => (
-               <InvoiceUpload/>
-             )}/>
+         <Route path='/invoice/upload' render={
+            () => {
+                if (auth.isSignedIn() && users && profiles) {
+                  return <InvoiceUpload profile={profiles} users={users}/>
+                } else {
+                  return null
+                }
+            }}/>
+        <Route path='/invoice/spaupload' render={
+          () => {
+              if (auth.isSignedIn() && users && profiles) {
+                return <InvoiceSpaUpload profile={profiles} users={users}/>
+              } else {
+                return null
+              }
+          }}/>
+          <Route path='/invoice/:id/edit' render={
+            ({ match }) => {
+             if ( invoices ) {
+             const id = match.params.id
+             const invoice = invoices.find((i) => i._id === id)
+             return (
+               <div>
+                 <InvoiceEditForm onSubmit={this.handleInvoiceEditSubmission} invoice={invoice} />
+                 <br />
+               </div>
+             )
+            } else {
+             return <h1></h1>
+            }
+            }} />
+          <Route path='/invoice/:id/delete' render={
+            () => {
+                (invoice) => {
+                  this.setState(({invoices}) => {
+                    return { invoice: [invoice].concat(invoices)}
+                  });
+                  invoiceAPI.supprimer(invoice);
+            }}} />
+          <Route path='/invoice/:id' render={
+          ({ match }) => {
+            if ( invoices ) {
+              const id = match.params.id
+              const invoice = invoices.find((i) => i._id === id)
+              return (
+               <div>
+                 <InvoiceDetails email={email} users={users} invoice={invoice} />
+                 <br />
+               </div>
+              )
+            } else {
+              return <h1></h1>
+            }
+          }} />
+
           <Route path='/charges' render={
                () => (
-                 <div>
-                   <ChargesPage token={ auth.token() } />
-                 </div>
+               <div>
+                 <ChargesPage token={ auth.token() } />
+               </div>
                )}/>
           <Route path='/signout' render={() => (
                 <SignOutForm onSignOut={this.handleSignOut}/>
               )}/>
-          {/* <Route path='/profile/edit' render={
+          <Route path='/profile/edit' render={
               () => (
                 <ProfileEditForm onSubmit={this.handleProfileEditSubmission}/>
-              )}/> */}
+              )} />
         </Switch>
       </div>
       </Router>

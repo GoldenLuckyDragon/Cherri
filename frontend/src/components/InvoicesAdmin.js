@@ -3,19 +3,24 @@ import Checkout from './Checkout'
 import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export default function Invoice ({
+export default function InvoicesAdmin ({
   _id,
-  factoryName,
-  address,
-  hkid,
-  incorporationCertificate,
-  paymentMethod,
-  invoices,
   profile,
-  invoice
+  invoice,
+  stripeId,
+  users
 }) {
-  const henry = profile.find((p) => p._id === _id)
-  const barry = henry.invoices
+  profile.forEach((profile, index) => {
+    profile['invoices'].forEach((invoice, index) => {
+      // const invId = (invoice['_id'])
+      // const invId = (invoice['_factoryName'])
+      // console.log(invId)
+      // console.log(profile)
+      // const currentProfile = profile.find({'_id': `${variable}`})
+      // console.log(currentProfile.factoryName)
+    })
+  })
+
   return (
     <div>
       <Table responsive>
@@ -24,7 +29,7 @@ export default function Invoice ({
             <th>Item No.</th>
             <th>Due Date</th>
             <th>Invoice No.</th>
-            <th>Customer</th>
+            <th>End Customer</th>
             <th>Amount</th>
             <th>Status</th>
             <th />
@@ -32,8 +37,8 @@ export default function Invoice ({
         </thead>
         <tbody>
           {
-          barry ? (
-            barry.map((invoice, index) => {
+          invoice ? (
+            invoice.map((invoice, index) => {
               return (
                 <tr>
                   <td>{index + 1}</td>
@@ -41,7 +46,13 @@ export default function Invoice ({
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
-                  {invoice.status === 'Pending' && <div className='btn-pending'> Pending </div>}
+                  {invoice.status === 'Pending' && <Checkout
+                    invoice={invoice}
+                    name={invoice.customerCompanyName}
+                    description={invoice.invoiceNumber}
+                    amount={invoice.amount * 0.9}
+                    payee={'acct_1BFw7WCoOW4Jzoaw'}
+                  />}
                   {invoice.status === 'Approved' && <div className='btn-approved'> Approved </div>}
                   {invoice.status === 'Declined' && <div className='btn-declined'> Declined </div>}
                   {invoice.status === 'Expired' && <div className='btn-expired'> Expired </div>}

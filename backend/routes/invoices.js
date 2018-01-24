@@ -51,6 +51,15 @@ const invoiceApi = app => {
     .catch(error => res.json({ error }))
   })
 
+  app.delete('/invoice', authMiddleware.requireJWT, (req, res) => {
+    Invoice.findOneAndRemove({'_id': `${req.body._id}`})
+    .then(invoices => {
+      console.log('invoice: ', invoices)
+      // render as json.
+      res.json(invoices)
+    })
+    .catch(error => res.json({ error }))
+  })
   // return back to invoiceApi, which is called in routes/index.js
   return app
 }

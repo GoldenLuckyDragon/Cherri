@@ -3,7 +3,6 @@ const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // send our email and password to the backend api
 export function all () {
-  // console.log(API_URL)
   return fetch(`${API_URL}/user`, {
     method: 'GET',
     headers: {
