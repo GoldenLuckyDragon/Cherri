@@ -300,13 +300,10 @@ class App extends Component {
           ({ match }) => {
             if ( invoices ) {
               const id = match.params.id
-              console.log(id)
-              console.log(invoices)
               const invoice = invoices.find((i) => i._id === id)
-              console.log(invoice)
               return (
                <div>
-                 <InvoiceDetails invoice={invoice} />
+                 <InvoiceDetails currentEmail={currentEmail} users={users} invoice={invoice} />
                  <br />
                </div>
               )
