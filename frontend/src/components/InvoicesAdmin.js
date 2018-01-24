@@ -8,7 +8,7 @@ export default function InvoicesAdmin ({
   stripeId,
   profile,
   invoice,
-  stripeId,
+  // stripeId,
   users
 }) {
   profile.forEach((profile, index) => {
