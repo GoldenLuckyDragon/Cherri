@@ -48,7 +48,10 @@ export default function InvoicesAdmin ({
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
-                  <td>{invoice.status}</td>
+                  {invoice.status === 'Pending' && <div className='btn-pending'> Pending </div>}
+                  {invoice.status === 'Approved' && <div className='btn-approved'> Approved </div>}
+                  {invoice.status === 'Declined' && <div className='btn-declined'> Declined </div>}
+                  {invoice.status === 'Expired' && <div className='btn-expired'> Expired </div>}
                   <td>
                     <Link to={`/invoice/${invoice._id}`}>
                     View
