@@ -1,6 +1,6 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-# Cherri 樱桃
+# ![Cherri 樱桃](http://res.cloudinary.com/cherri/image/upload/v1516781757/logo_szclhx.png)
 
 ## Coder Academy Node / React.js Project By Golden Lucky Dragon (Carmen Chung, Jon Ablondi and James Marotta).
 
@@ -16,7 +16,7 @@ TODO : update ENV For backend FRONT_END_URL
 
 [4. BUSINESS SOLUTION](#businesssolution)
 
-[5. PROJECT PLANNING](#businesssolution)
+[5. PROJECT PLANNING](#planning)
 * [User Stories](#userstories)
 * [Workflow Diagram & Project Plan](#workflow)
 * [Wireframes](#wireframes)
@@ -162,6 +162,8 @@ If you wish to establish your own Cloudinary account and presets (so that you ca
 
 3. Create two upload presets with the following settings:
 
+![Cloudinary presets](http://res.cloudinary.com/cherri/image/upload/v1516782118/cloudinarypresets.png)
+
 ---
 
 #### Front End
@@ -224,7 +226,7 @@ We chose to use the following Linter: https://standardjs.com/
 It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
 
 ---
-<a name="installation"/>
+<a name="businessproblem"/>
 
 ### 3. BUSINESS PROBLEM
 
@@ -233,3 +235,58 @@ It is well documented, it has auto enforcement on save and it works with es6. Co
 Our client, Winsome Stock, seeks to create an online web application platform where manufacturers can create an account to upload their unpaid invoices (up to a limit of US$3 million), proof of delivery documents (signed by their end customer) and a signed Account Receivables Sale & Purchase Agreement. These documents can then be reviewed by Winsome Stock, which can immediately purchase the unpaid invoices at a specified percentage of the invoice value. While we understand that in the future, Winsome Stock would prefer to set the percentage based on the risk profile of the manufacturer and its end customer, it is agreed that the current iteration of the platform will set the purchase amount at 90% of the invoice value.
 
 Ideally, verification of both the manufacturer and the invoice authenticity would be done online through automated systems implemented on the platform (for example, through document recognition software), but the current iteration of this project will require Winsome Stock to conduct its own verification process offline, external to the platform (for example, by calling end-customers to request confirmation of the invoice’s authenticity).
+
+<a name="businesssolution"/>
+### 4. BUSINESS SOLUTION
+</a>
+
+The web application (called Cherri) is a mobile-based online web application made using Node.js and React technologies, with a Bootstrap front-end.
+The following features were integrated into the application:
+
+(i) 	Registration. Upon registration on the platform, manufacturers will be asked to provide certain information/documents (such as email address, HKID of manufacturer contact person, company registration documents, and a registered address).
+
+(ii) 	Submission of Invoices. Manufacturers will then be able to upload images of unpaid invoices, as well as a signed Account Receivables Sale & Purchase Agreement, and submit these for review by Winsome Stock. Manufacturers will also enter the end-customer name and contact person (plus contact details), the due date of the invoice, the invoice number, and the amount due, into the system. They will be informed by the platform that by submitting the invoice, they are agreeing to keep the offer to purchase at 90% of the invoice value open for 7 days from the date of submission. Manufacturers will also have the option of being paid via traditional online banking methods (such as direct deposit) or online through the platform via Stripe.
+
+(iii) 	Admin Account. Winsome Stock has admin access to the platform, which allows it to see all the invoices on its Home page dashboard, including those that are pending approval, those that have been approved and paid, those that have expired (i.e. were not approved or declined within 7 days of the submission), and those that have been declined. After doing its own offline verification process, Winsome Stock can approve the purchase of any pending invoices, and can immediately purchase them through the platform using Stripe (if the manufacturer has selected this as their preferred payment method) at 90% of the value of the invoice amount, or make payment through online banking (outside of the platform).
+
+<a name="planning"/>
+### 4. PLANNING
+</a>
+
+<a name = "userstories">
+#### User Stories & Journeys
+</a>
+
+Our user stories are below (including those deemed mandatory ("MVP") and those that are added bonuses ("Sprinkles")).
+
+![user stories](http://res.cloudinary.com/cherri/image/upload/v1516783097/userstories.png)
+
+Our user journeys are below:
+
+![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783364/Journey1_yrhhb3.jpg)
+
+![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783362/Journey2_nfigju.jpg)
+
+![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783364/Journey3_mdzv7w.jpg)
+
+![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783364/Journey4_ywjv6p.jpg)
+
+![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783364/Journey5_caa6tc.jpg)
+
+<a name = "workflow">
+#### Project Plan & Client Communication
+</a>
+
+The following project schedule was prepared to ensure smooth workflow:
+
+![planning project schedule](http://res.cloudinary.com/cherri/image/upload/v1516783780/planningschedule.png)
+
+<a name = "wireframes">
+#### Wireframes
+</a>
+
+<a name = "erd">
+#### Entity Relationship Diagram (ERD)
+</a>
+
+(iv) 	Notification.   Every time an invoice is uploaded, Winsome Stock will be notified by email of the new, pending invoice. Upon a decision being made (either paying or declining to pay for the invoice), or the 7-day offer period expiring, the manufacturer will be notified by email. The manufacturer Home page dashboard will be updated automatically to reflect all invoices that have been paid, declined, expired or are pending.
