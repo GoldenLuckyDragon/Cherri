@@ -2,7 +2,6 @@ import { token } from './signin'
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 export function all () {
-  // console.log(API_URL)
   return fetch(`${API_URL}/invoice`, {
     method: 'GET',
     headers: {
@@ -15,7 +14,6 @@ export function all () {
 }
 
 export function save (invoice) {
-  // console.log(API_URL)
   return fetch(`${API_URL}/invoice`, {
     method: 'POST',
     headers: {

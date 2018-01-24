@@ -3,7 +3,6 @@ const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 // show all our profiles
 export function all () {
-  // console.log(API_URL)
   return fetch(`${API_URL}/profiles`, {
     method: 'GET',
     headers: {
