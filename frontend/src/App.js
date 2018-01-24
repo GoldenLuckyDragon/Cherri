@@ -47,7 +47,7 @@ class App extends Component {
     profiles: null,
     users: null,
     invoices: null,
-    currentEmail: null
+    email: null
   }
 
   componentDidMount(){
@@ -59,7 +59,7 @@ class App extends Component {
         const decodedToken = decodeJWT(token)
         const email = decodedToken.email
         console.log({ decodedToken })
-        this.setState({ currentEmail: email })
+        this.setState({ email: email })
       } catch(err) {
         console.log("Invalid token", token)
       }
@@ -106,8 +106,8 @@ class App extends Component {
     const admin = false
     auth.register({email, password, account, admin})
     .then(() => {
-      console.log('in App.js with response from server. setting state for currentEmail: ', email);
-      this.setState({ currentEmail: email })
+      console.log('in App.js with response from server. setting state for email: ', email);
+      this.setState({ email: email })
       userAPI.all()
         // .populate({
         //   path: 'account',
@@ -133,7 +133,7 @@ class App extends Component {
     auth.signIn({email, password})
     .then((json) => {
       console.log('App.js signed in and setting state with email: ', email);
-      this.setState({ currentEmail: email })
+      this.setState({ email: email })
       userAPI.all()
         .then( users =>
           // console.log(profiles)
@@ -175,11 +175,11 @@ class App extends Component {
   }
 
   render () {
-    const {users, invoices, profiles, currentEmail} = this.state
-    console.log("app.js#render()")
-    console.dir({ currentEmail })
-    console.dir({ state: this.state })
-    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${currentEmail}`
+    const {users, invoices, profiles, email} = this.state
+    // console.log("app.js#render()")
+    // console.dir({ email })
+    // console.dir({ state: this.state })
+    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${email}`
     return (
       <Router>
       <div className='App'>
@@ -201,7 +201,7 @@ class App extends Component {
               () => {
                 if (users && profiles && invoices) {
                   return (
-                    <DashboardPage users={users} invoices={invoices} email={currentEmail} profiles={profiles}/>
+                    <DashboardPage users={users} invoices={invoices} email={email} profiles={profiles}/>
                   )
 
                 } else {
@@ -219,7 +219,7 @@ class App extends Component {
           <Route path='/profile/create' render={
               () => (
                 <ProfileForm
-                  currentEmail={this.state.currentEmail}
+                  email={this.state.email}
                   onSubmit={this.handleProfileSubmission}
                 />
               )}/>
@@ -307,7 +307,7 @@ class App extends Component {
               const invoice = invoices.find((i) => i._id === id)
               return (
                <div>
-                 <InvoiceDetails currentEmail={currentEmail} users={users} invoice={invoice} />
+                 <InvoiceDetails email={email} users={users} invoice={invoice} />
                  <br />
                </div>
               )
