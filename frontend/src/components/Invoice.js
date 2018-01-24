@@ -17,24 +17,6 @@ export default function Invoice ({
   const henry = profile.find((p) => p._id === _id)
   const barry = henry.invoices
   console.log(barry.status)
-  // if (invoice.status === 'pending') {
-  // }
-
-  // switch (barry.status) {
-  //   case 'pending':
-  //     let statusX = (<div className='btn-pending'> Pending </div>)
-  //     break
-  //   case 'approved':
-  //     let statusX =(<div className='btn-approved'> Approved </div>)
-  //     break
-  //   case 'declined':
-  //   let statusX =  (<div className='btn-declined'> Declined </div>)
-  //     break
-  //   case 'expired':
-  //   let statusX =  (<div className='btn-expired'> Expired </div>)
-  //     break
-  // }
-
   return (
     <div>
       <Table responsive>
@@ -60,7 +42,10 @@ export default function Invoice ({
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
-                  {/* <td><ButtonChange /></td> */}
+                  {invoice.status === 'Pending' && <div className='btn-pending'> Pending </div>}
+                  {invoice.status === 'Approved' && <div className='btn-approved'> Approved </div>}
+                  {invoice.status === 'Declined' && <div className='btn-declined'> Declined </div>}
+                  {invoice.status === 'Expired' && <div className='btn-expired'> Expired </div>}
                   <td>
                     <Link to={`/invoice/${invoice._id}`}>
                     View
@@ -75,26 +60,3 @@ export default function Invoice ({
     </div>
   )
 }
-
-// function ButtonChange ({
-//   invoices,
-//   invoice
-//   const henry = profile.find((p) => p._id === _id)
-//   const barry = henry.invoices
-//   {
-//   switch (invoices.status) {
-//     case 'pending':
-//       let statusX = (<div className='btn-pending'> Pending </div>)
-//       break
-//     case 'approved':
-//       let statusX =(<div className='btn-approved'> Approved </div>)
-//       break
-//     case 'declined':
-//     let statusX =  (<div className='btn-declined'> Declined </div>)
-//       break
-//     case 'expired':
-//     let statusX =  (<div className='btn-expired'> Expired </div>)
-//       break
-//   }
-// }
-// })

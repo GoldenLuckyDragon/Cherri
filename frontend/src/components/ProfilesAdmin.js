@@ -11,19 +11,6 @@ export default function InvoicesAdmin ({
   invoice,
   users
 }) {
-  console.log(users._id)
-  // Display all factory profiles
-  // profile.forEach((profile, index) => {
-  //   profile['invoices'].forEach((invoice, index) => {
-  //     // const invId = (invoice['_id'])
-  //     // const invId = (invoice['_factoryName'])
-  //     // console.log(invId)
-  //     console.log(profile)
-  //     // const currentProfile = profile.find({'_id': `${variable}`})
-  //     // console.log(currentProfile.factoryName)
-  //   })
-  // })
-
   return (
     <div>
       <Table responsive>
