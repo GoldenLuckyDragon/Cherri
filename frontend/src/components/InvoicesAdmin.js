@@ -23,7 +23,6 @@ export default function InvoicesAdmin ({
       // console.log(currentProfile.factoryName)
     })
   })
-  const jon = 'acct_1BFw7WCoOW4Jzoaw'
 
   return (
     <div>
@@ -51,6 +50,7 @@ export default function InvoicesAdmin ({
                   <td>{invoice.customerCompanyName}</td>
                   <td>{invoice.amount}</td>
                   {invoice.status === 'Pending' && <Checkout
+                    invoice={invoice}
                     name={invoice.customerCompanyName}
                     description={invoice.invoiceNumber}
                     amount={invoice.amount * 0.9}
