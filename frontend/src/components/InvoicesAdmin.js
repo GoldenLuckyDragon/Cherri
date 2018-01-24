@@ -9,17 +9,8 @@ export default function InvoicesAdmin ({
   invoice,
   users
 }) {
-  // Display all invoices for admin to see - order by those pending (in chronological order) at the top, followed by those that have been approved (in chronological order), followed by those that have expired, followed by those that have been declined.
-  // console.log(JSON.stringify(invoice, null, 2))
-  // console.log(JSON.stringify(profile, null, 2))
   profile.forEach((profile, index) => {
     profile['invoices'].forEach((invoice, index) => {
-      // const invId = (invoice['_id'])
-      // const invId = (invoice['_factoryName'])
-      // console.log(invId)
-      console.log(profile)
-      // const currentProfile = profile.find({'_id': `${variable}`})
-      // console.log(currentProfile.factoryName)
     })
   })
 
@@ -58,7 +49,6 @@ export default function InvoicesAdmin ({
                     </Link>
                   </td>
                 </tr>
-                // Repeat the above for approved, expired and declined.
               )
             })) : ('You have no submitted invoices available.')
           }
