@@ -23,10 +23,12 @@ export default class DashboardPage extends React.Component {
   }
 
   render () {
-    console.log('DashboardPage#render()')
-    console.dir({ props: this.props })
-    const { profiles, invoices, users, email } = this.props
+    const { _id, profiles, invoices, users, email } = this.props
     const user = users.account
+    const profile = profiles.find((p) => p._id === user._id)
+    const hasStripe = profile.stripeId
+
+    console.log('********', hasStripe)
 
     return (
       <div>
