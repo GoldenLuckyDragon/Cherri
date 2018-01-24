@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import { STRIPE_PUBLISHABLE } from '../constants/stripe'
+var MongoClient = require('mongodb').MongoClient
 
 // our API url
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
