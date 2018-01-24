@@ -3,8 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import { STRIPE_PUBLISHABLE } from '../constants/stripe'
-var MongoClient = require('mongodb').MongoClient
-
+import * as crud from '../api/invoices'
 // our API url
 const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
@@ -19,16 +18,18 @@ const fromDollarsToCents = amount => amount * 100
 
 // our update invoice function
 const updateInvoice = (invoice) => {
-  alert(invoice._id)
-  alert(invoice.status)
+  // change the status of the invoice
   invoice.status = 'Approved'
+  // show the user
   alert(invoice.status)
+  // update the db
+  crud.edit(invoice)
 }
 
 // success
 const successPayment = (data) => {
   console.log({ data })
-  alert('Payment success Thankyou')
+  // pass the data to update invoice
   updateInvoice(data)
   // update status of invoice
 }
@@ -58,10 +59,12 @@ const onToken = (invoice, token, amount, payee, description) => {
         account: payee
       }
     })
+    // if succesful pass the invoice to success
     .then(successPayment(invoice))
     .catch(errorPayment)
 }
 
+// our checkout gets all our details from the invoice
 const Checkout = ({ invoice, payee, name, description, amount }) =>
   <StripeCheckout
     name={name}
