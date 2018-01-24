@@ -224,31 +224,29 @@ We chose to use the following Linter: https://standardjs.com/
 It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
 
 
-###TECHNOLOGIES USED
+### TECHNOLOGIES USED
 (Marked in bold)
 
 This project was built with:
-**node.js** and **Mongodb** with mongoose for the server.
-**create-react-app** for the frontend.
+**node.js** and **Mongodb** with mongoose for the server and **create-react-app** for the frontend.
 
-We discussed among the team early in development about using **Firebase** as our database, but after consulting several other developers, we found that it didn't really add any value to our application, and increased the learning curve.
+We discussed among the team early in development about using **Firebase** as our database, but after consulting several other developers, we found that it didn't really add any value to our application (and indeed, increased the learning curve).
 
-Some other dependencies we used include **Bootstrap-React** for our frontend design elements.
+Some other dependencies we used include **Bootstrap-React** for our frontend design elements and **React-router-dom** for all our routing, which allows for a seamless flow between pages.
 
-**React-router-dom** for all our routing allows for a seamless flow between pages.
+##### Image Uploads
 
-#####Image Uploads
-For image upload, we used **Cloudinary** upload widget, it allows for quick and easy access to your cloudinary account and with some skillful tinkering we were able to manipulate the uploaded file names to suit our needs.
-
-Cloudinary also allows for easy transformations and it's a piece of cake to display images.
+For image upload, we used the **Cloudinary** upload widget, which allows for quick and easy access to your Cloudinary account (and allows third party users to upload direct to your Cloudinary account without requiring authorisation) and with some skillful tinkering, we were able to manipulate the uploaded file names to suit our needs.
 
 ##### Authentication
-Passport combined with JWT tokens was used for authenticating the user on the frontend. 
 
-#####Stripe
-Stripe was decided early on in development, to be essential in allowing easy transfers between our clients using the application.
+Passport combined with JWT tokens were used for authenticating the user on the frontend.
 
-There was some serious errors encounted with this, which began because we added Authentication late into the game, Stripe Connect allows you to be a platform and clients are able to pay each other via your website.
+##### Stripe
+
+It was decided early on in development to use Stripe as the payment mechanism, as would provide a platform for easy transfers between our client and the factories using the application. Stripe Connect allows payments to be made between the client and others via the website.
+
+There were some serious errors encountered with this, which began because we added Authentication late into the game.
 
 This is designed to be the initial Oauth flow where they would sign in via Stripe, and then you would add their details from stripe back into your database.
 
