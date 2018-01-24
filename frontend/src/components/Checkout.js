@@ -18,8 +18,6 @@ const fromDollarsToCents = amount => amount * 100
 
 // our update invoice function
 const updateInvoice = (invoice) => {
-  alert(invoice._id)
-  alert(invoice.status)
   invoice.status = 'Approved'
   alert(invoice.status)
   crud.edit(invoice)
