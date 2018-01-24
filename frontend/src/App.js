@@ -169,6 +169,7 @@ class App extends Component {
     console.log("app.js#render()")
     console.dir({ currentEmail })
     console.dir({ state: this.state })
+    let stripeUrlWithEmail = STRIPE_URL + `&user_email=${currentEmail}`
     return (
       <Router>
       <div className='App'>
@@ -189,7 +190,10 @@ class App extends Component {
           <Route path='/dashboard' render={
               () => {
                 if (users && profiles && invoices) {
-                  return (<DashboardPage users={users} invoices={invoices} email={currentEmail} profiles={profiles}/>)
+                  return (
+                    <DashboardPage users={users} invoices={invoices} email={currentEmail} profiles={profiles}/>
+                  )
+
                 } else {
                   return null
                 }
