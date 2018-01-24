@@ -19,7 +19,7 @@ class ProfileForm extends React.Component {
     const { elements } = event.target
     const factoryName = elements['factoryName'].value
     const address = elements['address'].value
-    const stripeId = ''
+    const stripeId = 'EMPTY'
     const invoices = []
 
     // props for the form, only send what you need these will be expected on the submission (ie; no stripeId)

@@ -7,12 +7,13 @@ import * as invoiceAPI from '../api/invoices'
 import Invoice from '../components/Invoice'
 import Profile from '../components/Profile'
 import PaymentMethod from '../components/PaymentMethod'
+import ConnectedToStripe from '../components/ConnectedToStripe'
 
 export default class DashboardPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: props.currentEmail,
+      email: props.email,
       // Takes active tab from props if it is defined there
       activeTab: props.activeTab || 1
 
@@ -23,10 +24,10 @@ export default class DashboardPage extends React.Component {
   }
 
   render () {
-    console.log('DashboardPage#render()')
-    console.dir({ props: this.props })
-    const { profiles, invoices, users, email } = this.props
+    const { _id, profiles, invoices, users, email } = this.props
     const user = users.account
+    const profile = profiles.find((p) => p._id === user._id)
+    const gotStripe = profile.stripeId
 
     return (
       <div>
@@ -48,9 +49,8 @@ export default class DashboardPage extends React.Component {
                 <Profile profile={profiles} invoice={invoices} users={users} {...user} />
               </Tab>
               <Tab eventKey={4} title='Payment Method'>
-                {/* {console.log(user.profile)} */}
                 <PaymentMethod email={email} profile={profiles} {...user} />
-                <br />
+                {console.log(email)}
               </Tab>
             </Tabs>
           </div>
