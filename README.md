@@ -149,6 +149,18 @@ A successful connection will display as follows:
 ```
 waiting for connections on port 27017
 ```
+---
+#### Cloudinary
+
+Our team used Cloudinary for image upload and retrieval. We created two presets to allow images to be uploaded directly from the platform without requiring the user to be authorised (the Cloudinary API and Cloudinary Secret Key are stored within the .env file).
+
+If you wish to establish your own Cloudinary account and presets (so that you can access the images uploaded to the website), then follow these steps:
+
+1. Sign up for a Cloudinary account [here](https://cloudinary.com/). Under settings, set the Cloudinary cloud name to Cherri.
+
+2. Create two folders: one called invoices and the other called companydocs.
+
+3. Create two upload presets with the following settings:
 
 ---
 
