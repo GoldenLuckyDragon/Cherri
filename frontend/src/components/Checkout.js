@@ -18,15 +18,18 @@ const fromDollarsToCents = amount => amount * 100
 
 // our update invoice function
 const updateInvoice = (invoice) => {
+  // change the status of the invoice
   invoice.status = 'Approved'
+  // show the user
   alert(invoice.status)
+  // update the db
   crud.edit(invoice)
 }
 
 // success
 const successPayment = (data) => {
   console.log({ data })
-  alert('Payment success Thankyou')
+  // pass the data to update invoice
   updateInvoice(data)
   // update status of invoice
 }
@@ -56,10 +59,12 @@ const onToken = (invoice, token, amount, payee, description) => {
         account: payee
       }
     })
+    // if succesful pass the invoice to success
     .then(successPayment(invoice))
     .catch(errorPayment)
 }
 
+// our checkout gets all our details from the invoice
 const Checkout = ({ invoice, payee, name, description, amount }) =>
   <StripeCheckout
     name={name}
