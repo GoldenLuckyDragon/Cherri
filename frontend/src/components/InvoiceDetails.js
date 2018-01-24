@@ -8,12 +8,15 @@ import Logo from '../components/Logo'
 var cloudinary = require('cloudinary')
 
 export default function InvoiceDetails ({
+  users,
+  currentEmail,
   invoice
 }) {
   console.log(invoice)
+  console.log(currentEmail)
   const invoiceid = invoice._id
   const invoiceImg = `invoices/${invoiceid}_inv.png`
-  const spaImg = `invoices/${invoiceid}_ic.png`
+  const spaImg = `invoices/${invoiceid}_spa.png`
   return (
     <div>
       <Navigation />
@@ -42,12 +45,12 @@ export default function InvoiceDetails ({
           <hr />
           <span>Invoice Upload:</span>
           <CloudinaryContext cloudName='cherri'>
-            <Image publicId={invoiceImg} width='150' />
+            <Image publicId={invoiceImg} width='300' />
           </CloudinaryContext>
           <hr />
-          <span>Signed Sale and Purchase Agreement:</span>
+          Signed Sale and Purchase Agreement:
           <CloudinaryContext cloudName='cherri'>
-            <Image publicId={spaImg} width='150' />
+            <Image publicId={spaImg} width='300' />
           </CloudinaryContext>
           <span>
             <a href={`/invoice/${invoiceid}/edit`}><button type='submit' className='btn-blue'>Edit Invoice</button></a>
@@ -55,7 +58,11 @@ export default function InvoiceDetails ({
             <a href={`/invoice/${invoiceid}/delete`}><button type='submit' className='btn-blue'>Delete Invoice</button></a>
           </span>
           <br />
-          <a href={`/AdminDashboard`} className='btn-blue'>Back</a>
+          { (currentEmail === 'jeff@cherri-finance.com') ? (
+            <a href={`/AdminDashboard`} className='btn-blue'>Back</a>
+          ) : (
+            <a href={`/dashboard`} className='btn-blue'>Back</a>
+          )}
           <br />
           <br />
         </div>

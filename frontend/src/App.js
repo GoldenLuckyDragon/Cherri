@@ -15,6 +15,7 @@ import InvoiceEditForm from './components/InvoiceEditForm'
 import InvoiceForm from './components/InvoiceForm'
 import InvoiceDelete from './components/InvoiceDelete'
 import InvoiceUpload from './components/InvoiceUpload'
+import InvoiceSpaUpload from './components/InvoiceSpaUpload'
 import InvoiceDetails from './components/InvoiceDetails'
 // imports associated with page selection'
 import AccountPage from './pages/AccountPage'
@@ -259,10 +260,22 @@ class App extends Component {
                 </div>
               )}/>
                {/* our charges route for testing making a charge between two of our stripe customers */}
-          <Route path='/invoice/upload' render={
-             () => (
-               <InvoiceUpload/>
-             )}/>
+         <Route path='/invoice/upload' render={
+            () => {
+                if (auth.isSignedIn() && users && profiles) {
+                  return <InvoiceUpload profile={profiles} users={users}/>
+                } else {
+                  return null
+                }
+            }}/>
+        <Route path='/invoice/spaupload' render={
+          () => {
+              if (auth.isSignedIn() && users && profiles) {
+                return <InvoiceSpaUpload profile={profiles} users={users}/>
+              } else {
+                return null
+              }
+          }}/>
           <Route path='/invoice/:id/edit' render={
             ({ match }) => {
              if ( invoices ) {
@@ -290,13 +303,10 @@ class App extends Component {
           ({ match }) => {
             if ( invoices ) {
               const id = match.params.id
-              console.log(id)
-              console.log(invoices)
               const invoice = invoices.find((i) => i._id === id)
-              console.log(invoice)
               return (
                <div>
-                 <InvoiceDetails invoice={invoice} />
+                 <InvoiceDetails currentEmail={currentEmail} users={users} invoice={invoice} />
                  <br />
                </div>
               )
