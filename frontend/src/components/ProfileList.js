@@ -8,11 +8,6 @@ import decodeJWT from 'jwt-decode'
 const token = window.localStorage.getItem('token')
 
 export default function ProfileList ({ profiles, invoices }) {
-  // const decodedToken = decodeJWT(token)
-  // console.log(decodedToken)
-  // const email = decodedToken.email
-  // console.log(email)
-
   return (
     <div>
       <h2>Profile List!</h2>

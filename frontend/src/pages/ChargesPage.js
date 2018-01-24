@@ -1,7 +1,6 @@
 import React from 'react'
 import Navigation from '../components/navbar'
 import Checkout from '../components/Checkout'
-// import {}
 
 // these three things are key to be taken from token
 const User = 'James'
@@ -12,8 +11,6 @@ const jon = 'acct_1BFw7WCoOW4Jzoaw'
 
 // attempt to create charges between two customers
 export default ({ token }) => {
-  // const userToken = decodeJWT(token)
-
   return (
     <div>
       <Navigation />
@@ -24,7 +21,6 @@ export default ({ token }) => {
         payee={cherri}
       />
 
-      {/* STRIPE ID = {stripeId} */}
     </div>
   )
 }

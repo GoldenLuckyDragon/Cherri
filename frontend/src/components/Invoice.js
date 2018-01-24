@@ -16,7 +16,6 @@ export default function Invoice ({
 }) {
   const henry = profile.find((p) => p._id === _id)
   const barry = henry.invoices
-  console.log(barry.status)
   return (
     <div>
       <Table responsive>
