@@ -66,7 +66,7 @@ export default function InvoiceDetails ({
             {/* DELETE BUTTON  */}
             {/* <button onSubmit={deleteInvoice(invoice)} className='btn-blue'>Delete by James</button> */}
 
-            {/* <a href={`/invoice/${invoiceid}/delete`}><button type='submit' className='btn-blue'>Delete Invoice</button></a> */}
+            <a href={`/invoice/${invoiceid}/delete`}><button type='submit' className='btn-blue'>Delete Invoice</button></a>
           </span>
           <br />
           { (email === 'jeff@cherri-finance.com') ? (
