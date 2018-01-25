@@ -42,8 +42,6 @@ $ cd Cherri
 ```
 The project consists of both a front and back end.
 
----
-
 #### Back End
 To begin with, you will need a stripe account. Go to  https://dashboard.stripe.com/register
 and register an account. In the Stripe dashboard, sign up for Stripe Connect (which allows the platform to be a middleman in a transaction between two clients).
@@ -118,7 +116,6 @@ You should see:
 
 If you do not already have MongoDb, you will need to install it with the following steps.
 
----
 #### MongoDb
 
 Open a new Terminal window with <kbd>CMD</kbd> + <kbd>T</kbd>
@@ -147,7 +144,7 @@ A successful connection will display as follows:
 ```
 waiting for connections on port 27017
 ```
----
+
 #### Cloudinary
 
 Our team used Cloudinary for image upload and retrieval. We created two presets to allow images to be uploaded directly from the platform without requiring the user to be authorised (the Cloudinary API and Cloudinary Secret Key are stored within the .env file).
@@ -161,8 +158,6 @@ If you wish to establish your own Cloudinary account and presets (so that you ca
 3. Create two upload presets with the following settings:
 
 ![Cloudinary presets](http://res.cloudinary.com/cherri/image/upload/v1516782118/cloudinarypresets.png)
-
----
 
 #### Front End
 
@@ -212,9 +207,7 @@ to start the website.
 
 ---
 <a name="tools"/>
-
 ### 2. TOOLS & METHODOLOGIES
-
 </a>
 
 ### Linter  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -260,18 +253,16 @@ We were able to save state of the current user email, only to have the entire pr
 
 In the end we were able to make payments via our customised invoice dashboard, but the recipients had to be hardcoded, as we could not dynamically update the database to have our stripe id, because the connect code was on our backend server, and the authentication token made from our email, is on the front end.
 
-
 ---
 <a name="businessproblem"/>
-
 ### 3. BUSINESS PROBLEM
-
 </a>
 
 Our client, Winsome Stock, seeks to create an online web application platform where manufacturers can create an account to upload their unpaid invoices (up to a limit of US$3 million), proof of delivery documents (signed by their end customer) and a signed Account Receivables Sale & Purchase Agreement. These documents can then be reviewed by Winsome Stock, which can immediately purchase the unpaid invoices at a specified percentage of the invoice value. While we understand that in the future, Winsome Stock would prefer to set the percentage based on the risk profile of the manufacturer and its end customer, it is agreed that the current iteration of the platform will set the purchase amount at 90% of the invoice value.
 
 Ideally, verification of both the manufacturer and the invoice authenticity would be done online through automated systems implemented on the platform (for example, through document recognition software), but the current iteration of this project will require Winsome Stock to conduct its own verification process offline, external to the platform (for example, by calling end-customers to request confirmation of the invoice’s authenticity).
 
+---
 <a name="businesssolution"/>
 ### 4. BUSINESS SOLUTION
 </a>
@@ -285,8 +276,9 @@ The following features were integrated into the application:
 
 (iii) 	Admin Account. Winsome Stock has admin access to the platform, which allows it to see all the invoices on its Home page dashboard, including those that are pending approval, those that have been approved and paid, those that have expired (i.e. were not approved or declined within 7 days of the submission), and those that have been declined. After doing its own offline verification process, Winsome Stock can approve the purchase of any pending invoices, and can immediately purchase them through the platform using Stripe (if the manufacturer has selected this as their preferred payment method) at 90% of the value of the invoice amount, or make payment through online banking (outside of the platform).
 
+---
 <a name="planning"/>
-### 4. PLANNING
+### 5. PLANNING
 </a>
 
 <a name = "userstories">
