@@ -209,17 +209,18 @@ to start the website.
 
 ---
 <a name="tools"/>
+
 ### 2. TOOLS & METHODOLOGIES
 </a>
 
-### Linter  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+#### Linter  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 We chose to use the following Linter: https://standardjs.com/
 
 It is well documented, it has auto enforcement on save and it works with es6. Controversially, it removes semicolons, but this appears to be becoming standard practice in the industry. As a result, you can never start a line with (, [, or `
 
 
-### TECHNOLOGIES USED
+#### Technologies Used
 (Marked in bold)
 
 This project was built with:
@@ -239,13 +240,10 @@ Passport combined with JWT tokens were used for authenticating the user on the f
 
 ##### Stripe
 
-It was decided early on in development to use Stripe as the payment mechanism, as would provide a platform for easy transfers between our client and the factories using the application. Stripe Connect allows payments to be made between the client and others via the website.
+It was decided early on in development to use Stripe as the payment mechanism, as it would provide a platform for easy transfers between our client and the factories using the application. Stripe Connect allows payments to be made between the client and others via the website.
 
-There were some serious errors encountered with this, which began because we added Authentication late into the game.
-
-This is designed to be the initial Oauth flow where they would sign in via Stripe, and then you would add their details from stripe back into your database.
-
-Because our users have access to direct deposits and stripe is non-compulsory this instead cause problems for us.
+There were some serious errors encountered with this, which began because we added authentication late in the game. Stripe Connect is designed to be the initial Oauth flow where the factory would sign in via Stripe, and then you would add their details from Stripe back into your database.
+Unfortunately, because our users have access to direct deposits (and Stripe is non-compulsory), this caused problems for us.
 
 The Stripe connect performs a handshake with stripe servers where we send a GET request to stripe(via and approved link associated with our website), then they send back an authorization code, which must be send back to stripe on a POST, and after that they return a stripe_id associated with a user, which is essentially a bank account number for the client.
 
