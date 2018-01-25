@@ -24,12 +24,16 @@
 
 [7. FURTHER WORK](#furtherwork)
 
+[8. TESTING](#TESTS)
+
 ---
 <a name="installation"/>
 
 ### 1. Installation Instructions
 
 </a>
+
+View the project online [here](http://cherri-finance.netlify.com/) [currently with deployment issues].
 
 To use this project locally:
 
@@ -193,11 +197,11 @@ $ yarn install
 
 You should have 3 terminal windows running:
 
-*1.* Cherri/backend.
+1. Cherri/backend.
 
-*2.* Mongodb.
+2. Mongodb.
 
-*3.* Cherri/frontend.
+3. Cherri/frontend.
 
 Type into Terminal:
 ```
@@ -253,6 +257,7 @@ In the end we were able to make payments via our customised invoice dashboard, b
 
 ---
 <a name="businessproblem"/>
+
 ### 3. BUSINESS PROBLEM
 </a>
 
@@ -262,24 +267,27 @@ Ideally, verification of both the manufacturer and the invoice authenticity woul
 
 ---
 <a name="businesssolution"/>
+
 ### 4. BUSINESS SOLUTION
 </a>
 
 The web application (called Cherri) is a mobile-based online web application made using Node.js and React technologies, with a Bootstrap front-end.
 The following features were integrated into the application:
 
-(i) 	Registration. Upon registration on the platform, manufacturers will be asked to provide certain information/documents (such as email address, HKID of manufacturer contact person, company registration documents, and a registered address).
+1. Registration. Upon registration on the platform, manufacturers will be asked to provide certain information/documents (such as email address, HKID of manufacturer contact person, company registration documents, and a registered address).
 
-(ii) 	Submission of Invoices. Manufacturers will then be able to upload images of unpaid invoices, as well as a signed Account Receivables Sale & Purchase Agreement, and submit these for review by Winsome Stock. Manufacturers will also enter the end-customer name and contact person (plus contact details), the due date of the invoice, the invoice number, and the amount due, into the system. They will be informed by the platform that by submitting the invoice, they are agreeing to keep the offer to purchase at 90% of the invoice value open for 7 days from the date of submission. Manufacturers will also have the option of being paid via traditional online banking methods (such as direct deposit) or online through the platform via Stripe.
+2. Submission of Invoices. Manufacturers will then be able to upload images of unpaid invoices, as well as a signed Account Receivables Sale & Purchase Agreement, and submit these for review by Winsome Stock. Manufacturers will also enter the end-customer name and contact person (plus contact details), the due date of the invoice, the invoice number, and the amount due, into the system. They will be informed by the platform that by submitting the invoice, they are agreeing to keep the offer to purchase at 90% of the invoice value open for 7 days from the date of submission. Manufacturers will also have the option of being paid via traditional online banking methods (such as direct deposit) or online through the platform via Stripe.
 
-(iii) 	Admin Account. Winsome Stock has admin access to the platform, which allows it to see all the invoices on its Home page dashboard, including those that are pending approval, those that have been approved and paid, those that have expired (i.e. were not approved or declined within 7 days of the submission), and those that have been declined. After doing its own offline verification process, Winsome Stock can approve the purchase of any pending invoices, and can immediately purchase them through the platform using Stripe (if the manufacturer has selected this as their preferred payment method) at 90% of the value of the invoice amount, or make payment through online banking (outside of the platform).
+3. Admin Account. Winsome Stock has admin access to the platform, which allows it to see all the invoices on its Home page dashboard, including those that are pending approval, those that have been approved and paid, those that have expired (i.e. were not approved or declined within 7 days of the submission), and those that have been declined. After doing its own offline verification process, Winsome Stock can approve the purchase of any pending invoices, and can immediately purchase them through the platform using Stripe (if the manufacturer has selected this as their preferred payment method) at 90% of the value of the invoice amount, or make payment through online banking (outside of the platform).
 
 ---
 <a name="planning"/>
+
 ### 5. PLANNING
 </a>
 
 <a name = "userstories">
+
 #### User Stories & Journeys
 </a>
 
@@ -300,6 +308,7 @@ Our user journeys are below:
 ![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783364/Journey5_caa6tc.jpg)
 
 <a name = "workflow">
+
 #### Project Plan & Client Communication
 </a>
 
@@ -307,12 +316,89 @@ The following project schedule was prepared to ensure smooth workflow:
 
 ![planning project schedule](http://res.cloudinary.com/cherri/image/upload/v1516783780/planningschedule.png)
 
+
+This was our whiteboard for our last few days working on the project:
+
+![Final week](/backend/public/finalrun.png)
+
+Our client was kept informed of the project status and liaised with us (minutes of meeting is stored in a Google Drive made available to our teachers).
+
 <a name = "wireframes">
+
 #### Wireframes
 </a>
 
+Home page (landing page) on mobile:
+
+![Homepage](/backend/public/Home1.png)
+
+Home page (second section) on mobile:
+
+![Home](/backend/public/Home2.png)
+
+Factory dashboard on mobile:
+
+![Dash](/backend/public/dash.png)
+
 <a name = "erd">
-#### Entity Relationship Diagram (ERD)
+
+### Entity Relationship Diagram (ERD)
 </a>
 
-(iv) 	Notification.   Every time an invoice is uploaded, Winsome Stock will be notified by email of the new, pending invoice. Upon a decision being made (either paying or declining to pay for the invoice), or the 7-day offer period expiring, the manufacturer will be notified by email. The manufacturer Home page dashboard will be updated automatically to reflect all invoices that have been paid, declined, expired or are pending.
+We used Dbdesigner to plan our database.
+
+
+##### Our Original ERD
+
+![Our Original ERD](/backend/public/erd1.png)
+
+
+##### Our Finalised ERD
+
+![Our Finalised ERD](/backend/public/erd2.png)
+
+---
+
+<a name = "keyfeatures">
+
+### 6. KEY FEATURES
+</a>
+
+Manufacturers:
+* can sign up (including uploading their HKID and Incorporation Certificate as proof of identity);
+* can log in;
+* can upload their invoices and signed Account Receivable Purchase Agreement (so they agree to sell their unpaid invoices and keep the offer open for seven days);
+* can connect their Stripe account;
+* can see invoices that have been paid, declined, pending and expired.
+
+Admin:
+* can log in;
+* can review the invoices and their statuses (including pending, approved, expired and declined);
+* can review all the factories and their incorporation certificate and HKID; and
+* can immediately purchase the invoice at 90% of its value (with payment being made through a choice of either bank deposit or online through Stripe).
+
+---
+<a name = "keyfeatures">
+
+### 7. FURTHER WORK
+</a>
+
+Some key future features we would like to see implemented include:
+
+  * email notifications;
+  * graph API to show paid payments (like how much has been earned month-to-month);
+  * ability to filter through invoices on both dashboards;
+  * potentially expand the platform to become a two-way market place with cryptocurrency payments; and
+  * finalise deployment.
+
+---
+<a name = "Tests">
+
+### 8. TESTING
+</a>
+
+We have a testing suite inside the application. You can run tests with:
+
+```
+$ yarn test
+```
