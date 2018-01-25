@@ -24,6 +24,8 @@
 
 [7. FURTHER WORK](#furtherwork)
 
+[8. TESTING](#TESTS)
+
 ---
 <a name="installation"/>
 
@@ -255,6 +257,7 @@ In the end we were able to make payments via our customised invoice dashboard, b
 
 ---
 <a name="businessproblem"/>
+
 ### 3. BUSINESS PROBLEM
 </a>
 
@@ -264,6 +267,7 @@ Ideally, verification of both the manufacturer and the invoice authenticity woul
 
 ---
 <a name="businesssolution"/>
+
 ### 4. BUSINESS SOLUTION
 </a>
 
@@ -278,10 +282,12 @@ The following features were integrated into the application:
 
 ---
 <a name="planning"/>
+
 ### 5. PLANNING
 </a>
 
 <a name = "userstories">
+
 #### User Stories & Journeys
 </a>
 
@@ -302,6 +308,7 @@ Our user journeys are below:
 ![user journeys](http://res.cloudinary.com/cherri/image/upload/v1516783364/Journey5_caa6tc.jpg)
 
 <a name = "workflow">
+
 #### Project Plan & Client Communication
 </a>
 
@@ -309,12 +316,76 @@ The following project schedule was prepared to ensure smooth workflow:
 
 ![planning project schedule](http://res.cloudinary.com/cherri/image/upload/v1516783780/planningschedule.png)
 
+
+This was our whiteboard for our last few days working on the project.
+
+![Final week](/backend/public/finalrun.png)
+
+
 <a name = "wireframes">
+
 #### Wireframes
 </a>
 
+
+
+![Homepage](/backend/public/Home1.png)
+
+![Home](/backend/public/Home2.png)
+
+![Dash](/backend/public/dash.png)
+
 <a name = "erd">
-#### Entity Relationship Diagram (ERD)
+
+###Entity Relationship Diagram (ERD)
 </a>
 
-(iv) 	Notification.   Every time an invoice is uploaded, Winsome Stock will be notified by email of the new, pending invoice. Upon a decision being made (either paying or declining to pay for the invoice), or the 7-day offer period expiring, the manufacturer will be notified by email. The manufacturer Home page dashboard will be updated automatically to reflect all invoices that have been paid, declined, expired or are pending.
+We used Dbdesigner to plan our database
+
+
+######Our Original Design
+
+![Our Original ERD](/backend/public/erd1.png)
+
+
+#####Our Finalised Erd
+
+![Our Finalised ERD](/backend/public/erd2.png)
+
+---
+
+<a name = "keyfeatures">
+
+### 6. KEY FEATURES
+</a>
+
+Online platform where manufacturers can sign up, upload their invoices and signed Account Receivable Purchase Agreement. Invoices are on offer to be bought for 7 days - then expire.
+
+
+Admin can log in, review the invoices, and immediately purchase the invoice at 90% of its value (with payment being made through a choice of either bank deposit or online through Stripe). Alternatively, invoice can be declined.
+
+
+---
+<a name = "keyfeatures">
+
+### 6. FURTHER WORK
+</a>
+  Some Key future features we would like to see implemented include:
+
+
+  * Email notifications
+  * Graph API for to show paid payments
+  * Ability to filter through invoices on both dashboards
+  * Huge possibilities to have the this application on the blockchain.
+
+---
+<a name = "Tests">
+
+### 8. TESTING
+</a>
+
+We have a limited testing suite inside the application, you can run tests with:
+
+```
+$ yarn test
+```
