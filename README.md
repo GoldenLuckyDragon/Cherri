@@ -27,7 +27,7 @@
 
 [7. FURTHER WORK](#furtherwork)
 
-[8. TESTING](#TESTS)
+[8. TESTING](#tests)
 
 ---
 <a name="installation"/>
@@ -396,7 +396,7 @@ Admin:
 * can immediately purchase the invoice at 90% of its value (with payment being made through a choice of either bank deposit or online through Stripe).
 
 ---
-<a name = "keyfeatures">
+<a name = "furtherwork">
 
 ### 7. FURTHER WORK
 </a>
@@ -410,7 +410,7 @@ Some key future features we would like to see implemented include:
   * finalise deployment.
 
 ---
-<a name = "Tests">
+<a name = "tests">
 
 ### 8. TESTING
 </a>
