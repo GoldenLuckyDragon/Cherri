@@ -353,9 +353,11 @@ Factory dashboard on mobile:
 ![Dash](/backend/public/dash.png)
 
 Admin dashboard on mobile:
-![Dash] (http://res.cloudinary.com/cherri/image/upload/v1516936394/ADMINDASHBOARD_yy4sor.png)
+
+![Admin dashboard] (http://res.cloudinary.com/cherri/image/upload/v1516936394/ADMINDASHBOARD_yy4sor.png)
 
 Invoice details (for factory) on mobile:
+
 ![Invoice Details](http://res.cloudinary.com/cherri/image/upload/v1516936862/INVOICEDETAILS_ixkccf.png)
 
 <a name = "erd">
