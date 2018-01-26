@@ -4,6 +4,9 @@
 
 ## Coder Academy Node / React.js Project By Golden Lucky Dragon (Carmen Chung, Jon Ablondi and James Marotta).
 
+![iphone](/backend/public/iphone.png)
+
+
 ## TABLE OF CONTENTS
 
 [1. INSTALLATION INSTRUCTIONS](#installation)
@@ -279,6 +282,16 @@ The following features were integrated into the application:
 2. Submission of Invoices. Manufacturers will then be able to upload images of unpaid invoices, as well as a signed Account Receivables Sale & Purchase Agreement, and submit these for review by Winsome Stock. Manufacturers will also enter the end-customer name and contact person (plus contact details), the due date of the invoice, the invoice number, and the amount due, into the system. They will be informed by the platform that by submitting the invoice, they are agreeing to keep the offer to purchase at 90% of the invoice value open for 7 days from the date of submission. Manufacturers will also have the option of being paid via traditional online banking methods (such as direct deposit) or online through the platform via Stripe.
 
 3. Admin Account. Winsome Stock has admin access to the platform, which allows it to see all the invoices on its Home page dashboard, including those that are pending approval, those that have been approved and paid, those that have expired (i.e. were not approved or declined within 7 days of the submission), and those that have been declined. After doing its own offline verification process, Winsome Stock can approve the purchase of any pending invoices, and can immediately purchase them through the platform using Stripe (if the manufacturer has selected this as their preferred payment method) at 90% of the value of the invoice amount, or make payment through online banking (outside of the platform).
+
+Dashboard from client logged onto the system.
+![Client Dashboard](/backend/public/clientdash.png)
+
+---
+The Same screen from Admin Dashboard with pay option.
+
+![Admin Dashboard](/backend/public/admindash.png)
+
+
 
 ---
 <a name="planning"/>
