@@ -328,6 +328,7 @@ The following project schedule was prepared to ensure smooth workflow:
 
 ![planning project schedule](http://res.cloudinary.com/cherri/image/upload/v1516783780/planningschedule.png)
 
+Tasks were also divided up (see Week 1 checklist) on Trello [here](https://trello.com/b/9XpIdeIb/team-gld-cherri-project).
 
 This was our whiteboard for our last few days working on the project:
 
